@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shipping-agent"
+version = "0.1.0"
+description = "UPS/FedEx price parser and query agent"
+requires-python = ">=3.10"
+dependencies = [
+  "pandas>=2.2",
+  "openpyxl>=3.1",
+  "pdfplumber>=0.11",
+  "streamlit>=1.37",
+  "pyyaml>=6.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

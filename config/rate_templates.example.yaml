@@ -1,0 +1,13 @@
+files:
+  ups_portugal_export.xlsx:
+    carrier: UPS
+    currency: EUR
+    service_hint: UPS Express Saver
+    origin_type: fixed
+    fixed_origin: PT
+
+  fedex_3rd_party.pdf:
+    carrier: FEDEX
+    currency: EUR
+    service_hint: FedEx International Priority
+    origin_type: third_party

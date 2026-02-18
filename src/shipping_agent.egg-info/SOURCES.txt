@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+src/shipping_agent/__init__.py
+src/shipping_agent/cli.py
+src/shipping_agent/dashboard.py
+src/shipping_agent/engine.py
+src/shipping_agent/extractors.py
+src/shipping_agent/models.py
+src/shipping_agent.egg-info/PKG-INFO
+src/shipping_agent.egg-info/SOURCES.txt
+src/shipping_agent.egg-info/dependency_links.txt
+src/shipping_agent.egg-info/requires.txt
+src/shipping_agent.egg-info/top_level.txt
+tests/test_engine.py

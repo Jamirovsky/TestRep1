@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: shipping-agent
+Version: 0.1.0
+Summary: UPS/FedEx price parser and query agent
+Requires-Python: >=3.10
+Requires-Dist: pandas>=2.2
+Requires-Dist: openpyxl>=3.1
+Requires-Dist: pdfplumber>=0.11
+Requires-Dist: streamlit>=1.37
+Requires-Dist: pyyaml>=6.0
