@@ -69,6 +69,15 @@ class Targets:
     # the search happily drifts into 6-hour position trades that satisfy the
     # profit constraints but are not what was asked for.
     max_avg_hold_bars: float = 180.0   # M1 bars == minutes
+    # HARD feasibility gates.  The soft penalties below merely nudge the search;
+    # when the win rate and profit factor are *requirements* rather than
+    # preferences, they have to disqualify candidates outright -- otherwise the
+    # search maximises expectancy, which it does by raising the target and
+    # LOWERING the win rate, i.e. by walking away from the requirement.
+    # Set these above the final targets: out-of-sample performance degrades, so
+    # the in-sample bar must be higher than the one you actually need.
+    hard_min_pf: float = 0.0           # 0 = disabled
+    hard_min_wr: float = 0.0           # 0 = disabled
     # the targets are stated for the whole backtest; when scoring a shorter
     # window we pro-rate the trade count by its share of the full span
     trade_scale: float = 1.0
@@ -80,6 +89,10 @@ def score(m: Metrics, t: Targets) -> float:
     if m.n_trades < need:
         return -np.inf
     if not np.isfinite(m.expectancy_r):
+        return -np.inf
+    if t.hard_min_pf > 0.0 and m.profit_factor < t.hard_min_pf:
+        return -np.inf
+    if t.hard_min_wr > 0.0 and m.win_rate < t.hard_min_wr:
         return -np.inf
 
     # core: t-stat of mean R (edge scaled by sample size)
@@ -412,24 +425,30 @@ def walk_forward(
             )
 
     oos = pd.concat(oos_frames).sort_values("entry_time") if oos_frames else pd.DataFrame()
-    oos_metrics = _stitch_metrics(oos, base_e.initial_equity)
+    oos_metrics = _stitch_metrics(oos, base_e.initial_equity, base_e.risk_pct)
     is_exp = np.mean([f.train_metrics.expectancy_r for f in folds]) if folds else 0.0
     oos_exp = oos_metrics.expectancy_r
     eff = float(oos_exp / is_exp) if is_exp > 1e-9 else 0.0
     return WalkForward(folds=folds, oos_trades=oos, oos_metrics=oos_metrics, efficiency=eff)
 
 
-def _stitch_metrics(trades: pd.DataFrame, initial_equity: float) -> Metrics:
-    """Metrics over concatenated out-of-sample folds, compounding R sequentially."""
+def _stitch_metrics(
+    trades: pd.DataFrame, initial_equity: float, risk_pct: float = 0.005
+) -> Metrics:
+    """Metrics over concatenated out-of-sample folds, compounding R sequentially.
+
+    Each fold's trades were produced by a different parameter set, so the fold
+    equity curves cannot simply be glued together.  Instead the R sequence is
+    replayed at the configured fractional risk, which is what a trader following
+    the walk-forward procedure would actually have experienced.
+    """
     from . import metrics as M
 
     if len(trades) == 0:
         return Metrics()
     t = trades.sort_values("entry_time").reset_index(drop=True)
     idx = pd.DatetimeIndex(t["exit_time"])
-    # rebuild an equity curve from the R sequence at a constant fractional risk
-    risk = 0.005
-    eq = initial_equity * np.cumprod(1.0 + risk * t["r"].to_numpy())
+    eq = initial_equity * np.cumprod(1.0 + risk_pct * t["r"].to_numpy())
     m = M.compute(t, eq, idx, initial_equity)
     return m
 

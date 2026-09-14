@@ -41,7 +41,9 @@ _SHARED = {
     "e.max_bars": [45, 75, 120, 180],
     "e.be_trigger_r": [0.0, 1.0],
     "e.trail_start_r": [0.0, 1.2],
-    "e.partial_r": [0.0, 1.0],
+    # partial-then-breakeven is the main lever on win rate: it converts
+    # trades that would have round-tripped into small wins
+    "e.partial_r": [0.0, 0.8, 1.2],
     "e.cooldown_bars": [5, 20],
     "e.max_trades_per_day": [4, 8],
 }

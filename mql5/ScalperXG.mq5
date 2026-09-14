@@ -8,13 +8,23 @@
 //|  from the Python backtester and a result from the MT5 Strategy    |
 //|  Tester should agree to within fill modelling.                    |
 //|                                                                   |
-//|  BEFORE RUNNING THIS ON A LIVE ACCOUNT                            |
-//|  The default inputs were fitted on SYNTHETIC data, because the    |
-//|  machine this was built on could not reach any market-data        |
-//|  provider. Re-run the optimiser on your own broker's history      |
-//|  (see data/README.md) and paste the resulting parameters in       |
-//|  before risking money. Then test in the Strategy Tester on        |
-//|  "Every tick based on real ticks".                                |
+//|  BEFORE RUNNING THIS ON A LIVE ACCOUNT - READ docs/RESULTS.md     |
+//|  The defaults below are the XAUUSD parameters from                |
+//|  config/XAUUSD_momentum_base.json. They were fitted on SYNTHETIC  |
+//|  data, because the machine this was built on could not reach any  |
+//|  market-data provider, and even on that data they reached a       |
+//|  profit factor of only 1.10 out of sample (win rate 50.8% over    |
+//|  1195 trades, t = 1.47 - not statistically significant), and the  |
+//|  edge disappears at 1.4x the modelled transaction costs.          |
+//|                                                                   |
+//|  For EURUSD the research found NO edge that survives costs at all |
+//|  (out-of-sample profit factor 0.86, t = -3.01). Do not simply     |
+//|  point this EA at EURUSD.                                         |
+//|                                                                   |
+//|  Re-run the optimiser on your own broker's history (see           |
+//|  data/README.md), paste the resulting parameters in, and test in  |
+//|  the Strategy Tester on "Every tick based on real ticks" before   |
+//|  risking money.                                                   |
 //+------------------------------------------------------------------+
 #property copyright "ScalperXG"
 #property version   "1.00"
@@ -32,10 +42,10 @@ enum ENUM_SCALP_MODE
   };
 
 input group           "=== Strategy ==="
-input ENUM_SCALP_MODE InpMode            = MODE_BREAKOUT;
-input ENUM_TIMEFRAMES InpSignalTF        = PERIOD_M5;  // signal timeframe
-input int             InpSessionStartUTC = 7;          // inclusive, UTC hour
-input int             InpSessionEndUTC   = 18;         // exclusive, UTC hour
+input ENUM_SCALP_MODE InpMode            = MODE_MOMENTUM;
+input ENUM_TIMEFRAMES InpSignalTF        = PERIOD_M15; // signal timeframe
+input int             InpSessionStartUTC = 12;         // inclusive, UTC hour
+input int             InpSessionEndUTC   = 18;         // exclusive, UTC hour (NY session)
 
 input group           "=== Regime filters ==="
 input int             InpAtrPeriod       = 14;
@@ -43,7 +53,7 @@ input int             InpAtrRankLookback = 288;        // bars for the vol-regim
 input double          InpAtrRankMin      = 0.10;
 input double          InpAtrRankMax      = 0.99;
 input int             InpErPeriod        = 24;         // Efficiency Ratio window
-input double          InpErMin           = 0.50;       // 0 disables
+input double          InpErMin           = 0.30;       // 0 disables
 input double          InpErMax           = 1.00;       // <1 demands chop (fade)
 
 input group           "=== Entry (breakout) ==="
@@ -56,7 +66,7 @@ input double          InpExpansionMult   = 1.10;
 input int             InpAtrAvgPeriod    = 48;
 
 input group           "=== Entry (momentum) ==="
-input int             InpMomPeriod       = 24;
+input int             InpMomPeriod       = 12;
 input double          InpMomMinAtr       = 1.0;
 input bool            InpMomConfirm      = true;
 
@@ -77,24 +87,24 @@ input int             InpConfirmMode     = 2;   // 0 none 1 rejection 2 turn 3 s
 
 input group           "=== Risk and exits ==="
 input double          InpRiskPct         = 0.005;  // fraction of equity per trade
-input double          InpSlAtr           = 2.5;    // stop = InpSlAtr * ATR
-input double          InpMinSlPoints     = 220;    // stop floor, in POINTS
-input double          InpTpR             = 1.6;    // target = InpTpR * stop
+input double          InpSlAtr           = 2.0;    // stop = InpSlAtr * ATR
+input double          InpMinSlPoints     = 750;    // stop floor in POINTS (gold: USD 7.50)
+input double          InpTpR             = 1.2;    // target = InpTpR * stop
 input double          InpBeTriggerR      = 0.0;    // 0 disables breakeven
 input double          InpBeOffsetR       = 0.05;
 input double          InpPartialR        = 0.0;    // 0 disables partial close
 input double          InpPartialFrac     = 0.5;
-input double          InpTrailStartR     = 0.0;    // 0 disables trailing
+input double          InpTrailStartR     = 1.2;    // 0 disables trailing
 input double          InpTrailDistR      = 1.0;
 input int             InpMaxHoldMinutes  = 120;
-input int             InpCooldownMinutes = 15;
-input int             InpMaxTradesPerDay = 4;
+input int             InpCooldownMinutes = 20;
+input int             InpMaxTradesPerDay = 8;
 input double          InpDailyLossLimitR = 3.0;    // stop for the day below -this
 input int             InpForceExitHour   = 20;     // UTC
 input int             InpForceExitMin    = 45;
 
 input group           "=== Execution ==="
-input double          InpMaxSpreadPoints = 30;     // skip entries above this
+input double          InpMaxSpreadPoints = 90;     // skip entries above this (gold: USD 0.90)
 input int             InpSlippagePoints  = 10;
 input long            InpMagic           = 20260914;
 input string          InpComment         = "ScalperXG";

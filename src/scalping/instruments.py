@@ -43,6 +43,10 @@ class Instrument:
 
     swap_long_points: float = 0.0      # per night, points (negative = cost)
     swap_short_points: float = 0.0
+    # How humans talk about distance on this instrument.  Calling 45 points of
+    # gold "45 pips" is technically true and completely unreadable; traders say
+    # "45 cents".
+    display_unit: str = "pips"         # "pips" or "usd"
 
     def spread_points_for_hour(self, hour_utc: int, vol_z: float = 0.0) -> float:
         """Session- and volatility-aware spread in points."""
@@ -59,6 +63,12 @@ class Instrument:
     # --- helpers -------------------------------------------------------
     def price_to_pips(self, price_delta: float) -> float:
         return price_delta / self.pip
+
+    def fmt_distance(self, price_delta: float) -> str:
+        """Render a price distance the way a trader of this symbol would say it."""
+        if self.display_unit == "usd":
+            return f"USD {price_delta:,.2f}"
+        return f"{price_delta / self.pip:,.2f} pips"
 
     def pips_to_price(self, pips: float) -> float:
         return pips * self.pip
@@ -131,6 +141,7 @@ XAUUSD = Instrument(
     slippage_points_stop=14.0,     # 0.14 USD extra on stops
     swap_long_points=-40.0,
     swap_short_points=10.0,
+    display_unit="usd",
 )
 
 REGISTRY: Dict[str, Instrument] = {"EURUSD": EURUSD, "XAUUSD": XAUUSD}

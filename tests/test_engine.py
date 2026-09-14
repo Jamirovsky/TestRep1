@@ -145,6 +145,26 @@ class TestCosts:
         vpp = inst.value_per_point_per_lot()
         expected = -(spread_pts * vpp * lots) - 7.0 * lots
         assert tr.pnl.iloc[0] == pytest.approx(expected, rel=1e-9)
+        # the reported friction must account for ALL of it, not just commission
+        assert tr.cost.iloc[0] == pytest.approx(-expected, rel=1e-9)
+
+    def test_reported_friction_includes_spread_slippage_and_commission(self):
+        inst = get_instrument("XAUUSD")
+        bars = make_bars([(2600.0, 2600.0, 2600.0, 2600.0)] * 6)
+        spread_pts = 20.0
+        cfg = flat_cfg(
+            inst, max_bars=3, commission_per_lot_rt=7.0,
+            slippage_points_entry=4.0, slippage_points_stop=9.0,
+        )
+        sig = one_signal(len(bars), 1, +1, 5.0, 100.0)
+        res = run_backtest(bars, sig, cfg, np.full(len(bars), spread_pts))
+        tr = res.trades_frame()
+        lots = tr.lots.iloc[0]
+        vpp = inst.value_per_point_per_lot()
+        # time-stop exit: spread + entry slippage + exit slippage + commission
+        expected = (spread_pts + 4.0 + 4.0) * vpp * lots + 7.0 * lots
+        assert tr.cost.iloc[0] == pytest.approx(expected, rel=1e-9)
+        assert tr.pnl.iloc[0] == pytest.approx(-expected, rel=1e-9)
 
     def test_stop_slippage_makes_the_loss_worse_than_one_r(self):
         inst = get_instrument("EURUSD")

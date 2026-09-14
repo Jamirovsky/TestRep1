@@ -45,7 +45,7 @@ def metrics_table(named: Dict[str, Metrics]) -> str:
         ("Sortino", "sortino", 2), ("CAGR %", "cagr_pct", 1),
         ("Calmar", "calmar", 2), ("Trades/day", "trades_per_day", 2),
         ("Avg hold (min)", "avg_bars_held", 0), ("Max consec. losses", "max_consec_losses", 0),
-        ("t-stat of mean R", "t_stat", 2), ("Cost / gross %", "cost_share_of_gross", 3),
+        ("t-stat of mean R", "t_stat", 2), ("Friction / gross %", "cost_share_of_gross", 1),
     ]
     heads = list(named)
     out = ["| Metric | " + " | ".join(heads) + " |",

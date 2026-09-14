@@ -137,8 +137,11 @@ def compute(
         m.cagr_pct = float(((final / initial_equity) ** (1.0 / years) - 1.0) * 100.0)
     m.calmar = float(m.cagr_pct / m.max_dd_pct) if m.max_dd_pct > 1e-9 else 0.0
 
-    gross = float(np.abs(pnl).sum()) + float(trades["cost"].sum())
-    m.cost_share_of_gross = float(trades["cost"].sum() / gross) if gross > 0 else 0.0
+    # "cost" is total friction: spread + slippage + commission + swap.
+    # Gross = what the trades would have made with none of it.
+    friction = float(trades["cost"].sum())
+    gross = float(np.abs(pnl).sum()) + friction
+    m.cost_share_of_gross = float(friction / gross) if gross > 0 else 0.0
     return m
 
 

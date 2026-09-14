@@ -66,23 +66,45 @@ def cost_sensitivity(prep, s, e, multipliers=(1.0, 1.25, 1.5, 2.0)) -> pd.DataFr
 
 
 def monte_carlo(trades: pd.DataFrame, n: int = 5000, seed: int = 0) -> dict:
-    """Reshuffle the trade order to see what luck could have done to the path."""
+    """Two different questions, two different resamplings.
+
+    **Permutation** (shuffle without replacement) keeps the same trades and only
+    changes their order.  It answers "how bad could the drawdown path have been
+    with this exact set of results?"  It cannot say anything about the final
+    total, which is invariant under reordering -- a reshuffle-only Monte Carlo
+    that reports a distribution of final equity is reporting a constant.
+
+    **Bootstrap** (resample with replacement) draws a different sample of trades
+    each time and does answer "what else could this edge have produced?"
+    """
     if len(trades) < 20:
         return {}
     r = trades["r"].to_numpy()
+    m = len(r)
     rng = np.random.default_rng(seed)
-    dds, finals = np.empty(n), np.empty(n)
+
+    dds = np.empty(n)
     for i in range(n):
-        perm = rng.permutation(r)
-        cum = np.cumsum(perm)
+        cum = np.cumsum(rng.permutation(r))
         dds[i] = np.max(np.maximum.accumulate(cum) - cum)
-        finals[i] = cum[-1]
+
+    boot_final = np.empty(n)
+    boot_dd = np.empty(n)
+    for i in range(n):
+        sample = r[rng.integers(0, m, m)]
+        cum = np.cumsum(sample)
+        boot_final[i] = cum[-1]
+        boot_dd[i] = np.max(np.maximum.accumulate(cum) - cum)
+
     return {
-        "median_max_dd_R": float(np.median(dds)),
-        "p95_max_dd_R": float(np.percentile(dds, 95)),
-        "p05_final_R": float(np.percentile(finals, 5)),
-        "median_final_R": float(np.median(finals)),
-        "prob_final_negative": float((finals < 0).mean()),
+        "actual_total_R": float(r.sum()),
+        "perm_median_max_dd_R": float(np.median(dds)),
+        "perm_p95_max_dd_R": float(np.percentile(dds, 95)),
+        "boot_p05_total_R": float(np.percentile(boot_final, 5)),
+        "boot_median_total_R": float(np.median(boot_final)),
+        "boot_p95_total_R": float(np.percentile(boot_final, 95)),
+        "boot_prob_total_negative": float((boot_final < 0).mean()),
+        "boot_p95_max_dd_R": float(np.percentile(boot_dd, 95)),
     }
 
 
@@ -120,13 +142,13 @@ def main() -> int:
 
     mc = monte_carlo(trades)
     if mc:
-        print("\nmonte carlo (trade-order reshuffle):")
+        print("\nmonte carlo:")
         for k, v in mc.items():
             print(f"  {k:24s} {v:.3f}")
 
     friction = research.round_trip_cost_points(prep.inst)
-    print(f"\nround-trip friction: {friction:.1f} points "
-          f"({friction * prep.inst.point / prep.inst.pip:.2f} pips)")
+    print(f"\nround-trip friction: {friction:.1f} points = "
+          f"{prep.inst.fmt_distance(friction * prep.inst.point)}")
 
     if args.report:
         outdir = ROOT / "reports"
@@ -151,7 +173,11 @@ def main() -> int:
             "",
             cost_df.to_markdown(index=False),
             "",
-            "## Monte Carlo (trade-order reshuffle)",
+            "## Monte Carlo",
+            "",
+            "_Permutation answers 'how bad could the path have been'; bootstrap "
+            "answers 'what else could this edge have produced'. Reordering cannot "
+            "change the total, so only the bootstrap rows speak to the outcome._",
             "",
             "\n".join(f"- {k}: {v:.3f}" for k, v in mc.items()) if mc else "_too few trades_",
             "",

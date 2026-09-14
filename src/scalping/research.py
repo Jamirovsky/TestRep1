@@ -186,3 +186,45 @@ def round_trip_cost_points(inst, hour: int = 14, stop_exit: bool = True) -> floa
     comm_points = inst.commission_per_lot_rt / inst.value_per_point_per_lot()
     slip = inst.slippage_points_entry + (inst.slippage_points_stop if stop_exit else 0.0)
     return spread + comm_points + slip
+
+
+def variance_ratio(close: pd.Series, horizons_bars: Iterable[int] = (2, 4, 12, 24, 48, 96)) -> pd.DataFrame:
+    """Lo-MacKinlay variance ratio at several horizons.
+
+    ``VR(q) = Var(q-bar return) / (q * Var(1-bar return))``
+
+    * ``VR = 1``  random walk -- nothing for either family to trade
+    * ``VR > 1``  trending: momentum / breakout / pullback have something to find
+    * ``VR < 1``  mean-reverting: the fade family is the right tool
+
+    Run this **first** on any new instrument or timeframe.  It costs a second and
+    tells you which strategy family is even worth optimising, and at what
+    horizon -- which is a far better use of time than discovering the same thing
+    after a thousand backtests.  The accompanying z-statistic is the
+    heteroskedasticity-robust test of VR = 1; |z| below ~2 means the deviation
+    from a random walk is not distinguishable from noise.
+    """
+    r = np.log(close.astype("float64")).diff().dropna().to_numpy()
+    n = len(r)
+    if n < 100:
+        return pd.DataFrame(columns=["horizon_bars", "variance_ratio", "z_stat"])
+    v1 = r.var(ddof=1)
+    rows = []
+    for q in horizons_bars:
+        if q < 2 or n // q < 10:
+            continue
+        agg = r[: n // q * q].reshape(-1, q).sum(axis=1)
+        vr = agg.var(ddof=1) / (q * v1)
+        # heteroskedasticity-consistent standard error (Lo & MacKinlay 1988)
+        mu = r.mean()
+        d = (r - mu) ** 2
+        theta = 0.0
+        for j in range(1, q):
+            num = float(np.sum(d[j:] * d[: n - j]))
+            den = float(np.sum(d)) ** 2      # squared SUM, not sum of squares / n
+            delta = num / den if den > 0 else 0.0
+            theta += (2.0 * (q - j) / q) ** 2 * delta
+        z = (vr - 1.0) / np.sqrt(theta) if theta > 0 else np.nan
+        rows.append({"horizon_bars": q, "variance_ratio": round(float(vr), 4),
+                     "z_stat": round(float(z), 2) if np.isfinite(z) else np.nan})
+    return pd.DataFrame(rows)

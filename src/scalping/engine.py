@@ -181,18 +181,22 @@ def _run(
             if pos > 0 and bar_op <= sl_px:
                 fill = bar_op - slip_stop * point
                 exited, reason = 1, EXIT_SL
+                cost_acc += slip_stop * vpp * lots_open
             elif pos < 0 and bar_op >= sl_px:
                 fill = bar_op + slip_stop * point
                 exited, reason = 1, EXIT_SL
+                cost_acc += slip_stop * vpp * lots_open
 
             # --- 2. stop touched inside the bar (pessimistic first) -----
             if exited == 0:
                 if pos > 0 and bar_lo <= sl_px:
                     fill = sl_px - slip_stop * point
                     exited, reason = 1, EXIT_SL
+                    cost_acc += slip_stop * vpp * lots_open
                 elif pos < 0 and bar_hi >= sl_px:
                     fill = sl_px + slip_stop * point
                     exited, reason = 1, EXIT_SL
+                    cost_acc += slip_stop * vpp * lots_open
 
             # --- 3. partial take-profit (a resting limit) ---------------
             if exited == 0 and partial_r > 0.0 and partial_done == 0:
@@ -229,9 +233,11 @@ def _run(
                 if bars_held >= max_bars:
                     fill = bar_cl - pos * slip_entry * point
                     exited, reason = 1, EXIT_TIME
+                    cost_acc += slip_entry * vpp * lots_open
                 elif hour[i] > force_hour or (hour[i] == force_hour and minute[i] >= force_min):
                     fill = bar_cl - pos * slip_entry * point
                     exited, reason = 1, EXIT_SESSION
+                    cost_acc += slip_entry * vpp * lots_open
 
             # --- 6. advance breakeven / trail (never saves this bar) ----
             if exited == 0:
@@ -328,7 +334,10 @@ def _run(
                 entry_i = i
                 partial_done = 0
                 realized = 0.0
-                cost_acc = 0.0
+                # Friction accounting: spread and slippage are embedded in the
+                # fill prices, so they have to be tracked explicitly or the
+                # reported cost is commission only, which badly understates it.
+                cost_acc = (sp / point + slip_entry) * vpp * lt
                 exit_px_acc = 0.0
                 best_px = entry_px
                 mae_r = 0.0
