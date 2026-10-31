@@ -13,8 +13,10 @@ IS_START, IS_END = '2018-01-01', '2023-12-31 23:59'
 OOS_START, OOS_END = '2024-01-01', '2026-12-31'
 
 
-def load(tf):
-    return pd.read_pickle(f'{S}/data/BTCUSD_{tf}.pkl')
+def load(tf, sym=None):
+    import os
+    sym = sym or os.environ.get('SYM', 'BTC')
+    return pd.read_pickle(f'{S}/data/{sym}USD_{tf}.pkl')
 
 
 # ---------------------------------------------------------------- kernel

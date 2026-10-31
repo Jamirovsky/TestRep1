@@ -141,7 +141,73 @@ for rank, (s, tf, idx, tier) in enumerate(TOP, 1):
 <details><summary>Resultado por ano</summary><div class="tw"><table class="yr"><thead><tr><th>Ano</th><th>Trades</th><th>WR</th><th>PF</th></tr></thead><tbody>{yrs}</tbody></table></div></details></div></div>
 </article>''')
 
+# ---------------------------------------------------------------- multi-ativo
+import pandas as pd
+XT = pd.read_csv(f'{S}/xtransfer.csv'); XW = pd.read_csv(f'{S}/xwfo_summary.csv')
+ASSETS = ['ETH', 'SOL', 'XRP']
+
+
+def xcell(r):
+    if r is None: return '<td class="xc na">—</td>'
+    pf = r['all_pf']; ok = bool(r['pass_all'])
+    cls = 'xg' if ok else ('xa' if pf > 1 else 'xr')
+    why = []
+    if r['all_winrate'] < 57: why.append(f"WR {r['all_winrate']:.1f}%")
+    if r['all_maxdd'] >= 20: why.append(f"DD {r['all_maxdd']:.1f}%")
+    if r['all_trades'] <= 100: why.append(f"{int(r['all_trades'])} trades")
+    icon = '✓' if ok else ('◐' if pf > 1 else '✕')
+    tip = f"{int(r['all_trades'])} trades · WR {r['all_winrate']:.1f}% · PF {r['all_pf']:.2f} · DD {r['all_maxdd']:.1f}% | forward: {int(r['fwd_trades'])} tr, PF {min(r['fwd_pf'], 99):.2f}"
+    sub = ', '.join(why) if (why and not ok) else f"DD {r['all_maxdd']:.1f}%"
+    return f'<td class="xc {cls}" title="{tip}"><b><span aria-hidden="true">{icon}</span> {pf:.2f}</b><small>{sub}</small></td>'
+
+
+xrows = []; det = []; summary = []
+for rank, (s_, tf, idx, tier) in enumerate(TOP, 1):
+    nm = NAMES[s_][0]; cells = []; npf = 0; npass = 0; ntest = 0
+    for a in ASSETS:
+        t = XT[(XT.sym == a) & (XT.strat == s_) & (XT.tf == tf)]
+        w = XW[(XW.sym == a) & (XW.strat == s_) & (XW.tf == tf)]
+        tr_ = t.iloc[0].to_dict() if len(t) else None; wr_ = w.iloc[0].to_dict() if len(w) else None
+        cells.append(xcell(tr_)); cells.append(xcell(wr_))
+        for r in (tr_, wr_):
+            if r is None: continue
+            ntest += 1; npf += r['all_pf'] > 1; npass += bool(r['pass_all'])
+            det.append(f"<tr><td>{nm}</td><td>{a}</td><td>{'Transferência' if r is tr_ else 'WFO no par'}</td><td>{int(r['all_trades'])}</td><td>{r['all_winrate']:.1f}%</td><td>{min(r['all_pf'], 99):.2f}</td><td>{r['all_maxdd']:.1f}%</td><td>{r['all_ret']:.1f}%</td><td>{int(r['fwd_trades'])}</td><td>{r['fwd_winrate']:.1f}%</td><td>{min(r['fwd_pf'], 99):.2f}</td><td>{r['fwd_maxdd']:.1f}%</td><td>{'' if r is tr_ else str(int(r['seeds_ok'])) + '/3'}</td><td>{'' if r is tr_ else str(int(r['size_dd20'] * 100)) + '%'}</td></tr>")
+    verdict = 'xg' if npf / ntest >= 0.8 else ('xa' if npf / ntest >= 0.5 else 'xr')
+    summary.append((nm, npf, ntest, npass))
+    xrows.append(f'<tr><td class="rk">{rank}</td><td class="nm"><b>{nm}</b><small>{tf}</small></td>{"".join(cells)}<td class="xc {verdict}"><b>{npf}/{ntest}</b><small>{npass} cumprem tudo</small></td></tr>')
+
+XSEC = f'''<section id="multiativo">
+  <h2>Teste noutros pares: ETH, SOL e XRP</h2>
+  <p>Testei as 10 estratégias nos três maiores pares de cripto a seguir ao BTC com dados disponíveis: ETHUSDT (desde ago/2017), SOLUSDT (desde ago/2020) e XRPUSDT (desde mai/2018), em velas de 1 minuto da Binance spot até 24/10/2026. Usei os mesmos custos e 100% do capital por trade. Cada par foi testado de duas formas:</p>
+  <ul>
+    <li><b>Transferência:</b> exatamente os parâmetros escolhidos no BTC, janela a janela, sem nenhuma re-otimização. É o teste mais exigente: nenhum dado do par entrou na escolha.</li>
+    <li><b>WFO no par:</b> o mesmo procedimento walk-forward, re-otimizado só com o histórico passado desse par, com 3 sementes (mostro a corrida mediana). As estratégias de parâmetros fixos (#2 e #9) só têm teste de transferência.</li>
+  </ul>
+  <div class="legend"><span><span class="xk xg">✓</span> Cumpre os 4 critérios no período 2021 → out/2026 (parâmetros fixos: período completo)</span><span><span class="xk xa">◐</span> PF &gt; 1 mas falha outro critério, quase sempre DD &gt; 20% com 100% do capital</span><span><span class="xk xr">✕</span> PF &lt; 1 (perde dinheiro)</span></div>
+  <div class="tw"><table class="main xt">
+    <thead><tr><th></th><th class="nm"></th><th colspan="2">ETH</th><th colspan="2">SOL</th><th colspan="2">XRP</th><th>Veredicto</th></tr>
+    <tr><th>#</th><th class="nm">Estratégia</th><th>Transf.</th><th>WFO</th><th>Transf.</th><th>WFO</th><th>Transf.</th><th>WFO</th><th>PF &gt; 1</th></tr></thead>
+    <tbody>{"".join(xrows)}</tbody></table></div>
+  <p class="muted" style="font-size:.85rem">Cada célula mostra o PF; o texto pequeno indica o que falhou. Passe o cursor para ver trades, WR, DD e forward.</p>
+  <div class="note">
+    <b>O que isto diz</b>
+    <ul>
+      <li><b>ClucMay Dip Buyer é o edge mais transferível:</b> PF &gt; 1 nos 6 testes (1,07 a 1,92). No WFO cumpre os 4 critérios em SOL (PF 1,83) e XRP (PF 1,92). Em transferência cumpre em XRP e falha em ETH e SOL só por DD acima de 20%.</li>
+      <li><b>BinHV45 vem a seguir</b>, com PF &gt; 1 em 5 de 6 testes, mas o DD fica entre 25% e 34% com 100% do capital.</li>
+      <li><b>SwingHighToSky (#1 no BTC)</b> cumpre tudo no XRP com os parâmetros do BTC (PF 1,71, WR 76%, DD 17%, forward PF 1,84), mas re-otimizada no próprio XRP o PF cai para 0,90. No SOL tem PF 1,30–1,46 e no ETH falha (PF 0,89–0,90).</li>
+      <li><b>Consecutive Bars</b> cumpre tudo no ETH com WFO (PF 1,48, DD 7%, 3/3 sementes) e tem PF &gt; 1 em 4 de 6 testes.</li>
+      <li><b>Williams %R, Stochastic, IBS Short e Supertrend 4h parecem específicas do BTC</b>, com PF &lt; 1 na maioria dos outros pares. Baixe a confiança nestas, mesmo nas que são Tier A no BTC.</li>
+      <li><b>O ETH é o par mais difícil:</b> só 1 dos 18 testes (transferência + WFO) cumpre tudo. Em SOL e XRP o critério que mais falha é o DD, porque a volatilidade em 15m é 1,4 a 2× a do BTC (ATR mediano desde 2021: BTC 0,32%, ETH 0,44%, XRP 0,50%, SOL 0,65%). Onde o PF é positivo, uma fração menor do capital por trade baixa o DD para menos de 20% sem alterar o WR nem o PF (coluna "Tamanho p/ DD&lt;20%" na tabela detalhada).</li>
+    </ul>
+  </div>
+  <details><summary>Tabela detalhada por par e método</summary><div class="tw"><table class="main det">
+    <thead><tr><th class="nm">Estratégia</th><th>Par</th><th>Método</th><th>Trades</th><th>WR</th><th>PF</th><th>DD</th><th>Retorno</th><th>Fwd trades</th><th>Fwd WR</th><th>Fwd PF</th><th>Fwd DD</th><th>Sementes OK</th><th>Tamanho p/ DD&lt;20%</th></tr></thead>
+    <tbody>{"".join(det)}</tbody></table></div></details>
+</section>'''
+
 TPL = open(f'{S}/report_tpl.html').read()
-out = TPL.replace('{{ROWS}}', '\n'.join(rows)).replace('{{CARDS}}', '\n'.join(cards))
+out = TPL.replace('{{ROWS}}', '\n'.join(rows)).replace('{{CARDS}}', '\n'.join(cards)).replace('{{XASSET}}', XSEC)
+for nm, a, b, c in summary: print(nm, a, b, c)
 open(f'{S}/relatorio_estrategias_crypto.html', 'w').write(out)
 print('ok', len(out))

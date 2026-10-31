@@ -85,11 +85,17 @@ details summary:focus-visible,a:focus-visible{outline:2px solid var(--accent);ou
 ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;max-width:80ch}
 a{color:var(--accent)}
 .st{font:600 .8rem var(--f-mono);padding:2px 7px;border-radius:4px}
+.xt td.xc{text-align:center;white-space:nowrap;min-width:84px}
+.xc b{display:block;font:600 .9rem var(--f-mono)} .xc small{display:block;font-size:.72rem;opacity:.85}
+.xg{background:var(--good-bg);color:var(--good)} .xa{background:var(--warn-bg);color:var(--warn)} .xr{background:var(--bad-bg);color:var(--bad)}
+.xt td.xc{border-left:2px solid var(--surface)}
+.xk{display:inline-block;width:1.6em;text-align:center;border-radius:4px;font-weight:700}
+.det td,.det th{font-size:.82rem}
 </style>
 
 <div class="wrap">
 <header class="hero">
-  <p class="eyebrow">Pesquisa quantitativa · BTC/USD · 31 out 2026</p>
+  <p class="eyebrow">Pesquisa quantitativa · BTC/USD + ETH, SOL, XRP · 31 out 2026</p>
   <h1>Top 10 de estratégias de trading para BTC</h1>
   <p class="lead">Testei 17 famílias de estratégias, tiradas de repositórios open-source (sobretudo freqtrade-strategies) e da literatura de mean-reversion, em dados de 1 minuto da Bitstamp entre 2017 e out/2026. Fiz reverse-engineering, otimizei e validei cada uma em três camadas: backtest, walk-forward e forward test. No total foram mais de 270 mil backtests.</p>
   <div class="crit"><span>Win rate ≥ 57%</span><span>Profit factor ≥ 1,05</span><span>Max drawdown &lt; 20%</span><span>Trades &gt; 100</span></div>
@@ -101,6 +107,7 @@ a{color:var(--accent)}
     <div class="fact"><b>4</b><span>estratégias (Tier A) cumprem os 4 critérios no walk-forward 2021-26 e no forward test jul/25–out/26</span></div>
     <div class="fact"><b>4</b><span>(Tier B) cumprem no walk-forward com PF de 1,20 a 1,84, mas fizeram poucos trades no forward por causa da baixa volatilidade</span></div>
     <div class="fact"><b>2/30</b><span>das melhores estratégias de parâmetros fixos sobreviveram ao forward test intocado</span></div>
+    <div class="fact"><b>6/6</b><span>testes com PF &gt; 1 para a ClucMay em ETH, SOL e XRP, o edge que melhor se transfere entre pares (<a href="#multiativo">ver teste multi-ativo</a>)</span></div>
     <div class="fact"><b>0,94–1,03</b><span>PF de um ensemble de todas as famílias de mean-reversion em 15m: no agregado quase não há edge</span></div>
   </div>
   <p>A conclusão principal é que um win rate alto em BTC é fácil de obter, porque mean-reversion com TP curto e SL largo dá naturalmente 65–90% de acertos. O difícil é manter o PF acima de 1 fora da amostra. A volatilidade do BTC caiu cerca de 50% entre 2021 e 2025-26 (ATR 1h: 1,16% para 0,55%), e isso destruiu a maior parte dos edges otimizados em 2018-2023. Os sobreviventes são estratégias de reversão a extremos em 15m com filtro de volatilidade mínima face ao custo. A melhor, SwingHighToSky, passou com as 4 sementes aleatórias.</p>
@@ -117,6 +124,8 @@ a{color:var(--accent)}
     </tbody></table></div>
   <p class="muted" style="font-size:.85rem">* Walk-forward: trades concatenados dos períodos de teste nunca vistos na otimização. Parâmetros fixos (#2 e #9): período completo 2018 → out/2026. O forward está incluído no walk-forward. Custos base: 0,05% de comissão + 0,02% de slippage por lado e funding de 0,01%/8h, como em futuros perpétuos USDT-M. 100% do capital por trade, sem alavancagem. DD MC p95 = percentil 95 do drawdown em 1000 reamostragens dos trades. Estab. = sementes aleatórias em que a meta-configuração WFO passou, ou % de parâmetros vizinhos que também passam.</p>
 </section>
+
+{{XASSET}}
 
 <section>
   <h2>Fichas das estratégias</h2>
@@ -147,7 +156,7 @@ a{color:var(--accent)}
   <ul>
     <li><b>Viés de seleção.</b> Mesmo no walk-forward, escolhi as melhores entre centenas de configurações. Conte com resultados futuros piores. O ensemble de todas as famílias (PF ≈ 1,0) é a referência do que um sistema médio faria.</li>
     <li><b>Poucos trades por ano.</b> O filtro de volatilidade deixa as estratégias fora do mercado longos períodos. É isso que as protege em 2025-26, mas também deixa algumas com menos de 15 trades no forward, uma amostra pequena.</li>
-    <li><b>Só BTC/USD da Bitstamp.</b> As APIs das exchanges (Binance, Bybit, OKX, Kraken, Coinbase) estão bloqueadas neste ambiente, por isso não houve validação noutros pares. Antes de usar capital real, valide em ETH, SOL e no par USDT do exchange onde vai operar.</li>
+    <li><b>Dados.</b> A otimização foi feita só com BTC/USD da Bitstamp. A validação em ETH, SOL e XRP usou dados Binance spot de um repositório público no GitHub, porque as APIs das exchanges estão bloqueadas neste ambiente. Antes de usar capital real, confirme com os dados do exchange onde vai operar.</li>
     <li><b>Execução.</b> Sinal no fecho da vela e entrada na abertura seguinte. TP e SL são verificados intrabarra, com o SL primeiro (pessimista). Os shorts e o funding assumem futuros perpétuos.</li>
     <li><b>Retorno modesto.</b> Entre cerca de 1% e 5% ao ano, com DD de 8–16%, porque as estratégias passam a maior parte do tempo fora do mercado. Os critérios pedidos (WR, PF, DD) não garantem rentabilidade elevada.</li>
     <li>Isto não é aconselhamento financeiro. Faça paper trading 1–3 meses antes de usar capital real.</li>
@@ -157,7 +166,7 @@ a{color:var(--accent)}
 <section>
   <h2>Fontes</h2>
   <ul>
-    <li>Dados: <a href="https://github.com/ff137/bitstamp-btcusd-minute-data">ff137/bitstamp-btcusd-minute-data</a> (BTC/USD 1m, 2012 → 30/10/2026)</li>
+    <li>Dados: <a href="https://github.com/ff137/bitstamp-btcusd-minute-data">ff137/bitstamp-btcusd-minute-data</a> (BTC/USD 1m, 2012 → 30/10/2026); <a href="https://github.com/parshant231234-eng/ETHUSDT-Historical-Data">ETHUSDT</a>, <a href="https://github.com/parshant231234-eng/SOLUSDT-Historical-Data">SOLUSDT</a> e <a href="https://github.com/parshant231234-eng/XRPUSDT-Historical-Data">XRPUSDT</a> Historical-Data (Binance spot 1m → 24/10/2026)</li>
     <li>Estratégias: <a href="https://github.com/freqtrade/freqtrade-strategies">freqtrade/freqtrade-strategies</a> (BbandRsi, BinHV45, ClucMay72018, CombinedBinHAndCluc, SmoothScalp, Strategy005, SwingHighToSky, hlhb, Supertrend, MultiMa, Diamond, Heracles)</li>
     <li>Literatura: L. Connors &amp; C. Alvarez, RSI(2) e mean-reversion de curto prazo; IBS (Internal Bar Strength); Williams %R</li>
   </ul>
