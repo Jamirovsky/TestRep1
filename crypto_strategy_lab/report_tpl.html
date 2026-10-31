@@ -1,0 +1,182 @@
+<title>BTC Strategy Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: relatório de pesquisa de uma coluna larga; resumo → tabela top10 → fichas por estratégia → método e riscos */
+:root{
+  --bg:#f5f6f4; --surface:#ffffff; --ink:#15191c; --ink-2:#4d5559; --muted:#7b8487; --rule:#dde1de;
+  --accent:#2a78d6; --accent-soft:rgba(42,120,214,.13); --fwd:rgba(235,104,52,.10);
+  --good:#1d7a45; --good-bg:#e3f2e8; --warn:#9a6200; --warn-bg:#fbf0d9; --bad:#b8373a; --bad-bg:#f8e3e3;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif; --f-body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121516; --surface:#1a1e20; --ink:#eef0ee; --ink-2:#b9c0c2; --muted:#8d9699; --rule:#2c3234;
+  --accent:#3987e5; --accent-soft:rgba(57,135,229,.18); --fwd:rgba(217,89,38,.14);
+  --good:#5cc489; --good-bg:#183324; --warn:#e2a93b; --warn-bg:#352a12; --bad:#ec7a7c; --bad-bg:#3a1d1e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121516; --surface:#1a1e20; --ink:#eef0ee; --ink-2:#b9c0c2; --muted:#8d9699; --rule:#2c3234;
+  --accent:#3987e5; --accent-soft:rgba(57,135,229,.18); --fwd:rgba(217,89,38,.14);
+  --good:#5cc489; --good-bg:#183324; --warn:#e2a93b; --warn-bg:#352a12; --bad:#ec7a7c; --bad-bg:#3a1d1e; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--f-display);font-stretch:85%;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2rem,5vw,3.1rem);font-weight:800;letter-spacing:-.01em}
+h2{font-size:1.6rem;font-weight:700}
+h3{font-size:1.2rem;font-weight:700}
+p{margin:0;max-width:72ch}
+.eyebrow{font:600 .75rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lead{font-size:1.12rem;color:var(--ink-2)}
+.muted{color:var(--muted)}
+section{display:flex;flex-direction:column;gap:16px}
+.hero{display:flex;flex-direction:column;gap:14px;border-bottom:1px solid var(--rule);padding-bottom:28px}
+.crit{display:flex;flex-wrap:wrap;gap:8px}
+.crit span{font:600 .85rem var(--f-mono);border:1px solid var(--rule);background:var(--surface);padding:6px 10px;border-radius:6px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.fact{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.fact b{font:700 1.7rem/1.1 var(--f-display);font-stretch:85%;font-variant-numeric:tabular-nums}
+.fact span{color:var(--ink-2);font-size:.92rem}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+.main th,.main td{padding:9px 8px;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap;font-size:.92rem}
+.main th{font:600 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);vertical-align:bottom}
+.main thead tr:first-child th{border-bottom:none;text-align:center;color:var(--ink-2)}
+.main td.nm,.main th.nm{text-align:left;white-space:normal;min-width:190px}
+.main td.nm small{display:block;color:var(--muted);font-size:.8rem}
+.main td.rk{font:700 1.1rem var(--f-display);color:var(--muted);text-align:left}
+td.ok{color:var(--ink)} td.no{color:var(--bad);font-weight:600;background:var(--bad-bg)}
+.tier{display:inline-block;font:700 .75rem var(--f-mono);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.tA{background:var(--good-bg);color:var(--good)} .tB{background:var(--warn-bg);color:var(--warn)} .tC{background:var(--bad-bg);color:var(--bad)}
+.legend{display:flex;flex-direction:column;gap:6px;font-size:.92rem;color:var(--ink-2)}
+.cards{display:flex;flex-direction:column;gap:20px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:16px}
+.card header{display:flex;gap:14px;align-items:flex-start}
+.card header>div{flex:1;min-width:0}
+.rk.big{font:800 2rem/1 var(--f-display);color:var(--accent);min-width:2ch}
+.tf{font:600 .8rem var(--f-mono);color:var(--ink-2);border:1px solid var(--rule);padding:2px 6px;border-radius:4px;vertical-align:middle}
+.src{color:var(--muted);font-size:.88rem;margin-top:4px}
+.grid2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+.txt{display:flex;flex-direction:column;gap:12px;min-width:0}
+.lbl{font:600 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:.78rem var(--f-mono);background:var(--accent-soft);color:var(--ink);padding:3px 7px;border-radius:4px}
+.kv{margin:0;display:flex;flex-direction:column;gap:8px}
+.kv div{border-left:2px solid var(--rule);padding-left:10px}
+.kv dt{font-size:.8rem;color:var(--muted)} .kv dd{margin:0;font:.88rem/1.45 var(--f-mono);font-variant-numeric:tabular-nums}
+.viz{display:flex;flex-direction:column;gap:8px;min-width:0}
+.spark{width:100%;height:auto;display:block;cursor:crosshair}
+.spark .line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round}
+.spark .area{fill:var(--accent-soft);stroke:none}
+.spark .base{stroke:var(--muted);stroke-dasharray:3 3;stroke-width:1}
+.spark .fwdzone{fill:var(--fwd)}
+.spark .end{fill:var(--accent);stroke:var(--surface);stroke-width:2}
+.spark .cross{stroke:var(--ink-2);stroke-width:1}
+.tip{font:.8rem var(--f-mono);color:var(--ink-2);min-height:1.3em}
+details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
+details summary:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.yr{margin-top:8px} .yr th,.yr td{padding:4px 8px;text-align:right;font:.82rem var(--f-mono);border-bottom:1px solid var(--rule)} .yr th{color:var(--muted)}
+.loop th,.loop td{padding:8px;border-bottom:1px solid var(--rule);text-align:left;font-size:.92rem;vertical-align:top}
+.loop td.n{text-align:right;font-family:var(--f-mono);white-space:nowrap}
+.loop th{font:600 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.note{background:var(--warn-bg);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.note b{color:var(--warn)}
+ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;max-width:80ch}
+a{color:var(--accent)}
+.st{font:600 .8rem var(--f-mono);padding:2px 7px;border-radius:4px}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Pesquisa quantitativa · BTC/USD · 31 out 2026</p>
+  <h1>Top 10 de estratégias de trading para BTC</h1>
+  <p class="lead">Testei 17 famílias de estratégias, tiradas de repositórios open-source (sobretudo freqtrade-strategies) e da literatura de mean-reversion, em dados de 1 minuto da Bitstamp entre 2017 e out/2026. Fiz reverse-engineering, otimizei e validei cada uma em três camadas: backtest, walk-forward e forward test. No total foram mais de 270 mil backtests.</p>
+  <div class="crit"><span>Win rate ≥ 57%</span><span>Profit factor ≥ 1,05</span><span>Max drawdown &lt; 20%</span><span>Trades &gt; 100</span></div>
+</header>
+
+<section>
+  <h2>Resumo</h2>
+  <div class="facts">
+    <div class="fact"><b>4</b><span>estratégias (Tier A) cumprem os 4 critérios no walk-forward 2021-26 e no forward test jul/25–out/26</span></div>
+    <div class="fact"><b>4</b><span>(Tier B) cumprem no walk-forward com PF de 1,20 a 1,84, mas fizeram poucos trades no forward por causa da baixa volatilidade</span></div>
+    <div class="fact"><b>2/30</b><span>das melhores estratégias de parâmetros fixos sobreviveram ao forward test intocado</span></div>
+    <div class="fact"><b>0,94–1,03</b><span>PF de um ensemble de todas as famílias de mean-reversion em 15m: no agregado quase não há edge</span></div>
+  </div>
+  <p>A conclusão principal é que um win rate alto em BTC é fácil de obter, porque mean-reversion com TP curto e SL largo dá naturalmente 65–90% de acertos. O difícil é manter o PF acima de 1 fora da amostra. A volatilidade do BTC caiu cerca de 50% entre 2021 e 2025-26 (ATR 1h: 1,16% para 0,55%), e isso destruiu a maior parte dos edges otimizados em 2018-2023. Os sobreviventes são estratégias de reversão a extremos em 15m com filtro de volatilidade mínima face ao custo. A melhor, SwingHighToSky, passou com as 4 sementes aleatórias.</p>
+</section>
+
+<section>
+  <h2>Ranking</h2>
+  <div class="legend"><span><span class="tier tA">A</span> Cumpre todos os critérios no walk-forward (out-of-sample) e no forward test</span><span><span class="tier tB">B</span> Cumpre no walk-forward 2021-26; no forward fez menos de 15 trades, uma amostra pequena demais para conclusões</span><span><span class="tier tC">C</span> Um critério falha num dos períodos (assinalado a vermelho)</span></div>
+  <div class="tw"><table class="main">
+    <thead><tr><th></th><th class="nm"></th><th></th><th colspan="4">Out-of-sample 2021 → out/2026*</th><th colspan="4">Forward jul/2025 → out/2026</th><th colspan="3">Robustez</th></tr>
+    <tr><th>#</th><th class="nm">Estratégia</th><th>Tier</th><th>Trades</th><th>WR</th><th>PF</th><th>DD</th><th>Trades</th><th>WR</th><th>PF</th><th>DD</th><th>PF custo 0,10%</th><th>DD MC p95</th><th>Estab.</th></tr></thead>
+    <tbody>
+{{ROWS}}
+    </tbody></table></div>
+  <p class="muted" style="font-size:.85rem">* Walk-forward: trades concatenados dos períodos de teste nunca vistos na otimização. Parâmetros fixos (#2 e #9): período completo 2018 → out/2026. O forward está incluído no walk-forward. Custos base: 0,05% de comissão + 0,02% de slippage por lado e funding de 0,01%/8h, como em futuros perpétuos USDT-M. 100% do capital por trade, sem alavancagem. DD MC p95 = percentil 95 do drawdown em 1000 reamostragens dos trades. Estab. = sementes aleatórias em que a meta-configuração WFO passou, ou % de parâmetros vizinhos que também passam.</p>
+</section>
+
+<section>
+  <h2>Fichas das estratégias</h2>
+  <p class="muted">Passe o cursor sobre as curvas para ver o capital mês a mês.</p>
+  <div class="cards">
+{{CARDS}}
+  </div>
+</section>
+
+<section>
+  <h2>Como foi feito: o loop de pesquisa</h2>
+  <div class="tw"><table class="loop">
+  <thead><tr><th>Iteração</th><th>O que mudou</th><th>Resultado</th></tr></thead>
+  <tbody>
+  <tr><td>1 · Pesquisa</td><td>Estratégias de freqtrade-strategies (BbandRsi, ClucMay72018, CombinedBinHAndCluc, BinHV45, SmoothScalp, Strategy005, SwingHighToSky, hlhb, Supertrend…) e da literatura (Connors RSI(2), IBS, Williams %R, z-score, Keltner). Pesquisa web sem resultados verificáveis publicados para BTC.</td><td>15 famílias implementadas (long e short), em 15m, 1h e 4h</td></tr>
+  <tr><td>2 · Random search</td><td>13 500 combinações; custos conservadores (0,15%/lado)</td><td class="n">6 passam o backtest; 0 passam o forward</td></tr>
+  <tr><td>3 · Robustez</td><td>Filtro de tendência diário; exige PF &gt; 1 nas duas metades do backtest; 67 500 combinações</td><td class="n">54 passam o backtest; 1 passa o OOS</td></tr>
+  <tr><td>4 · Diagnóstico</td><td>A volatilidade de 2024-26 é metade da de 2018-21 e os custos comiam o edge. Passei aos custos reais de perpétuos (0,07%/lado), acrescentei um filtro de volatilidade mínima (ATR ≥ k × custo) e o timeframe diário; 180 mil combinações</td><td class="n">2 712 passam o backtest; 174 passam o OOS 2024-26</td></tr>
+  <tr><td>5 · Hill-climb</td><td>Refinamento local dos 60 melhores, só com dados de backtest</td><td class="n">60 → 29 continuam a passar o OOS (sinal de overfitting)</td></tr>
+  <tr><td>6 · 3 fases</td><td>Otimização 2018-23 → seleção na validação jan/24–jun/25 → forward intocado jul/25–out/26</td><td class="n">271 passam a validação; top 30 → só 2 passam o forward</td></tr>
+  <tr><td>7 · Walk-forward</td><td>Re-otimização a cada 3 ou 6 meses com janela de treino de 24 ou 36 meses, testada sempre no período seguinte não visto. Reverse-engineering da BinHV45 (limiares em ATR) e nova família de capitulação</td><td class="n">1 308 configurações WFO</td></tr>
+  <tr><td>8 · Sementes</td><td>Repeti o WFO com 3 sementes aleatórias novas, para separar edge de sorte</td><td class="n">Ranking final pela mediana, não pela melhor corrida</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="note">
+  <h2>Riscos e limitações</h2>
+  <ul>
+    <li><b>Viés de seleção.</b> Mesmo no walk-forward, escolhi as melhores entre centenas de configurações. Conte com resultados futuros piores. O ensemble de todas as famílias (PF ≈ 1,0) é a referência do que um sistema médio faria.</li>
+    <li><b>Poucos trades por ano.</b> O filtro de volatilidade deixa as estratégias fora do mercado longos períodos. É isso que as protege em 2025-26, mas também deixa algumas com menos de 15 trades no forward, uma amostra pequena.</li>
+    <li><b>Só BTC/USD da Bitstamp.</b> As APIs das exchanges (Binance, Bybit, OKX, Kraken, Coinbase) estão bloqueadas neste ambiente, por isso não houve validação noutros pares. Antes de usar capital real, valide em ETH, SOL e no par USDT do exchange onde vai operar.</li>
+    <li><b>Execução.</b> Sinal no fecho da vela e entrada na abertura seguinte. TP e SL são verificados intrabarra, com o SL primeiro (pessimista). Os shorts e o funding assumem futuros perpétuos.</li>
+    <li><b>Retorno modesto.</b> Entre cerca de 1% e 5% ao ano, com DD de 8–16%, porque as estratégias passam a maior parte do tempo fora do mercado. Os critérios pedidos (WR, PF, DD) não garantem rentabilidade elevada.</li>
+    <li>Isto não é aconselhamento financeiro. Faça paper trading 1–3 meses antes de usar capital real.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Fontes</h2>
+  <ul>
+    <li>Dados: <a href="https://github.com/ff137/bitstamp-btcusd-minute-data">ff137/bitstamp-btcusd-minute-data</a> (BTC/USD 1m, 2012 → 30/10/2026)</li>
+    <li>Estratégias: <a href="https://github.com/freqtrade/freqtrade-strategies">freqtrade/freqtrade-strategies</a> (BbandRsi, BinHV45, ClucMay72018, CombinedBinHAndCluc, SmoothScalp, Strategy005, SwingHighToSky, hlhb, Supertrend, MultiMa, Diamond, Heracles)</li>
+    <li>Literatura: L. Connors &amp; C. Alvarez, RSI(2) e mean-reversion de curto prazo; IBS (Internal Bar Strength); Williams %R</li>
+  </ul>
+</section>
+</div>
+
+<script>
+(function(){
+  const M=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  document.querySelectorAll('svg.spark').forEach(svg=>{
+    const c=svg.dataset.curve.split(',').map(Number), lo=+svg.dataset.lo, hi=+svg.dataset.hi;
+    const tip=svg.parentElement.querySelector('.tip'), cross=svg.querySelector('.cross');
+    const W=300,P=4,n=c.length;
+    const show=(e)=>{const r=svg.getBoundingClientRect();const x=(e.clientX-r.left)/r.width*W;
+      let k=Math.round((x-P)/(W-2*P)*(n-1));k=Math.max(0,Math.min(n-1,k));
+      const X=P+k*(W-2*P)/(n-1);cross.setAttribute('x1',X);cross.setAttribute('x2',X);cross.setAttribute('visibility','visible');
+      const y=2021+Math.floor(k/12),m=M[k%12];tip.textContent=`${m}/${y} · capital ${(c[k]*100-100>=0?'+':'')}${(c[k]*100-100).toFixed(1)}%${k>=54?' · forward':''}`;};
+    svg.addEventListener('pointermove',show);
+    svg.addEventListener('pointerleave',()=>{cross.setAttribute('visibility','hidden');tip.textContent=' ';});
+  });
+})();
+</script>
