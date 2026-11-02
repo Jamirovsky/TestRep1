@@ -1,0 +1,26 @@
+; SwingHighToSky_CCI_RSI - intervalos de otimizacao (mesmo espaco do walk-forward)
+; Strategy Tester > Inputs > clique direito > Load. Criterio: Custom max.
+InpSide=1||-1||2||1||Y
+InpCCIPeriod=20||14||6||50||Y
+InpCCIEntry=150||100||50||250||Y
+InpRSIPeriod=14||7||7||21||Y
+InpRSIEntry=30||20||5||40||Y
+InpCCIExit=0||0||50||150||Y
+InpRSIExit=50||50||10||70||Y
+InpTrendSMA=0||0||100||200||Y
+InpDailySMA=0||0||50||200||Y
+InpMinAtrPct=0.70||0||0.35||1.05||Y
+InpExitMode=0||0||1||1||Y
+InpTP=0.75||0||0.25||3.0||Y
+InpSL=8.0||1.0||1.0||8.0||Y
+InpTrailDist=0.25||0||0.25||0.50||Y
+InpTrailAct=0.50||0.50||0.50||1.00||Y
+InpMaxBars=24||0||24||96||Y
+InpSizing=1||0||1||1||N
+InpEquityPct=100||100||1||100||N
+InpMinTrades=40||40||1||40||N
+InpMinWinRate=57||57||1||57||N
+InpMinPF=1.05||1.05||0.01||1.05||N
+InpMaxDD=20||20||1||20||N
+InpRobustSelect=true||false||0||true||N
+InpRecencyFilter=true||false||0||true||N

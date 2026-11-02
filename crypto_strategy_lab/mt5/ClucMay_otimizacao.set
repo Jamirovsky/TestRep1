@@ -1,0 +1,26 @@
+; ClucMay_DipBuyer - intervalos de otimizacao (mesmo espaco do walk-forward)
+; Strategy Tester > Inputs > clique direito > Load. Criterio: Custom max.
+InpEMA=100||20||40||100||Y
+InpBBPeriod=20||20||1||20||N
+InpBBDev=2.0||2.0||0.1||2.0||N
+InpBBFactor=1.00||0.97||0.005||1.00||Y
+InpVolMult=2||2||3||20||Y
+InpVolPeriod=30||30||1||30||N
+InpTrendSMA=0||0||200||400||Y
+InpTrendTol=0.90||0.90||0.05||1.00||Y
+InpDailySMA=0||0||50||200||Y
+InpMinAtrPct=0.70||0||0.35||1.05||Y
+InpExitMode=0||0||1||1||Y
+InpTP=0.75||0||0.25||3.0||Y
+InpSL=8.0||1.0||1.0||8.0||Y
+InpTrailDist=0.50||0||0.25||0.50||Y
+InpTrailAct=1.00||0.50||0.50||1.00||Y
+InpMaxBars=96||0||24||96||Y
+InpSizing=1||0||1||1||N
+InpEquityPct=100||100||1||100||N
+InpMinTrades=40||40||1||40||N
+InpMinWinRate=57||57||1||57||N
+InpMinPF=1.05||1.05||0.01||1.05||N
+InpMaxDD=20||20||1||20||N
+InpRobustSelect=false||false||0||true||N
+InpRecencyFilter=true||false||0||true||N
