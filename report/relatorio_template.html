@@ -1,0 +1,270 @@
+<title>Scalping BTCUSD ICTrading</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: coluna de leitura única (~980px), resumo primeiro, depois detalhe; números em mono tabular */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --ink:#151b26; --muted:#5d6676; --line:#dfe3ea;
+  --accent:#e2761b; --accent-soft:#fbeadb; --pos:#15803d; --neg:#c2410c; --neg-strong:#b91c1c;
+  --fw:#2563eb; --fw-soft:rgba(37,99,235,.08);
+  --f-body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f131a; --surface:#161c26; --ink:#e7ebf2; --muted:#98a2b3; --line:#2a3342;
+  --accent:#f59e4b; --accent-soft:#3a2614; --pos:#4ade80; --neg:#fb923c; --neg-strong:#f87171;
+  --fw:#7aa7ff; --fw-soft:rgba(122,167,255,.10); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f131a; --surface:#161c26; --ink:#e7ebf2; --muted:#98a2b3; --line:#2a3342;
+  --accent:#f59e4b; --accent-soft:#3a2614; --pos:#4ade80; --neg:#fb923c; --neg-strong:#f87171;
+  --fw:#7aa7ff; --fw-soft:rgba(122,167,255,.10); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(26px,4vw,36px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:21px;font-weight:600}
+h3{font-size:16px;font-weight:600}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.num,td.n,th.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:10px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.kpi{background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.kpi .v{font-family:var(--f-mono);font-size:22px;font-weight:500;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:12px;color:var(--muted)}
+.kpi .t{font-size:11.5px;font-family:var(--f-mono);color:var(--pos)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+.callout{border-left:3px solid var(--neg-strong);background:var(--surface);padding:14px 18px;border-radius:0 8px 8px 0;display:flex;flex-direction:column;gap:8px}
+.callout ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{font-weight:600;font-size:12px;color:var(--muted);background:var(--surface);position:sticky;top:0}
+td.n,th.n{text-align:right}
+tr.hl td{background:var(--accent-soft)}
+.pos{color:var(--pos)} .neg{color:var(--neg)}
+.pill{display:inline-block;font-family:var(--f-mono);font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid currentColor}
+.grid-fam{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.fam{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.fam .top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.fam .name{font-weight:600;font-size:13.5px}
+.fam .tf{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.fam .row{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:12px}
+.fam svg{width:100%;height:64px;display:block}
+.chart svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:720px){.two{grid-template-columns:1fr}}
+.rules dt{font-size:12px;color:var(--muted)} .rules dd{margin:0 0 10px;font-family:var(--f-mono);font-size:13.5px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 20px;margin:0}
+code{font-family:var(--f-mono);font-size:12.5px;background:var(--accent-soft);padding:1px 5px;border-radius:4px}
+ul.steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;max-width:72ch}
+footer{font-size:12.5px;color:var(--muted)}
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">BTCUSD · CFD ICTrading · conta 100 € · 0,01 lote</span>
+  <h1>Estratégia de scalping BTCUSD</h1>
+  <p class="muted">Foram gerados e testados ≈1,97 milhões de setups de 14 famílias, em timeframes de 1 a 15 minutos.
+  Os dados são velas de 1 minuto de 07/01/2025 a 01/11/2026. O backtest vai de jan/2025 a abr/2026 e é a única parte usada para otimizar. O forward test vai de mai/2026 a out/2026 e nunca foi visto pelo otimizador.</p>
+</header>
+
+<section>
+  <h2>Estratégia recomendada: A · RSI extremo a favor da tendência, M15</h2>
+  <div class="kpis" id="kpis"></div>
+  <div class="panel chart">
+    <div class="legend"><span><span class="sw" style="background:var(--accent)"></span>Saldo da conta (€)</span><span><span class="sw" style="background:var(--fw-soft);border:1px solid var(--fw)"></span>Forward test (dados não vistos)</span></div>
+    <div id="eqA"></div>
+  </div>
+</section>
+
+<section>
+  <div class="callout">
+    <h3>O que deve saber antes de usar</h3>
+    <ol>
+      <li><b>O loop produziu sobretudo overfitting.</b> Fixei uma regra antes de olhar para o forward. O campeão que essa regra escolheu ganhou +239% no backtest e <b class="neg">perdeu 37% no forward</b>. Das 14 famílias, só 2 mantiveram lucro.</li>
+      <li><b>A estratégia A foi escolhida depois de ver o forward.</b> Foi a mais estável das sobreviventes: 86% dos setups vizinhos também lucram no forward. Falta a prova final: 100 trades novos em demo.</li>
+      <li><b>O edge está a enfraquecer:</b> ago, set e out/2026 fecharam em −0,06 €, −1,04 € e −4,56 €.</li>
+      <li><b>"Menos de 3 perdas seguidas" não se garante.</b> No Monte Carlo, há <span class="num">21%</span> de probabilidade de surgirem 3 perdas seguidas nos próximos 100 trades (<span class="num">42%</span> com a distribuição do forward).</li>
+      <li><b>Perfil de risco:</b> TP mediano ≈ 1,0 € e SL mediano ≈ 10,4 €. Muitos ganhos pequenos e uma perda rara mas grande.</li>
+      <li><b>Os dados são Bitstamp spot, não ICTrading.</b> A rede deste ambiente bloqueia a ICTrading. Confirme no Strategy Tester do MT5 com ticks reais da ICTrading.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <h2>Regras da estratégia A</h2>
+  <div class="panel"><dl class="rules">
+    <div><dt>Timeframe</dt><dd>M15</dd></div>
+    <div><dt>Compra</dt><dd>RSI(4) &lt; 15 e fecho &gt; EMA(100)</dd></div>
+    <div><dt>Venda</dt><dd>RSI(4) &gt; 85 e fecho &lt; EMA(100)</dd></div>
+    <div><dt>Stop Loss (editável)</dt><dd>5,0 × ATR(14) · mediana 1.208 $</dd></div>
+    <div><dt>Take Profit (editável)</dt><dd>0,5 × ATR(14) · mediana 121 $</dd></div>
+    <div><dt>Breakeven</dt><dd>a 70% do TP → SL na entrada +1 $</dd></div>
+    <div><dt>Fecho por tempo</dt><dd>120 min</dd></div>
+    <div><dt>Volatilidade mínima</dt><dd>ATR ≥ 0,5 × média(100)</dd></div>
+    <div><dt>Horário</dt><dd>07–24 UTC, seg–sex</dd></div>
+    <div><dt>Frequência</dt><dd>≈ 12 trades/mês · duração mediana 15 min</dd></div>
+  </dl></div>
+</section>
+
+<section>
+  <h2>Todas as famílias: backtest e forward test</h2>
+  <p class="muted">Melhor setup de cada família pelo score robusto do backtest. A zona azul de cada mini-curva é o forward test. Retornos sobre os 100 €.</p>
+  <div class="grid-fam" id="fams"></div>
+  <div class="panel scroll"><table id="famtable"></table></div>
+</section>
+
+<section>
+  <h2>Os 3 sobreviventes e a regra pré-declarada</h2>
+  <div class="panel scroll"><table id="cands"></table></div>
+  <p class="muted">"WR estrito" conta como perda os trades fechados em breakeven (+0,01 €). B e C só ficam acima dos 57% porque contam esses breakevens como ganhos; A mantém 64%.</p>
+</section>
+
+<section>
+  <h2>Estratégia A em detalhe</h2>
+  <div class="two">
+    <div class="panel scroll"><h3>Resultado mensal (€)</h3><div id="monthly"></div></div>
+    <div class="panel scroll" style="display:flex;flex-direction:column;gap:18px">
+      <div><h3>Sensibilidade ao spread</h3><table id="spread"></table></div>
+      <div><h3>Atraso na execução</h3><table id="lat"></table></div>
+      <div><h3>Tamanho do lote</h3><table id="lots"></table></div>
+    </div>
+  </div>
+  <div class="two">
+    <div class="panel scroll"><h3>Motivos de saída</h3><table id="exits"></table></div>
+    <div class="panel scroll"><h3>Monte Carlo · próximos 100 trades</h3><table id="mc"></table></div>
+  </div>
+</section>
+
+<section>
+  <h2>Como usar no MetaTrader 5</h2>
+  <ul class="steps">
+    <li>Copie <code>mt5/BTCUSD_Scalper_Lab.mq5</code> para <code>MQL5/Experts</code>, compile e anexe a um gráfico BTCUSD. Os valores por defeito já correspondem à estratégia A.</li>
+    <li>Os ficheiros <code>mt5/sets/*.set</code> carregam as estratégias A, B ou C (Inputs → Load). Todas as 14 famílias estão no EA (<code>InpSetup</code>).</li>
+    <li>SL/TP editáveis: <code>InpSLTPMode</code> (ATR ou USD), <code>InpSL_ATR</code>, <code>InpTP_ATR</code>, <code>InpSL_USD</code>, <code>InpTP_USD</code>, <code>InpBEFrac</code>, <code>InpMaxHoldMin</code>.</li>
+    <li>Proteções:
+      <ul>
+        <li><code>InpMaxDDPct</code> = 20: o EA para quando o DD da conta chega a 20%.</li>
+        <li><code>InpGuard</code>: pausa, ou modo sombra após 2 perdas seguidas.</li>
+        <li><code>InpMaxSpreadUSD</code> = 60: não entra com spread acima deste valor.</li>
+      </ul>
+    </li>
+    <li>Antes de usar dinheiro real:
+      <ul>
+        <li>Backtest no Strategy Tester com "Every tick based on real ticks" nos dados da ICTrading.</li>
+        <li>Demo até completar 100 trades (≈ 2 meses). Só passe a real se o WR for superior a 57%, o PF superior a 1,01 e o DD inferior a 20%.</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<footer>Código, dados de trades, gráficos e relatório em Markdown: repositório <span class="num">jamirovsky/testrep1</span>, branch <span class="num">claude/btcusd-scalping-strategy-9o5gwu</span>. Resultados passados não garantem resultados futuros. Trading alavancado pode levar à perda total do capital.</footer>
+</div>
+
+<script>
+const D = __DATA__;
+const $ = id => document.getElementById(id);
+const fmt = (v, d=1) => (v>0?'+':'') + Number(v).toLocaleString('pt-PT',{minimumFractionDigits:d,maximumFractionDigits:d});
+const f2 = (v, d=2) => Number(v).toLocaleString('pt-PT',{minimumFractionDigits:d,maximumFractionDigits:d});
+const cls = v => v>0?'pos':(v<0?'neg':'');
+const NS='http://www.w3.org/2000/svg';
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+function lineChart(el, pts, {h=260, axes=true, pad=[14,12,26,44]}={}){
+  const w = 900, [pt,pr,pb,pl] = axes?pad:[4,2,4,2];
+  const xs = pts.map(p=>p[0]), ys = pts.map(p=>p[1]);
+  const x0=Math.min(...xs), x1=Math.max(...xs);
+  let y0=Math.min(100,...ys), y1=Math.max(100,...ys); const yp=(y1-y0)*.08||1; y0-=yp; y1+=yp;
+  const X=t=>pl+(t-x0)/(x1-x0)*(w-pl-pr), Y=v=>pt+(1-(v-y0)/(y1-y0))*(h-pt-pb);
+  const svg=document.createElementNS(NS,'svg'); svg.setAttribute('viewBox',`0 0 ${w} ${h}`); svg.setAttribute('preserveAspectRatio','none');
+  const add=(tag,a)=>{const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e};
+  const fx=Math.max(X(D.forward_inicio),pl);
+  add('rect',{x:fx,y:pt,width:Math.max(0,w-pr-fx),height:h-pt-pb,fill:'var(--fw-soft)'});
+  add('line',{x1:fx,x2:fx,y1:pt,y2:h-pb,stroke:'var(--fw)','stroke-dasharray':'4 3','stroke-width':1,'vector-effect':'non-scaling-stroke'});
+  if(axes){
+    const step=(y1-y0)>150?50:((y1-y0)>60?20:10);
+    for(let v=Math.ceil(y0/step)*step; v<=y1; v+=step){
+      add('line',{x1:pl,x2:w-pr,y1:Y(v),y2:Y(v),stroke:'var(--line)','stroke-width':1,'vector-effect':'non-scaling-stroke'});
+      const t=add('text',{x:pl-8,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:'var(--muted)','font-family':'var(--f-mono)'}); t.textContent=v+' €';
+    }
+    const d0=new Date(x0*1000), d1=new Date(x1*1000);
+    for(let d=new Date(Date.UTC(d0.getUTCFullYear(), d0.getUTCMonth()+1,1)); d<=d1; d.setUTCMonth(d.getUTCMonth()+3)){
+      const t=add('text',{x:X(d/1000),y:h-8,'text-anchor':'middle','font-size':11,fill:'var(--muted)','font-family':'var(--f-mono)'});
+      t.textContent=d.toLocaleDateString('pt-PT',{month:'short',year:'2-digit',timeZone:'UTC'});
+    }
+  }
+  add('line',{x1:pl,x2:w-pr,y1:Y(100),y2:Y(100),stroke:'var(--muted)','stroke-width':1,'stroke-dasharray':'2 3','vector-effect':'non-scaling-stroke',opacity:.6});
+  const last=ys[ys.length-1];
+  const col = axes?'var(--accent)':(last>=100?'var(--pos)':'var(--neg)');
+  add('path',{d:pts.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)).join(' '),fill:'none',stroke:col,'stroke-width':axes?2:1.6,'vector-effect':'non-scaling-stroke','stroke-linejoin':'round'});
+  if(axes){ add('circle',{cx:X(xs[xs.length-1]),cy:Y(last),r:4,fill:col});
+    const t=add('text',{x:X(xs[xs.length-1])-8,y:Y(last)-10,'text-anchor':'end','font-size':12,fill:'var(--ink)','font-family':'var(--f-mono)'}); t.textContent=f2(last)+' €'; }
+  el.appendChild(svg);
+}
+
+// KPIs
+const A=D.A, M=A.metrics;
+const kp=[['Trades (total)',M.total['Trades'],'BT '+M.backtest['Trades']+' · FW '+M.forward['Trades'],'> 100'],
+ ['Win rate',f2(M.total['Win rate %'],1)+'%','FW '+f2(M.forward['Win rate %'],1)+'% · estrito '+f2(A.estrito.total.win_rate_estrito,1)+'%','> 57%'],
+ ['Profit factor',f2(M.total['Profit factor']),'FW '+f2(M.forward['Profit factor']),'> 1,01'],
+ ['Max drawdown',f2(M.total['Max DD %'],1)+'%','FW '+f2(M.forward['Max DD %'],1)+'%','≤ 20%'],
+ ['Perdas seguidas',M.total['Perdas seguidas máx'],'FW '+M.forward['Perdas seguidas máx'],'< 3'],
+ ['Lucro (100 €)',fmt(M.total['Lucro €'],2)+' €','FW '+fmt(M.forward['Lucro €'],2)+' €','']];
+$('kpis').innerHTML=kp.map(k=>`<div class="kpi"><span class="l">${k[0]}</span><span class="v">${k[1]}</span><span class="l num">${k[2]}</span>${k[3]?`<span class="t">✔ alvo ${k[3]}</span>`:''}</div>`).join('');
+lineChart($('eqA'),A.curve,{h:280});
+
+// famílias
+$('fams').innerHTML='';
+D.familias.forEach(f=>{
+  const d=document.createElement('div'); d.className='fam';
+  d.innerHTML=`<div class="top"><span class="name">${f.nome}</span><span class="tf">M${f.tf}</span></div>
+   <div class="row"><span class="muted">backtest</span><span class="${cls(f.bt['Retorno %'])}">${fmt(f.bt['Retorno %'])}%</span></div>
+   <div class="row"><span class="muted">forward</span><span class="${cls(f.fw['Retorno %'])}">${fmt(f.fw['Retorno %'])}%</span></div>`;
+  const c=document.createElement('div'); d.appendChild(c); $('fams').appendChild(d);
+  lineChart(c,f.curve,{h:64,axes:false});
+});
+const ok=(m,minT)=>m['Trades']>minT && m['Win rate %']>57 && m['Profit factor']>1.01 && m['Max DD %']<=20 && m['Perdas seguidas máx']<3;
+const head=`<tr><th>Família</th><th>TF</th><th class="n">BT trades</th><th class="n">BT WR</th><th class="n">BT PF</th><th class="n">BT ret.</th><th class="n">BT DD</th><th class="n">FW trades</th><th class="n">FW WR</th><th class="n">FW PF</th><th class="n">FW ret.</th><th class="n">FW DD</th><th class="n">FW perdas seg.</th><th>FW cumpre</th></tr>`;
+const famRow=(name,tf,b,w,hl)=>`<tr${hl?' class="hl"':''}><td>${name}</td><td class="n">M${tf}</td><td class="n">${b['Trades']}</td><td class="n">${f2(b['Win rate %'],1)}%</td><td class="n">${f2(b['Profit factor'])}</td><td class="n ${cls(b['Retorno %'])}">${fmt(b['Retorno %'])}%</td><td class="n">${f2(b['Max DD %'],1)}%</td><td class="n">${w['Trades']}</td><td class="n">${f2(w['Win rate %'],1)}%</td><td class="n">${f2(w['Profit factor'])}</td><td class="n ${cls(w['Retorno %'])}">${fmt(w['Retorno %'])}%</td><td class="n">${f2(w['Max DD %'],1)}%</td><td class="n">${w['Perdas seguidas máx']}</td><td>${ok(w,0)?'<span class="pill pos">sim</span>':'<span class="pill neg">não</span>'}</td></tr>`;
+$('famtable').innerHTML=head+D.familias.map(f=>famRow(f.nome,f.tf,f.bt,f.fw,false)).join('')+famRow('A · RSI extremo (a favor da tendência)',15,M.backtest,M.forward,true);
+
+// candidatos
+const C=D.candidatos, names={A_RSI_TENDENCIA:'A · RSI tendência M15',B_MACD_ASIA:'B · MACD Ásia M15',C_PINBAR_1M:'C · Pin bar M1',REGRA_PRE_DECLARADA:'Regra pré-declarada (RSI contra tendência)'};
+const pct=v=>f2(v*100,0)+'%';
+$('cands').innerHTML=`<tr><th>Setup</th><th class="n">Trades</th><th class="n">WR</th><th class="n">WR estrito</th><th class="n">PF</th><th class="n">Lucro total</th><th class="n">Lucro forward</th><th class="n">DD máx</th><th class="n">P(todos pressupostos)</th><th class="n">P(≥3 perdas seg.)</th></tr>`+
+ Object.keys(names).map(k=>{const c=C[k],t=c.metrics.total,f=c.metrics.forward;return `<tr${k==='A_RSI_TENDENCIA'?' class="hl"':''}><td>${names[k]}</td><td class="n">${t['Trades']}</td><td class="n">${f2(t['Win rate %'],1)}%</td><td class="n ${c.estrito.total.win_rate_estrito>57?'pos':'neg'}">${f2(c.estrito.total.win_rate_estrito,1)}%</td><td class="n">${f2(t['Profit factor'])}</td><td class="n ${cls(t['Lucro €'])}">${fmt(t['Lucro €'],2)} €</td><td class="n ${cls(f['Lucro €'])}">${fmt(f['Lucro €'],2)} €</td><td class="n">${f2(t['Max DD %'],1)}%</td><td class="n">${pct(c.mc.p_todos_pressupostos)}</td><td class="n">${pct(c.mc.p_3_perdas_seguidas)}</td></tr>`}).join('');
+
+// mensal (barras)
+(function(){
+  const ms=A.mensal, w=500, rowH=19, h=ms.length*rowH+10, mid=250, sc=150/Math.max(...ms.map(m=>Math.abs(m.lucro_eur)));
+  let s=`<svg viewBox="0 0 ${w} ${h}" style="width:100%;min-width:320px">`;
+  ms.forEach((m,i)=>{const y=5+i*rowH, v=m.lucro_eur, fw=m.mes>='2026-05';
+    const x=v>=0?mid:mid+v*sc, bw=Math.max(1,Math.abs(v)*sc);
+    if(fw) s+=`<rect x="0" y="${y-2}" width="${w}" height="${rowH}" fill="var(--fw-soft)"/>`;
+    s+=`<text x="4" y="${y+12}" font-size="11" fill="var(--muted)" font-family="var(--f-mono)">${m.mes}</text>`;
+    s+=`<text x="70" y="${y+12}" font-size="11" fill="var(--muted)" font-family="var(--f-mono)">${m.trades} tr</text>`;
+    s+=`<rect x="${x}" y="${y+2}" width="${bw}" height="${rowH-7}" rx="2" fill="${v>=0?'var(--pos)':'var(--neg)'}"/>`;
+    s+=`<text x="${v>=0?mid+bw+4:mid+4}" y="${y+12}" font-size="11" fill="var(--ink)" font-family="var(--f-mono)" ${v<0?'':''}>${fmt(v,2)}</text>`;});
+  s+=`<line x1="${mid}" x2="${mid}" y1="0" y2="${h}" stroke="var(--line)"/></svg>`;
+  $('monthly').innerHTML=s+'<p class="muted" style="font-size:12px;margin-top:6px">Zona azul = forward test.</p>';
+})();
+
+const sensRows=(obj,lab)=>Object.entries(obj).map(([k,v])=>`<tr${(k==='25'||k==='0.01')?' class="hl"':''}><td class="n">${lab(k)}</td><td class="n">${f2(v.backtest['Profit factor'])}</td><td class="n ${cls(v.backtest['Retorno %'])}">${fmt(v.backtest['Retorno %'])}%</td><td class="n">${f2(v.forward['Profit factor'])}</td><td class="n ${cls(v.forward['Retorno %'])}">${fmt(v.forward['Retorno %'])}%</td></tr>`).join('');
+const sh=l=>`<tr><th class="n">${l}</th><th class="n">PF BT</th><th class="n">Ret. BT</th><th class="n">PF FW</th><th class="n">Ret. FW</th></tr>`;
+$('spread').innerHTML=sh('Spread')+sensRows(A.spread,k=>k+' $');
+$('lat').innerHTML=sh('Atraso')+`<tr><td class="n">0 min</td><td class="n">${f2(M.backtest['Profit factor'])}</td><td class="n pos">${fmt(M.backtest['Retorno %'])}%</td><td class="n">${f2(M.forward['Profit factor'])}</td><td class="n pos">${fmt(M.forward['Retorno %'])}%</td></tr>`+sensRows(A.latencia,k=>k+' min');
+$('lots').innerHTML=`<tr><th class="n">Lote</th><th class="n">Lucro total</th><th class="n">DD máx</th><th>Cumpre DD</th></tr>`+Object.entries(A.lotes).map(([k,v])=>`<tr${k==='0.01'?' class="hl"':''}><td class="n">${k}</td><td class="n pos">${fmt(v.total['Lucro €'],2)} €</td><td class="n">${f2(v.total['Max DD %'],1)}%</td><td>${v.total['Max DD %']<=20?'<span class="pill pos">sim</span>':'<span class="pill neg">não</span>'}</td></tr>`).join('');
+const exN={TP:'Take profit',SL:'Stop loss',TEMPO:'Fecho por tempo',BREAKEVEN:'Breakeven'};
+$('exits').innerHTML=`<tr><th>Saída</th><th class="n">Trades</th><th class="n">Média €</th><th class="n">Total €</th></tr>`+A.saidas.map(e=>`<tr><td>${exN[e.saida]||e.saida}</td><td class="n">${e.count}</td><td class="n ${cls(e.mean)}">${fmt(e.mean,2)}</td><td class="n ${cls(e.sum)}">${fmt(e.sum,2)}</td></tr>`).join('');
+const mcR=[['Probabilidade de lucro','p_lucro',1],['Lucro mediano','lucro_mediano_eur',0],['Lucro (pior 5%)','lucro_p5_eur',0],['DD mediano','dd_mediano',2],['P(DD > 20%)','p_dd_maior_20',1],['P(≥ 3 perdas seguidas)','p_3_perdas_seguidas',1],['P(todos os pressupostos)','p_todos_pressupostos',1]];
+const mcv=(v,t)=>t===1?pct(v):(t===0?fmt(v,2)+' €':f2(v,1)+'%');
+$('mc').innerHTML=`<tr><th>Medida</th><th class="n">Todos os trades</th><th class="n">Só forward</th></tr>`+mcR.map(r=>`<tr><td>${r[0]}</td><td class="n">${mcv(A.mc[r[1]],r[2])}</td><td class="n">${mcv(A.mc_fw[r[1]],r[2])}</td></tr>`).join('');
+</script>

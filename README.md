@@ -13,7 +13,7 @@ otimizadas para os pressupostos do cliente:
 | SL / TP | editáveis (USD ou múltiplos de ATR) |
 | Conta | 100 € |
 
-O relatório final está em [`report/RELATORIO.md`](report/RELATORIO.md).
+O relatório final está em [`report/RELATORIO.md`](report/RELATORIO.md) (versão interativa: `report/relatorio.html`).
 
 ## Estrutura
 
