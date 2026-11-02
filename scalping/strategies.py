@@ -7,7 +7,9 @@ import numpy as np
 import pandas as pd
 from functools import lru_cache
 
-DATA_PATH = __import__('os').path.join(__import__('os').path.dirname(__file__), '..', 'data', 'btc_1m.npz')
+import os as _os
+DATA_PATH = _os.path.join(_os.path.dirname(__file__), '..', 'data',
+                          'btc_1m_ext.npz' if _os.path.exists(_os.path.join(_os.path.dirname(__file__), '..', 'data', 'btc_1m_ext.npz')) else 'btc_1m.npz')
 
 _M1 = None
 _TF = {}
@@ -259,7 +261,7 @@ FAMILIES = {
     'PINBAR_BB': (f_pinbar, dict(bb_len=[14, 20, 30, 50], bb_k=[1.0, 1.5, 2.0, 2.5], wick=[0.4, 0.5, 0.6, 0.7])),
     'INSIDE_BO': (f_inside_bo, dict(dummy=[0])),
     'BB_RSI_MR': (f_bb_rsi, dict(bb_len=[10, 14, 20, 30, 50], bb_k=[1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0], rsi_len=[2, 3, 4, 7, 14], rsi_lo=[5, 10, 15, 20, 25, 30, 35, 40])),
-    'RSI_EXTREME': (f_rsi2, dict(rsi_len=[2, 3, 4, 5, 6, 7, 9, 14], rsi_lo=[3, 5, 8, 10, 12, 15, 18, 20, 25])),
+    'RSI_EXTREME': (f_rsi2, dict(rsi_len=[2, 3, 4, 5, 6, 7, 9, 14], rsi_lo=[3, 5, 8, 10, 12, 15, 18, 20, 25], htf=[0, 0, 60, 240], htf_len=[20, 50, 100, 200])),
     'VWAP_REV': (f_vwap, dict(vwap_z=[0.75, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0, 6.0])),
     'ZSCORE_MR': (f_zscore, dict(z_len=[10, 20, 30, 50, 75, 100, 200], z_th=[1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 3.0, 3.5])),
     'CONSEC_FADE': (f_consec, dict(n_bars=[2, 3, 4, 5, 6, 7, 8])),
@@ -272,7 +274,7 @@ FAMILIES = {
 }
 
 COMMON = dict(
-    tf=[1, 3, 5, 10, 15],
+    tf=[1, 3, 5, 10, 15, 20, 30],
     trend=['none', 'with', 'against'],
     trend_len=[50, 75, 100, 150, 200, 300, 400],
     side=['both'],  # só setups simétricos (compra e venda) -> sem apostar na direção do mercado
@@ -300,6 +302,27 @@ HOURS = {
 }
 
 
+def htf_filter(df, tf, p):
+    """Filtro de tendência num timeframe superior (última vela HTF já fechada)."""
+    htf = p.get('htf', 0)
+    if not htf:
+        return None
+    n = p.get('htf_len', 50)
+    def build():
+        H = tf_frame(htf)
+        e = ema(H['close'], n).values
+        c = H['close'].values
+        h_end = H.index.values.astype('datetime64[s]').astype(np.int64) + htf * 60
+        t_end = df.index.values.astype('datetime64[s]').astype(np.int64) + tf * 60
+        j = np.searchsorted(h_end, t_end, side='right') - 1
+        ok = j >= 0
+        jj = np.clip(j, 0, len(c) - 1)
+        up = ok & (c[jj] > e[jj])
+        dn = ok & (c[jj] < e[jj])
+        return up, dn
+    return cached(tf, ('htf', htf, n), build)
+
+
 def build_signals(p):
     """Devolve arrays (idx_1m, dir, sl_usd, tp_usd) prontos para o simulador."""
     tf = p['tf']
@@ -311,6 +334,12 @@ def build_signals(p):
     tl, ts_ = trend_filter(df, tf, p)
     lg &= tl
     sh &= ts_
+    hf = htf_filter(df, tf, p)
+    if hf is not None:
+        if p.get('htf_mode', 'with') == 'with':
+            lg &= hf[0]; sh &= hf[1]
+        else:
+            lg &= hf[1]; sh &= hf[0]
     if p['side'] == 'long':
         sh[:] = False
     elif p['side'] == 'short':

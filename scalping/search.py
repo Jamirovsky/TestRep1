@@ -30,6 +30,8 @@ def canon(p):
         q.pop('trend_len', None)
     if q['guard_mode'] != 1:
         q.pop('guard_pause_h', None)
+    if q.get('htf', None) == 0:
+        q.pop('htf_len', None)
     return q
 
 
@@ -41,8 +43,11 @@ def fill(p, rng):
     return canon(q)
 
 
+ALLOWED = list(FAMILIES)
+
+
 def sample(rng):
-    fam = rng.choice(list(FAMILIES))
+    fam = rng.choice(ALLOWED)
     p = {'family': fam}
     for k, vals in FAMILIES[fam][1].items():
         p[k] = rng.choice(vals)
@@ -80,7 +85,7 @@ KEYS = ['trades', 'win_rate', 'profit_factor', 'net', 'max_dd_pct', 'max_consec_
 
 def compact(r):
     out = {'params': r['params'], 'score_bt': round(r['score_bt'], 3)}
-    for seg in ('backtest', 'forward', 'total'):
+    for seg in ('backtest', 'forward', 'total', 'oos_2022_24'):
         out[seg] = {k: (round(r[seg][k], 4) if isinstance(r[seg][k], float) else r[seg][k]) for k in KEYS}
     out['chunks'] = [{k: (round(v, 3) if isinstance(v, float) else v) for k, v in c.items()} for c in r['chunks']]
     return out
@@ -97,7 +102,12 @@ def main():
     ap.add_argument('--workers', type=int, default=4)
     ap.add_argument('--seed', type=int, default=1)
     ap.add_argument('--warm', nargs='*', default=[], help='ficheiros jsonl de rondas anteriores')
+    ap.add_argument('--families', nargs='*', default=None, help='restringir a estas famílias')
+    ap.add_argument('--seed-params', default=None, help='json com setups iniciais')
     a = ap.parse_args()
+    global ALLOWED
+    if a.families:
+        ALLOWED = a.families
     deadline = pd.Timestamp(a.deadline, tz='UTC').timestamp()
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
     rng = random.Random(a.seed)
@@ -105,10 +115,17 @@ def main():
     top = []  # (score, params)
     top_all = []
     fam_top = {}
+    n = 0
     for wp in a.warm:
         for line in open(wp):
             r = json.loads(line)
+            if r['params']['family'] not in ALLOWED:
+                continue
             seen.add(key(r['params']))
+            top_all.append((r['score_bt'], r['params']))
+    if a.seed_params:
+        for pp in json.load(open(a.seed_params)):
+            r = evaluate(pp)
             top_all.append((r['score_bt'], r['params']))
     if top_all:
         for sc_, pp in top_all:
@@ -119,7 +136,6 @@ def main():
         top_all = [x for v in fam_top.values() for x in v]
         top = sorted(top_all, key=lambda x: -x[0])[:300]
         n = 4000  # já passou a fase de exploração pura
-    n = 0
     it = 0
     with Pool(a.workers) as pool, open(a.out, 'a') as f:
         while time.time() < deadline:

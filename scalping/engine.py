@@ -24,7 +24,7 @@ R_TP, R_SL, R_TIME, R_BE = 0, 1, 2, 3
 @njit(cache=True)
 def simulate(o, h, l, c, ts,
              sig_idx, sig_dir, sig_sl, sig_tp,
-             spread, slip, max_hold,
+             sig_spread, slip, max_hold,
              be_frac,
              guard_k, guard_mode, guard_pause_s,
              swap_long_day, swap_short_day, rollover_hour):
@@ -53,7 +53,6 @@ def simulate(o, h, l, c, ts,
     consec = 0
     shadow = False
     pause_until_ts = -1
-    half = spread / 2.0
     for s in range(n):
         i = sig_idx[s]
         if i <= busy_until or i >= N:
@@ -61,6 +60,7 @@ def simulate(o, h, l, c, ts,
         if guard_mode == 1 and ts[i] < pause_until_ts:
             continue
         d = sig_dir[s]
+        half = sig_spread[s] / 2.0
         sl = sig_sl[s]
         tp = sig_tp[s]
         if d == 1:

@@ -21,6 +21,7 @@ COSTS = dict(
 # Backtest (in-sample, usado para otimizar) e forward test (out-of-sample, nunca usado
 # na seleção). O backtest é ainda dividido em 4 blocos para medir consistência.
 SEGMENTS = {
+    'oos_2022_24': ('2022-01-15', '2025-01-07'),   # teste extra NUNCA usado na otimização
     'backtest': ('2025-01-07', '2026-05-01'),
     'forward': ('2026-05-01', '2026-11-03'),
 }
@@ -39,10 +40,15 @@ def run(p, costs=None, account=None, return_trades=False):
     idx, d, sl, tp = build_signals(p)
     if p.get('entry_delay', 0):
         idx = idx + int(p['entry_delay'])  # teste de latência: entrar N minutos mais tarde
+    if costs.get('spread_pct'):
+        # spread proporcional ao preço (ex.: 0.025% -> 25$ a 100k, 5$ a 20k)
+        sprd = m['o'][np.minimum(idx, len(m['o']) - 1)] * costs['spread_pct'] / 100.0
+    else:
+        sprd = np.full(len(idx), float(costs['spread']))
     gm = p.get('guard_mode', 0)
     res = simulate(m['o'], m['h'], m['l'], m['c'], m['ts'],
                    idx, d, sl, tp,
-                   costs['spread'], costs['slip'], int(p['max_hold']),
+                   sprd, costs['slip'], int(p['max_hold']),
                    float(p.get('be_frac', 0.0)),
                    2, int(gm), int(p.get('guard_pause_h', 12)) * 3600,
                    costs['swap_long_day'], costs['swap_short_day'], costs['rollover_hour'])
@@ -62,7 +68,7 @@ def run(p, costs=None, account=None, return_trades=False):
         sel = (t_entry >= _ts(a)) & (t_entry < _ts(b)) & real
         mt = metrics(pnl_usd[sel], start_usd)
         out['chunks'].append({k: mt[k] for k in ('trades', 'win_rate', 'profit_factor', 'ret_pct', 'max_consec_losses', 'max_dd_pct')})
-    sel = real
+    sel = real & (t_entry >= _ts('2025-01-07'))   # total = backtest + forward (2025-26)
     out['total'] = metrics(pnl_usd[sel], start_usd)
     out['total']['virtual_trades'] = int((~real).sum())
     if return_trades:
@@ -71,6 +77,7 @@ def run(p, costs=None, account=None, return_trades=False):
             'saida_utc': pd.to_datetime(m['ts'][xi], unit='s'),
             'direcao': np.where(dr == 1, 'BUY', 'SELL'),
             'preco_entrada': ep, 'preco_saida': xp,
+            'spread_usd': sprd[np.searchsorted(idx, ei)] if len(ei) else [],
             'sl_usd': sl[np.searchsorted(idx, ei)] if len(ei) else [],
             'tp_usd': tp[np.searchsorted(idx, ei)] if len(ei) else [],
             'pontos': pnl, 'lucro_usd': pnl_usd, 'lucro_eur': pnl_usd / account['eurusd'],
