@@ -1,0 +1,26 @@
+; BTCUSD_Scalper_Lab - B_MACD_ASIA_M15
+; Carregar em: EA -> Inputs -> Load
+InpSetup=9
+InpTF=15
+InpMACDFast=16
+InpMACDSlow=35
+InpTrend=2
+InpTrendLen=75
+InpSession=1
+InpTradeWeekend=false
+InpATRMin=1.0
+InpSLTPMode=1
+InpSL_ATR=2.5
+InpTP_ATR=2.0
+InpSL_USD=600
+InpTP_USD=480
+InpMaxHoldMin=480
+InpBEFrac=0.5
+InpGuard=0
+InpGuardPauseH=12
+InpMaxSpreadUSD=60
+InpGMTOffset=-99
+InpLots=0.01
+InpGuardLosses=2
+InpMaxDDPct=20
+InpMagic=26110201

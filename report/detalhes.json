@@ -1,0 +1,3442 @@
+{
+ "RSI_EXTREME": {
+  "params": {
+   "family": "RSI_EXTREME",
+   "rsi_len": 4,
+   "rsi_lo": 8,
+   "tf": 15,
+   "trend": "against",
+   "trend_len": 100,
+   "side": "both",
+   "sl_mode": "atr",
+   "sl_atr": 3.0,
+   "tp_atr": 1.0,
+   "max_hold": 480,
+   "be_frac": 0.4,
+   "hours": "no_asia",
+   "weekend": "yes",
+   "guard_mode": 0,
+   "atr_min": 1.0
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 372,
+    "Win rate %": 85.2,
+    "Profit factor": 1.89,
+    "Lucro \u20ac": 238.67,
+    "Retorno %": 238.7,
+    "Max DD %": 13.7,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 176,
+    "Win rate %": 76.7,
+    "Profit factor": 0.77,
+    "Lucro \u20ac": -37.02,
+    "Retorno %": -37.0,
+    "Max DD %": 52.6,
+    "Perdas seguidas m\u00e1x": 3
+   },
+   "total": {
+    "Trades": 548,
+    "Win rate %": 82.5,
+    "Profit factor": 1.47,
+    "Lucro \u20ac": 201.65,
+    "Retorno %": 201.6,
+    "Max DD %": 18.5,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  },
+  "chunks": [
+   {
+    "trades": 93,
+    "win_rate": 0.8924731182795699,
+    "profit_factor": 2.8520327035384545,
+    "ret_pct": 81.62941014392754,
+    "max_consec_losses": 2,
+    "max_dd_pct": 12.662711864171303
+   },
+   {
+    "trades": 91,
+    "win_rate": 0.7582417582417582,
+    "profit_factor": 1.565456461498962,
+    "ret_pct": 39.96029924347007,
+    "max_consec_losses": 2,
+    "max_dd_pct": 13.517818750950173
+   },
+   {
+    "trades": 107,
+    "win_rate": 0.8691588785046729,
+    "profit_factor": 1.4821505518763665,
+    "ret_pct": 52.178179262665104,
+    "max_consec_losses": 2,
+    "max_dd_pct": 24.106061401852973
+   },
+   {
+    "trades": 81,
+    "win_rate": 0.8888888888888888,
+    "profit_factor": 2.399196507608247,
+    "ret_pct": 64.89879927348173,
+    "max_consec_losses": 2,
+    "max_dd_pct": 9.308853386560704
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 1.87,
+    "fw_pf": 0.87,
+    "bt_ret": 235.6,
+    "fw_ret": -19.3
+   },
+   "25": {
+    "bt_pf": 1.89,
+    "fw_pf": 0.77,
+    "bt_ret": 238.7,
+    "fw_ret": -37.0
+   },
+   "35": {
+    "bt_pf": 1.58,
+    "fw_pf": 0.63,
+    "bt_ret": 180.1,
+    "fw_ret": -65.1
+   },
+   "50": {
+    "bt_pf": 1.25,
+    "fw_pf": 0.54,
+    "bt_ret": 85.7,
+    "fw_ret": -88.4
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 22,
+    "lucro_eur": 24.05,
+    "win_rate": 90.91
+   },
+   {
+    "mes": "2025-02",
+    "trades": 25,
+    "lucro_eur": 22.88,
+    "win_rate": 92.0
+   },
+   {
+    "mes": "2025-03",
+    "trades": 25,
+    "lucro_eur": 44.16,
+    "win_rate": 88.0
+   },
+   {
+    "mes": "2025-04",
+    "trades": 21,
+    "lucro_eur": -9.46,
+    "win_rate": 85.71
+   },
+   {
+    "mes": "2025-05",
+    "trades": 24,
+    "lucro_eur": 2.67,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2025-06",
+    "trades": 26,
+    "lucro_eur": 15.74,
+    "win_rate": 65.38
+   },
+   {
+    "mes": "2025-07",
+    "trades": 19,
+    "lucro_eur": 19.08,
+    "win_rate": 84.21
+   },
+   {
+    "mes": "2025-08",
+    "trades": 22,
+    "lucro_eur": 2.47,
+    "win_rate": 81.82
+   },
+   {
+    "mes": "2025-09",
+    "trades": 24,
+    "lucro_eur": 17.24,
+    "win_rate": 91.67
+   },
+   {
+    "mes": "2025-10",
+    "trades": 27,
+    "lucro_eur": 14.02,
+    "win_rate": 88.89
+   },
+   {
+    "mes": "2025-11",
+    "trades": 25,
+    "lucro_eur": -9.83,
+    "win_rate": 76.0
+   },
+   {
+    "mes": "2025-12",
+    "trades": 31,
+    "lucro_eur": 30.75,
+    "win_rate": 90.32
+   },
+   {
+    "mes": "2026-01",
+    "trades": 20,
+    "lucro_eur": 18.88,
+    "win_rate": 85.0
+   },
+   {
+    "mes": "2026-02",
+    "trades": 18,
+    "lucro_eur": 28.62,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-03",
+    "trades": 18,
+    "lucro_eur": -5.98,
+    "win_rate": 77.78
+   },
+   {
+    "mes": "2026-04",
+    "trades": 25,
+    "lucro_eur": 23.37,
+    "win_rate": 92.0
+   },
+   {
+    "mes": "2026-05",
+    "trades": 29,
+    "lucro_eur": 14.59,
+    "win_rate": 86.21
+   },
+   {
+    "mes": "2026-06",
+    "trades": 27,
+    "lucro_eur": 3.88,
+    "win_rate": 85.19
+   },
+   {
+    "mes": "2026-07",
+    "trades": 30,
+    "lucro_eur": -14.42,
+    "win_rate": 73.33
+   },
+   {
+    "mes": "2026-08",
+    "trades": 34,
+    "lucro_eur": 0.12,
+    "win_rate": 76.47
+   },
+   {
+    "mes": "2026-09",
+    "trades": 29,
+    "lucro_eur": -31.0,
+    "win_rate": 68.97
+   },
+   {
+    "mes": "2026-10",
+    "trades": 26,
+    "lucro_eur": -10.9,
+    "win_rate": 69.23
+   },
+   {
+    "mes": "2026-11",
+    "trades": 1,
+    "lucro_eur": 0.71,
+    "win_rate": 100.0
+   }
+  ]
+ },
+ "MACD_X": {
+  "params": {
+   "family": "MACD_X",
+   "macd_f": 16,
+   "macd_s": 35,
+   "tf": 15,
+   "trend": "against",
+   "trend_len": 75,
+   "side": "both",
+   "sl_mode": "atr",
+   "sl_atr": 2.5,
+   "tp_atr": 2.0,
+   "max_hold": 480,
+   "be_frac": 0.5,
+   "hours": "asia",
+   "weekend": "no",
+   "guard_mode": 0,
+   "atr_min": 1.0
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 70.0,
+    "Profit factor": 2.08,
+    "Lucro \u20ac": 202.54,
+    "Retorno %": 202.5,
+    "Max DD %": 12.6,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 63.6,
+    "Profit factor": 1.25,
+    "Lucro \u20ac": 16.56,
+    "Retorno %": 16.6,
+    "Max DD %": 12.5,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "total": {
+    "Trades": 174,
+    "Win rate %": 68.4,
+    "Profit factor": 1.86,
+    "Lucro \u20ac": 219.1,
+    "Retorno %": 219.1,
+    "Max DD %": 12.6,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "chunks": [
+   {
+    "trades": 34,
+    "win_rate": 0.6470588235294118,
+    "profit_factor": 1.8651266961625588,
+    "ret_pct": 53.35923938508132,
+    "max_consec_losses": 2,
+    "max_dd_pct": 12.554980442230812
+   },
+   {
+    "trades": 34,
+    "win_rate": 0.7647058823529411,
+    "profit_factor": 1.8839539032884616,
+    "ret_pct": 40.28133186208815,
+    "max_consec_losses": 1,
+    "max_dd_pct": 7.6689041121735535
+   },
+   {
+    "trades": 32,
+    "win_rate": 0.6875,
+    "profit_factor": 2.232236526237598,
+    "ret_pct": 51.98435806759581,
+    "max_consec_losses": 2,
+    "max_dd_pct": 8.982205226417864
+   },
+   {
+    "trades": 30,
+    "win_rate": 0.7,
+    "profit_factor": 2.46961910323246,
+    "ret_pct": 56.91561696991181,
+    "max_consec_losses": 2,
+    "max_dd_pct": 8.17115970457361
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.17,
+    "fw_pf": 1.26,
+    "bt_ret": 214.1,
+    "fw_ret": 16.8
+   },
+   "25": {
+    "bt_pf": 2.08,
+    "fw_pf": 1.25,
+    "bt_ret": 202.5,
+    "fw_ret": 16.6
+   },
+   "35": {
+    "bt_pf": 2.03,
+    "fw_pf": 1.18,
+    "bt_ret": 202.3,
+    "fw_ret": 11.9
+   },
+   "50": {
+    "bt_pf": 1.9,
+    "fw_pf": 0.97,
+    "bt_ret": 185.0,
+    "fw_ret": -2.0
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 6,
+    "lucro_eur": 12.52,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-02",
+    "trades": 10,
+    "lucro_eur": 11.29,
+    "win_rate": 70.0
+   },
+   {
+    "mes": "2025-03",
+    "trades": 9,
+    "lucro_eur": 23.56,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-04",
+    "trades": 9,
+    "lucro_eur": 5.98,
+    "win_rate": 55.56
+   },
+   {
+    "mes": "2025-05",
+    "trades": 9,
+    "lucro_eur": -0.53,
+    "win_rate": 77.78
+   },
+   {
+    "mes": "2025-06",
+    "trades": 8,
+    "lucro_eur": 23.71,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2025-07",
+    "trades": 10,
+    "lucro_eur": 13.5,
+    "win_rate": 70.0
+   },
+   {
+    "mes": "2025-08",
+    "trades": 7,
+    "lucro_eur": 3.61,
+    "win_rate": 71.43
+   },
+   {
+    "mes": "2025-09",
+    "trades": 10,
+    "lucro_eur": 16.11,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-10",
+    "trades": 6,
+    "lucro_eur": 12.02,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-11",
+    "trades": 8,
+    "lucro_eur": 9.24,
+    "win_rate": 62.5
+   },
+   {
+    "mes": "2025-12",
+    "trades": 8,
+    "lucro_eur": 14.61,
+    "win_rate": 62.5
+   },
+   {
+    "mes": "2026-01",
+    "trades": 10,
+    "lucro_eur": 4.94,
+    "win_rate": 70.0
+   },
+   {
+    "mes": "2026-02",
+    "trades": 5,
+    "lucro_eur": 44.63,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-03",
+    "trades": 8,
+    "lucro_eur": 7.38,
+    "win_rate": 62.5
+   },
+   {
+    "mes": "2026-04",
+    "trades": 7,
+    "lucro_eur": -0.03,
+    "win_rate": 57.14
+   },
+   {
+    "mes": "2026-05",
+    "trades": 8,
+    "lucro_eur": 11.24,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2026-06",
+    "trades": 10,
+    "lucro_eur": 0.11,
+    "win_rate": 60.0
+   },
+   {
+    "mes": "2026-07",
+    "trades": 7,
+    "lucro_eur": 7.67,
+    "win_rate": 71.43
+   },
+   {
+    "mes": "2026-08",
+    "trades": 5,
+    "lucro_eur": 1.6,
+    "win_rate": 60.0
+   },
+   {
+    "mes": "2026-09",
+    "trades": 1,
+    "lucro_eur": 3.8,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-10",
+    "trades": 13,
+    "lucro_eur": -7.86,
+    "win_rate": 53.85
+   }
+  ]
+ },
+ "ZSCORE_MR": {
+  "params": {
+   "family": "ZSCORE_MR",
+   "z_len": 100,
+   "z_th": 2.25,
+   "tf": 5,
+   "trend": "with",
+   "trend_len": 400,
+   "side": "both",
+   "sl_mode": "usd",
+   "max_hold": 360,
+   "be_frac": 0.0,
+   "hours": "no_asia",
+   "weekend": "yes",
+   "guard_mode": 2,
+   "atr_min": 0.5,
+   "sl_usd": 2000,
+   "tp_usd": 300
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 198,
+    "Win rate %": 83.3,
+    "Profit factor": 2.03,
+    "Lucro \u20ac": 212.77,
+    "Retorno %": 212.8,
+    "Max DD %": 13.5,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 41,
+    "Win rate %": 68.3,
+    "Profit factor": 0.98,
+    "Lucro \u20ac": -1.1,
+    "Retorno %": -1.1,
+    "Max DD %": 25.3,
+    "Perdas seguidas m\u00e1x": 3
+   },
+   "total": {
+    "Trades": 239,
+    "Win rate %": 80.8,
+    "Profit factor": 1.77,
+    "Lucro \u20ac": 211.67,
+    "Retorno %": 211.7,
+    "Max DD %": 13.5,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  },
+  "chunks": [
+   {
+    "trades": 53,
+    "win_rate": 0.8490566037735849,
+    "profit_factor": 1.596999054820416,
+    "ret_pct": 43.56034482758619,
+    "max_consec_losses": 1,
+    "max_dd_pct": 13.544819557625154
+   },
+   {
+    "trades": 46,
+    "win_rate": 0.8260869565217391,
+    "profit_factor": 2.7554133858267718,
+    "ret_pct": 61.5,
+    "max_consec_losses": 2,
+    "max_dd_pct": 5.880923450789798
+   },
+   {
+    "trades": 57,
+    "win_rate": 0.8596491228070176,
+    "profit_factor": 2.252190536880675,
+    "ret_pct": 67.75862068965522,
+    "max_consec_losses": 1,
+    "max_dd_pct": 13.23873212635243
+   },
+   {
+    "trades": 42,
+    "win_rate": 0.7857142857142857,
+    "profit_factor": 1.9049013864479596,
+    "ret_pct": 39.94827586206897,
+    "max_consec_losses": 1,
+    "max_dd_pct": 14.324626344461514
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.06,
+    "fw_pf": 1.0,
+    "bt_ret": 223.2,
+    "fw_ret": 0.2
+   },
+   "25": {
+    "bt_pf": 2.03,
+    "fw_pf": 0.98,
+    "bt_ret": 212.8,
+    "fw_ret": -1.1
+   },
+   "35": {
+    "bt_pf": 1.88,
+    "fw_pf": 0.96,
+    "bt_ret": 189.6,
+    "fw_ret": -2.5
+   },
+   "50": {
+    "bt_pf": 1.75,
+    "fw_pf": 0.88,
+    "bt_ret": 167.7,
+    "fw_ret": -8.3
+   }
+  },
+  "virtual_trades": 9,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 12,
+    "lucro_eur": 25.12,
+    "win_rate": 91.67
+   },
+   {
+    "mes": "2025-02",
+    "trades": 13,
+    "lucro_eur": 10.05,
+    "win_rate": 84.62
+   },
+   {
+    "mes": "2025-03",
+    "trades": 16,
+    "lucro_eur": 2.44,
+    "win_rate": 81.25
+   },
+   {
+    "mes": "2025-04",
+    "trades": 12,
+    "lucro_eur": 5.95,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-05",
+    "trades": 14,
+    "lucro_eur": 23.3,
+    "win_rate": 85.71
+   },
+   {
+    "mes": "2025-06",
+    "trades": 12,
+    "lucro_eur": 15.42,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-07",
+    "trades": 10,
+    "lucro_eur": 11.13,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-08",
+    "trades": 10,
+    "lucro_eur": 11.65,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-09",
+    "trades": 14,
+    "lucro_eur": 12.94,
+    "win_rate": 78.57
+   },
+   {
+    "mes": "2025-10",
+    "trades": 18,
+    "lucro_eur": 43.03,
+    "win_rate": 94.44
+   },
+   {
+    "mes": "2025-11",
+    "trades": 7,
+    "lucro_eur": -10.65,
+    "win_rate": 71.43
+   },
+   {
+    "mes": "2025-12",
+    "trades": 18,
+    "lucro_eur": 22.43,
+    "win_rate": 88.89
+   },
+   {
+    "mes": "2026-01",
+    "trades": 11,
+    "lucro_eur": 13.09,
+    "win_rate": 81.82
+   },
+   {
+    "mes": "2026-02",
+    "trades": 12,
+    "lucro_eur": -3.66,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-03",
+    "trades": 8,
+    "lucro_eur": 15.55,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2026-04",
+    "trades": 11,
+    "lucro_eur": 14.97,
+    "win_rate": 81.82
+   },
+   {
+    "mes": "2026-05",
+    "trades": 9,
+    "lucro_eur": 7.66,
+    "win_rate": 88.89
+   },
+   {
+    "mes": "2026-06",
+    "trades": 7,
+    "lucro_eur": 16.02,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-07",
+    "trades": 6,
+    "lucro_eur": 6.15,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-08",
+    "trades": 11,
+    "lucro_eur": -7.03,
+    "win_rate": 54.55
+   },
+   {
+    "mes": "2026-09",
+    "trades": 2,
+    "lucro_eur": 4.74,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-10",
+    "trades": 6,
+    "lucro_eur": -28.64,
+    "win_rate": 16.67
+   }
+  ]
+ },
+ "PINBAR_BB": {
+  "params": {
+   "family": "PINBAR_BB",
+   "bb_len": 50,
+   "bb_k": 2.0,
+   "wick": 0.7,
+   "tf": 1,
+   "trend": "with",
+   "trend_len": 400,
+   "side": "both",
+   "sl_mode": "usd",
+   "sl_usd": 1200,
+   "tp_usd": 400,
+   "max_hold": 360,
+   "be_frac": 0.4,
+   "hours": "us",
+   "weekend": "no",
+   "guard_mode": 1,
+   "atr_min": 1.0,
+   "guard_pause_h": 12
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 141,
+    "Win rate %": 88.7,
+    "Profit factor": 2.75,
+    "Lucro \u20ac": 152.54,
+    "Retorno %": 152.5,
+    "Max DD %": 16.2,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 55,
+    "Win rate %": 70.9,
+    "Profit factor": 1.08,
+    "Lucro \u20ac": 5.08,
+    "Retorno %": 5.1,
+    "Max DD %": 17.6,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "total": {
+    "Trades": 196,
+    "Win rate %": 83.7,
+    "Profit factor": 2.07,
+    "Lucro \u20ac": 157.63,
+    "Retorno %": 157.6,
+    "Max DD %": 16.2,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "chunks": [
+   {
+    "trades": 34,
+    "win_rate": 0.8529411764705882,
+    "profit_factor": 1.9915868871482447,
+    "ret_pct": 29.465517241379334,
+    "max_consec_losses": 1,
+    "max_dd_pct": 16.24064207189586
+   },
+   {
+    "trades": 37,
+    "win_rate": 0.8378378378378378,
+    "profit_factor": 2.1406504065040655,
+    "ret_pct": 36.28448275862068,
+    "max_consec_losses": 2,
+    "max_dd_pct": 14.650235592606023
+   },
+   {
+    "trades": 38,
+    "win_rate": 0.868421052631579,
+    "profit_factor": 2.2529352566252934,
+    "ret_pct": 32.19827586206898,
+    "max_consec_losses": 1,
+    "max_dd_pct": 8.445472385758329
+   },
+   {
+    "trades": 32,
+    "win_rate": 1.0,
+    "profit_factor": Infinity,
+    "ret_pct": 54.594827586206904,
+    "max_consec_losses": 0,
+    "max_dd_pct": 0.0
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.71,
+    "fw_pf": 1.15,
+    "bt_ret": 148.1,
+    "fw_ret": 8.4
+   },
+   "25": {
+    "bt_pf": 2.75,
+    "fw_pf": 1.08,
+    "bt_ret": 152.5,
+    "fw_ret": 5.1
+   },
+   "35": {
+    "bt_pf": 2.55,
+    "fw_pf": 1.01,
+    "bt_ret": 143.4,
+    "fw_ret": 0.6
+   },
+   "50": {
+    "bt_pf": 1.99,
+    "fw_pf": 0.82,
+    "bt_ret": 103.5,
+    "fw_ret": -11.2
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 11,
+    "lucro_eur": 13.56,
+    "win_rate": 90.91
+   },
+   {
+    "mes": "2025-02",
+    "trades": 8,
+    "lucro_eur": 3.89,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2025-03",
+    "trades": 10,
+    "lucro_eur": 7.39,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-04",
+    "trades": 5,
+    "lucro_eur": 4.63,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-05",
+    "trades": 11,
+    "lucro_eur": 5.03,
+    "win_rate": 72.73
+   },
+   {
+    "mes": "2025-06",
+    "trades": 8,
+    "lucro_eur": -3.44,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2025-07",
+    "trades": 11,
+    "lucro_eur": 24.07,
+    "win_rate": 90.91
+   },
+   {
+    "mes": "2025-08",
+    "trades": 7,
+    "lucro_eur": 10.62,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-09",
+    "trades": 10,
+    "lucro_eur": 9.64,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-10",
+    "trades": 12,
+    "lucro_eur": 9.91,
+    "win_rate": 91.67
+   },
+   {
+    "mes": "2025-11",
+    "trades": 5,
+    "lucro_eur": 9.93,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-12",
+    "trades": 11,
+    "lucro_eur": 2.72,
+    "win_rate": 81.82
+   },
+   {
+    "mes": "2026-01",
+    "trades": 6,
+    "lucro_eur": 13.64,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-02",
+    "trades": 8,
+    "lucro_eur": 10.22,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-03",
+    "trades": 11,
+    "lucro_eur": 20.56,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-04",
+    "trades": 7,
+    "lucro_eur": 10.18,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-05",
+    "trades": 6,
+    "lucro_eur": 8.35,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-06",
+    "trades": 9,
+    "lucro_eur": -0.14,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-07",
+    "trades": 10,
+    "lucro_eur": -0.64,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2026-08",
+    "trades": 10,
+    "lucro_eur": -10.41,
+    "win_rate": 60.0
+   },
+   {
+    "mes": "2026-09",
+    "trades": 10,
+    "lucro_eur": -5.07,
+    "win_rate": 60.0
+   },
+   {
+    "mes": "2026-10",
+    "trades": 10,
+    "lucro_eur": 12.98,
+    "win_rate": 90.0
+   }
+  ]
+ },
+ "DONCHIAN_FADE": {
+  "params": {
+   "family": "DONCHIAN_FADE",
+   "dc_len": 15,
+   "tf": 15,
+   "trend": "with",
+   "trend_len": 200,
+   "side": "both",
+   "sl_mode": "atr",
+   "sl_atr": 3.0,
+   "tp_atr": 1.0,
+   "max_hold": 480,
+   "be_frac": 0.6,
+   "hours": "us",
+   "weekend": "yes",
+   "guard_mode": 0,
+   "atr_min": 1.0
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 254,
+    "Win rate %": 80.3,
+    "Profit factor": 1.78,
+    "Lucro \u20ac": 181.25,
+    "Retorno %": 181.3,
+    "Max DD %": 10.8,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 99,
+    "Win rate %": 70.7,
+    "Profit factor": 0.83,
+    "Lucro \u20ac": -17.94,
+    "Retorno %": -17.9,
+    "Max DD %": 29.2,
+    "Perdas seguidas m\u00e1x": 3
+   },
+   "total": {
+    "Trades": 353,
+    "Win rate %": 77.6,
+    "Profit factor": 1.48,
+    "Lucro \u20ac": 163.31,
+    "Retorno %": 163.3,
+    "Max DD %": 11.4,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  },
+  "chunks": [
+   {
+    "trades": 46,
+    "win_rate": 0.8695652173913043,
+    "profit_factor": 5.797056499782815,
+    "ret_pct": 85.35452254785977,
+    "max_consec_losses": 1,
+    "max_dd_pct": 7.648609320378181
+   },
+   {
+    "trades": 78,
+    "win_rate": 0.7692307692307693,
+    "profit_factor": 1.2603159827057047,
+    "ret_pct": 23.80462193543722,
+    "max_consec_losses": 2,
+    "max_dd_pct": 14.477572060926128
+   },
+   {
+    "trades": 62,
+    "win_rate": 0.7741935483870968,
+    "profit_factor": 1.3544286598688604,
+    "ret_pct": 26.202577350992474,
+    "max_consec_losses": 1,
+    "max_dd_pct": 19.696941422880503
+   },
+   {
+    "trades": 68,
+    "win_rate": 0.8235294117647058,
+    "profit_factor": 1.9162132923918391,
+    "ret_pct": 45.888331117481606,
+    "max_consec_losses": 2,
+    "max_dd_pct": 15.36679252532522
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 1.87,
+    "fw_pf": 0.89,
+    "bt_ret": 197.1,
+    "fw_ret": -12.3
+   },
+   "25": {
+    "bt_pf": 1.78,
+    "fw_pf": 0.83,
+    "bt_ret": 181.3,
+    "fw_ret": -17.9
+   },
+   "35": {
+    "bt_pf": 1.67,
+    "fw_pf": 0.79,
+    "bt_ret": 163.2,
+    "fw_ret": -22.9
+   },
+   "50": {
+    "bt_pf": 1.45,
+    "fw_pf": 0.74,
+    "bt_ret": 126.4,
+    "fw_ret": -28.9
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 6,
+    "lucro_eur": 23.35,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-02",
+    "trades": 16,
+    "lucro_eur": 2.31,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2025-03",
+    "trades": 13,
+    "lucro_eur": 35.29,
+    "win_rate": 84.62
+   },
+   {
+    "mes": "2025-04",
+    "trades": 11,
+    "lucro_eur": 24.42,
+    "win_rate": 90.91
+   },
+   {
+    "mes": "2025-05",
+    "trades": 18,
+    "lucro_eur": 2.59,
+    "win_rate": 72.22
+   },
+   {
+    "mes": "2025-06",
+    "trades": 17,
+    "lucro_eur": 10.26,
+    "win_rate": 76.47
+   },
+   {
+    "mes": "2025-07",
+    "trades": 15,
+    "lucro_eur": -1.17,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-08",
+    "trades": 28,
+    "lucro_eur": 12.12,
+    "win_rate": 78.57
+   },
+   {
+    "mes": "2025-09",
+    "trades": 19,
+    "lucro_eur": -9.48,
+    "win_rate": 73.68
+   },
+   {
+    "mes": "2025-10",
+    "trades": 15,
+    "lucro_eur": 5.57,
+    "win_rate": 73.33
+   },
+   {
+    "mes": "2025-11",
+    "trades": 16,
+    "lucro_eur": 27.0,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2025-12",
+    "trades": 12,
+    "lucro_eur": 3.11,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2026-01",
+    "trades": 22,
+    "lucro_eur": 13.32,
+    "win_rate": 86.36
+   },
+   {
+    "mes": "2026-02",
+    "trades": 13,
+    "lucro_eur": 21.27,
+    "win_rate": 92.31
+   },
+   {
+    "mes": "2026-03",
+    "trades": 17,
+    "lucro_eur": -4.98,
+    "win_rate": 64.71
+   },
+   {
+    "mes": "2026-04",
+    "trades": 16,
+    "lucro_eur": 16.29,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2026-05",
+    "trades": 20,
+    "lucro_eur": -5.1,
+    "win_rate": 70.0
+   },
+   {
+    "mes": "2026-06",
+    "trades": 13,
+    "lucro_eur": 0.49,
+    "win_rate": 53.85
+   },
+   {
+    "mes": "2026-07",
+    "trades": 13,
+    "lucro_eur": -2.55,
+    "win_rate": 69.23
+   },
+   {
+    "mes": "2026-08",
+    "trades": 18,
+    "lucro_eur": 8.83,
+    "win_rate": 88.89
+   },
+   {
+    "mes": "2026-09",
+    "trades": 19,
+    "lucro_eur": 7.31,
+    "win_rate": 78.95
+   },
+   {
+    "mes": "2026-10",
+    "trades": 16,
+    "lucro_eur": -26.92,
+    "win_rate": 56.25
+   }
+  ]
+ },
+ "STOCH_X": {
+  "params": {
+   "family": "STOCH_X",
+   "st_len": 21,
+   "st_lo": 15,
+   "tf": 10,
+   "trend": "against",
+   "trend_len": 200,
+   "side": "both",
+   "sl_mode": "atr",
+   "sl_atr": 4.5,
+   "tp_atr": 3.0,
+   "max_hold": 240,
+   "be_frac": 0.4,
+   "hours": "eu",
+   "weekend": "no",
+   "guard_mode": 2,
+   "atr_min": 1.0
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 129,
+    "Win rate %": 76.7,
+    "Profit factor": 2.08,
+    "Lucro \u20ac": 179.28,
+    "Retorno %": 179.3,
+    "Max DD %": 20.3,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 87,
+    "Win rate %": 66.7,
+    "Profit factor": 0.83,
+    "Lucro \u20ac": -25.66,
+    "Retorno %": -25.7,
+    "Max DD %": 46.1,
+    "Perdas seguidas m\u00e1x": 3
+   },
+   "total": {
+    "Trades": 216,
+    "Win rate %": 72.7,
+    "Profit factor": 1.49,
+    "Lucro \u20ac": 153.63,
+    "Retorno %": 153.6,
+    "Max DD %": 20.3,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  },
+  "chunks": [
+   {
+    "trades": 26,
+    "win_rate": 0.7692307692307693,
+    "profit_factor": 2.7038917214256304,
+    "ret_pct": 67.47401430654018,
+    "max_consec_losses": 2,
+    "max_dd_pct": 20.331573754191627
+   },
+   {
+    "trades": 31,
+    "win_rate": 0.8064516129032258,
+    "profit_factor": 2.615388566766581,
+    "ret_pct": 38.45955017854934,
+    "max_consec_losses": 2,
+    "max_dd_pct": 14.479397485295934
+   },
+   {
+    "trades": 38,
+    "win_rate": 0.6842105263157895,
+    "profit_factor": 1.7099186482304867,
+    "ret_pct": 45.45558129112497,
+    "max_consec_losses": 2,
+    "max_dd_pct": 12.911928869763726
+   },
+   {
+    "trades": 34,
+    "win_rate": 0.8235294117647058,
+    "profit_factor": 1.7121420680773596,
+    "ret_pct": 27.894071433648904,
+    "max_consec_losses": 1,
+    "max_dd_pct": 14.027566939471761
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.26,
+    "fw_pf": 0.8,
+    "bt_ret": 194.4,
+    "fw_ret": -31.0
+   },
+   "25": {
+    "bt_pf": 2.08,
+    "fw_pf": 0.83,
+    "bt_ret": 179.3,
+    "fw_ret": -25.7
+   },
+   "35": {
+    "bt_pf": 1.91,
+    "fw_pf": 0.74,
+    "bt_ret": 157.0,
+    "fw_ret": -41.7
+   },
+   "50": {
+    "bt_pf": 1.78,
+    "fw_pf": 0.74,
+    "bt_ret": 147.3,
+    "fw_ret": -42.9
+   }
+  },
+  "virtual_trades": 22,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 6,
+    "lucro_eur": 0.16,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-02",
+    "trades": 4,
+    "lucro_eur": 19.33,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-03",
+    "trades": 6,
+    "lucro_eur": 16.91,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-04",
+    "trades": 10,
+    "lucro_eur": 31.08,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-05",
+    "trades": 10,
+    "lucro_eur": 21.96,
+    "win_rate": 90.0
+   },
+   {
+    "mes": "2025-06",
+    "trades": 7,
+    "lucro_eur": -13.97,
+    "win_rate": 57.14
+   },
+   {
+    "mes": "2025-07",
+    "trades": 5,
+    "lucro_eur": 11.11,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-08",
+    "trades": 9,
+    "lucro_eur": 19.36,
+    "win_rate": 77.78
+   },
+   {
+    "mes": "2025-09",
+    "trades": 15,
+    "lucro_eur": 12.21,
+    "win_rate": 73.33
+   },
+   {
+    "mes": "2025-10",
+    "trades": 8,
+    "lucro_eur": 24.03,
+    "win_rate": 62.5
+   },
+   {
+    "mes": "2025-11",
+    "trades": 9,
+    "lucro_eur": 15.38,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-12",
+    "trades": 6,
+    "lucro_eur": -6.17,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-01",
+    "trades": 6,
+    "lucro_eur": 15.11,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2026-02",
+    "trades": 5,
+    "lucro_eur": -7.7,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2026-03",
+    "trades": 15,
+    "lucro_eur": 7.2,
+    "win_rate": 73.33
+   },
+   {
+    "mes": "2026-04",
+    "trades": 8,
+    "lucro_eur": 13.29,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-05",
+    "trades": 10,
+    "lucro_eur": -6.07,
+    "win_rate": 50.0
+   },
+   {
+    "mes": "2026-06",
+    "trades": 10,
+    "lucro_eur": -6.63,
+    "win_rate": 60.0
+   },
+   {
+    "mes": "2026-07",
+    "trades": 10,
+    "lucro_eur": -5.85,
+    "win_rate": 60.0
+   },
+   {
+    "mes": "2026-08",
+    "trades": 17,
+    "lucro_eur": 0.11,
+    "win_rate": 70.59
+   },
+   {
+    "mes": "2026-09",
+    "trades": 23,
+    "lucro_eur": -15.8,
+    "win_rate": 69.57
+   },
+   {
+    "mes": "2026-10",
+    "trades": 17,
+    "lucro_eur": 8.59,
+    "win_rate": 76.47
+   }
+  ]
+ },
+ "EMA_PULLBACK": {
+  "params": {
+   "family": "EMA_PULLBACK",
+   "ema_fast": 9,
+   "ema_slow": 200,
+   "tf": 5,
+   "trend": "against",
+   "trend_len": 100,
+   "side": "both",
+   "sl_mode": "usd",
+   "sl_usd": 1400,
+   "tp_usd": 300,
+   "max_hold": 480,
+   "be_frac": 0.7,
+   "hours": "us",
+   "weekend": "yes",
+   "guard_mode": 1,
+   "atr_min": 1.0,
+   "guard_pause_h": 24
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 162,
+    "Win rate %": 87.0,
+    "Profit factor": 2.25,
+    "Lucro \u20ac": 155.76,
+    "Retorno %": 155.8,
+    "Max DD %": 8.3,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 39,
+    "Win rate %": 51.3,
+    "Profit factor": 0.47,
+    "Lucro \u20ac": -40.18,
+    "Retorno %": -40.2,
+    "Max DD %": 47.8,
+    "Perdas seguidas m\u00e1x": 4
+   },
+   "total": {
+    "Trades": 201,
+    "Win rate %": 80.1,
+    "Profit factor": 1.58,
+    "Lucro \u20ac": 115.58,
+    "Retorno %": 115.6,
+    "Max DD %": 22.4,
+    "Perdas seguidas m\u00e1x": 4
+   }
+  },
+  "chunks": [
+   {
+    "trades": 35,
+    "win_rate": 0.8857142857142857,
+    "profit_factor": 17.690594059405942,
+    "ret_pct": 58.1293103448276,
+    "max_consec_losses": 1,
+    "max_dd_pct": 1.6505173263261663
+   },
+   {
+    "trades": 47,
+    "win_rate": 0.8936170212765957,
+    "profit_factor": 2.445188492063492,
+    "ret_pct": 50.23275862068965,
+    "max_consec_losses": 1,
+    "max_dd_pct": 10.569667645872931
+   },
+   {
+    "trades": 43,
+    "win_rate": 0.8837209302325582,
+    "profit_factor": 1.5779630006098802,
+    "ret_pct": 24.50862068965516,
+    "max_consec_losses": 1,
+    "max_dd_pct": 11.80672268907563
+   },
+   {
+    "trades": 37,
+    "win_rate": 0.8108108108108109,
+    "profit_factor": 1.5227406969875958,
+    "ret_pct": 22.88793103448277,
+    "max_consec_losses": 2,
+    "max_dd_pct": 16.540673257091164
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.35,
+    "fw_pf": 0.55,
+    "bt_ret": 164.0,
+    "fw_ret": -33.6
+   },
+   "25": {
+    "bt_pf": 2.25,
+    "fw_pf": 0.47,
+    "bt_ret": 155.8,
+    "fw_ret": -40.2
+   },
+   "35": {
+    "bt_pf": 1.96,
+    "fw_pf": 0.52,
+    "bt_ret": 131.9,
+    "fw_ret": -37.9
+   },
+   "50": {
+    "bt_pf": 1.6,
+    "fw_pf": 0.52,
+    "bt_ret": 94.1,
+    "fw_ret": -35.3
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 8,
+    "lucro_eur": 11.01,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2025-02",
+    "trades": 12,
+    "lucro_eur": 21.9,
+    "win_rate": 91.67
+   },
+   {
+    "mes": "2025-03",
+    "trades": 6,
+    "lucro_eur": 12.77,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-04",
+    "trades": 9,
+    "lucro_eur": 12.46,
+    "win_rate": 88.89
+   },
+   {
+    "mes": "2025-05",
+    "trades": 9,
+    "lucro_eur": 17.2,
+    "win_rate": 88.89
+   },
+   {
+    "mes": "2025-06",
+    "trades": 8,
+    "lucro_eur": 14.34,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2025-07",
+    "trades": 16,
+    "lucro_eur": 7.49,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2025-08",
+    "trades": 14,
+    "lucro_eur": 11.2,
+    "win_rate": 92.86
+   },
+   {
+    "mes": "2025-09",
+    "trades": 8,
+    "lucro_eur": -4.34,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2025-10",
+    "trades": 11,
+    "lucro_eur": 20.72,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-11",
+    "trades": 13,
+    "lucro_eur": 2.55,
+    "win_rate": 84.62
+   },
+   {
+    "mes": "2025-12",
+    "trades": 11,
+    "lucro_eur": 5.59,
+    "win_rate": 90.91
+   },
+   {
+    "mes": "2026-01",
+    "trades": 13,
+    "lucro_eur": 20.48,
+    "win_rate": 84.62
+   },
+   {
+    "mes": "2026-02",
+    "trades": 6,
+    "lucro_eur": 12.94,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-03",
+    "trades": 10,
+    "lucro_eur": -6.54,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2026-04",
+    "trades": 8,
+    "lucro_eur": -3.99,
+    "win_rate": 62.5
+   },
+   {
+    "mes": "2026-05",
+    "trades": 3,
+    "lucro_eur": -4.42,
+    "win_rate": 33.33
+   },
+   {
+    "mes": "2026-06",
+    "trades": 6,
+    "lucro_eur": -11.76,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-07",
+    "trades": 11,
+    "lucro_eur": -11.59,
+    "win_rate": 45.45
+   },
+   {
+    "mes": "2026-08",
+    "trades": 2,
+    "lucro_eur": -6.08,
+    "win_rate": 50.0
+   },
+   {
+    "mes": "2026-09",
+    "trades": 13,
+    "lucro_eur": -11.24,
+    "win_rate": 46.15
+   },
+   {
+    "mes": "2026-10",
+    "trades": 4,
+    "lucro_eur": 4.92,
+    "win_rate": 75.0
+   }
+  ]
+ },
+ "BB_RSI_MR": {
+  "params": {
+   "family": "BB_RSI_MR",
+   "bb_len": 14,
+   "bb_k": 1.5,
+   "rsi_len": 3,
+   "rsi_lo": 35,
+   "tf": 15,
+   "trend": "with",
+   "trend_len": 50,
+   "side": "both",
+   "sl_mode": "atr",
+   "sl_atr": 7.0,
+   "tp_atr": 0.75,
+   "max_hold": 360,
+   "be_frac": 0.8,
+   "hours": "us",
+   "weekend": "yes",
+   "guard_mode": 1,
+   "atr_min": 1.0,
+   "guard_pause_h": 12
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 138,
+    "Win rate %": 89.1,
+    "Profit factor": 2.53,
+    "Lucro \u20ac": 136.78,
+    "Retorno %": 136.8,
+    "Max DD %": 14.8,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 78,
+    "Win rate %": 73.1,
+    "Profit factor": 0.99,
+    "Lucro \u20ac": -0.78,
+    "Retorno %": -0.8,
+    "Max DD %": 19.3,
+    "Perdas seguidas m\u00e1x": 3
+   },
+   "total": {
+    "Trades": 216,
+    "Win rate %": 83.3,
+    "Profit factor": 1.87,
+    "Lucro \u20ac": 136.0,
+    "Retorno %": 136.0,
+    "Max DD %": 14.8,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  },
+  "chunks": [
+   {
+    "trades": 37,
+    "win_rate": 0.918918918918919,
+    "profit_factor": 8.722205338685352,
+    "ret_pct": 56.31884238386042,
+    "max_consec_losses": 1,
+    "max_dd_pct": 6.017839801083307
+   },
+   {
+    "trades": 32,
+    "win_rate": 0.875,
+    "profit_factor": 2.00961316173207,
+    "ret_pct": 25.282287974236482,
+    "max_consec_losses": 1,
+    "max_dd_pct": 10.623127885582816
+   },
+   {
+    "trades": 40,
+    "win_rate": 0.925,
+    "profit_factor": 1.6270531951189533,
+    "ret_pct": 25.73080352384669,
+    "max_consec_losses": 1,
+    "max_dd_pct": 24.16911182126243
+   },
+   {
+    "trades": 29,
+    "win_rate": 0.8275862068965517,
+    "profit_factor": 2.868885675936612,
+    "ret_pct": 29.451060479414902,
+    "max_consec_losses": 2,
+    "max_dd_pct": 7.955671008610778
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.56,
+    "fw_pf": 1.13,
+    "bt_ret": 136.2,
+    "fw_ret": 8.1
+   },
+   "25": {
+    "bt_pf": 2.53,
+    "fw_pf": 0.99,
+    "bt_ret": 136.8,
+    "fw_ret": -0.8
+   },
+   "35": {
+    "bt_pf": 2.33,
+    "fw_pf": 0.63,
+    "bt_ret": 128.1,
+    "fw_ret": -37.7
+   },
+   "50": {
+    "bt_pf": 2.0,
+    "fw_pf": 0.53,
+    "bt_ret": 110.2,
+    "fw_ret": -48.2
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 4,
+    "lucro_eur": 7.22,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-02",
+    "trades": 6,
+    "lucro_eur": 1.43,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-03",
+    "trades": 16,
+    "lucro_eur": 32.48,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-04",
+    "trades": 11,
+    "lucro_eur": 15.19,
+    "win_rate": 81.82
+   },
+   {
+    "mes": "2025-05",
+    "trades": 7,
+    "lucro_eur": 4.32,
+    "win_rate": 85.71
+   },
+   {
+    "mes": "2025-06",
+    "trades": 8,
+    "lucro_eur": -4.15,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2025-07",
+    "trades": 7,
+    "lucro_eur": 13.98,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-08",
+    "trades": 10,
+    "lucro_eur": 11.14,
+    "win_rate": 90.0
+   },
+   {
+    "mes": "2025-09",
+    "trades": 15,
+    "lucro_eur": 20.75,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-10",
+    "trades": 10,
+    "lucro_eur": -19.47,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-11",
+    "trades": 7,
+    "lucro_eur": 17.91,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-12",
+    "trades": 8,
+    "lucro_eur": 6.54,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2026-01",
+    "trades": 8,
+    "lucro_eur": -1.62,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2026-02",
+    "trades": 5,
+    "lucro_eur": 11.82,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-03",
+    "trades": 11,
+    "lucro_eur": 12.8,
+    "win_rate": 81.82
+   },
+   {
+    "mes": "2026-04",
+    "trades": 5,
+    "lucro_eur": 6.45,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2026-05",
+    "trades": 15,
+    "lucro_eur": 8.97,
+    "win_rate": 86.67
+   },
+   {
+    "mes": "2026-06",
+    "trades": 14,
+    "lucro_eur": -3.18,
+    "win_rate": 64.29
+   },
+   {
+    "mes": "2026-07",
+    "trades": 15,
+    "lucro_eur": 2.95,
+    "win_rate": 73.33
+   },
+   {
+    "mes": "2026-08",
+    "trades": 12,
+    "lucro_eur": 5.25,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2026-09",
+    "trades": 9,
+    "lucro_eur": 4.38,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-10",
+    "trades": 12,
+    "lucro_eur": -19.22,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-11",
+    "trades": 1,
+    "lucro_eur": 0.06,
+    "win_rate": 100.0
+   }
+  ]
+ },
+ "DONCHIAN_BO": {
+  "params": {
+   "family": "DONCHIAN_BO",
+   "dc_len": 20,
+   "tf": 10,
+   "trend": "with",
+   "trend_len": 400,
+   "side": "both",
+   "sl_mode": "atr",
+   "sl_atr": 3.0,
+   "tp_atr": 2.0,
+   "max_hold": 150,
+   "be_frac": 0.5,
+   "hours": "asia",
+   "weekend": "no",
+   "guard_mode": 1,
+   "atr_min": 1.25,
+   "guard_pause_h": 24
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 144,
+    "Win rate %": 74.3,
+    "Profit factor": 1.82,
+    "Lucro \u20ac": 144.24,
+    "Retorno %": 144.2,
+    "Max DD %": 13.4,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 53,
+    "Win rate %": 58.5,
+    "Profit factor": 0.66,
+    "Lucro \u20ac": -27.19,
+    "Retorno %": -27.2,
+    "Max DD %": 37.7,
+    "Perdas seguidas m\u00e1x": 4
+   },
+   "total": {
+    "Trades": 197,
+    "Win rate %": 70.1,
+    "Profit factor": 1.46,
+    "Lucro \u20ac": 117.06,
+    "Retorno %": 117.1,
+    "Max DD %": 18.5,
+    "Perdas seguidas m\u00e1x": 4
+   }
+  },
+  "chunks": [
+   {
+    "trades": 34,
+    "win_rate": 0.7352941176470589,
+    "profit_factor": 2.678124878302425,
+    "ret_pct": 79.66262398479441,
+    "max_consec_losses": 2,
+    "max_dd_pct": 13.442075506547832
+   },
+   {
+    "trades": 42,
+    "win_rate": 0.7380952380952381,
+    "profit_factor": 1.2593080194831165,
+    "ret_pct": 17.860241762227314,
+    "max_consec_losses": 2,
+    "max_dd_pct": 22.732496600753713
+   },
+   {
+    "trades": 40,
+    "win_rate": 0.775,
+    "profit_factor": 1.6099520912776022,
+    "ret_pct": 23.373904666236676,
+    "max_consec_losses": 2,
+    "max_dd_pct": 13.932156621748511
+   },
+   {
+    "trades": 28,
+    "win_rate": 0.7142857142857143,
+    "profit_factor": 2.079357187703983,
+    "ret_pct": 23.345962980021362,
+    "max_consec_losses": 2,
+    "max_dd_pct": 10.983962291925792
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.0,
+    "fw_pf": 0.68,
+    "bt_ret": 165.2,
+    "fw_ret": -25.1
+   },
+   "25": {
+    "bt_pf": 1.82,
+    "fw_pf": 0.66,
+    "bt_ret": 144.2,
+    "fw_ret": -27.2
+   },
+   "35": {
+    "bt_pf": 1.81,
+    "fw_pf": 0.47,
+    "bt_ret": 139.2,
+    "fw_ret": -55.0
+   },
+   "50": {
+    "bt_pf": 1.73,
+    "fw_pf": 0.46,
+    "bt_ret": 131.7,
+    "fw_ret": -56.9
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 8,
+    "lucro_eur": 30.53,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2025-02",
+    "trades": 7,
+    "lucro_eur": 6.51,
+    "win_rate": 57.14
+   },
+   {
+    "mes": "2025-03",
+    "trades": 7,
+    "lucro_eur": 11.6,
+    "win_rate": 71.43
+   },
+   {
+    "mes": "2025-04",
+    "trades": 12,
+    "lucro_eur": 31.03,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-05",
+    "trades": 10,
+    "lucro_eur": -7.38,
+    "win_rate": 60.0
+   },
+   {
+    "mes": "2025-06",
+    "trades": 9,
+    "lucro_eur": -12.14,
+    "win_rate": 55.56
+   },
+   {
+    "mes": "2025-07",
+    "trades": 10,
+    "lucro_eur": 25.43,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-08",
+    "trades": 13,
+    "lucro_eur": 11.96,
+    "win_rate": 76.92
+   },
+   {
+    "mes": "2025-09",
+    "trades": 12,
+    "lucro_eur": 9.33,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-10",
+    "trades": 3,
+    "lucro_eur": -2.17,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-11",
+    "trades": 10,
+    "lucro_eur": -6.86,
+    "win_rate": 70.0
+   },
+   {
+    "mes": "2025-12",
+    "trades": 15,
+    "lucro_eur": 23.08,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2026-01",
+    "trades": 11,
+    "lucro_eur": 13.03,
+    "win_rate": 90.91
+   },
+   {
+    "mes": "2026-02",
+    "trades": 9,
+    "lucro_eur": 17.13,
+    "win_rate": 77.78
+   },
+   {
+    "mes": "2026-03",
+    "trades": 5,
+    "lucro_eur": -10.68,
+    "win_rate": 40.0
+   },
+   {
+    "mes": "2026-04",
+    "trades": 3,
+    "lucro_eur": 3.87,
+    "win_rate": 33.33
+   },
+   {
+    "mes": "2026-05",
+    "trades": 7,
+    "lucro_eur": -6.6,
+    "win_rate": 57.14
+   },
+   {
+    "mes": "2026-06",
+    "trades": 7,
+    "lucro_eur": -6.07,
+    "win_rate": 57.14
+   },
+   {
+    "mes": "2026-07",
+    "trades": 10,
+    "lucro_eur": -2.62,
+    "win_rate": 40.0
+   },
+   {
+    "mes": "2026-08",
+    "trades": 7,
+    "lucro_eur": -10.67,
+    "win_rate": 57.14
+   },
+   {
+    "mes": "2026-09",
+    "trades": 10,
+    "lucro_eur": -3.75,
+    "win_rate": 60.0
+   },
+   {
+    "mes": "2026-10",
+    "trades": 12,
+    "lucro_eur": 2.52,
+    "win_rate": 75.0
+   }
+  ]
+ },
+ "KELTNER_REV": {
+  "params": {
+   "family": "KELTNER_REV",
+   "kc_len": 10,
+   "kc_k": 2.0,
+   "tf": 5,
+   "trend": "with",
+   "trend_len": 400,
+   "side": "both",
+   "sl_mode": "atr",
+   "sl_atr": 5.5,
+   "tp_atr": 3.0,
+   "max_hold": 360,
+   "be_frac": 0.7,
+   "hours": "eu_us",
+   "weekend": "no",
+   "guard_mode": 2,
+   "atr_min": 1.0
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 104,
+    "Win rate %": 76.9,
+    "Profit factor": 2.6,
+    "Lucro \u20ac": 201.88,
+    "Retorno %": 201.9,
+    "Max DD %": 23.4,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 28,
+    "Win rate %": 60.7,
+    "Profit factor": 0.9,
+    "Lucro \u20ac": -4.76,
+    "Retorno %": -4.8,
+    "Max DD %": 26.7,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "total": {
+    "Trades": 132,
+    "Win rate %": 73.5,
+    "Profit factor": 2.14,
+    "Lucro \u20ac": 197.12,
+    "Retorno %": 197.1,
+    "Max DD %": 23.4,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "chunks": [
+   {
+    "trades": 31,
+    "win_rate": 0.8064516129032258,
+    "profit_factor": 2.2767753663300074,
+    "ret_pct": 67.94682616181798,
+    "max_consec_losses": 2,
+    "max_dd_pct": 23.399572011962945
+   },
+   {
+    "trades": 29,
+    "win_rate": 0.7931034482758621,
+    "profit_factor": 3.268324317666129,
+    "ret_pct": 49.944579126525454,
+    "max_consec_losses": 1,
+    "max_dd_pct": 4.344827586206902
+   },
+   {
+    "trades": 22,
+    "win_rate": 0.7272727272727273,
+    "profit_factor": 2.1043017858151933,
+    "ret_pct": 38.05504081012248,
+    "max_consec_losses": 2,
+    "max_dd_pct": 10.777678695955613
+   },
+   {
+    "trades": 22,
+    "win_rate": 0.7272727272727273,
+    "profit_factor": 3.8078532367277873,
+    "ret_pct": 45.93092931563562,
+    "max_consec_losses": 1,
+    "max_dd_pct": 4.425476423992793
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.67,
+    "fw_pf": 0.96,
+    "bt_ret": 208.6,
+    "fw_ret": -1.8
+   },
+   "25": {
+    "bt_pf": 2.6,
+    "fw_pf": 0.9,
+    "bt_ret": 201.9,
+    "fw_ret": -4.8
+   },
+   "35": {
+    "bt_pf": 2.48,
+    "fw_pf": 0.89,
+    "bt_ret": 196.6,
+    "fw_ret": -5.4
+   },
+   "50": {
+    "bt_pf": 2.26,
+    "fw_pf": 0.88,
+    "bt_ret": 180.1,
+    "fw_ret": -5.7
+   }
+  },
+  "virtual_trades": 13,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 10,
+    "lucro_eur": 23.45,
+    "win_rate": 90.0
+   },
+   {
+    "mes": "2025-02",
+    "trades": 5,
+    "lucro_eur": -3.72,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-03",
+    "trades": 7,
+    "lucro_eur": 26.92,
+    "win_rate": 71.43
+   },
+   {
+    "mes": "2025-04",
+    "trades": 9,
+    "lucro_eur": 21.3,
+    "win_rate": 77.78
+   },
+   {
+    "mes": "2025-05",
+    "trades": 6,
+    "lucro_eur": 10.3,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-06",
+    "trades": 10,
+    "lucro_eur": 14.46,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-07",
+    "trades": 8,
+    "lucro_eur": 26.37,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2025-08",
+    "trades": 5,
+    "lucro_eur": -1.18,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-09",
+    "trades": 1,
+    "lucro_eur": 3.45,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-10",
+    "trades": 9,
+    "lucro_eur": 19.09,
+    "win_rate": 77.78
+   },
+   {
+    "mes": "2025-11",
+    "trades": 6,
+    "lucro_eur": 24.41,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-12",
+    "trades": 6,
+    "lucro_eur": -8.89,
+    "win_rate": 50.0
+   },
+   {
+    "mes": "2026-01",
+    "trades": 8,
+    "lucro_eur": 14.55,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2026-02",
+    "trades": 2,
+    "lucro_eur": -0.89,
+    "win_rate": 50.0
+   },
+   {
+    "mes": "2026-03",
+    "trades": 6,
+    "lucro_eur": 28.96,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-04",
+    "trades": 6,
+    "lucro_eur": 3.32,
+    "win_rate": 50.0
+   },
+   {
+    "mes": "2026-05",
+    "trades": 5,
+    "lucro_eur": 10.58,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2026-06",
+    "trades": 3,
+    "lucro_eur": 0.26,
+    "win_rate": 33.33
+   },
+   {
+    "mes": "2026-07",
+    "trades": 3,
+    "lucro_eur": 2.86,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-08",
+    "trades": 6,
+    "lucro_eur": -5.3,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-09",
+    "trades": 6,
+    "lucro_eur": -9.76,
+    "win_rate": 50.0
+   },
+   {
+    "mes": "2026-10",
+    "trades": 5,
+    "lucro_eur": -3.4,
+    "win_rate": 60.0
+   }
+  ]
+ },
+ "CONSEC_FADE": {
+  "params": {
+   "family": "CONSEC_FADE",
+   "n_bars": 4,
+   "tf": 15,
+   "trend": "against",
+   "trend_len": 50,
+   "side": "both",
+   "sl_mode": "atr",
+   "sl_atr": 7.0,
+   "tp_atr": 0.5,
+   "max_hold": 360,
+   "be_frac": 0.8,
+   "hours": "eu",
+   "weekend": "no",
+   "guard_mode": 1,
+   "atr_min": 0.75,
+   "guard_pause_h": 12
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 244,
+    "Win rate %": 91.4,
+    "Profit factor": 2.29,
+    "Lucro \u20ac": 130.64,
+    "Retorno %": 130.6,
+    "Max DD %": 8.0,
+    "Perdas seguidas m\u00e1x": 1
+   },
+   "forward": {
+    "Trades": 132,
+    "Win rate %": 86.4,
+    "Profit factor": 0.46,
+    "Lucro \u20ac": -86.63,
+    "Retorno %": -86.6,
+    "Max DD %": 93.1,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "total": {
+    "Trades": 376,
+    "Win rate %": 89.6,
+    "Profit factor": 1.17,
+    "Lucro \u20ac": 44.01,
+    "Retorno %": 44.0,
+    "Max DD %": 41.6,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "chunks": [
+   {
+    "trades": 44,
+    "win_rate": 0.8863636363636364,
+    "profit_factor": 4.143799741879839,
+    "ret_pct": 47.21119957202309,
+    "max_consec_losses": 1,
+    "max_dd_pct": 4.587233071519554
+   },
+   {
+    "trades": 70,
+    "win_rate": 0.9142857142857143,
+    "profit_factor": 3.0818200131934828,
+    "ret_pct": 35.08584591201087,
+    "max_consec_losses": 1,
+    "max_dd_pct": 8.259984097577941
+   },
+   {
+    "trades": 59,
+    "win_rate": 0.9152542372881356,
+    "profit_factor": 1.8970653689564856,
+    "ret_pct": 28.69237536239575,
+    "max_consec_losses": 1,
+    "max_dd_pct": 13.52733749597671
+   },
+   {
+    "trades": 71,
+    "win_rate": 0.9295774647887324,
+    "profit_factor": 1.526934161662299,
+    "ret_pct": 19.64982760135574,
+    "max_consec_losses": 1,
+    "max_dd_pct": 13.72156285178558
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.23,
+    "fw_pf": 0.53,
+    "bt_ret": 128.7,
+    "fw_ret": -66.7
+   },
+   "25": {
+    "bt_pf": 2.29,
+    "fw_pf": 0.46,
+    "bt_ret": 130.6,
+    "fw_ret": -86.6
+   },
+   "35": {
+    "bt_pf": 1.98,
+    "fw_pf": 0.44,
+    "bt_ret": 105.9,
+    "fw_ret": -90.4
+   },
+   "50": {
+    "bt_pf": 1.03,
+    "fw_pf": 0.38,
+    "bt_ret": 5.6,
+    "fw_ret": -105.4
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 10,
+    "lucro_eur": 14.1,
+    "win_rate": 90.0
+   },
+   {
+    "mes": "2025-02",
+    "trades": 12,
+    "lucro_eur": 19.15,
+    "win_rate": 91.67
+   },
+   {
+    "mes": "2025-03",
+    "trades": 13,
+    "lucro_eur": 14.0,
+    "win_rate": 84.62
+   },
+   {
+    "mes": "2025-04",
+    "trades": 9,
+    "lucro_eur": -0.04,
+    "win_rate": 88.89
+   },
+   {
+    "mes": "2025-05",
+    "trades": 22,
+    "lucro_eur": 17.51,
+    "win_rate": 95.45
+   },
+   {
+    "mes": "2025-06",
+    "trades": 16,
+    "lucro_eur": -3.53,
+    "win_rate": 81.25
+   },
+   {
+    "mes": "2025-07",
+    "trades": 16,
+    "lucro_eur": 7.91,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2025-08",
+    "trades": 16,
+    "lucro_eur": 13.19,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-09",
+    "trades": 16,
+    "lucro_eur": 12.23,
+    "win_rate": 93.75
+   },
+   {
+    "mes": "2025-10",
+    "trades": 15,
+    "lucro_eur": 1.17,
+    "win_rate": 86.67
+   },
+   {
+    "mes": "2025-11",
+    "trades": 16,
+    "lucro_eur": 9.81,
+    "win_rate": 93.75
+   },
+   {
+    "mes": "2025-12",
+    "trades": 12,
+    "lucro_eur": 5.48,
+    "win_rate": 91.67
+   },
+   {
+    "mes": "2026-01",
+    "trades": 12,
+    "lucro_eur": 9.11,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-02",
+    "trades": 11,
+    "lucro_eur": -2.64,
+    "win_rate": 90.91
+   },
+   {
+    "mes": "2026-03",
+    "trades": 28,
+    "lucro_eur": 1.77,
+    "win_rate": 92.86
+   },
+   {
+    "mes": "2026-04",
+    "trades": 20,
+    "lucro_eur": 11.41,
+    "win_rate": 90.0
+   },
+   {
+    "mes": "2026-05",
+    "trades": 19,
+    "lucro_eur": -16.28,
+    "win_rate": 84.21
+   },
+   {
+    "mes": "2026-06",
+    "trades": 22,
+    "lucro_eur": -11.82,
+    "win_rate": 90.91
+   },
+   {
+    "mes": "2026-07",
+    "trades": 23,
+    "lucro_eur": -11.17,
+    "win_rate": 82.61
+   },
+   {
+    "mes": "2026-08",
+    "trades": 23,
+    "lucro_eur": -31.27,
+    "win_rate": 82.61
+   },
+   {
+    "mes": "2026-09",
+    "trades": 22,
+    "lucro_eur": -18.06,
+    "win_rate": 86.36
+   },
+   {
+    "mes": "2026-10",
+    "trades": 23,
+    "lucro_eur": 1.97,
+    "win_rate": 91.3
+   }
+  ]
+ },
+ "VWAP_REV": {
+  "params": {
+   "family": "VWAP_REV",
+   "vwap_z": 6.0,
+   "tf": 15,
+   "trend": "against",
+   "trend_len": 300,
+   "side": "both",
+   "sl_mode": "atr",
+   "sl_atr": 5.5,
+   "tp_atr": 1.0,
+   "max_hold": 480,
+   "be_frac": 0.4,
+   "hours": "no_asia",
+   "weekend": "no",
+   "guard_mode": 1,
+   "atr_min": 0.75,
+   "guard_pause_h": 4
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 108,
+    "Win rate %": 87.0,
+    "Profit factor": 2.45,
+    "Lucro \u20ac": 99.82,
+    "Retorno %": 99.8,
+    "Max DD %": 19.5,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 81.8,
+    "Profit factor": 0.75,
+    "Lucro \u20ac": -13.13,
+    "Retorno %": -13.1,
+    "Max DD %": 28.6,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "total": {
+    "Trades": 152,
+    "Win rate %": 85.5,
+    "Profit factor": 1.71,
+    "Lucro \u20ac": 86.68,
+    "Retorno %": 86.7,
+    "Max DD %": 19.5,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "chunks": [
+   {
+    "trades": 20,
+    "win_rate": 0.9,
+    "profit_factor": 2.445078521804036,
+    "ret_pct": 23.010142454806505,
+    "max_consec_losses": 1,
+    "max_dd_pct": 14.121384611952411
+   },
+   {
+    "trades": 30,
+    "win_rate": 0.8666666666666667,
+    "profit_factor": 3.988600025463753,
+    "ret_pct": 32.57742872600209,
+    "max_consec_losses": 2,
+    "max_dd_pct": 6.648898501146563
+   },
+   {
+    "trades": 32,
+    "win_rate": 0.875,
+    "profit_factor": 1.6311055895857993,
+    "ret_pct": 22.09813899827249,
+    "max_consec_losses": 1,
+    "max_dd_pct": 29.623134866908966
+   },
+   {
+    "trades": 26,
+    "win_rate": 0.8461538461538461,
+    "profit_factor": 4.115755566439728,
+    "ret_pct": 22.132044666872154,
+    "max_consec_losses": 1,
+    "max_dd_pct": 4.317184649031174
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.51,
+    "fw_pf": 0.75,
+    "bt_ret": 103.2,
+    "fw_ret": -13.0
+   },
+   "25": {
+    "bt_pf": 2.45,
+    "fw_pf": 0.75,
+    "bt_ret": 99.8,
+    "fw_ret": -13.1
+   },
+   "35": {
+    "bt_pf": 2.43,
+    "fw_pf": 0.67,
+    "bt_ret": 99.2,
+    "fw_ret": -17.7
+   },
+   "50": {
+    "bt_pf": 2.12,
+    "fw_pf": 0.5,
+    "bt_ret": 81.8,
+    "fw_ret": -33.0
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 3,
+    "lucro_eur": -10.87,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-02",
+    "trades": 6,
+    "lucro_eur": 4.13,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-03",
+    "trades": 4,
+    "lucro_eur": 13.95,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-04",
+    "trades": 7,
+    "lucro_eur": 15.79,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-05",
+    "trades": 4,
+    "lucro_eur": 2.74,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-06",
+    "trades": 6,
+    "lucro_eur": 7.4,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-07",
+    "trades": 9,
+    "lucro_eur": 0.41,
+    "win_rate": 77.78
+   },
+   {
+    "mes": "2025-08",
+    "trades": 11,
+    "lucro_eur": 22.03,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-09",
+    "trades": 6,
+    "lucro_eur": 4.16,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-10",
+    "trades": 12,
+    "lucro_eur": -7.31,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-11",
+    "trades": 5,
+    "lucro_eur": 5.92,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-12",
+    "trades": 9,
+    "lucro_eur": 19.33,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-01",
+    "trades": 8,
+    "lucro_eur": 0.85,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2026-02",
+    "trades": 11,
+    "lucro_eur": 14.95,
+    "win_rate": 90.91
+   },
+   {
+    "mes": "2026-03",
+    "trades": 2,
+    "lucro_eur": 0.02,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-04",
+    "trades": 5,
+    "lucro_eur": 6.31,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2026-05",
+    "trades": 1,
+    "lucro_eur": -3.11,
+    "win_rate": 0.0
+   },
+   {
+    "mes": "2026-06",
+    "trades": 2,
+    "lucro_eur": 2.68,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-07",
+    "trades": 9,
+    "lucro_eur": -2.33,
+    "win_rate": 77.78
+   },
+   {
+    "mes": "2026-08",
+    "trades": 13,
+    "lucro_eur": 2.8,
+    "win_rate": 84.62
+   },
+   {
+    "mes": "2026-09",
+    "trades": 9,
+    "lucro_eur": -24.1,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-10",
+    "trades": 10,
+    "lucro_eur": 10.93,
+    "win_rate": 100.0
+   }
+  ]
+ },
+ "ORB_SESSION": {
+  "params": {
+   "family": "ORB_SESSION",
+   "orb_h": 14,
+   "orb_min": 30,
+   "tf": 3,
+   "trend": "against",
+   "trend_len": 400,
+   "side": "both",
+   "sl_mode": "usd",
+   "sl_usd": 600,
+   "tp_usd": 300,
+   "max_hold": 480,
+   "be_frac": 0.5,
+   "hours": "eu_us",
+   "weekend": "no",
+   "guard_mode": 1,
+   "atr_min": 0.5,
+   "guard_pause_h": 12
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 134,
+    "Win rate %": 78.4,
+    "Profit factor": 1.53,
+    "Lucro \u20ac": 70.26,
+    "Retorno %": 70.3,
+    "Max DD %": 9.9,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 40,
+    "Win rate %": 70.0,
+    "Profit factor": 0.72,
+    "Lucro \u20ac": -15.04,
+    "Retorno %": -15.0,
+    "Max DD %": 18.4,
+    "Perdas seguidas m\u00e1x": 1
+   },
+   "total": {
+    "Trades": 174,
+    "Win rate %": 76.4,
+    "Profit factor": 1.3,
+    "Lucro \u20ac": 55.22,
+    "Retorno %": 55.2,
+    "Max DD %": 15.5,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  },
+  "chunks": [
+   {
+    "trades": 31,
+    "win_rate": 0.8064516129032258,
+    "profit_factor": 1.6542699724517906,
+    "ret_pct": 20.474137931034498,
+    "max_consec_losses": 2,
+    "max_dd_pct": 9.920472247273917
+   },
+   {
+    "trades": 28,
+    "win_rate": 0.7142857142857143,
+    "profit_factor": 1.4439102564102564,
+    "ret_pct": 11.939655172413799,
+    "max_consec_losses": 1,
+    "max_dd_pct": 7.84033613445378
+   },
+   {
+    "trades": 38,
+    "win_rate": 0.8157894736842105,
+    "profit_factor": 1.4146399055489964,
+    "ret_pct": 15.137931034482754,
+    "max_consec_losses": 2,
+    "max_dd_pct": 11.361937509343692
+   },
+   {
+    "trades": 37,
+    "win_rate": 0.7837837837837838,
+    "profit_factor": 1.6165730337078652,
+    "ret_pct": 22.70689655172413,
+    "max_consec_losses": 2,
+    "max_dd_pct": 10.430135333160942
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 1.54,
+    "fw_pf": 0.77,
+    "bt_ret": 70.5,
+    "fw_ret": -12.4
+   },
+   "25": {
+    "bt_pf": 1.53,
+    "fw_pf": 0.72,
+    "bt_ret": 70.3,
+    "fw_ret": -15.0
+   },
+   "35": {
+    "bt_pf": 1.45,
+    "fw_pf": 0.68,
+    "bt_ret": 59.3,
+    "fw_ret": -18.4
+   },
+   "50": {
+    "bt_pf": 1.17,
+    "fw_pf": 0.61,
+    "bt_ret": 25.1,
+    "fw_ret": -24.2
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 9,
+    "lucro_eur": -5.28,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-02",
+    "trades": 12,
+    "lucro_eur": 12.85,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-03",
+    "trades": 7,
+    "lucro_eur": 12.95,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-04",
+    "trades": 3,
+    "lucro_eur": -0.04,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-05",
+    "trades": 6,
+    "lucro_eur": -0.24,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-06",
+    "trades": 8,
+    "lucro_eur": -3.14,
+    "win_rate": 50.0
+   },
+   {
+    "mes": "2025-07",
+    "trades": 6,
+    "lucro_eur": 10.36,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-08",
+    "trades": 8,
+    "lucro_eur": 4.96,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2025-09",
+    "trades": 5,
+    "lucro_eur": 7.6,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-10",
+    "trades": 9,
+    "lucro_eur": -2.71,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2025-11",
+    "trades": 12,
+    "lucro_eur": 7.7,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-12",
+    "trades": 12,
+    "lucro_eur": 2.54,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2026-01",
+    "trades": 11,
+    "lucro_eur": -3.02,
+    "win_rate": 63.64
+   },
+   {
+    "mes": "2026-02",
+    "trades": 8,
+    "lucro_eur": 10.31,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2026-03",
+    "trades": 11,
+    "lucro_eur": 15.49,
+    "win_rate": 90.91
+   },
+   {
+    "mes": "2026-04",
+    "trades": 7,
+    "lucro_eur": -0.08,
+    "win_rate": 71.43
+   },
+   {
+    "mes": "2026-05",
+    "trades": 5,
+    "lucro_eur": -0.03,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2026-06",
+    "trades": 8,
+    "lucro_eur": -13.2,
+    "win_rate": 62.5
+   },
+   {
+    "mes": "2026-07",
+    "trades": 10,
+    "lucro_eur": 11.56,
+    "win_rate": 90.0
+   },
+   {
+    "mes": "2026-08",
+    "trades": 6,
+    "lucro_eur": -2.84,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-09",
+    "trades": 7,
+    "lucro_eur": -13.09,
+    "win_rate": 42.86
+   },
+   {
+    "mes": "2026-10",
+    "trades": 4,
+    "lucro_eur": 2.54,
+    "win_rate": 75.0
+   }
+  ]
+ },
+ "INSIDE_BO": {
+  "params": {
+   "family": "INSIDE_BO",
+   "dummy": 0,
+   "tf": 10,
+   "trend": "with",
+   "side": "both",
+   "sl_mode": "usd",
+   "sl_usd": 500,
+   "tp_usd": 250,
+   "max_hold": 120,
+   "be_frac": 0.5,
+   "hours": "asia",
+   "weekend": "no",
+   "guard_mode": 1,
+   "atr_min": 1.25,
+   "trend_len": 200,
+   "guard_pause_h": 24
+  },
+  "metrics": {
+   "backtest": {
+    "Trades": 95,
+    "Win rate %": 80.0,
+    "Profit factor": 2.57,
+    "Lucro \u20ac": 70.0,
+    "Retorno %": 70.0,
+    "Max DD %": 4.2,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 61.4,
+    "Profit factor": 0.74,
+    "Lucro \u20ac": -11.69,
+    "Retorno %": -11.7,
+    "Max DD %": 22.7,
+    "Perdas seguidas m\u00e1x": 4
+   },
+   "total": {
+    "Trades": 139,
+    "Win rate %": 74.1,
+    "Profit factor": 1.66,
+    "Lucro \u20ac": 58.31,
+    "Retorno %": 58.3,
+    "Max DD %": 13.7,
+    "Perdas seguidas m\u00e1x": 4
+   }
+  },
+  "chunks": [
+   {
+    "trades": 25,
+    "win_rate": 0.8,
+    "profit_factor": 6.007999999999999,
+    "ret_pct": 26.982758620689662,
+    "max_consec_losses": 1,
+    "max_dd_pct": 3.6283247947224284
+   },
+   {
+    "trades": 15,
+    "win_rate": 0.7333333333333333,
+    "profit_factor": 2.6370023419203754,
+    "ret_pct": 12.05172413793103,
+    "max_consec_losses": 2,
+    "max_dd_pct": 4.607594936708856
+   },
+   {
+    "trades": 28,
+    "win_rate": 0.8214285714285714,
+    "profit_factor": 2.096378830083566,
+    "ret_pct": 16.965517241379313,
+    "max_consec_losses": 1,
+    "max_dd_pct": 5.611606156565288
+   },
+   {
+    "trades": 27,
+    "win_rate": 0.8148148148148148,
+    "profit_factor": 1.861995753715499,
+    "ret_pct": 13.99999999999999,
+    "max_consec_losses": 1,
+    "max_dd_pct": 4.194092827004219
+   }
+  ],
+  "sensibilidade_spread": {
+   "15": {
+    "bt_pf": 2.83,
+    "fw_pf": 0.84,
+    "bt_ret": 75.4,
+    "fw_ret": -6.8
+   },
+   "25": {
+    "bt_pf": 2.57,
+    "fw_pf": 0.74,
+    "bt_ret": 70.0,
+    "fw_ret": -11.7
+   },
+   "35": {
+    "bt_pf": 2.22,
+    "fw_pf": 0.64,
+    "bt_ret": 59.1,
+    "fw_ret": -15.6
+   },
+   "50": {
+    "bt_pf": 1.89,
+    "fw_pf": 0.51,
+    "bt_ret": 48.2,
+    "fw_ret": -24.8
+   }
+  },
+  "virtual_trades": 0,
+  "mensal": [
+   {
+    "mes": "2025-01",
+    "trades": 4,
+    "lucro_eur": 8.62,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-02",
+    "trades": 7,
+    "lucro_eur": 5.59,
+    "win_rate": 71.43
+   },
+   {
+    "mes": "2025-03",
+    "trades": 6,
+    "lucro_eur": 8.55,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2025-04",
+    "trades": 8,
+    "lucro_eur": 4.22,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2025-05",
+    "trades": 2,
+    "lucro_eur": -2.2,
+    "win_rate": 50.0
+   },
+   {
+    "mes": "2025-06",
+    "trades": 4,
+    "lucro_eur": 1.82,
+    "win_rate": 50.0
+   },
+   {
+    "mes": "2025-07",
+    "trades": 5,
+    "lucro_eur": 8.1,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2025-08",
+    "trades": 4,
+    "lucro_eur": 4.33,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-09",
+    "trades": 9,
+    "lucro_eur": 8.42,
+    "win_rate": 77.78
+   },
+   {
+    "mes": "2025-10",
+    "trades": 3,
+    "lucro_eur": 4.32,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2025-11",
+    "trades": 4,
+    "lucro_eur": -0.03,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2025-12",
+    "trades": 12,
+    "lucro_eur": 4.26,
+    "win_rate": 83.33
+   },
+   {
+    "mes": "2026-01",
+    "trades": 9,
+    "lucro_eur": 1.1,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-02",
+    "trades": 5,
+    "lucro_eur": 8.63,
+    "win_rate": 100.0
+   },
+   {
+    "mes": "2026-03",
+    "trades": 8,
+    "lucro_eur": 4.29,
+    "win_rate": 87.5
+   },
+   {
+    "mes": "2026-04",
+    "trades": 5,
+    "lucro_eur": -0.03,
+    "win_rate": 80.0
+   },
+   {
+    "mes": "2026-05",
+    "trades": 9,
+    "lucro_eur": 2.24,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-06",
+    "trades": 6,
+    "lucro_eur": -8.83,
+    "win_rate": 33.33
+   },
+   {
+    "mes": "2026-07",
+    "trades": 8,
+    "lucro_eur": -1.64,
+    "win_rate": 75.0
+   },
+   {
+    "mes": "2026-08",
+    "trades": 7,
+    "lucro_eur": 3.48,
+    "win_rate": 71.43
+   },
+   {
+    "mes": "2026-09",
+    "trades": 4,
+    "lucro_eur": -4.08,
+    "win_rate": 50.0
+   },
+   {
+    "mes": "2026-10",
+    "trades": 9,
+    "lucro_eur": -2.46,
+    "win_rate": 66.67
+   },
+   {
+    "mes": "2026-11",
+    "trades": 1,
+    "lucro_eur": -0.4,
+    "win_rate": 0.0
+   }
+  ]
+ }
+}

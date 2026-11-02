@@ -73,9 +73,17 @@ def fmt(mt):
 
 def main(paths):
     os.makedirs(OUT, exist_ok=True)
-    rows = load(paths)
+    if paths[0].endswith('robust_rank.json'):
+        R = json.load(open(paths[0]))
+        bpf = {}
+        for r in R:  # já ordenado por score robusto
+            r = {**r, 'score_bt': r['score_robusto']}
+            bpf.setdefault(r['params']['family'], [r])
+        rows = R
+    else:
+        rows = load(paths)
+        bpf = best_per_family(rows, k=1)
     print('resultados carregados:', len(rows))
-    bpf = best_per_family(rows, k=1)
     summary = []
     details = {}
     for fam, rs in sorted(bpf.items(), key=lambda kv: -kv[1][0]['score_bt']):

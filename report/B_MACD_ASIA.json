@@ -1,0 +1,841 @@
+{
+ "params": {
+  "family": "MACD_X",
+  "macd_f": 16,
+  "macd_s": 35,
+  "tf": 15,
+  "trend": "against",
+  "trend_len": 75,
+  "side": "both",
+  "sl_mode": "atr",
+  "sl_atr": 2.5,
+  "tp_atr": 2.0,
+  "max_hold": 480,
+  "be_frac": 0.5,
+  "hours": "asia",
+  "weekend": "no",
+  "guard_mode": 0,
+  "atr_min": 1.0
+ },
+ "metrics": {
+  "backtest": {
+   "Trades": 130,
+   "Win rate %": 70.0,
+   "Profit factor": 2.08,
+   "Lucro \u20ac": 202.54,
+   "Retorno %": 202.5,
+   "Max DD %": 12.6,
+   "Perdas seguidas m\u00e1x": 2
+  },
+  "forward": {
+   "Trades": 44,
+   "Win rate %": 63.6,
+   "Profit factor": 1.25,
+   "Lucro \u20ac": 16.56,
+   "Retorno %": 16.6,
+   "Max DD %": 12.5,
+   "Perdas seguidas m\u00e1x": 2
+  },
+  "total": {
+   "Trades": 174,
+   "Win rate %": 68.4,
+   "Profit factor": 1.86,
+   "Lucro \u20ac": 219.1,
+   "Retorno %": 219.1,
+   "Max DD %": 12.6,
+   "Perdas seguidas m\u00e1x": 2
+  }
+ },
+ "chunks": [
+  {
+   "trades": 34,
+   "win_rate": 0.6470588235294118,
+   "profit_factor": 1.8651266961625588,
+   "ret_pct": 53.35923938508132,
+   "max_consec_losses": 2,
+   "max_dd_pct": 12.554980442230812
+  },
+  {
+   "trades": 34,
+   "win_rate": 0.7647058823529411,
+   "profit_factor": 1.8839539032884616,
+   "ret_pct": 40.28133186208815,
+   "max_consec_losses": 1,
+   "max_dd_pct": 7.6689041121735535
+  },
+  {
+   "trades": 32,
+   "win_rate": 0.6875,
+   "profit_factor": 2.232236526237598,
+   "ret_pct": 51.98435806759581,
+   "max_consec_losses": 2,
+   "max_dd_pct": 8.982205226417864
+  },
+  {
+   "trades": 30,
+   "win_rate": 0.7,
+   "profit_factor": 2.46961910323246,
+   "ret_pct": 56.91561696991181,
+   "max_consec_losses": 2,
+   "max_dd_pct": 8.17115970457361
+  }
+ ],
+ "estrito": {
+  "backtest": {
+   "win_rate_estrito": 47.7,
+   "perdas_seguidas_estrito": 7
+  },
+  "forward": {
+   "win_rate_estrito": 43.2,
+   "perdas_seguidas_estrito": 5
+  },
+  "total": {
+   "win_rate_estrito": 46.6,
+   "perdas_seguidas_estrito": 7
+  }
+ },
+ "saidas": [
+  {
+   "saida": "TP",
+   "count": 75,
+   "mean": 6.018,
+   "sum": 451.379
+  },
+  {
+   "saida": "SL",
+   "count": 41,
+   "mean": -5.87,
+   "sum": -240.663
+  },
+  {
+   "saida": "TEMPO",
+   "count": 15,
+   "mean": 0.585,
+   "sum": 8.781
+  },
+  {
+   "saida": "BREAKEVEN",
+   "count": 43,
+   "mean": -0.009,
+   "sum": -0.395
+  }
+ ],
+ "duracao_min": {
+  "count": 174.0,
+  "mean": 186.9,
+  "std": 139.6,
+  "min": 18.0,
+  "25%": 79.2,
+  "50%": 125.5,
+  "75%": 281.5,
+  "max": 480.0
+ },
+ "sl_tp_medios_usd": {
+  "sl_mediano": 712.1,
+  "tp_mediano": 569.7,
+  "sl_min": 306.5,
+  "sl_max": 3124.7,
+  "tp_min": 245.2,
+  "tp_max": 2499.8
+ },
+ "compras_vendas": [
+  [
+   "BUY",
+   93,
+   213.74,
+   75.27
+  ],
+  [
+   "SELL",
+   81,
+   5.36,
+   60.49
+  ]
+ ],
+ "mensal": [
+  {
+   "mes": "2025-01",
+   "trades": 6,
+   "lucro_eur": 12.52,
+   "win_rate": 66.67
+  },
+  {
+   "mes": "2025-02",
+   "trades": 10,
+   "lucro_eur": 11.29,
+   "win_rate": 70.0
+  },
+  {
+   "mes": "2025-03",
+   "trades": 9,
+   "lucro_eur": 23.56,
+   "win_rate": 66.67
+  },
+  {
+   "mes": "2025-04",
+   "trades": 9,
+   "lucro_eur": 5.98,
+   "win_rate": 55.56
+  },
+  {
+   "mes": "2025-05",
+   "trades": 9,
+   "lucro_eur": -0.53,
+   "win_rate": 77.78
+  },
+  {
+   "mes": "2025-06",
+   "trades": 8,
+   "lucro_eur": 23.71,
+   "win_rate": 87.5
+  },
+  {
+   "mes": "2025-07",
+   "trades": 10,
+   "lucro_eur": 13.5,
+   "win_rate": 70.0
+  },
+  {
+   "mes": "2025-08",
+   "trades": 7,
+   "lucro_eur": 3.61,
+   "win_rate": 71.43
+  },
+  {
+   "mes": "2025-09",
+   "trades": 10,
+   "lucro_eur": 16.11,
+   "win_rate": 80.0
+  },
+  {
+   "mes": "2025-10",
+   "trades": 6,
+   "lucro_eur": 12.02,
+   "win_rate": 66.67
+  },
+  {
+   "mes": "2025-11",
+   "trades": 8,
+   "lucro_eur": 9.24,
+   "win_rate": 62.5
+  },
+  {
+   "mes": "2025-12",
+   "trades": 8,
+   "lucro_eur": 14.61,
+   "win_rate": 62.5
+  },
+  {
+   "mes": "2026-01",
+   "trades": 10,
+   "lucro_eur": 4.94,
+   "win_rate": 70.0
+  },
+  {
+   "mes": "2026-02",
+   "trades": 5,
+   "lucro_eur": 44.63,
+   "win_rate": 100.0
+  },
+  {
+   "mes": "2026-03",
+   "trades": 8,
+   "lucro_eur": 7.38,
+   "win_rate": 62.5
+  },
+  {
+   "mes": "2026-04",
+   "trades": 7,
+   "lucro_eur": -0.03,
+   "win_rate": 57.14
+  },
+  {
+   "mes": "2026-05",
+   "trades": 8,
+   "lucro_eur": 11.24,
+   "win_rate": 75.0
+  },
+  {
+   "mes": "2026-06",
+   "trades": 10,
+   "lucro_eur": 0.11,
+   "win_rate": 60.0
+  },
+  {
+   "mes": "2026-07",
+   "trades": 7,
+   "lucro_eur": 7.67,
+   "win_rate": 71.43
+  },
+  {
+   "mes": "2026-08",
+   "trades": 5,
+   "lucro_eur": 1.6,
+   "win_rate": 60.0
+  },
+  {
+   "mes": "2026-09",
+   "trades": 1,
+   "lucro_eur": 3.8,
+   "win_rate": 100.0
+  },
+  {
+   "mes": "2026-10",
+   "trades": 13,
+   "lucro_eur": -7.86,
+   "win_rate": 53.85
+  }
+ ],
+ "por_hora": [
+  {
+   "hora": 0,
+   "trades": 28,
+   "lucro_eur": 34.46
+  },
+  {
+   "hora": 1,
+   "trades": 31,
+   "lucro_eur": 44.52
+  },
+  {
+   "hora": 2,
+   "trades": 27,
+   "lucro_eur": 35.86
+  },
+  {
+   "hora": 3,
+   "trades": 24,
+   "lucro_eur": 16.9
+  },
+  {
+   "hora": 4,
+   "trades": 22,
+   "lucro_eur": 6.51
+  },
+  {
+   "hora": 5,
+   "trades": 20,
+   "lucro_eur": 38.52
+  },
+  {
+   "hora": 6,
+   "trades": 15,
+   "lucro_eur": 37.89
+  },
+  {
+   "hora": 7,
+   "trades": 7,
+   "lucro_eur": 4.45
+  }
+ ],
+ "spread": {
+  "10": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 71.5,
+    "Profit factor": 2.25,
+    "Lucro \u20ac": 216.7,
+    "Retorno %": 216.7,
+    "Max DD %": 13.1,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 65.9,
+    "Profit factor": 1.26,
+    "Lucro \u20ac": 16.85,
+    "Retorno %": 16.9,
+    "Max DD %": 12.5,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "15": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 70.8,
+    "Profit factor": 2.17,
+    "Lucro \u20ac": 214.09,
+    "Retorno %": 214.1,
+    "Max DD %": 12.5,
+    "Perdas seguidas m\u00e1x": 3
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 65.9,
+    "Profit factor": 1.26,
+    "Lucro \u20ac": 16.76,
+    "Retorno %": 16.8,
+    "Max DD %": 12.5,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "25": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 70.0,
+    "Profit factor": 2.08,
+    "Lucro \u20ac": 202.54,
+    "Retorno %": 202.5,
+    "Max DD %": 12.6,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 63.6,
+    "Profit factor": 1.25,
+    "Lucro \u20ac": 16.56,
+    "Retorno %": 16.6,
+    "Max DD %": 12.5,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "35": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 70.0,
+    "Profit factor": 2.03,
+    "Lucro \u20ac": 202.26,
+    "Retorno %": 202.3,
+    "Max DD %": 12.7,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 63.6,
+    "Profit factor": 1.18,
+    "Lucro \u20ac": 11.91,
+    "Retorno %": 11.9,
+    "Max DD %": 14.4,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  },
+  "50": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 68.5,
+    "Profit factor": 1.9,
+    "Lucro \u20ac": 185.02,
+    "Retorno %": 185.0,
+    "Max DD %": 10.9,
+    "Perdas seguidas m\u00e1x": 3
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 61.4,
+    "Profit factor": 0.97,
+    "Lucro \u20ac": -2.03,
+    "Retorno %": -2.0,
+    "Max DD %": 24.4,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  },
+  "75": {
+   "backtest": {
+    "Trades": 131,
+    "Win rate %": 67.9,
+    "Profit factor": 1.73,
+    "Lucro \u20ac": 154.58,
+    "Retorno %": 154.6,
+    "Max DD %": 15.9,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 61.4,
+    "Profit factor": 0.69,
+    "Lucro \u20ac": -24.6,
+    "Retorno %": -24.6,
+    "Max DD %": 37.6,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  }
+ },
+ "latencia": {
+  "1": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 68.5,
+    "Profit factor": 1.96,
+    "Lucro \u20ac": 188.47,
+    "Retorno %": 188.5,
+    "Max DD %": 13.7,
+    "Perdas seguidas m\u00e1x": 3
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 70.5,
+    "Profit factor": 1.33,
+    "Lucro \u20ac": 20.3,
+    "Retorno %": 20.3,
+    "Max DD %": 11.8,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "2": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 73.1,
+    "Profit factor": 1.77,
+    "Lucro \u20ac": 145.26,
+    "Retorno %": 145.3,
+    "Max DD %": 14.3,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 68.2,
+    "Profit factor": 1.17,
+    "Lucro \u20ac": 11.78,
+    "Retorno %": 11.8,
+    "Max DD %": 19.0,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  },
+  "5": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 66.2,
+    "Profit factor": 1.85,
+    "Lucro \u20ac": 163.87,
+    "Retorno %": 163.9,
+    "Max DD %": 15.8,
+    "Perdas seguidas m\u00e1x": 5
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 65.9,
+    "Profit factor": 1.19,
+    "Lucro \u20ac": 13.86,
+    "Retorno %": 13.9,
+    "Max DD %": 19.7,
+    "Perdas seguidas m\u00e1x": 3
+   }
+  }
+ },
+ "lotes": {
+  "0.01": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 70.0,
+    "Profit factor": 2.08,
+    "Lucro \u20ac": 202.54,
+    "Retorno %": 202.5,
+    "Max DD %": 12.6,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 63.6,
+    "Profit factor": 1.25,
+    "Lucro \u20ac": 16.56,
+    "Retorno %": 16.6,
+    "Max DD %": 12.5,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "total": {
+    "Trades": 174,
+    "Win rate %": 68.4,
+    "Profit factor": 1.86,
+    "Lucro \u20ac": 219.1,
+    "Retorno %": 219.1,
+    "Max DD %": 12.6,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "0.02": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 70.0,
+    "Profit factor": 2.08,
+    "Lucro \u20ac": 405.08,
+    "Retorno %": 405.1,
+    "Max DD %": 19.5,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 63.6,
+    "Profit factor": 1.25,
+    "Lucro \u20ac": 33.12,
+    "Retorno %": 33.1,
+    "Max DD %": 20.9,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "total": {
+    "Trades": 174,
+    "Win rate %": 68.4,
+    "Profit factor": 1.86,
+    "Lucro \u20ac": 438.2,
+    "Retorno %": 438.2,
+    "Max DD %": 19.5,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  },
+  "0.03": {
+   "backtest": {
+    "Trades": 130,
+    "Win rate %": 70.0,
+    "Profit factor": 2.08,
+    "Lucro \u20ac": 607.62,
+    "Retorno %": 607.6,
+    "Max DD %": 23.9,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "forward": {
+    "Trades": 44,
+    "Win rate %": 63.6,
+    "Profit factor": 1.25,
+    "Lucro \u20ac": 49.69,
+    "Retorno %": 49.7,
+    "Max DD %": 27.0,
+    "Perdas seguidas m\u00e1x": 2
+   },
+   "total": {
+    "Trades": 174,
+    "Win rate %": 68.4,
+    "Profit factor": 1.86,
+    "Lucro \u20ac": 657.31,
+    "Retorno %": 657.3,
+    "Max DD %": 23.9,
+    "Perdas seguidas m\u00e1x": 2
+   }
+  }
+ },
+ "monte_carlo_100_trades": {
+  "p_lucro": 0.99015,
+  "lucro_mediano_eur": 126.07811443718577,
+  "lucro_p5_eur": 38.102505875255666,
+  "lucro_p95_eur": 214.0059746236579,
+  "p_dd_maior_20": 0.36815,
+  "dd_mediano": 17.158587589184798,
+  "dd_p95": 38.21483787884462,
+  "p_3_perdas_seguidas": 0.8988,
+  "p_wr_acima_57": 0.9899,
+  "p_pf_acima_101": 0.9891,
+  "p_todos_pressupostos": 0.08805
+ },
+ "monte_carlo_100_trades_so_forward": {
+  "p_lucro": 0.82935,
+  "lucro_mediano_eur": 38.213059768405046,
+  "lucro_p5_eur": -28.212771236756602,
+  "lucro_p95_eur": 103.65817708523441,
+  "p_dd_maior_20": 0.6294,
+  "dd_mediano": 23.42863164798082,
+  "dd_p95": 52.80995020664227,
+  "p_3_perdas_seguidas": 0.96555,
+  "p_wr_acima_57": 0.9011,
+  "p_pf_acima_101": 0.8177,
+  "p_todos_pressupostos": 0.0283
+ },
+ "vizinhanca": [
+  {
+   "parametro": "macd_f",
+   "valor": 12,
+   "bt_ret": 167.2,
+   "bt_pf": 1.74,
+   "bt_wr": 71.8,
+   "fw_ret": -21.6,
+   "fw_pf": 0.8,
+   "fw_wr": 53.7,
+   "fw_mcl": 6
+  },
+  {
+   "parametro": "macd_s",
+   "valor": 26,
+   "bt_ret": 184.3,
+   "bt_pf": 1.86,
+   "bt_wr": 70.8,
+   "fw_ret": -21.0,
+   "fw_pf": 0.8,
+   "fw_wr": 52.9,
+   "fw_mcl": 6
+  },
+  {
+   "parametro": "macd_s",
+   "valor": 50,
+   "bt_ret": 163.4,
+   "bt_pf": 1.94,
+   "bt_wr": 69.2,
+   "fw_ret": 17.3,
+   "fw_pf": 1.39,
+   "fw_wr": 66.7,
+   "fw_mcl": 4
+  },
+  {
+   "parametro": "tf",
+   "valor": 10,
+   "bt_ret": -11.7,
+   "bt_pf": 0.96,
+   "bt_wr": 60.3,
+   "fw_ret": -15.3,
+   "fw_pf": 0.84,
+   "fw_wr": 57.4,
+   "fw_mcl": 4
+  },
+  {
+   "parametro": "trend",
+   "valor": "with",
+   "bt_ret": 6.9,
+   "bt_pf": 1.14,
+   "bt_wr": 72.0,
+   "fw_ret": -24.9,
+   "fw_pf": 0.21,
+   "fw_wr": 57.9,
+   "fw_mcl": 2
+  },
+  {
+   "parametro": "trend_len",
+   "valor": 50,
+   "bt_ret": 199.6,
+   "bt_pf": 2.11,
+   "bt_wr": 70.1,
+   "fw_ret": 17.5,
+   "fw_pf": 1.28,
+   "fw_wr": 65.1,
+   "fw_mcl": 2
+  },
+  {
+   "parametro": "trend_len",
+   "valor": 100,
+   "bt_ret": 202.1,
+   "bt_pf": 2.03,
+   "bt_wr": 69.7,
+   "fw_ret": 6.8,
+   "fw_pf": 1.09,
+   "fw_wr": 64.6,
+   "fw_mcl": 3
+  },
+  {
+   "parametro": "sl_atr",
+   "valor": 2.0,
+   "bt_ret": 197.0,
+   "bt_pf": 2.09,
+   "bt_wr": 67.9,
+   "fw_ret": 13.4,
+   "fw_pf": 1.21,
+   "fw_wr": 60.0,
+   "fw_mcl": 2
+  },
+  {
+   "parametro": "sl_atr",
+   "valor": 3.0,
+   "bt_ret": 189.0,
+   "bt_pf": 1.93,
+   "bt_wr": 71.5,
+   "fw_ret": 11.3,
+   "fw_pf": 1.16,
+   "fw_wr": 68.2,
+   "fw_mcl": 2
+  },
+  {
+   "parametro": "tp_atr",
+   "valor": 1.5,
+   "bt_ret": 147.5,
+   "bt_pf": 1.92,
+   "bt_wr": 74.0,
+   "fw_ret": 20.8,
+   "fw_pf": 1.38,
+   "fw_wr": 70.5,
+   "fw_mcl": 2
+  },
+  {
+   "parametro": "tp_atr",
+   "valor": 3.0,
+   "bt_ret": 197.7,
+   "bt_pf": 1.81,
+   "bt_wr": 64.6,
+   "fw_ret": 2.5,
+   "fw_pf": 1.03,
+   "fw_wr": 59.1,
+   "fw_mcl": 3
+  },
+  {
+   "parametro": "max_hold",
+   "valor": 360,
+   "bt_ret": 177.9,
+   "bt_pf": 1.88,
+   "bt_wr": 66.9,
+   "fw_ret": 11.4,
+   "fw_pf": 1.17,
+   "fw_wr": 61.4,
+   "fw_mcl": 2
+  },
+  {
+   "parametro": "be_frac",
+   "valor": 0.4,
+   "bt_ret": 164.9,
+   "bt_pf": 1.93,
+   "bt_wr": 71.0,
+   "fw_ret": 21.2,
+   "fw_pf": 1.35,
+   "fw_wr": 65.9,
+   "fw_mcl": 2
+  },
+  {
+   "parametro": "be_frac",
+   "valor": 0.6,
+   "bt_ret": 195.9,
+   "bt_pf": 1.91,
+   "bt_wr": 67.7,
+   "fw_ret": 8.0,
+   "fw_pf": 1.11,
+   "fw_wr": 61.4,
+   "fw_mcl": 3
+  },
+  {
+   "parametro": "hours",
+   "valor": "eu_us",
+   "bt_ret": -73.9,
+   "bt_pf": 0.91,
+   "bt_wr": 58.0,
+   "fw_ret": -104.7,
+   "fw_pf": 0.63,
+   "fw_wr": 54.3,
+   "fw_mcl": 6
+  },
+  {
+   "parametro": "hours",
+   "valor": "no_asia",
+   "bt_ret": -162.8,
+   "bt_pf": 0.84,
+   "bt_wr": 56.1,
+   "fw_ret": -105.2,
+   "fw_pf": 0.65,
+   "fw_wr": 55.6,
+   "fw_mcl": 5
+  },
+  {
+   "parametro": "weekend",
+   "valor": "yes",
+   "bt_ret": 203.6,
+   "bt_pf": 1.93,
+   "bt_wr": 69.5,
+   "fw_ret": 11.6,
+   "fw_pf": 1.15,
+   "fw_wr": 60.7,
+   "fw_mcl": 3
+  },
+  {
+   "parametro": "atr_min",
+   "valor": 0.75,
+   "bt_ret": 129.6,
+   "bt_pf": 1.33,
+   "bt_wr": 64.2,
+   "fw_ret": 8.4,
+   "fw_pf": 1.07,
+   "fw_wr": 62.2,
+   "fw_mcl": 2
+  },
+  {
+   "parametro": "atr_min",
+   "valor": 1.25,
+   "bt_ret": 120.9,
+   "bt_pf": 2.02,
+   "bt_wr": 68.0,
+   "fw_ret": 40.9,
+   "fw_pf": 2.84,
+   "fw_wr": 76.9,
+   "fw_mcl": 1
+  }
+ ]
+}

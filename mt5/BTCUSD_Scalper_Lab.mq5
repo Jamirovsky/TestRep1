@@ -51,12 +51,12 @@ enum ENUM_GUARD { GUARD_OFF = 0,      // Desligado
 
 //--- Setup
 input group "=== Setup ==="
-input ENUM_SETUP      InpSetup        = SETUP_ZSCORE_MR;
+input ENUM_SETUP      InpSetup        = SETUP_RSI_EXTREME; // Estratégia A (recomendada)
 input ENUM_TIMEFRAMES InpTF           = PERIOD_M15;   // Timeframe do sinal
 input int             InpBBLen        = 20;           // Bollinger / Pinbar: período
 input double          InpBBK          = 2.0;          // Bollinger: desvios
-input int             InpRSILen       = 2;            // RSI: período
-input double          InpRSILo        = 10;           // RSI: nível de sobrevenda (sobrecompra = 100-x)
+input int             InpRSILen       = 4;            // RSI: período
+input double          InpRSILo        = 15;           // RSI: nível de sobrevenda (sobrecompra = 100-x)
 input double          InpVWAPZ        = 2.0;          // VWAP: desvio em ATRs
 input int             InpZLen         = 50;           // Z-score: período
 input double          InpZTh          = 2.5;          // Z-score: limiar
@@ -75,11 +75,11 @@ input int             InpORBMinutes   = 30;           // ORB: duração do range
 input double          InpWick         = 0.6;          // Pinbar: sombra mínima (fração da vela)
 
 input group "=== Filtros ==="
-input ENUM_TREND      InpTrend        = TREND_NONE;   // Filtro de tendência
-input int             InpTrendLen     = 200;          // EMA da tendência
-input ENUM_SESSION    InpSession      = SES_ALL;      // Sessão (horas UTC)
-input bool            InpTradeWeekend = true;         // Operar ao fim de semana
-input double          InpATRMin       = 0.0;          // ATR/ATR médio(100) mínimo (0 = off)
+input ENUM_TREND      InpTrend        = TREND_WITH;    // Filtro de tendência
+input int             InpTrendLen     = 100;          // EMA da tendência
+input ENUM_SESSION    InpSession      = SES_NO_ASIA;     // Sessão (horas UTC)
+input bool            InpTradeWeekend = false;        // Operar ao fim de semana
+input double          InpATRMin       = 0.5;          // ATR/ATR médio(100) mínimo (0 = off)
 input double          InpMaxSpreadUSD = 60.0;         // Não entrar se spread > X USD
 input int             InpGMTOffset    = -99;          // Offset do servidor vs UTC em horas (-99 = automático)
 
@@ -87,10 +87,10 @@ input group "=== Stop Loss / Take Profit (EDITÁVEIS) ==="
 input ENUM_SLTP_MODE  InpSLTPMode     = SLTP_ATR;     // Modo SL/TP
 input double          InpSL_USD       = 600;          // SL em USD de preço (modo USD)
 input double          InpTP_USD       = 200;          // TP em USD de preço (modo USD)
-input double          InpSL_ATR       = 3.0;          // SL em ATRs (modo ATR)
-input double          InpTP_ATR       = 0.75;         // TP em ATRs (modo ATR)
-input int             InpMaxHoldMin   = 240;          // Fecho por tempo (minutos)
-input double          InpBEFrac       = 0.0;          // Breakeven quando lucro >= X*TP (0 = off)
+input double          InpSL_ATR       = 5.0;          // SL em ATRs (modo ATR)
+input double          InpTP_ATR       = 0.5;          // TP em ATRs (modo ATR)
+input int             InpMaxHoldMin   = 120;          // Fecho por tempo (minutos)
+input double          InpBEFrac       = 0.7;          // Breakeven quando lucro >= X*TP (0 = off)
 
 input group "=== Gestão de risco ==="
 input double          InpLots         = 0.01;         // Lotes (0.01 = 0.01 BTC)

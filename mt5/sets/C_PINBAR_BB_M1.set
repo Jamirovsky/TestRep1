@@ -1,0 +1,27 @@
+; BTCUSD_Scalper_Lab - C_PINBAR_BB_M1
+; Carregar em: EA -> Inputs -> Load
+InpSetup=12
+InpTF=1
+InpBBLen=50
+InpBBK=2.0
+InpWick=0.7
+InpTrend=1
+InpTrendLen=400
+InpSession=3
+InpTradeWeekend=false
+InpATRMin=1.0
+InpSLTPMode=0
+InpSL_USD=1200
+InpTP_USD=400
+InpSL_ATR=5
+InpTP_ATR=1
+InpMaxHoldMin=360
+InpBEFrac=0.4
+InpGuard=1
+InpGuardPauseH=12
+InpMaxSpreadUSD=60
+InpGMTOffset=-99
+InpLots=0.01
+InpGuardLosses=2
+InpMaxDDPct=20
+InpMagic=26110201
