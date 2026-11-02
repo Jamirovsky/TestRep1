@@ -3,4 +3,4 @@ data/*.npz
 __pycache__/
 *.pyc
 results/*.jsonl
-report/teste*
+report/*teste*

@@ -10,7 +10,6 @@
 //+------------------------------------------------------------------+
 #property copyright "Estudo BTCUSD scalping"
 #property version   "1.00"
-#property strict
 
 #include <Trade/Trade.mqh>
 
@@ -122,15 +121,31 @@ bool     g_orbUpDone = false, g_orbDnDone = false;
 int OnInit()
   {
    trade.SetExpertMagicNumber(InpMagic);
-   trade.SetDeviationInPoints(500);
+   trade.SetDeviationInPoints(2000);
+   trade.SetTypeFillingBySymbol(_Symbol);
    g_peakEquity = AccountInfoDouble(ACCOUNT_EQUITY);
    return(INIT_SUCCEEDED);
   }
 
 //+------------------------------------------------------------------+
+// Servidores IC (ICTrading/IC Markets): GMT+2 no inverno, GMT+3 no horário de verão dos EUA
+bool UsDst(datetime t)
+  {
+   MqlDateTime d; TimeToStruct(t, d);
+   if(d.mon < 3 || d.mon > 11) return false;
+   if(d.mon > 3 && d.mon < 11) return true;
+   // 2º domingo de março / 1º domingo de novembro
+   MqlDateTime f = d; f.day = 1; f.hour = 0; f.min = 0; f.sec = 0;
+   datetime first = StructToTime(f); MqlDateTime fd; TimeToStruct(first, fd);
+   int firstSun = 1 + (7 - fd.day_of_week) % 7;
+   if(d.mon == 3) return d.day >= firstSun + 7;
+   return d.day < firstSun;
+  }
+
 int GmtOffsetSec()
   {
    if(InpGMTOffset != -99) return InpGMTOffset * 3600;
+   if(MQLInfoInteger(MQL_TESTER)) return (UsDst(TimeCurrent()) ? 3 : 2) * 3600;
    long d = (long)TimeTradeServer() - (long)TimeGMT();
    return (int)(MathRound(d / 3600.0) * 3600);
   }
