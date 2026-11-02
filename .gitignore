@@ -1,0 +1,6 @@
+data_raw/
+data/*.npz
+__pycache__/
+*.pyc
+results/*.jsonl
+report/teste*
