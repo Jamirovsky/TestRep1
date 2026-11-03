@@ -1,8 +1,54 @@
 # Relatório final: estratégias de scalping BTCUSD (conta de 100 €, ICTrading)
 
-> Secção 0 = ronda 3 (melhoria da A). Secções 1–7 = relatório original de 02/11/2026.
+> Secção 00 = ronda 4 (validação 2018–21). Secção 0 = ronda 3 (A2). Secções 1–7 = relatório original de 02/11/2026.
 
 **Data:** 2 de novembro de 2026 · **Período analisado:** 07/01/2025 a 01/11/2026 (velas de 1 minuto)
+
+## 00. Atualização: ronda 4 (03/11/2026), tentativa de melhorar a A2 e validação independente
+
+**O que foi feito**
+* Loop de **1,67 milhões de variantes** da A2 (21:07 a 23:15 UTC).
+* Novas opções testadas: entrada por **ordem limite**, **TP mínimo** em % do preço, filtro HTF, timeframes de 5 a 30 min.
+* O score passou a exigir **robustez a 1 minuto de atraso e a spread de 0,035%**, os dois pontos fracos da A2.
+* **Juiz novo:** 01/01/2018 a 31/12/2021. São 4 anos **nunca usados em nenhuma ronda**: mercado em baixa de 2018, crash da COVID em 2020, subida de 2021. Regra pré-declarada em `results/REGRA_RONDA4.md`.
+
+**Decisão da regra: mantém-se a A2.** O desafiante (RSI(3) < 8, EMA 200, SL 1.600 $, TP 125–150 $, ordem limite, sessão europeia) melhorava muito em 2022–26, mas **falhou no juiz**:
+
+| 2018–2021 (nunca visto) | Trades | WR | PF | Lucro | DD máx | Perdas seguidas |
+|---|---|---|---|---|---|---|
+| **A2** | **391** | **84,9%** | **1,96** | **+69,9 €** | **10,3%** | **2** ✔ |
+| Desafiante ronda 4 | 172 | 77,9% | 0,99 | −1,1 € | 27,5% | 4 ✘ |
+
+**A conclusão mais importante desta ronda: a A2 passou num teste totalmente independente.** Foi definida só com dados de 2022–26. Em 2018–21, um período que nunca tinha sido usado, cumpre **todos** os pressupostos e **todos os anos são positivos**: 2018 +14,9 €, 2019 +2,3 €, 2020 +5,9 €, 2021 +46,7 €. Este é o resultado mais forte de todo o estudo.
+
+**A2 em 9 anos** (2018 a 2026, conta de 100 €, 0,01 lote, spread de 0,025%):
+* 1.025 trades, WR 87,4%, PF 1,87, **+225 €**, DD 12,3%¹, **máximo 2 perdas seguidas**.
+* Todos os 9 anos foram positivos.
+
+¹ O DD conta a partir de 2018. A partir de 2022 o DD máximo é de 18,5%, porque o saldo inicial é mais baixo.
+
+**Monte Carlo** (próximos 100 trades, com base em 2018–26):
+* P(lucro) = 93%
+* P(DD > 20%) = 7%
+* P(≥ 3 perdas seguidas) = 16%
+* **P(cumprir todos os pressupostos) = 77%**
+
+**Os pontos fracos da A2 confirmam-se em 2018–21:**
+
+| Cenário 2018–21 | PF | Lucro | DD | Perdas seguidas |
+|---|---|---|---|---|
+| Base (spread 0,025%) | 1,96 | +69,9 € | 10,3% | 2 |
+| Spread 0,035% | 1,90 | +66,1 € | 10,3% | 2 |
+| **Atraso de 1 minuto** | **1,22** | +23,7 € | **29,8%** | 3 |
+| Spread fixo 25 $ (irrealista em 2018: 0,3–0,6% do preço) | 1,27 | +25,3 € | 19,8% | 7 |
+
+O ponto crítico continua a ser a **velocidade de execução**: o EA tem de entrar logo no primeiro tick da vela nova. A ordem limite não resolveu este problema de forma robusta.
+
+**Recomendação (sem alterações):**
+* **A2** é a estratégia do EA (valores por defeito / `mt5/sets/A2_RSI_TENDENCIA_SOMBRA_M15.set`).
+* Antes de dinheiro real, fazer demo durante 100 trades, verificar o spread real e manter o VPS/terminal perto do servidor da ICTrading para minimizar a latência.
+
+Gráfico: `report/equity_A2_2018_2026.png` · trades: `report/trades_A2_2018_2026.csv`.
 
 ## 0. Atualização: ronda 3 (03/11/2026), melhoria da estratégia A
 

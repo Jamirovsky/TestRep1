@@ -77,6 +77,26 @@ footer{font-size:12.5px;color:var(--muted)}
 </header>
 
 <section>
+  <span class="eyebrow">Atualização · ronda 4 · 03/11/2026</span>
+  <h2>A2 confirmada em 4 anos nunca vistos (2018–2021)</h2>
+  <p class="muted">O loop testou mais 1,67 milhões de variantes da A2, exigindo robustez a 1 minuto de atraso e a spread de 0,035%. O desafiante escolhido só com 2022–26 falhou no juiz pré-declarado, 2018–2021: PF 0,99 e 4 perdas seguidas. A A2 mantém-se e passou em todos os pressupostos num período que nunca foi usado em nenhuma ronda.</p>
+  <div class="panel chart">
+    <div class="legend"><span><span class="sw" style="background:var(--accent)"></span>A2 · saldo (€), 2018–2026</span><span><span class="sw" style="background:var(--fw-soft);border:1px solid var(--fw)"></span>2018–21: juiz independente</span></div>
+    <div id="eqA2r4"></div>
+  </div>
+  <div class="two">
+    <div class="panel scroll"><h3>2018–2021 (nunca visto)</h3><table>
+      <tr><th></th><th class="n">Trades</th><th class="n">WR</th><th class="n">PF</th><th class="n">Lucro</th><th class="n">DD</th><th class="n">Perdas seg.</th></tr>
+      <tr class="hl"><td>A2</td><td class="n">391</td><td class="n">84,9%</td><td class="n">1,96</td><td class="n pos">+69,90 €</td><td class="n">10,3%</td><td class="n">2</td></tr>
+      <tr><td>Desafiante</td><td class="n">172</td><td class="n">77,9%</td><td class="n">0,99</td><td class="n neg">−1,10 €</td><td class="n">27,5%</td><td class="n neg">4</td></tr>
+      <tr><td>A2 · atraso 1 min</td><td class="n">386</td><td class="n">85,2%</td><td class="n">1,22</td><td class="n pos">+23,70 €</td><td class="n">29,8%</td><td class="n neg">3</td></tr>
+      <tr><td>A2 · spread 0,035%</td><td class="n">386</td><td class="n">84,7%</td><td class="n">1,90</td><td class="n pos">+66,10 €</td><td class="n">10,3%</td><td class="n">2</td></tr>
+    </table></div>
+    <div class="panel scroll"><h3>A2 por ano (€)</h3><table id="r4years"></table></div>
+  </div>
+</section>
+
+<section>
   <span class="eyebrow">Atualização · ronda 3 · 03/11/2026</span>
   <h2>Nova versão recomendada: A2 · RSI a favor da tendência + modo sombra, M15</h2>
   <p class="muted">O loop de melhoria testou mais 1,51 milhões de variantes da A. O juiz foram 3 anos de dados que a A nunca viu (2022–2024, com mercado em baixa e em alta), com spread proporcional de 0,025% do preço. A regra pré-declarada rejeitou o primeiro desafiante: perdeu 105% em 2022–24. A A2 saiu de um teste exploratório: ficou com a lógica da A, foi ordenada só pelo backtest e depois avaliada em 2022–26.</p>
@@ -207,7 +227,7 @@ const cls = v => v>0?'pos':(v<0?'neg':'');
 const NS='http://www.w3.org/2000/svg';
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
-function lineChart(el, pts, {h=260, axes=true, pad=[14,12,26,44], marks=[], overlay=null}={}){
+function lineChart(el, pts, {h=260, axes=true, pad=[14,12,26,44], marks=[], overlay=null, shade=null}={}){
   const w = 900, [pt,pr,pb,pl] = axes?pad:[4,2,4,2];
   const xs = pts.map(p=>p[0]), ys = pts.map(p=>p[1]);
   const x0=Math.min(...xs), x1=Math.max(...xs);
@@ -216,8 +236,8 @@ function lineChart(el, pts, {h=260, axes=true, pad=[14,12,26,44], marks=[], over
   const X=t=>pl+(t-x0)/(x1-x0)*(w-pl-pr), Y=v=>pt+(1-(v-y0)/(y1-y0))*(h-pt-pb);
   const svg=document.createElementNS(NS,'svg'); svg.setAttribute('viewBox',`0 0 ${w} ${h}`); svg.setAttribute('preserveAspectRatio','none');
   const add=(tag,a)=>{const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e};
-  const fx=Math.max(X(D.forward_inicio),pl);
-  add('rect',{x:fx,y:pt,width:Math.max(0,w-pr-fx),height:h-pt-pb,fill:'var(--fw-soft)'});
+  const s0=shade?Math.max(X(shade[0]),pl):Math.max(X(D.forward_inicio),pl), s1=shade?Math.min(X(shade[1]),w-pr):w-pr, fx=shade?s1:s0;
+  add('rect',{x:s0,y:pt,width:Math.max(0,s1-s0),height:h-pt-pb,fill:'var(--fw-soft)'});
   add('line',{x1:fx,x2:fx,y1:pt,y2:h-pb,stroke:'var(--fw)','stroke-dasharray':'4 3','stroke-width':1,'vector-effect':'non-scaling-stroke'});
   if(axes){
     const step=(y1-y0)>150?50:((y1-y0)>60?20:10);
@@ -226,9 +246,10 @@ function lineChart(el, pts, {h=260, axes=true, pad=[14,12,26,44], marks=[], over
       const t=add('text',{x:pl-8,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:'var(--muted)','font-family':'var(--f-mono)'}); t.textContent=v+' €';
     }
     const d0=new Date(x0*1000), d1=new Date(x1*1000);
-    for(let d=new Date(Date.UTC(d0.getUTCFullYear(), d0.getUTCMonth()+1,1)); d<=d1; d.setUTCMonth(d.getUTCMonth()+3)){
+    const yearly=(x1-x0)>4*365*86400;
+    for(let d=yearly?new Date(Date.UTC(d0.getUTCFullYear()+1,0,1)):new Date(Date.UTC(d0.getUTCFullYear(), d0.getUTCMonth()+1,1)); d<=d1; d.setUTCMonth(d.getUTCMonth()+(yearly?12:3))){
       const t=add('text',{x:X(d/1000),y:h-8,'text-anchor':'middle','font-size':11,fill:'var(--muted)','font-family':'var(--f-mono)'});
-      t.textContent=d.toLocaleDateString('pt-PT',{month:'short',year:'2-digit',timeZone:'UTC'});
+      t.textContent=yearly?String(d.getUTCFullYear()):d.toLocaleDateString('pt-PT',{month:'short',year:'2-digit',timeZone:'UTC'});
     }
   }
   marks.forEach(m=>add('line',{x1:X(m),x2:X(m),y1:pt,y2:h-pb,stroke:'var(--muted)','stroke-dasharray':'4 3','stroke-width':1,'vector-effect':'non-scaling-stroke'}));
@@ -252,6 +273,10 @@ const kp=[['Trades (total)',M.total['Trades'],'BT '+M.backtest['Trades']+' · FW
  ['Lucro (100 €)',fmt(M.total['Lucro €'],2)+' €','FW '+fmt(M.forward['Lucro €'],2)+' €','']];
 $('kpis').innerHTML=kp.map(k=>`<div class="kpi"><span class="l">${k[0]}</span><span class="v">${k[1]}</span><span class="l num">${k[2]}</span>${k[3]?`<span class="t">✔ alvo ${k[3]}</span>`:''}</div>`).join('');
 lineChart($('eqA'),A.curve,{h:280});
+// ronda 4
+const R4=D.ronda4;
+lineChart($('eqA2r4'),R4.curve,{h:260,shade:[R4.judge_start,R4.judge_end]});
+$('r4years').innerHTML=`<tr><th>Ano</th><th class="n">Trades</th><th class="n">WR</th><th class="n">Lucro</th></tr>`+R4.anual.map(y=>`<tr${y.entrada_utc<2022?' class="hl"':''}><td class="n">${y.entrada_utc}</td><td class="n">${y.trades}</td><td class="n">${f2(y.wr,1)}%</td><td class="n ${cls(y.lucro)}">${fmt(y.lucro,1)} €</td></tr>`).join('');
 // ronda 3
 const R3=D.ronda3, S2=R3.A2.segs, S1=R3.A.segs, T2=S2['Total 2022–26'];
 const kp2=[['Trades 2022–26',T2.trades,'2022–24: '+S2['2022–24 (nunca visto)'].trades,'> 100'],['Win rate',f2(T2.wr,1)+'%','estrito '+f2(T2.wr_estrito,1)+'%','> 57%'],['Profit factor',f2(T2.pf),'2022–24: '+f2(S2['2022–24 (nunca visto)'].pf),'> 1,01'],['Max drawdown',f2(T2.dd,1)+'%','A: '+f2(S1['Total 2022–26'].dd,1)+'%','≤ 20%'],['Perdas seguidas',T2.mcl,'A: '+S1['Total 2022–26'].mcl,'< 3'],['Lucro (100 €)',fmt(T2.lucro,2)+' €','A: '+fmt(S1['Total 2022–26'].lucro,2)+' €','']];
