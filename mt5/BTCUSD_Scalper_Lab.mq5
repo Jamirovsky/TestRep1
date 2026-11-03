@@ -51,7 +51,7 @@ enum ENUM_GUARD { GUARD_OFF = 0,      // Desligado
 
 //--- Setup
 input group "=== Setup ==="
-input ENUM_SETUP      InpSetup        = SETUP_RSI_EXTREME; // Estratégia A (recomendada)
+input ENUM_SETUP      InpSetup        = SETUP_RSI_EXTREME; // Estratégia A2 (recomendada)
 input ENUM_TIMEFRAMES InpTF           = PERIOD_M15;   // Timeframe do sinal
 input int             InpBBLen        = 20;           // Bollinger / Pinbar: período
 input double          InpBBK          = 2.0;          // Bollinger: desvios
@@ -85,16 +85,16 @@ input int             InpGMTOffset    = -99;          // Offset do servidor vs U
 
 input group "=== Stop Loss / Take Profit (EDITÁVEIS) ==="
 input ENUM_SLTP_MODE  InpSLTPMode     = SLTP_ATR;     // Modo SL/TP
-input double          InpSL_USD       = 600;          // SL em USD de preço (modo USD)
-input double          InpTP_USD       = 200;          // TP em USD de preço (modo USD)
-input double          InpSL_ATR       = 5.0;          // SL em ATRs (modo ATR)
-input double          InpTP_ATR       = 0.5;          // TP em ATRs (modo ATR)
-input int             InpMaxHoldMin   = 120;          // Fecho por tempo (minutos)
-input double          InpBEFrac       = 0.7;          // Breakeven quando lucro >= X*TP (0 = off)
+input double          InpSL_USD       = 1100;         // SL em USD de preço (modo USD)
+input double          InpTP_USD       = 65;           // TP em USD de preço (modo USD)
+input double          InpSL_ATR       = 6.0;          // SL em ATRs (modo ATR)
+input double          InpTP_ATR       = 0.35;         // TP em ATRs (modo ATR)
+input int             InpMaxHoldMin   = 180;          // Fecho por tempo (minutos)
+input double          InpBEFrac       = 0.8;          // Breakeven quando lucro >= X*TP (0 = off)
 
 input group "=== Gestão de risco ==="
 input double          InpLots         = 0.01;         // Lotes (0.01 = 0.01 BTC)
-input ENUM_GUARD      InpGuard        = GUARD_OFF;    // Proteção de perdas consecutivas
+input ENUM_GUARD      InpGuard        = GUARD_SHADOW;   // Proteção de perdas consecutivas
 input int             InpGuardLosses  = 2;            // N perdas seguidas
 input int             InpGuardPauseH  = 12;           // Pausa (horas) no modo pausa
 input double          InpMaxDDPct     = 20.0;         // Parar EA se drawdown da conta > X% (0 = off)

@@ -1,6 +1,73 @@
 # Relatório final: estratégias de scalping BTCUSD (conta de 100 €, ICTrading)
 
+> Secção 0 = ronda 3 (melhoria da A). Secções 1–7 = relatório original de 02/11/2026.
+
 **Data:** 2 de novembro de 2026 · **Período analisado:** 07/01/2025 a 01/11/2026 (velas de 1 minuto)
+
+## 0. Atualização: ronda 3 (03/11/2026), melhoria da estratégia A
+
+**O que foi feito**
+* Loop de melhoria só na família RSI: **1,51 milhões de variantes** (23:45 a 01:07 UTC; o contentor reiniciou antes do prazo das 01:50).
+* Novas opções testadas: filtro de tendência em 1h/4h, timeframes de 20 e 30 min, grelhas mais finas de SL/TP/breakeven.
+* Novo juiz independente: **15/01/2022 a 06/01/2025**, com **velas que a estratégia A nunca viu**. Inclui o mercado em baixa de 2022 e o mercado em alta de 2023–24.
+* Spread proporcional ao preço (0,025% ≈ 25 $ a 100 k$). Um spread fixo de 25 $ com o BTC a 20 k$ não seria realista; os resultados com spread fixo também estão abaixo.
+
+**Regra pré-declarada** (`results/REGRA_RONDA3.md`, escrita antes de ver resultados)
+* Desafiante = melhor score robusto do backtest. Resultou outra vez num "RSI contra a tendência".
+* Nos dados nunca vistos de 2022–24 o desafiante **perdeu 105%** (destruiria a conta). **A regra rejeitou-o.**
+
+**Teste exploratório** (não pré-declarado; foi assim que se encontrou a A2)
+* Restringi a pesquisa às variantes que mantêm a lógica da A (a favor da tendência) e ordenei-as **só pelo backtest**.
+* Avaliei as 3 primeiras, com e sem "modo sombra", no período completo de 2022 a 2026.
+* Como esta escolha usou o período 2022–26, já não há nenhum período totalmente "virgem". **A prova final continua a ser a demo.**
+
+### Estratégia A2 (nova versão recomendada): RSI extremo a favor da tendência + modo sombra, M15
+
+As regras são as da A, com estas alterações: **SL 6,0×ATR** (antes 5,0), **TP 0,35×ATR** (antes 0,5), **breakeven a 80% do TP** (antes 70%), **fecho por tempo de 180 min** (antes 120) e **modo sombra** ativo. No modo sombra, depois de 2 perdas seguidas os trades passam a virtuais até um trade virtual ganhar.
+
+Conta de 100 €, 0,01 lote, spread proporcional de 0,025%:
+
+| Período | Estratégia | Trades | WR | WR estrito¹ | PF | Lucro | DD máx | Perdas seguidas |
+|---|---|---|---|---|---|---|---|---|
+| 2022–24 (nunca visto) | **A2** | 363 | 88,2% | 79,1% | **1,55** | **+53,7 €** | 18,5% | **2** |
+| | A | 365 | 81,4% | 61,6% | 1,28 | +35,8 € | 15,6% | 4 ✘ |
+| Backtest jan/25–abr/26 | **A2** | 194 | 91,2% | 81,4% | 2,77 | +98,8 € | 11,4% | 2 |
+| | A | 190 | 88,9% | 64,7% | 2,16 | +89,6 € | 12,3% | 1 |
+| Forward mai–out/26 | **A2** | 74 | 86,5% | 73,0% | **1,03** | **+1,1 €** | 13,9% | 2 |
+| | A | 72 | 84,7% | 58,3% | 1,86 | +16,6 € | 5,8% | 1 |
+| **Total 2022–26** | **A2** | **631** | **88,9%** | **79,1%** | **1,83** | **+153,6 €** | **18,5%** | **2** ✔ |
+| | A | 627 | 84,1% | 62,2% | 1,63 | +142,0 € | 15,6% | 4 ✘ |
+
+¹ Contando os breakevens como perdas.
+
+**A2 cumpre todos os pressupostos em quase 5 anos de dados**: 631 trades, WR acima de 57%, PF acima de 1,01, DD até 20% e no máximo 2 perdas seguidas. Todos os anos foram positivos: 2022 +11,3 €, 2023 +6,5 €, 2024 +36,0 €, 2025 +72,5 €, 2026 +27,4 €.
+
+**Pontos fracos da A2 (ler antes de usar)**
+1. **Os últimos 6 meses ficaram praticamente em zero** (PF 1,03, +1,1 €). A A original foi melhor nesse período.
+2. **É muito sensível à execução.** O TP mediano é de apenas 66 $. Se entrar 1 minuto depois do sinal, o PF cai para 1,11, com DD de 32% e 4 perdas seguidas. O EA entra no primeiro tick da vela nova (segundos), mas qualquer atraso ou requote prejudica.
+3. **Depende do spread:**
+
+   | Spread | PF | Lucro | DD | Perdas seguidas |
+   |---|---|---|---|---|
+   | 0,020% | 1,88 | +159,6 € | 18,2% | 3 |
+   | 0,025% | 1,83 | +153,6 € | 18,5% | 2 |
+   | 0,035% | 1,58 | +119,2 € | 16,8% | 4 |
+   | 0,050% | 1,24 | +60,1 € | 21,5% | 4 |
+   | 25 $ fixo | 1,61 | +122,8 € | 31,9% | 4 |
+
+   Com spreads acima de ~0,03% (≈ 25–30 $ ao preço atual), o limite de 2 perdas seguidas deixa de se cumprir.
+4. **Vizinhança de parâmetros:** 78% dos vizinhos têm PF > 1 (mediana 1,70). O filtro de tendência ("a favor"), o timeframe M15 e a exclusão da sessão asiática são essenciais; sem eles a estratégia perde dinheiro.
+5. **Monte Carlo (100 trades):**
+   * P(lucro) = 93%
+   * P(DD > 20%) = 9%
+   * P(≥ 3 perdas seguidas) = 12%
+   * **P(cumprir todos os pressupostos) = 80%** (era 73% na A)
+
+**Recomendação:**
+* O EA vem agora com a **A2 por defeito** (`mt5/sets/A2_RSI_TENDENCIA_SOMBRA_M15.set`). A `A_RSI_TENDENCIA_M15.set` continua disponível.
+* Em demo, correr **A2 e A em paralelo** (magic numbers diferentes), durante pelo menos 100 trades, antes de usar dinheiro real.
+
+Gráfico: `report/equity_A2_2022_2026.png` · trades: `report/trades_A2_2022_2026.csv`.
 
 ## 1. Resumo
 

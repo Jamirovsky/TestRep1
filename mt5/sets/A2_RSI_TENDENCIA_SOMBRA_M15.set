@@ -1,0 +1,26 @@
+; BTCUSD_Scalper_Lab - A2_RSI_TENDENCIA_SOMBRA_M15
+; Carregar em: EA -> Inputs -> Load
+InpSetup=1
+InpTF=15
+InpRSILen=4
+InpRSILo=15
+InpTrend=1
+InpTrendLen=100
+InpSession=5
+InpTradeWeekend=false
+InpATRMin=0.5
+InpSLTPMode=1
+InpSL_ATR=6.0
+InpTP_ATR=0.35
+InpSL_USD=1100
+InpTP_USD=65
+InpMaxHoldMin=180
+InpBEFrac=0.8
+InpGuard=2
+InpGuardPauseH=12
+InpMaxSpreadUSD=60
+InpGMTOffset=-99
+InpLots=0.01
+InpGuardLosses=2
+InpMaxDDPct=20
+InpMagic=26110201

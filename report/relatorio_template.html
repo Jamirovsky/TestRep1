@@ -77,7 +77,36 @@ footer{font-size:12.5px;color:var(--muted)}
 </header>
 
 <section>
-  <h2>Estratégia recomendada: A · RSI extremo a favor da tendência, M15</h2>
+  <span class="eyebrow">Atualização · ronda 3 · 03/11/2026</span>
+  <h2>Nova versão recomendada: A2 · RSI a favor da tendência + modo sombra, M15</h2>
+  <p class="muted">O loop de melhoria testou mais 1,51 milhões de variantes da A. O juiz foram 3 anos de dados que a A nunca viu (2022–2024, com mercado em baixa e em alta), com spread proporcional de 0,025% do preço. A regra pré-declarada rejeitou o primeiro desafiante: perdeu 105% em 2022–24. A A2 saiu de um teste exploratório: ficou com a lógica da A, foi ordenada só pelo backtest e depois avaliada em 2022–26.</p>
+  <div class="kpis" id="kpisA2"></div>
+  <div class="panel chart">
+    <div class="legend"><span><span class="sw" style="background:var(--accent)"></span>A2 · saldo (€)</span><span><span class="sw" style="background:var(--muted)"></span>A original</span><span><span class="sw" style="background:var(--fw-soft);border:1px solid var(--fw)"></span>Forward mai–out/26</span><span class="num">| 2022–24 nunca visto · 2025–abr/26 backtest</span></div>
+    <div id="eqA2"></div>
+  </div>
+  <div class="panel scroll"><table id="r3table"></table></div>
+  <div class="callout">
+    <h3>Pontos fracos da A2</h3>
+    <ol>
+      <li><b>Os últimos 6 meses ficaram praticamente em zero</b> (PF 1,03, +1,1 €). A A original foi melhor nesse período.</li>
+      <li><b>É muito sensível à execução:</b> o TP mediano é de só 66 $. Com 1 minuto de atraso o PF cai para 1,11 e o DD para 32%. O EA entra no primeiro tick da vela nova.</li>
+      <li><b>Depende do spread:</b> acima de ~0,03% do preço (≈25–30 $) voltam a aparecer 4 perdas seguidas.</li>
+      <li>A2 foi escolhida depois de ver 2022–26, por isso já não há nenhum período "virgem". <b>Corre A2 e A em paralelo em demo durante 100 trades.</b></li>
+    </ol>
+  </div>
+  <div class="panel"><dl class="rules">
+    <div><dt>Igual à A</dt><dd>M15 · RSI(4) &lt; 15 / &gt; 85 · EMA(100) a favor · 07–24 UTC seg–sex · ATR ≥ 0,5×média</dd></div>
+    <div><dt>Stop Loss</dt><dd>6,0 × ATR (A: 5,0) · mediana 1.137 $</dd></div>
+    <div><dt>Take Profit</dt><dd>0,35 × ATR (A: 0,5) · mediana 66 $</dd></div>
+    <div><dt>Breakeven</dt><dd>a 80% do TP (A: 70%)</dd></div>
+    <div><dt>Fecho por tempo</dt><dd>180 min (A: 120)</dd></div>
+    <div><dt>Modo sombra</dt><dd>após 2 perdas → virtual até um virtual ganhar</dd></div>
+  </dl></div>
+</section>
+
+<section>
+  <h2>Estratégia A original (rondas 1–2, 02/11/2026)</h2>
   <div class="kpis" id="kpis"></div>
   <div class="panel chart">
     <div class="legend"><span><span class="sw" style="background:var(--accent)"></span>Saldo da conta (€)</span><span><span class="sw" style="background:var(--fw-soft);border:1px solid var(--fw)"></span>Forward test (dados não vistos)</span></div>
@@ -147,7 +176,7 @@ footer{font-size:12.5px;color:var(--muted)}
 <section>
   <h2>Como usar no MetaTrader 5</h2>
   <ul class="steps">
-    <li>Copie <code>mt5/BTCUSD_Scalper_Lab.mq5</code> para <code>MQL5/Experts</code>, compile e anexe a um gráfico BTCUSD. Os valores por defeito já correspondem à estratégia A.</li>
+    <li>Copie <code>mt5/BTCUSD_Scalper_Lab.mq5</code> para <code>MQL5/Experts</code>, compile e anexe a um gráfico BTCUSD. Os valores por defeito correspondem agora à estratégia A2 (a A está em <code>mt5/sets/A_RSI_TENDENCIA_M15.set</code>).</li>
     <li>Os ficheiros <code>mt5/sets/*.set</code> carregam as estratégias A, B ou C (Inputs → Load). Todas as 14 famílias estão no EA (<code>InpSetup</code>).</li>
     <li>SL/TP editáveis: <code>InpSLTPMode</code> (ATR ou USD), <code>InpSL_ATR</code>, <code>InpTP_ATR</code>, <code>InpSL_USD</code>, <code>InpTP_USD</code>, <code>InpBEFrac</code>, <code>InpMaxHoldMin</code>.</li>
     <li>Proteções:
@@ -178,11 +207,12 @@ const cls = v => v>0?'pos':(v<0?'neg':'');
 const NS='http://www.w3.org/2000/svg';
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
-function lineChart(el, pts, {h=260, axes=true, pad=[14,12,26,44]}={}){
+function lineChart(el, pts, {h=260, axes=true, pad=[14,12,26,44], marks=[], overlay=null}={}){
   const w = 900, [pt,pr,pb,pl] = axes?pad:[4,2,4,2];
   const xs = pts.map(p=>p[0]), ys = pts.map(p=>p[1]);
   const x0=Math.min(...xs), x1=Math.max(...xs);
-  let y0=Math.min(100,...ys), y1=Math.max(100,...ys); const yp=(y1-y0)*.08||1; y0-=yp; y1+=yp;
+  const oy=overlay?overlay.map(p=>p[1]):[];
+  let y0=Math.min(100,...ys,...oy), y1=Math.max(100,...ys,...oy); const yp=(y1-y0)*.08||1; y0-=yp; y1+=yp;
   const X=t=>pl+(t-x0)/(x1-x0)*(w-pl-pr), Y=v=>pt+(1-(v-y0)/(y1-y0))*(h-pt-pb);
   const svg=document.createElementNS(NS,'svg'); svg.setAttribute('viewBox',`0 0 ${w} ${h}`); svg.setAttribute('preserveAspectRatio','none');
   const add=(tag,a)=>{const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e};
@@ -201,6 +231,8 @@ function lineChart(el, pts, {h=260, axes=true, pad=[14,12,26,44]}={}){
       t.textContent=d.toLocaleDateString('pt-PT',{month:'short',year:'2-digit',timeZone:'UTC'});
     }
   }
+  marks.forEach(m=>add('line',{x1:X(m),x2:X(m),y1:pt,y2:h-pb,stroke:'var(--muted)','stroke-dasharray':'4 3','stroke-width':1,'vector-effect':'non-scaling-stroke'}));
+  if(overlay) add('path',{d:overlay.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)).join(' '),fill:'none',stroke:'var(--muted)','stroke-width':1.4,'vector-effect':'non-scaling-stroke',opacity:.8});
   add('line',{x1:pl,x2:w-pr,y1:Y(100),y2:Y(100),stroke:'var(--muted)','stroke-width':1,'stroke-dasharray':'2 3','vector-effect':'non-scaling-stroke',opacity:.6});
   const last=ys[ys.length-1];
   const col = axes?'var(--accent)':(last>=100?'var(--pos)':'var(--neg)');
@@ -220,6 +252,12 @@ const kp=[['Trades (total)',M.total['Trades'],'BT '+M.backtest['Trades']+' · FW
  ['Lucro (100 €)',fmt(M.total['Lucro €'],2)+' €','FW '+fmt(M.forward['Lucro €'],2)+' €','']];
 $('kpis').innerHTML=kp.map(k=>`<div class="kpi"><span class="l">${k[0]}</span><span class="v">${k[1]}</span><span class="l num">${k[2]}</span>${k[3]?`<span class="t">✔ alvo ${k[3]}</span>`:''}</div>`).join('');
 lineChart($('eqA'),A.curve,{h:280});
+// ronda 3
+const R3=D.ronda3, S2=R3.A2.segs, S1=R3.A.segs, T2=S2['Total 2022–26'];
+const kp2=[['Trades 2022–26',T2.trades,'2022–24: '+S2['2022–24 (nunca visto)'].trades,'> 100'],['Win rate',f2(T2.wr,1)+'%','estrito '+f2(T2.wr_estrito,1)+'%','> 57%'],['Profit factor',f2(T2.pf),'2022–24: '+f2(S2['2022–24 (nunca visto)'].pf),'> 1,01'],['Max drawdown',f2(T2.dd,1)+'%','A: '+f2(S1['Total 2022–26'].dd,1)+'%','≤ 20%'],['Perdas seguidas',T2.mcl,'A: '+S1['Total 2022–26'].mcl,'< 3'],['Lucro (100 €)',fmt(T2.lucro,2)+' €','A: '+fmt(S1['Total 2022–26'].lucro,2)+' €','']];
+$('kpisA2').innerHTML=kp2.map(k=>`<div class="kpi"><span class="l">${k[0]}</span><span class="v">${k[1]}</span><span class="l num">${k[2]}</span>${k[3]?`<span class="t">✔ alvo ${k[3]}</span>`:''}</div>`).join('');
+lineChart($('eqA2'),R3.A2.curve,{h:280,marks:[D.oos_inicio],overlay:R3.A.curve});
+$('r3table').innerHTML=`<tr><th>Período</th><th>Estratégia</th><th class="n">Trades</th><th class="n">WR</th><th class="n">WR estrito</th><th class="n">PF</th><th class="n">Lucro</th><th class="n">DD máx</th><th class="n">Perdas seg.</th></tr>`+Object.keys(S2).map(k=>[['A2',S2[k]],['A',S1[k]]].map(([n,v],i)=>`<tr${n==='A2'?' class="hl"':''}><td>${i?'':k}</td><td>${n}</td><td class="n">${v.trades}</td><td class="n">${f2(v.wr,1)}%</td><td class="n">${f2(v.wr_estrito,1)}%</td><td class="n">${f2(v.pf)}</td><td class="n ${cls(v.lucro)}">${fmt(v.lucro,2)} €</td><td class="n">${f2(v.dd,1)}%</td><td class="n ${v.mcl<3?'':'neg'}">${v.mcl}</td></tr>`).join('')).join('');
 
 // famílias
 $('fams').innerHTML='';
