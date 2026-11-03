@@ -33,11 +33,12 @@ def _ts(s):
     return int(pd.Timestamp(s, tz='UTC').timestamp())
 
 
-def run(p, costs=None, account=None, return_trades=False):
+def run(p, costs=None, account=None, return_trades=False, raw=False):
     costs = {**COSTS, **(costs or {})}
     account = {**ACCOUNT, **(account or {})}
     m = load_m1()
     idx, d, sl, tp = build_signals(p)
+    lim_atr_arr = sl / p['sl_atr'] if (p.get('lim_atr', 0) and p.get('sl_mode') == 'atr') else None  # = ATR do sinal
     if p.get('entry_delay', 0):
         idx = idx + int(p['entry_delay'])  # teste de latência: entrar N minutos mais tarde
     if costs.get('spread_pct'):
@@ -45,13 +46,17 @@ def run(p, costs=None, account=None, return_trades=False):
         sprd = m['o'][np.minimum(idx, len(m['o']) - 1)] * costs['spread_pct'] / 100.0
     else:
         sprd = np.full(len(idx), float(costs['spread']))
+    lim = np.zeros(len(idx))
+    if p.get('lim_atr', 0):
+        lim = lim_atr_arr * p['lim_atr'] if lim_atr_arr is not None else lim
     gm = p.get('guard_mode', 0)
     res = simulate(m['o'], m['h'], m['l'], m['c'], m['ts'],
                    idx, d, sl, tp,
                    sprd, costs['slip'], int(p['max_hold']),
                    float(p.get('be_frac', 0.0)),
                    2, int(gm), int(p.get('guard_pause_h', 12)) * 3600,
-                   costs['swap_long_day'], costs['swap_short_day'], costs['rollover_hour'])
+                   costs['swap_long_day'], costs['swap_short_day'], costs['rollover_hour'],
+                   lim, int(p.get('lim_win', 15)))
     ei, xi, dr, ep, xp, pnl, reason, real = res
     lots = account['lots']
     start_usd = account['balance_eur'] * account['eurusd']
@@ -71,6 +76,8 @@ def run(p, costs=None, account=None, return_trades=False):
     sel = real & (t_entry >= _ts('2025-01-07'))   # total = backtest + forward (2025-26)
     out['total'] = metrics(pnl_usd[sel], start_usd)
     out['total']['virtual_trades'] = int((~real).sum())
+    if raw:
+        return t_entry, pnl_usd, real, reason
     if return_trades:
         tr = pd.DataFrame({
             'entrada_utc': pd.to_datetime(m['ts'][ei], unit='s'),

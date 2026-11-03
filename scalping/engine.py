@@ -27,7 +27,8 @@ def simulate(o, h, l, c, ts,
              sig_spread, slip, max_hold,
              be_frac,
              guard_k, guard_mode, guard_pause_s,
-             swap_long_day, swap_short_day, rollover_hour):
+             swap_long_day, swap_short_day, rollover_hour,
+             sig_lim, lim_win):
     """
     sig_idx: índice (1m) da vela onde se entra na abertura
     sig_dir: +1 compra / -1 venda
@@ -37,6 +38,10 @@ def simulate(o, h, l, c, ts,
                 2 = "modo sombra": após guard_k perdas seguidas as entradas passam a virtuais
                     até um trade virtual ganhar.
     swap_*_day: custo de swap por rollover em USD por 1 BTC (positivo = custo)
+    sig_lim: distância (USD) da ordem limite abaixo/acima da abertura (0 = entrada a mercado);
+             a ordem fica válida lim_win minutos; se não for executada o sinal é ignorado.
+             Na vela de execução não se conta TP pelo máximo/mínimo (pode ter ocorrido antes
+             da execução) - só pelo fecho. Pressuposto conservador.
     """
     n = sig_idx.shape[0]
     N = o.shape[0]
@@ -63,12 +68,46 @@ def simulate(o, h, l, c, ts,
         half = sig_spread[s] / 2.0
         sl = sig_sl[s]
         tp = sig_tp[s]
+        guard_bar = -1
         if d == 1:
             ep = o[i] + half
+        else:
+            ep = o[i] - half
+        lim = sig_lim[s]
+        if lim > 0:
+            ref = o[i]
+            filled = -1
+            jend = min(N - 1, i + lim_win - 1)
+            for jj in range(i, jend + 1):
+                if d == 1:
+                    L = ref - lim
+                    if o[jj] + half <= L:
+                        filled = jj
+                        ep = o[jj] + half
+                        break
+                    if l[jj] + half <= L:
+                        filled = jj
+                        ep = L
+                        guard_bar = jj
+                        break
+                else:
+                    L = ref + lim
+                    if o[jj] - half >= L:
+                        filled = jj
+                        ep = o[jj] - half
+                        break
+                    if h[jj] - half >= L:
+                        filled = jj
+                        ep = L
+                        guard_bar = jj
+                        break
+            if filled < 0:
+                continue
+            i = filled
+        if d == 1:
             sl_px = ep - sl
             tp_px = ep + tp
         else:
-            ep = o[i] - half
             sl_px = ep + sl
             tp_px = ep - tp
         be_done = False
@@ -94,11 +133,11 @@ def simulate(o, h, l, c, ts,
                     xp = bid_o
                     reason = R_TP
                     break
-                if bid_h >= tp_px:
+                if bid_h >= tp_px and (j != guard_bar or c[j] - half >= tp_px):
                     xp = tp_px
                     reason = R_TP
                     break
-                if be_frac > 0 and not be_done and bid_h - ep >= be_frac * tp:
+                if be_frac > 0 and not be_done and j != guard_bar and bid_h - ep >= be_frac * tp:
                     be_done = True
                     sl_px = ep + 1.0
             else:
@@ -117,11 +156,11 @@ def simulate(o, h, l, c, ts,
                     xp = ask_o
                     reason = R_TP
                     break
-                if ask_l <= tp_px:
+                if ask_l <= tp_px and (j != guard_bar or c[j] + half <= tp_px):
                     xp = tp_px
                     reason = R_TP
                     break
-                if be_frac > 0 and not be_done and ep - ask_l >= be_frac * tp:
+                if be_frac > 0 and not be_done and j != guard_bar and ep - ask_l >= be_frac * tp:
                     be_done = True
                     sl_px = ep - 1.0
             if j >= last:

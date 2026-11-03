@@ -372,4 +372,8 @@ def build_signals(p):
         tp = a[pos] * p['tp_atr']
         sl = np.maximum(sl, 30.0)
         tp = np.maximum(tp, 20.0)
+    if p.get('tp_floor_pct', 0):
+        # TP mínimo em % do preço (protege contra TPs minúsculos face ao spread)
+        px = df['close'].values[pos]
+        tp = np.maximum(tp, px * p['tp_floor_pct'] / 100.0)
     return idx, d, sl, tp
