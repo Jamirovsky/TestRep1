@@ -53,7 +53,7 @@ def cost_sensitivity(prep, s, e, multipliers=(1.0, 1.25, 1.5, 2.0)) -> pd.DataFr
         p2 = bt.Prepared(
             symbol=prep.symbol, inst=prep.inst, exec_bars=prep.exec_bars,
             spread_points=prep.spread_points * k, sig_cache=prep.sig_cache,
-            dir_cache=prep.dir_cache,
+            dir_cache=prep.dir_cache, cost_scale=prep.cost_scale,
         )
         m, _, _ = bt.run(p2, s, e2)
         rows.append({

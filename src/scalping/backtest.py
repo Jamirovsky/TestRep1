@@ -11,7 +11,8 @@ from . import data as data_mod
 from . import metrics as metrics_mod
 from .engine import BacktestResult, ExecConfig, run_backtest
 from .instruments import Instrument, get_instrument
-from .strategy import StrategyParams, compute_signals, spread_series, to_exec_signals
+from .strategy import (StrategyParams, compute_signals, cost_scale_series, spread_series,
+                       to_exec_signals)
 
 
 # Fields that change WHICH bars produce a signal.  Everything else (stop size,
@@ -26,7 +27,7 @@ DIRECTION_FIELDS = (
     "don_period", "ema_fast", "ema_slow", "adx_min", "expansion_mult",
     "atr_avg_period",
     "pb_slope_period", "pb_rsi_lo", "pb_rsi_hi", "pb_depth_atr", "pb_lookback",
-    "mom_period", "mom_min_atr", "mom_confirm",
+    "mom_period", "mom_min_atr", "mom_confirm", "bb_period",
 )
 
 
@@ -44,6 +45,7 @@ class Prepared:
     spread_points: np.ndarray
     sig_cache: Dict[int, pd.DataFrame]
     dir_cache: Dict[tuple, tuple] = None
+    cost_scale: Optional[np.ndarray] = None
 
     def __post_init__(self):
         if self.dir_cache is None:
@@ -61,6 +63,11 @@ class Prepared:
                 frame["atr"].to_numpy("float64"),
                 sig_bars.index,
             )
+            # Bounded: candidates arrive grouped by signal shape, so a handful
+            # of entries gives the full hit rate, while an unbounded cache of
+            # M1-length arrays runs a worker out of memory.
+            if len(self.dir_cache) >= 6:
+                self.dir_cache.pop(next(iter(self.dir_cache)))
             self.dir_cache[key] = hit
         return hit
 
@@ -83,6 +90,7 @@ class Prepared:
             spread_points=self.spread_points[mask],
             sig_cache={},
             dir_cache={},
+            cost_scale=None if self.cost_scale is None else self.cost_scale[mask],
         )
 
 
@@ -92,7 +100,9 @@ def prepare(bars: pd.DataFrame, symbol: str) -> Prepared:
     if "volume" not in bars.columns:
         bars["volume"] = 1.0
     sp = spread_series(bars.index, bars, inst)
-    return Prepared(symbol=symbol, inst=inst, exec_bars=bars, spread_points=sp, sig_cache={})
+    cs = cost_scale_series(bars, inst)
+    return Prepared(symbol=symbol, inst=inst, exec_bars=bars, spread_points=sp, sig_cache={},
+                    cost_scale=cs)
 
 
 def exec_config_from(inst: Instrument, **overrides) -> ExecConfig:
@@ -107,7 +117,9 @@ def exec_config_from(inst: Instrument, **overrides) -> ExecConfig:
         slippage_points_stop=inst.slippage_points_stop,
         swap_long_points=inst.swap_long_points,
         swap_short_points=inst.swap_short_points,
-        max_spread_points=inst.spread_max_points,
+        # bp-priced instruments carry a price-scaled spread series, so a fixed
+        # point cap would be meaningless; the model already clips the spread
+        max_spread_points=inst.spread_max_points if inst.ref_price <= 0 else 1e12,
     )
     return replace(cfg, **overrides)
 
@@ -123,6 +135,9 @@ def run(
     direction, atr, sig_index = prep.directions(params)
     sl = params.sl_atr * atr
     floor_price = params.min_sl_points * prep.inst.point
+    if params.min_sl_bp > 0:
+        floor_price = np.maximum(floor_price, params.min_sl_bp * 1e-4
+                                 * sig_bars["close"].to_numpy("float64"))
     sl = np.where(np.isfinite(sl), np.maximum(sl, floor_price), 0.0)
     sig_frame = pd.DataFrame(
         {"direction": np.where(sl > 0, direction, 0),
@@ -130,7 +145,7 @@ def run(
         index=sig_index,
     )
     signals = to_exec_signals(sig_frame, prep.exec_bars.index, params.tf_minutes)
-    result = run_backtest(prep.exec_bars, signals, cfg, prep.spread_points)
+    result = run_backtest(prep.exec_bars, signals, cfg, prep.spread_points, prep.cost_scale)
     trades = result.trades_frame()
     m = metrics_mod.compute(trades, result.equity, prep.exec_bars.index, cfg.initial_equity)
     return m, trades, result

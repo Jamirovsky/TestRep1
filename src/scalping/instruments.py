@@ -47,6 +47,13 @@ class Instrument:
     # gold "45 pips" is technically true and completely unreadable; traders say
     # "45 cents".
     display_unit: str = "pips"         # "pips" or "usd"
+    # Price level at which the spread / slippage numbers above are quoted.
+    # 0 = costs are fixed in points (the original XAUUSD/EURUSD behaviour).
+    # > 0 = costs scale linearly with price, i.e. they are a constant number of
+    # basis points.  Essential for the minor metals: silver went from USD 15 to
+    # USD 60 and palladium from USD 3000 to USD 900 inside the test window, and
+    # a broker's spread follows the price, not a fixed number of points.
+    ref_price: float = 0.0
 
     def spread_points_for_hour(self, hour_utc: int, vol_z: float = 0.0) -> float:
         """Session- and volatility-aware spread in points."""
@@ -144,7 +151,97 @@ XAUUSD = Instrument(
     display_unit="usd",
 )
 
-REGISTRY: Dict[str, Instrument] = {"EURUSD": EURUSD, "XAUUSD": XAUUSD}
+# ---------------------------------------------------------------------------
+# Minor metals.  Costs are quoted at ``ref_price`` and scale with price (see
+# ``ref_price`` above), so they are effectively constant in basis points.
+#
+#                 spread @ref      round trip incl. entry slippage   vs gold
+#   XAUUSD        0.18 @ 2000      ~1.3 bp                            1x
+#   XAGUSD        0.025 @ 30       ~9.3 bp                            ~7x
+#   XPTUSD        2.00 @ 1000      ~22 bp                             ~17x
+#   XPDUSD        3.50 @ 1000      ~40 bp                             ~30x
+#
+# These are typical retail-ECN / CFD numbers (London/NY hours) on the
+# conservative side.  Platinum and palladium are spread-only at most brokers,
+# so commission is zero and the whole toll is in the spread.  Override from
+# your own broker's contract specification if it is cheaper.
+# ---------------------------------------------------------------------------
+XAGUSD = Instrument(
+    symbol="XAGUSD",
+    point=0.001,
+    pip=0.01,
+    contract_size=5000.0,          # 5000 troy ounces per lot
+    min_lot=0.01,
+    lot_step=0.01,
+    max_lot=50.0,
+    quote_ccy="USD",
+    digits=3,
+    spread_base_points=25.0,       # USD 0.025 at USD 30 (8.3 bp)
+    spread_asia_mult=1.8,
+    spread_rollover_mult=5.0,
+    spread_vol_coeff=0.6,
+    spread_max_points=100.0,
+    commission_per_lot_rt=0.0,     # folded into the spread
+    slippage_points_entry=3.0,
+    slippage_points_stop=8.0,
+    swap_long_points=-15.0,
+    swap_short_points=0.0,
+    display_unit="usd",
+    ref_price=30.0,
+)
+
+XPTUSD = Instrument(
+    symbol="XPTUSD",
+    point=0.01,
+    pip=0.01,
+    contract_size=100.0,
+    min_lot=0.01,
+    lot_step=0.01,
+    max_lot=20.0,
+    quote_ccy="USD",
+    digits=2,
+    spread_base_points=200.0,      # USD 2.00 at USD 1000 (20 bp)
+    spread_asia_mult=1.8,
+    spread_rollover_mult=4.0,
+    spread_vol_coeff=0.6,
+    spread_max_points=800.0,
+    commission_per_lot_rt=0.0,
+    slippage_points_entry=20.0,
+    slippage_points_stop=50.0,
+    swap_long_points=-200.0,
+    swap_short_points=0.0,
+    display_unit="usd",
+    ref_price=1000.0,
+)
+
+XPDUSD = Instrument(
+    symbol="XPDUSD",
+    point=0.01,
+    pip=0.01,
+    contract_size=100.0,
+    min_lot=0.01,
+    lot_step=0.01,
+    max_lot=20.0,
+    quote_ccy="USD",
+    digits=2,
+    spread_base_points=350.0,      # USD 3.50 at USD 1000 (35 bp)
+    spread_asia_mult=1.8,
+    spread_rollover_mult=4.0,
+    spread_vol_coeff=0.6,
+    spread_max_points=1400.0,
+    commission_per_lot_rt=0.0,
+    slippage_points_entry=50.0,
+    slippage_points_stop=120.0,
+    swap_long_points=-300.0,
+    swap_short_points=0.0,
+    display_unit="usd",
+    ref_price=1000.0,
+)
+
+REGISTRY: Dict[str, Instrument] = {
+    "EURUSD": EURUSD, "XAUUSD": XAUUSD,
+    "XAGUSD": XAGUSD, "XPTUSD": XPTUSD, "XPDUSD": XPDUSD,
+}
 
 
 def get_instrument(symbol: str) -> Instrument:

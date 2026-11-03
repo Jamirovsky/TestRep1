@@ -4,3 +4,4 @@ __pycache__/
 data/cache/
 reports/*.csv
 .ipynb_checkpoints/
+logs/

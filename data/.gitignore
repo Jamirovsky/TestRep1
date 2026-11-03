@@ -1,1 +1,3 @@
 data/cache/
+raw/*/*.parquet
+raw/*/*.csv

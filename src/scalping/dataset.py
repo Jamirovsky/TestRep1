@@ -35,7 +35,35 @@ class Dataset:
 
 def have_real(symbol: str) -> bool:
     d = RAW / symbol.upper()
-    return d.is_dir() and any(d.glob("*.csv"))
+    return d.is_dir() and (any(d.glob("*.csv")) or any(d.glob("*.parquet")))
+
+
+def _load_parquet_dir(symbol: str) -> pd.DataFrame:
+    """OANDA-style monthly parquet chunks (``scripts/fetch_metals.py``).
+
+    Columns ``time`` (epoch seconds, bar open, UTC), ``open/high/low/close``
+    (mid prices) and ``volume`` (tick count).  The merged result is cached,
+    keyed on the file list, because 90-odd parquet reads add up.
+    """
+    files = sorted((RAW / symbol).glob("*.parquet"))
+    CACHE.mkdir(parents=True, exist_ok=True)
+    key = f"{len(files)}_{files[0].stem[-23:]}_{files[-1].stem[-23:]}".replace(" ", "")
+    cache_file = CACHE / f"{symbol}_real_{key}.parquet"
+    if cache_file.exists():
+        return pd.read_parquet(cache_file)
+    frames = []
+    for f in files:
+        df = pd.read_parquet(f)
+        if "time" in df.columns:
+            idx = pd.to_datetime(df["time"].astype("int64"), unit="s", utc=True)
+            df = df.drop(columns=["time"])
+            df.index = idx
+        df.index.name = "time"
+        frames.append(df[[c for c in ("open", "high", "low", "close", "volume", "spread")
+                          if c in df.columns]].astype("float64"))
+    out = pd.concat(frames).sort_index()
+    out.to_parquet(cache_file)
+    return out
 
 
 def load(
@@ -48,10 +76,13 @@ def load(
 ) -> Dataset:
     symbol = symbol.upper()
     if prefer_real and have_real(symbol):
-        raw = D.load_dir(RAW / symbol, "*.csv")
+        if any((RAW / symbol).glob("*.csv")):
+            raw, src = D.load_dir(RAW / symbol, "*.csv"), f"data/raw/{symbol}/*.csv"
+        else:
+            raw, src = _load_parquet_dir(symbol), f"data/raw/{symbol}/*.parquet"
         bars, q = D.clean(raw)
         bars = bars.loc[str(start) : str(end)]
-        return Dataset(symbol, bars, False, q, f"data/raw/{symbol}/*.csv")
+        return Dataset(symbol, bars, False, q, src)
 
     CACHE.mkdir(parents=True, exist_ok=True)
     cache_file = CACHE / f"{symbol}_synth_{seed}_{start}_{end}.parquet"

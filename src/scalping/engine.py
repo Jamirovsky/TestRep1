@@ -90,7 +90,7 @@ class ExecConfig:
 def _run(
     op: np.ndarray, hi: np.ndarray, lo: np.ndarray, cl: np.ndarray,
     hour: np.ndarray, minute: np.ndarray, day_id: np.ndarray, dow: np.ndarray,
-    spread_pts: np.ndarray,
+    spread_pts: np.ndarray, cost_scale: np.ndarray,
     sig_dir: np.ndarray, sig_sl: np.ndarray, sig_tp: np.ndarray,
     point: float, vpp: float, min_lot: float, lot_step: float, max_lot: float,
     commission_rt: float, slip_entry: float, slip_stop: float,
@@ -150,6 +150,7 @@ def _run(
             cost_acc -= fee if fee < 0.0 else 0.0
 
         sp = spread_pts[i] * point
+        cs = cost_scale[i]       # slippage scales with price level (1.0 = fixed points)
 
         # ================= manage an open position =====================
         if pos != 0:
@@ -179,24 +180,24 @@ def _run(
 
             # --- 1. gap through the stop --------------------------------
             if pos > 0 and bar_op <= sl_px:
-                fill = bar_op - slip_stop * point
+                fill = bar_op - slip_stop * cs * point
                 exited, reason = 1, EXIT_SL
-                cost_acc += slip_stop * vpp * lots_open
+                cost_acc += slip_stop * cs * vpp * lots_open
             elif pos < 0 and bar_op >= sl_px:
-                fill = bar_op + slip_stop * point
+                fill = bar_op + slip_stop * cs * point
                 exited, reason = 1, EXIT_SL
-                cost_acc += slip_stop * vpp * lots_open
+                cost_acc += slip_stop * cs * vpp * lots_open
 
             # --- 2. stop touched inside the bar (pessimistic first) -----
             if exited == 0:
                 if pos > 0 and bar_lo <= sl_px:
-                    fill = sl_px - slip_stop * point
+                    fill = sl_px - slip_stop * cs * point
                     exited, reason = 1, EXIT_SL
-                    cost_acc += slip_stop * vpp * lots_open
+                    cost_acc += slip_stop * cs * vpp * lots_open
                 elif pos < 0 and bar_hi >= sl_px:
-                    fill = sl_px + slip_stop * point
+                    fill = sl_px + slip_stop * cs * point
                     exited, reason = 1, EXIT_SL
-                    cost_acc += slip_stop * vpp * lots_open
+                    cost_acc += slip_stop * cs * vpp * lots_open
 
             # --- 3. partial take-profit (a resting limit) ---------------
             if exited == 0 and partial_r > 0.0 and partial_done == 0:
@@ -231,13 +232,13 @@ def _run(
             # --- 5. time / session stops --------------------------------
             if exited == 0:
                 if bars_held >= max_bars:
-                    fill = bar_cl - pos * slip_entry * point
+                    fill = bar_cl - pos * slip_entry * cs * point
                     exited, reason = 1, EXIT_TIME
-                    cost_acc += slip_entry * vpp * lots_open
+                    cost_acc += slip_entry * cs * vpp * lots_open
                 elif hour[i] > force_hour or (hour[i] == force_hour and minute[i] >= force_min):
-                    fill = bar_cl - pos * slip_entry * point
+                    fill = bar_cl - pos * slip_entry * cs * point
                     exited, reason = 1, EXIT_SESSION
-                    cost_acc += slip_entry * vpp * lots_open
+                    cost_acc += slip_entry * cs * vpp * lots_open
 
             # --- 6. advance breakeven / trail (never saves this bar) ----
             if exited == 0:
@@ -321,9 +322,9 @@ def _run(
                     lt = max_lot
 
                 if d > 0:
-                    entry_px = op[i] + sp + slip_entry * point       # buy the ask
+                    entry_px = op[i] + sp + slip_entry * cs * point       # buy the ask
                 else:
-                    entry_px = op[i] - slip_entry * point            # sell the bid
+                    entry_px = op[i] - slip_entry * cs * point            # sell the bid
 
                 pos = d
                 lots = lt
@@ -337,7 +338,7 @@ def _run(
                 # Friction accounting: spread and slippage are embedded in the
                 # fill prices, so they have to be tracked explicitly or the
                 # reported cost is commission only, which badly understates it.
-                cost_acc = (sp / point + slip_entry) * vpp * lt
+                cost_acc = (sp / point + slip_entry * cs) * vpp * lt
                 exit_px_acc = 0.0
                 best_px = entry_px
                 mae_r = 0.0
@@ -388,6 +389,7 @@ def run_backtest(
     signals: "Signals",
     cfg: ExecConfig,
     spread_points: np.ndarray,
+    cost_scale: "np.ndarray | None" = None,
 ) -> "BacktestResult":
     """Execute ``signals`` against ``bars`` and return trades + equity curve."""
     idx = bars.index
@@ -405,6 +407,7 @@ def run_backtest(
     trades, equity = _run(
         op, hi, lo, cl, hour, minute, day_id, dow,
         spread_points.astype("float64"),
+        (np.ones(len(bars)) if cost_scale is None else cost_scale.astype("float64")),
         signals.direction, signals.sl_distance, signals.tp_distance,
         cfg.point, cfg.value_per_point_per_lot, cfg.min_lot, cfg.lot_step, cfg.max_lot,
         cfg.commission_per_lot_rt, cfg.slippage_points_entry, cfg.slippage_points_stop,

@@ -22,7 +22,7 @@ from __future__ import annotations
 
 from typing import Dict, List, Sequence
 
-from .strategy import MODE_BREAKOUT, MODE_FADE, MODE_MOMENTUM, MODE_PULLBACK
+from .strategy import MODE_BANDS, MODE_BREAKOUT, MODE_FADE, MODE_MOMENTUM, MODE_PULLBACK
 
 # Minimum stop distance in points, per symbol.  The single most important
 # parameter in the system: round-trip friction is ~15.5 points on EURUSD and
@@ -97,8 +97,68 @@ FIXED = {
 }
 
 
-def space_for(mode: str, symbol: str) -> Dict[str, Sequence]:
-    """Full search space for one mode on one symbol."""
+# ---------------------------------------------------------------------------
+# Minor metals (XAGUSD / XPTUSD / XPDUSD, and XAUUSD on real data as the
+# comparison).  Three things differ from the FX/gold space above, all forced by
+# the measurements in reports/metals_diagnose.json:
+#
+# * stop floors are in BASIS POINTS of price (s.min_sl_bp), because costs are;
+# * holding times reach 8 hours: on XPT/XPD the toll is 0.7-1.0 ATR(M30), so a
+#   stop has to be several M30 ATRs wide before friction is a small share of R;
+# * targets go below 1R: the real metals mean-revert intraday, and a
+#   mean-reversion edge is harvested with a high strike rate and a small target.
+# The timeframe is NOT searched inside a run -- each M1/M5/M15/M30 is explored
+# separately (scripts/explore_metals.py) and the winner is fixed.
+# ---------------------------------------------------------------------------
+METALS = ("XAGUSD", "XPTUSD", "XPDUSD", "XAUUSD")
+
+MIN_SL_BP: Dict[str, List[float]] = {
+    "XAUUSD": [15, 25, 40, 60],
+    "XAGUSD": [30, 50, 80, 120],
+    "XPTUSD": [60, 100, 150, 220],
+    "XPDUSD": [100, 160, 250, 350],
+}
+
+_SHARED_METALS = {
+    "s.session": ["london", "ny", "london_ny", "extended"],
+    "s.sl_atr": [1.0, 1.5, 2.0, 3.0, 4.0],
+    "s.tp_r": [0.5, 0.8, 1.0, 1.5, 2.0],
+    "e.max_bars": [60, 120, 240, 480],
+    "e.be_trigger_r": [0.0, 0.7],
+    "e.trail_start_r": [0.0, 1.0],
+    "e.partial_r": [0.0, 0.6],
+    "e.cooldown_bars": [15, 60],
+    "e.max_trades_per_day": [3, 6],
+}
+
+_MODE_METALS = {
+    **_MODE,
+    MODE_FADE: {
+        "s.er_max": [0.30, 0.50, 1.0],
+        "s.band_k": [1.0, 1.5, 2.0, 2.5],
+        "s.rsi_lo": [20, 28, 35],
+        "s.adx_max": [20, 30, 100],
+        "s.confirm_mode": [0, 1, 2, 3],
+    },
+}
+_MODE_METALS[MODE_BANDS] = {
+    **_MODE_METALS[MODE_FADE],
+    "s.bb_period": [20, 48, 96],
+}
+
+
+def space_for(mode: str, symbol: str, tf_minutes: int | None = None) -> Dict[str, Sequence]:
+    """Full search space for one mode on one symbol.
+
+    For the metals, ``tf_minutes`` pins the signal timeframe (the timeframe is
+    chosen by a separate exploration, not inside the walk-forward).
+    """
+    if symbol.upper() in METALS and (symbol.upper() != "XAUUSD" or tf_minutes is not None):
+        sp = dict(_SHARED_METALS)
+        sp.update(_MODE_METALS[mode])
+        sp["s.min_sl_bp"] = MIN_SL_BP[symbol.upper()]
+        sp["s.tf_minutes"] = [tf_minutes or 15]
+        return sp
     sp = dict(_SHARED)
     sp.update(_MODE[mode])
     sp["s.min_sl_points"] = MIN_SL_POINTS[symbol.upper()]
@@ -110,7 +170,7 @@ def apply_fixed(params):
     from dataclasses import replace
 
     fade_extra = {}
-    if params.mode == MODE_FADE:
+    if params.mode in (MODE_FADE, MODE_BANDS):
         # keep the RSI band symmetric so it stays one decision, not two
         fade_extra["rsi_hi"] = 100.0 - params.rsi_lo
     return replace(params, **FIXED, **fade_extra)
@@ -123,4 +183,4 @@ def size(space: Dict[str, Sequence]) -> int:
     return n
 
 
-ALL_MODES = [MODE_BREAKOUT, MODE_MOMENTUM, MODE_PULLBACK, MODE_FADE]
+ALL_MODES = [MODE_BREAKOUT, MODE_MOMENTUM, MODE_PULLBACK, MODE_FADE, MODE_BANDS]

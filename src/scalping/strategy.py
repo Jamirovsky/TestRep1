@@ -38,6 +38,12 @@ MODE_FADE = "fade"
 MODE_BREAKOUT = "breakout"
 MODE_PULLBACK = "pullback"
 MODE_MOMENTUM = "momentum"
+# Mean reversion to a ROLLING mean (Bollinger z-score) rather than to the
+# session VWAP.  Added for the metals: on real XAG/XPT/XPD data the variance
+# ratio is well below 1 at 1-4 hour horizons, i.e. intraday moves partially
+# reverse, and a rolling anchor does not suffer the VWAP's thin-sample problem
+# right after the daily anchor.
+MODE_BANDS = "bands"
 
 # UTC hour windows, end-exclusive.  Rollover (21:00) is excluded everywhere.
 SESSION_PRESETS: Dict[str, Tuple[int, int]] = {
@@ -74,6 +80,10 @@ class StrategyParams:
     sl_atr: float = 1.2               # stop distance = sl_atr * ATR
     tp_r: float = 1.5                 # target = tp_r * stop distance
     min_sl_points: float = 0.0        # floor so costs stay a small % of risk
+    # The same floor in basis points of price.  On the minor metals, whose
+    # costs are priced in bp, this is the floor that actually means something:
+    # a fixed point floor would be tight at USD 60 silver and loose at USD 15.
+    min_sl_bp: float = 0.0
     allow_long: bool = True
     allow_short: bool = True
     # Efficiency-Ratio gate, shared by every continuation mode.  This is the
@@ -98,6 +108,9 @@ class StrategyParams:
     # RSI extreme is close to self-contradictory.
     confirm_mode: int = 2
     min_dev_atr: float = 0.0          # minimum |price - VWAP| in ATRs (0 = off)
+
+    # --- bands (rolling-mean fade; reuses band_k / rsi / adx_max / confirm) --
+    bb_period: int = 48
 
     # --- breakout -------------------------------------------------------
     don_period: int = 24
@@ -163,9 +176,13 @@ def compute_signals(sig_bars: pd.DataFrame, p: StrategyParams, inst: Instrument)
     long_sig = np.zeros(n, dtype=bool)
     short_sig = np.zeros(n, dtype=bool)
 
-    if p.mode == MODE_FADE:
-        sid = _session_id(sig_bars.index, p.vwap_anchor_hour)
-        vwap, vsig = ind.session_vwap(h, l, c, v, sid)
+    if p.mode in (MODE_FADE, MODE_BANDS):
+        if p.mode == MODE_FADE:
+            sid = _session_id(sig_bars.index, p.vwap_anchor_hour)
+            vwap, vsig = ind.session_vwap(h, l, c, v, sid)
+        else:
+            vwap = ind.sma(c, p.bb_period)
+            vsig = ind.rolling_std(c, p.bb_period)
         r = ind.rsi(c, p.rsi_period)
         adx_v = ind.adx(h, l, c, p.adx_period)
 
@@ -272,7 +289,7 @@ def compute_signals(sig_bars: pd.DataFrame, p: StrategyParams, inst: Instrument)
     direction = np.where(long_sig, 1, np.where(short_sig, -1, 0)).astype(np.int64)
 
     sl = p.sl_atr * a
-    floor_price = p.min_sl_points * inst.point
+    floor_price = np.maximum(p.min_sl_points * inst.point, p.min_sl_bp * 1e-4 * c)
     sl = np.where(np.isfinite(sl), np.maximum(sl, floor_price), 0.0)
     tp = p.tp_r * sl
 
@@ -322,6 +339,20 @@ def to_exec_signals(
     return Signals(direction, sl, tp)
 
 
+def cost_scale_series(bars: pd.DataFrame, inst: Instrument) -> np.ndarray:
+    """Per-bar multiplier on the instrument's point-denominated costs.
+
+    1.0 everywhere for fixed-point instruments; ``price / ref_price`` for the
+    ones whose costs are stated in basis points.  Uses the bar's own open, which
+    is known when the cost is incurred.
+    """
+    n = len(bars)
+    if inst.ref_price <= 0.0 or n == 0:
+        return np.ones(n, dtype="float64")
+    px = bars["open"].to_numpy(dtype="float64")
+    return np.where(np.isfinite(px) & (px > 0), px / inst.ref_price, 1.0)
+
+
 def spread_series(exec_index: pd.DatetimeIndex, bars: pd.DataFrame, inst: Instrument) -> np.ndarray:
     """Per-bar spread in points: broker's own column when present, else modelled."""
     if "spread" in bars.columns and bars["spread"].notna().any():
@@ -344,4 +375,4 @@ def spread_series(exec_index: pd.DatetimeIndex, bars: pd.DataFrame, inst: Instru
     base[asia] *= inst.spread_asia_mult
     base[h == 21] *= inst.spread_rollover_mult
     base += inst.spread_vol_coeff * vol_z * inst.spread_base_points
-    return np.minimum(base, inst.spread_max_points)
+    return np.minimum(base, inst.spread_max_points) * cost_scale_series(bars, inst)

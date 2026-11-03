@@ -58,6 +58,12 @@ def main() -> int:
     ap.add_argument("--holdout-fit-days", type=int, default=730,
                     help="fit ONCE on this many days, then trade everything after it "
                          "with those parameters frozen; 0 to skip")
+    ap.add_argument("--holdout-start", default=None,
+                    help="instead of --holdout-fit-days: fit once on [start, this date) and "
+                         "trade [this date, end) frozen")
+    ap.add_argument("--tf", type=int, default=None,
+                    help="pin the signal timeframe in minutes (metals spaces); "
+                         "chosen beforehand by scripts/explore_metals.py")
     ap.add_argument("--label", default="", help="suffix for report/config filenames")
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
@@ -67,11 +73,11 @@ def main() -> int:
     print(ds.banner(), flush=True)
 
     prep = bt.prepare(ds.bars, symbol)
-    base_s = StrategyParams(mode=mode)
+    base_s = StrategyParams(mode=mode, **({"tf_minutes": args.tf} if args.tf else {}))
     # a small positive breakeven offset means a partial-then-breakeven exit
     # books as a win rather than a scratch, which is what lifts the win rate
     base_e = bt.exec_config_from(prep.inst, risk_pct=args.risk, be_offset_r=0.10)
-    space = spaces.space_for(mode, symbol)
+    space = spaces.space_for(mode, symbol, args.tf)
     # The search is held to a higher trade floor than the final target check:
     # a configuration fitted on 150 trades is fitted on noise, whatever its
     # in-sample expectancy looks like.
@@ -107,19 +113,22 @@ def main() -> int:
     # still makes 15 selection decisions on the data.  This fits ONE parameter
     # set on the first window and then leaves it alone for years.
     hold_m, hold_tr = None, pd.DataFrame()
-    if args.holdout_fit_days:
-        fit_end = prep.exec_bars.index[0].normalize() + pd.Timedelta(days=args.holdout_fit_days)
+    if args.holdout_fit_days or args.holdout_start:
+        fit_end = (pd.Timestamp(args.holdout_start, tz="UTC") if args.holdout_start else
+                   prep.exec_bars.index[0].normalize() + pd.Timedelta(days=args.holdout_fit_days))
+        fit_days = (fit_end - prep.exec_bars.index[0].normalize()).days
         fit_prep = prep.slice(None, str(fit_end.date()))
         hold_prep = prep.slice(str(fit_end.date()), None)
         if len(fit_prep.exec_bars) > 5000 and len(hold_prep.exec_bars) > 5000:
-            ht = replace(targets, trade_scale=args.holdout_fit_days / 365.0)
+            ht = replace(targets, trade_scale=fit_days / 365.0)
             hc = O.parallel_search(fit_prep, space, base_s, base_e, ht,
                                    n_iter=args.iters, seed=args.seed + 99,
                                    workers=args.workers)
             hv = [c for c in hc if np.isfinite(c.score)]
             if hv:
                 hr = O.robust_select(fit_prep, hv, base_s, base_e, ht, top_k=25)
-                s_h, e_h = O.build((hr or hv)[0].values, base_s, base_e)
+                hold_values = (hr or hv)[0].values
+                s_h, e_h = O.build(hold_values, base_s, base_e)
                 hold_m, hold_tr, _ = bt.run(hold_prep, s_h, e_h)
                 print(f"\nfit-once holdout: fitted on "
                       f"{fit_prep.exec_bars.index[0]:%Y-%m-%d}..{fit_end:%Y-%m-%d}, "
