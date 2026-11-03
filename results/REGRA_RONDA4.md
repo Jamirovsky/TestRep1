@@ -1,4 +1,4 @@
-# Regra pré-declarada da ronda 4 (escrita às 21:15 UTC de 03/11/2026, ANTES de correr o loop)
+# Regra pré-declarada da ronda 4 (escrita às ~21:07 UTC de 03/11/2026, ANTES de correr o loop)
 
 Objetivo: melhorar a A2, sobretudo nos pontos fracos (atraso de execução, spread, TP minúsculo).
 
