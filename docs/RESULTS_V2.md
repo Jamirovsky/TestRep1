@@ -27,7 +27,8 @@ corretora. Esse é o passo seguinte que recomendo.
 | [`ScalperXAUJPY.mq5`](../mql5/ScalperXAUJPY.mq5) | XAUJPY | M30 | momentum | holdout congelado jan/2025–out/2026 | 68 | **61,8%** | **1,37** | +0,099R | 1,01 | PF ✔ WR ✔ trades ✘ (68 < 100) |
 | | | | | walk-forward 2021–2026, 17 reajustes | 342 | 52,3% | 0,86 | −0,044R | −1,12 | ✘ |
 | [`ScalperStocks7.mq5`](../mql5/ScalperStocks7.mq5) | 7 ações | M5 | momentum | walk-forward mai–set/2026, 5 reajustes mensais | 122 | **54,9%** | **1,39** | +0,140R | 1,50 | **✔ ✔ ✔** (precisa ≥ 40) |
-| [`ScalperIndices5.mq5`](../mql5/ScalperIndices5.mq5) | 5 índices | INDICES_TF | INDICES_MODE | INDICES_TEST | INDICES_N | INDICES_WR | INDICES_PF | INDICES_EXP | INDICES_T | INDICES_OK |
+| [`ScalperIndices5.mq5`](../mql5/ScalperIndices5.mq5) | 5 índices | M15 | breakout | walk-forward jan/2023–out/2026, 12 reajustes | 1079 | 46,3% | 1,10 | +0,047R | 1,34 | trades ✔ PF ✘ WR ✘ |
+| | só US500 + US100 + US30 (subconjunto escolhido *a posteriori*) | | | o mesmo walk-forward | 704 | 49,6% | **1,25** | +0,111R | **2,59** | PF ✔ trades ✔ WR ≈ (49,6%) |
 
 **Leitura honesta:**
 - **Nenhum resultado é estatisticamente significativo.** Todos têm t < 2, o que
@@ -39,6 +40,10 @@ corretora. Esse é o passo seguinte que recomendo.
 
 O dado que mais pesa contra o XAUJPY é o walk-forward negativo de 2021–2026. Do
 lado positivo, os parâmetros congelados ganham em 7 de 8 anos.
+
+O resultado mais sólido do relatório é o breakout M15 nos índices americanos:
+quase 4 anos fora da amostra, 704 trades, t = 2,59. Só que essa restrição aos
+índices dos EUA foi decidida depois de ver os resultados por índice.
 
 ---
 
@@ -155,7 +160,50 @@ e 60 min de pausa.
 
 ## 5. EA dos 5 índices — `ScalperIndices5.mq5`
 
-INDICES_SECTION
+**Desenho:** igual ao EA das ações. Um gráfico negoceia os 5 índices com um
+único conjunto de parâmetros. A sessão é relativa à bolsa de cada índice: a
+mesma regra `cash_mid` corresponde a 15–19 UTC nos índices americanos e a
+9–14 UTC no GER40 e UK100. No máximo 1 posição por índice e 3 no total.
+
+**Loop**
+
+| volta | o quê | resultado |
+|---|---|---|
+| 1 | M5/M15/M30 × 4 famílias, base e seletivo; ajuste 2021–2024 | 15 células ajustadas. Parei antes do seletivo M15/M30 por tempo de cálculo (~3 min por célula). Melhor no ajuste: **M15 breakout** (1 037 trades, PF 1,23, 4/5 índices positivos) |
+| 2 | validação em 2025, por ordem de robustez | nenhuma passou. M15 breakout ficou mais perto: 259 tr, PF **1,17**, WR 51,4% |
+| 3 | M15 breakout reajustado em 2021–2025, holdout intocado jan–out/2026 | ajuste+validação 1 342 tr, PF 1,21, t 3,10. **Holdout 186 tr, WR 49,5%, PF 1,06**, +0,027R. Falha |
+| 4 | walk-forward com reajuste a cada 120 dias (treino 2 anos), 4 melhores células | **M15 breakout: 1 079 tr, PF 1,10, +0,047R, t 1,34**. M15 momentum PF 1,05; M5 breakout 0,97; M30 momentum 0,93 |
+
+**Por índice** (walk-forward 2023–2026, M15 breakout):
+
+| índice | US500 | US100 | US30 | GER40 | UK100 |
+|---|---|---|---|---|---|
+| trades | 230 | 243 | 231 | 190 | 185 |
+| WR | 51,3% | 49,0% | 48,5% | 39,0% | 41,6% |
+| PF | **1,36** | **1,24** | **1,15** | 0,88 | 0,85 |
+| R total | +35,4 | +26,2 | +16,9 | −13,0 | −14,7 |
+
+Por ano, o cabaz de 5 dá −13,2R em 2023, +30,5R em 2024, +28,9R em 2025 e
++4,4R em jan–out 2026.
+
+![índices](../reports/indices5_wf_oos_r.png)
+
+**Parâmetros enviados** (o reajuste mais recente, com treino de ago/2024 a
+ago/2026): M15, sessão `cash_mid`. Entra no rompimento do máximo ou mínimo de
+12 barras (3 h), com EMA 12/48 a favor, ADX ≥ 12, ATR a expandir (≥ 1,15× a
+média) e Efficiency Ratio ≥ 0,45. Stop = max(1 ATR, 0,20% do preço), alvo 2R,
+máximo de 4 h, 2 trades/dia por índice, 20 min de pausa.
+
+Sensibilidade a custos (holdout de 2026, volta 3): PF 1,35 sem custos, 1,19 a
+0,5× e 1,06 a 1×. **Este EA depende muito do spread.** Uma conta com custos
+abaixo dos modelados (0,6–1,25 bp) faz diferença real.
+
+**Recomendação:** o breakout funcionou nos índices americanos e não nos
+europeus. Junto `mql5/sets/ScalperIndices5_US3.set` (só US500, US100 e US30):
+704 trades, WR 49,6%, PF 1,25, t 2,59. Atenção que esta escolha foi feita
+*depois* de ver os resultados por índice. Para os europeus faltou tempo para uma
+otimização própria (sessão e parâmetros dedicados), que é o próximo passo
+natural.
 
 ## 6. Como usar no MT5
 
@@ -188,6 +236,9 @@ python3 scripts/run_optimize.py --symbol XAUJPY --mode momentum --tf 30 --varian
 python3 scripts/optimize_basket.py --basket stocks --target-trades-per-year 100
 python3 scripts/basket_walkforward.py --report reports/basket_stocks_loop2.json --train-days 90 --test-days 30 --top 10
 python3 scripts/make_basket_ea.py reports/basket_stocks_wf.json --name ScalperStocks7 --max-open 4
+python3 scripts/optimize_basket.py --basket indices --tfs 5 15 30 --iters 150 --target-trades-per-year 100
+python3 scripts/basket_walkforward.py --report reports/basket_indices_loop.json --train-days 730 --test-days 120 --top 4 --warmup-days 20
+python3 scripts/make_basket_ea.py reports/basket_indices_wf.json --name ScalperIndices5 --max-open 3
 ```
 
 ## 8. Ficheiros
@@ -198,5 +249,5 @@ python3 scripts/make_basket_ea.py reports/basket_stocks_wf.json --name ScalperSt
 | `reports/XAUJPY_momentum_{gated,wf,m15gated}_walkforward.md` | voltas 3A/3B/3C: folds, holdout, custos |
 | `config/XAUJPY_final.json` | parâmetros enviados, tabela por ano |
 | `reports/basket_stocks_loop1.json`, `_loop2.json`, `basket_stocks_wf.json` | voltas 1–3 das ações |
-| `reports/basket_indices*.json` | loop dos índices |
+| `reports/basket_indices_stage1.json`, `_loop.json`, `basket_indices_wf.json` | voltas 1–4 dos índices |
 | `mql5/sets/*.set` | intervalos de otimização para o MT5 |

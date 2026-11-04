@@ -1,6 +1,11 @@
 # Scalping research framework: XAUUSD, EURUSD, and now XAGUSD / XPTUSD / XPDUSD
 
-> **New: minor-metals scalpers.** `mql5/ScalperXAG.mq5`, `ScalperXPT.mq5` and
+> **New (v2): XAUJPY, 7 US stocks, 5 cash indices.** `mql5/ScalperXAUJPY.mq5`
+> (adapted from the XAUUSD scalper), and two multi-symbol EAs,
+> `mql5/ScalperStocks7.mq5` and `mql5/ScalperIndices5.mq5`, loop-optimised on
+> real data. Report (Portuguese): **[`docs/RESULTS_V2.md`](docs/RESULTS_V2.md)**.
+>
+> **Minor-metals scalpers.** `mql5/ScalperXAG.mq5`, `ScalperXPT.mq5` and
 > `ScalperXPD.mq5` were built from the XAUUSD scalper below and optimised on
 > **real** OANDA M1 data (2019-01 to 2026-10). The signal timeframe was chosen
 > from M1 to M30 per symbol: **M5 for all three** (M1 is closed by costs; M15/M30 validated worse). Full evidence, and

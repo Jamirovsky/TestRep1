@@ -16,8 +16,9 @@
 //|  Defaults = loop-optimised parameters, see docs/RESULTS_V2.md:
 //|   indices: US500, US100, US30, GER40, UK100
 //|   BREAKOUT on M15, session 'cash_mid' (US 15-19 / EU 9-14 UTC)
-//|   fit+validation 2021-01-04..2026-01-01: 1342 trades WR 49.9% PF 1.21 +0.093R
-//|   HOLDOUT 2026-01-01..2026-10-31 (untouched): 186 trades WR 49.5% PF 1.06 +0.027R t=0.36
+//|   walk-forward 2023-01-04..2026-10-31 (12 monthly refits, stitched OOS):
+//|     1079 trades WR 46.3% PF 1.10 +0.047R t=1.34
+//|   defaults = parameters refitted on the most recent training window
 //|
 //|  Strategy Tester: "Every tick based on real ticks", and select all
 //|  basket symbols in Market Watch first. Broker symbol names differ:
@@ -76,7 +77,7 @@ input group           "=== Entry (breakout / momentum / pullback) ==="
 input int             InpDonPeriod       = 12;
 input int             InpEmaFast         = 12;
 input int             InpEmaSlow         = 48;
-input double          InpAdxMin          = 20.0;
+input double          InpAdxMin          = 12.0;
 input double          InpExpansionMult   = 1.15;
 input int             InpAtrAvgPeriod    = 48;
 input int             InpMomPeriod       = 24;
@@ -90,8 +91,8 @@ input int             InpPbLookback      = 6;
 
 input group           "=== Risk and exits ==="
 input double          InpRiskPct         = 0.005;
-input double          InpSlAtr           = 2.0;
-input double          InpMinSlBp         = 12.0;
+input double          InpSlAtr           = 1.0;
+input double          InpMinSlBp         = 20.0;
 input double          InpTpR             = 2.0;
 input double          InpBeTriggerR      = 0.0;
 input double          InpBeOffsetR       = 0.1;
@@ -100,8 +101,8 @@ input double          InpPartialFrac     = 0.5;
 input double          InpTrailStartR     = 0.0;
 input double          InpTrailDistR      = 1.0;
 input int             InpMaxHoldMinutes  = 240;
-input int             InpCooldownMinutes = 5;
-input int             InpMaxTradesPerDay = 4;   // per symbol
+input int             InpCooldownMinutes = 20;
+input int             InpMaxTradesPerDay = 2;   // per symbol
 input int             InpForceExitHour   = 19;   // UTC
 input int             InpForceExitMin    = 55;
 
