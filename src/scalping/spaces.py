@@ -110,10 +110,11 @@ FIXED = {
 # The timeframe is NOT searched inside a run -- each M1/M5/M15/M30 is explored
 # separately (scripts/explore_metals.py) and the winner is fixed.
 # ---------------------------------------------------------------------------
-METALS = ("XAGUSD", "XPTUSD", "XPDUSD", "XAUUSD")
+METALS = ("XAGUSD", "XPTUSD", "XPDUSD", "XAUUSD", "XAUJPY")
 
 MIN_SL_BP: Dict[str, List[float]] = {
     "XAUUSD": [15, 25, 40, 60],
+    "XAUJPY": [20, 30, 45, 70],
     "XAGUSD": [30, 50, 80, 120],
     "XPTUSD": [60, 100, 150, 220],
     "XPDUSD": [100, 160, 250, 350],
@@ -216,3 +217,39 @@ def size(space: Dict[str, Sequence]) -> int:
 
 
 ALL_MODES = [MODE_BREAKOUT, MODE_MOMENTUM, MODE_PULLBACK, MODE_FADE, MODE_BANDS]
+
+
+# ---------------------------------------------------------------------------
+# Baskets (7 US stocks, 5 cash indices): ONE shared parameter set per basket.
+# Sessions are market-relative (strategy.MARKET_SESSIONS) so US and European
+# indices each trade their own cash session with the same parameter.
+# ---------------------------------------------------------------------------
+BASKET_MIN_SL_BP: Dict[str, List[float]] = {
+    "stocks": [10, 20, 35, 50],
+    "indices": [8, 12, 20, 30],
+}
+
+_SHARED_BASKET = {
+    "s.session": ["cash_open", "cash_mid", "cash_pm", "cash"],
+    "s.sl_atr": [1.0, 1.5, 2.0, 3.0],
+    "s.tp_r": [0.6, 1.0, 1.5, 2.0],
+    "e.max_bars": [30, 60, 120, 240],
+    "e.be_trigger_r": [0.0, 0.7],
+    "e.trail_start_r": [0.0, 1.0],
+    "e.partial_r": [0.0, 0.6],
+    "e.cooldown_bars": [5, 20, 60],
+    "e.max_trades_per_day": [2, 4],
+}
+
+
+def basket_space(mode: str, basket: str, tf_minutes: int, variant: str = "base") -> Dict[str, Sequence]:
+    sp = dict(_SHARED_BASKET)
+    if variant == "selective":
+        sp.update(_SELECTIVE_OVERRIDES)
+        sp["e.max_bars"] = [60, 120, 240]
+        sp.update(_SELECTIVE_MODE[mode])
+    else:
+        sp.update(_MODE_METALS[mode])
+    sp["s.min_sl_bp"] = BASKET_MIN_SL_BP[basket]
+    sp["s.tf_minutes"] = [tf_minutes]
+    return sp

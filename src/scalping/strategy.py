@@ -56,6 +56,24 @@ SESSION_PRESETS: Dict[str, Tuple[int, int]] = {
     "extended": (6, 20),
 }
 
+# Market-relative sessions, resolved through ``Instrument.market`` so ONE
+# parameter set can trade a basket that spans exchanges (US + European
+# indices).  Hours are UTC; US cash = 13:30-20:00 (summer) / 14:30-21:00
+# (winter), EU cash (Xetra/LSE) = 07:00-15:30 (summer) / 08:00-16:30 (winter).
+MARKET_SESSIONS: Dict[str, Dict[str, Tuple[int, int]]] = {
+    "cash_open": {"US": (13, 16), "EU": (7, 10), "FX": (7, 12)},
+    "cash_mid": {"US": (15, 19), "EU": (9, 14), "FX": (12, 16)},
+    "cash_pm": {"US": (16, 20), "EU": (12, 16), "FX": (12, 18)},
+    "cash": {"US": (13, 20), "EU": (7, 16), "FX": (7, 18)},
+}
+
+
+def session_hours(session: str, market: str = "FX") -> Tuple[int, int]:
+    """UTC [start, end) hours of a session preset for a given home market."""
+    if session in MARKET_SESSIONS:
+        return MARKET_SESSIONS[session].get(market, MARKET_SESSIONS[session]["FX"])
+    return SESSION_PRESETS[session]
+
 
 @dataclass
 class Signals:
@@ -149,8 +167,8 @@ def _session_id(index: pd.DatetimeIndex, anchor_hour: int) -> np.ndarray:
     return ((epoch_seconds(index) - anchor_hour * 3600) // 86_400).astype(np.int64)
 
 
-def _hours_mask(index: pd.DatetimeIndex, session: str) -> np.ndarray:
-    lo, hi = SESSION_PRESETS[session]
+def _hours_mask(index: pd.DatetimeIndex, session: str, market: str = "FX") -> np.ndarray:
+    lo, hi = session_hours(session, market)
     h = index.hour.to_numpy()
     return (h >= lo) & (h < hi) & (h != 21)
 
@@ -167,7 +185,7 @@ def compute_signals(sig_bars: pd.DataFrame, p: StrategyParams, inst: Instrument)
     a = ind.atr(h, l, c, p.atr_period)
     a_rank = ind.rolling_rank(a, p.atr_rank_lookback)
     ok_vol = (a_rank >= p.atr_rank_min) & (a_rank <= p.atr_rank_max)
-    ok_hours = _hours_mask(sig_bars.index, p.session)
+    ok_hours = _hours_mask(sig_bars.index, p.session, getattr(inst, "market", "FX"))
     valid = np.isfinite(a) & (a > 0) & ok_vol & ok_hours
     if p.er_min > 0.0 or p.er_max < 1.0:
         er = ind.efficiency_ratio(c, p.er_period)

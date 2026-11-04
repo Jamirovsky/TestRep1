@@ -31,8 +31,10 @@ from scalping.strategy import StrategyParams
 
 def main() -> int:
     for spec in sys.argv[1:]:
-        sym, mode, name = spec.split(":")
-        wf = json.loads((ROOT / "config" / f"{sym}_{mode}_wf.json").read_text())
+        parts = spec.split(":")
+        sym, mode, name = parts[:3]
+        label = parts[3] if len(parts) > 3 else "wf"
+        wf = json.loads((ROOT / "config" / f"{sym}_{mode}_{label}.json").read_text())
         v = wf["validation"]
         hp = v["holdout_params"]
         s = StrategyParams(**{f.name: hp["strategy"][f.name] for f in fields(StrategyParams)})

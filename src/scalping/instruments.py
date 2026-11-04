@@ -54,6 +54,9 @@ class Instrument:
     # USD 60 and palladium from USD 3000 to USD 900 inside the test window, and
     # a broker's spread follows the price, not a fixed number of points.
     ref_price: float = 0.0
+    # Home exchange for market-relative sessions ("cash_open", "cash", ...):
+    # "US", "EU" or "FX" (= no cash session; the presets fall back to London/NY).
+    market: str = "FX"
 
     def spread_points_for_hour(self, hour_utc: int, vol_z: float = 0.0) -> float:
         """Session- and volatility-aware spread in points."""
@@ -238,9 +241,95 @@ XPDUSD = Instrument(
     ref_price=1000.0,
 )
 
+# ---------------------------------------------------------------------------
+# XAUJPY -- gold quoted in yen.  The same metal as XAUUSD, so the same scalper,
+# but a cross: brokers quote it wider than XAUUSD (about 2 bp against 0.9 bp).
+# Point = 1 JPY.  ``contract_size`` is expressed in USD-equivalent ounces
+# (100 oz / ~150 JPY per USD) so that position sizing in a USD account is
+# approximately right; every performance number is in R and does not depend
+# on it.
+# ---------------------------------------------------------------------------
+XAUJPY = Instrument(
+    symbol="XAUJPY",
+    point=1.0,
+    pip=1.0,
+    contract_size=100.0 / 150.0,
+    min_lot=0.01,
+    lot_step=0.01,
+    max_lot=20.0,
+    quote_ccy="JPY",
+    digits=0,
+    spread_base_points=120.0,      # JPY 120 at JPY 600,000 (2.0 bp)
+    spread_asia_mult=1.6,
+    spread_rollover_mult=5.0,
+    spread_vol_coeff=0.6,
+    spread_max_points=600.0,
+    commission_per_lot_rt=0.0,
+    slippage_points_entry=18.0,    # 0.3 bp
+    slippage_points_stop=42.0,     # 0.7 bp
+    swap_long_points=-300.0,
+    swap_short_points=0.0,
+    display_unit="pips",
+    ref_price=600_000.0,
+)
+
+
+# ---------------------------------------------------------------------------
+# Cash indices (CFDs).  Costs in bp of the index level during the cash
+# session; outside it the Asian multiplier applies.  ``market`` drives the
+# market-relative session presets (``cash_open`` = first 3 h of the home
+# exchange, etc.), so one parameter set can trade US and European indices.
+# ---------------------------------------------------------------------------
+def _index(symbol, spread_pts, ref, market, slip_e=0.2, slip_s=0.5):
+    bp = ref * 1e-4
+    return Instrument(
+        symbol=symbol, point=0.1, pip=1.0, contract_size=1.0,
+        min_lot=0.1, lot_step=0.1, max_lot=500.0, quote_ccy="USD", digits=1,
+        spread_base_points=spread_pts / 0.1,
+        spread_asia_mult=2.5, spread_rollover_mult=5.0, spread_vol_coeff=0.6,
+        spread_max_points=spread_pts / 0.1 * 6,
+        commission_per_lot_rt=0.0,
+        slippage_points_entry=slip_e * bp / 0.1, slippage_points_stop=slip_s * bp / 0.1,
+        swap_long_points=0.0, swap_short_points=0.0, display_unit="pips",
+        ref_price=ref, market=market,
+    )
+
+
+US500 = _index("US500", 0.5, 5000.0, "US")      # 1.0 bp
+US100 = _index("US100", 1.5, 18000.0, "US")     # 0.8 bp
+US30 = _index("US30", 2.5, 40000.0, "US")       # 0.6 bp
+GER40 = _index("GER40", 1.5, 18000.0, "EU")     # 0.8 bp
+UK100 = _index("UK100", 1.0, 8000.0, "EU")      # 1.25 bp
+
+
+# ---------------------------------------------------------------------------
+# US single-stock CFDs: 1 lot = 1 share.  Spread 2 bp of price plus a
+# commission of USD 0.02 per share per side (0.04 round turn, so 0.8-2.2 bp
+# depending on the share price).  Only regular-session bars exist.
+# ---------------------------------------------------------------------------
+def _stock(symbol):
+    return Instrument(
+        symbol=symbol, point=0.01, pip=0.01, contract_size=1.0,
+        min_lot=1.0, lot_step=1.0, max_lot=100_000.0, quote_ccy="USD", digits=2,
+        spread_base_points=2.0,            # USD 0.02 at USD 100 (2 bp)
+        spread_asia_mult=1.0, spread_rollover_mult=1.0, spread_vol_coeff=0.6,
+        spread_max_points=10.0,
+        commission_per_lot_rt=0.04,
+        slippage_points_entry=0.5, slippage_points_stop=1.0,
+        swap_long_points=0.0, swap_short_points=0.0, display_unit="usd",
+        ref_price=100.0, market="US",
+    )
+
+
+STOCKS7 = ["AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA"]
+INDICES5 = ["US500", "US100", "US30", "GER40", "UK100"]
+
 REGISTRY: Dict[str, Instrument] = {
     "EURUSD": EURUSD, "XAUUSD": XAUUSD,
     "XAGUSD": XAGUSD, "XPTUSD": XPTUSD, "XPDUSD": XPDUSD,
+    "XAUJPY": XAUJPY,
+    "US500": US500, "US100": US100, "US30": US30, "GER40": GER40, "UK100": UK100,
+    **{s: _stock(s) for s in STOCKS7},
 }
 
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download real M1 bars for the metals from public OANDA archives on GitHub.
+"""Download real OANDA M1 bars (metals, XAUJPY, cash indices) from public GitHub archives.
 
 Market-data vendors are often unreachable from CI / sandboxed machines, but
 ``raw.githubusercontent.com`` usually is.  The ``bunqii/OANDA_<SYM>_<Name>``
@@ -29,7 +29,15 @@ REPOS = {
     "XPTUSD": "OANDA_XPTUSD_Platinum",
     "XPDUSD": "OANDA_XPDUSD_Palladium",
     "XAUUSD": "OANDA_XAUUSD_Gold",
+    "XAUJPY": "OANDA_XAUJPY_GoldJPY",
+    # cash indices (OANDA CFD names -> the usual MT5 names)
+    "US100": "OANDA_NAS100USD_US-Nas-100",
+    "US500": "OANDA_SPX500USD_US-SPX-500",
+    "US30": "OANDA_US30USD_US-Wall-St-30",
+    "GER40": "OANDA_DE30EUR_Germany-30",
+    "UK100": "OANDA_UK100GBP_UK-100",
 }
+DEFAULT = ["XAGUSD", "XPTUSD", "XPDUSD", "XAUUSD"]
 BASE = "https://raw.githubusercontent.com/bunqii/{repo}/main/1/{repo}_1_{y}-{m:02d}-01_to_{y}-{m:02d}-{d:02d}.parquet"
 
 
@@ -47,7 +55,8 @@ def main() -> int:
     today = date.today()
     last = (today.year, today.month - 1) if today.month > 1 else (today.year - 1, 12)
     ap = argparse.ArgumentParser()
-    ap.add_argument("--symbols", nargs="+", default=list(REPOS))
+    ap.add_argument("--symbols", nargs="+", default=DEFAULT,
+                    help=f"any of {sorted(REPOS)}")
     ap.add_argument("--start", default="2019-01")
     ap.add_argument("--end", default=f"{last[0]}-{last[1]:02d}", help="last COMPLETE month")
     args = ap.parse_args()

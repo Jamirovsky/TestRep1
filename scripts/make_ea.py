@@ -25,7 +25,8 @@ MODES = {"breakout": "MODE_BREAKOUT", "momentum": "MODE_MOMENTUM", "pullback": "
 MODE_IDX = {"breakout": 0, "momentum": 1, "pullback": 2, "fade": 3, "bands": 4}
 TFS = {1: "PERIOD_M1", 2: "PERIOD_M2", 3: "PERIOD_M3", 5: "PERIOD_M5", 10: "PERIOD_M10",
        15: "PERIOD_M15", 20: "PERIOD_M20", 30: "PERIOD_M30"}
-MAGIC = {"XAGUSD": 20261103, "XPTUSD": 20261104, "XPDUSD": 20261105, "XAUUSD": 20261106}
+MAGIC = {"XAGUSD": 20261103, "XPTUSD": 20261104, "XPDUSD": 20261105, "XAUUSD": 20261106,
+         "XAUJPY": 20261107}
 
 
 def fmt(v):
