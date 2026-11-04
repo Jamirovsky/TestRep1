@@ -1,27 +1,25 @@
 //+------------------------------------------------------------------+
-//|  {{EA_NAME}}.mq5                                                 |
-//|  Intraday scalper for {{SYMBOL}} - generated from                |
-//|  mql5/templates/ScalperMetal.mq5.tmpl by scripts/make_ea.py.     |
-//|                                                                  |
-//|  Same engine family as ScalperXG.mq5 (the XAUUSD scalper), plus   |
-//|  the two things the minor metals need:                            |
-//|   * MODE_BANDS - fade back to a ROLLING mean (Bollinger z-score). |
-//|     On real XAG/XPT/XPD M1 data 2019-2026 the variance ratio is   |
-//|     well below 1 at 1-4 h: intraday moves partially reverse.      |
-//|   * stop floor and spread cap in BASIS POINTS of price, because   |
-//|     the costs of these symbols are a share of price, not a fixed  |
-//|     number of points.                                             |
-//|                                                                  |
-//|  Indicators are computed the same way as the Python backtester    |
-//|  (Wilder ATR / RSI / ADX, population std, closed bars only), so a  |
-//|  Strategy Tester run should agree with it to within fill model.   |
-//|                                                                  |
-//|  Defaults = optimised parameters, see docs/RESULTS_METALS.md:     |
+//|  {{EA_NAME}}.mq5
+//|  Intraday scalper for {{SYMBOL}}. Generated from
+//|  mql5/templates/ScalperMetal.mq5.tmpl by scripts/make_ea.py.
+//|
+//|  Same engine family as ScalperXG.mq5 (the XAUUSD scalper), plus
+//|  what the minor metals need:
+//|   * MODE_BANDS - fade back to a ROLLING mean (Bollinger z-score),
+//|     because the metals' intraday variance ratio is below 1.
+//|   * stop floor and spread cap in BASIS POINTS of price, because
+//|     these symbols' costs are a share of price, not fixed points.
+//|
+//|  Indicators match the Python backtester (Wilder ATR / RSI / ADX,
+//|  population std, closed bars only), so a Strategy Tester run should
+//|  agree with it to within the fill model.
+//|
+//|  Defaults = validated parameters, see docs/RESULTS_METALS.md:
 {{HEADER_NOTES}}
-//|                                                                  |
-//|  Test on "Every tick based on real ticks" with YOUR broker's      |
-//|  spreads before risking money. Set InpGmtOffsetHours if the       |
-//|  tester's TimeGMT() is not reliable on your terminal.             |
+//|
+//|  Test on "Every tick based on real ticks" with YOUR broker's
+//|  spreads before risking money. In the Strategy Tester set
+//|  InpGmtOffsetHours to your broker's server offset (e.g. 2 or 3).
 //+------------------------------------------------------------------+
 #property copyright "{{EA_NAME}}"
 #property version   "1.00"
@@ -554,7 +552,10 @@ void ManageOpenPosition()
 void TryEntry()
   {
    datetime utc = ServerToUtc(TimeCurrent());
-   if(!InSession(utc) || PastForceExit(utc))
+   // the session is judged on the OPEN time of the signal bar that just
+   // closed, exactly as the backtester labels it
+   datetime sig_open = iTime(_Symbol, InpSignalTF, 1);
+   if(sig_open == 0 || !InSession(ServerToUtc(sig_open)) || PastForceExit(utc))
       return;
    if(g_day_blocked || g_trades_today >= InpMaxTradesPerDay)
       return;

@@ -53,7 +53,7 @@ def main() -> int:
     v = cfg.get("validation", {})
 
     notes = cfg.get("notes", [])
-    header = "\n".join(f"//|   {n:<63s}|" for n in notes) or "//|   (see docs)" + " " * 50 + "|"
+    header = "\n".join(f"//|   {n}" for n in notes) or "//|   (see docs)"
 
     rep = {
         "EA_NAME": args.name, "SYMBOL": sym, "SYMBOL_ROOT": sym[:6],
@@ -114,9 +114,16 @@ def main() -> int:
         rng("InpRsiLo", rep["rsi_lo"], 4, max(10, float(s["rsi_lo"]) - 8), float(s["rsi_lo"]) + 8,
             s["mode"] in ("fade", "bands")),
         f"InpRsiHi={rep['rsi_hi']}",
-        f"InpAdxMax={rep['adx_max']}", f"InpErMin={rep['er_min']}", f"InpErMax={rep['er_max']}",
+        f"InpAdxMax={rep['adx_max']}",
+        rng("InpErMin", rep["er_min"], 0.1, max(0.0, round(float(s["er_min"]) - 0.2, 2)),
+            min(0.9, round(float(s["er_min"]) + 0.2, 2)), s["mode"] in ("momentum", "breakout")),
+        rng("InpErMax", rep["er_max"], 0.1, max(0.2, round(float(s["er_max"]) - 0.3, 2)),
+            min(1.0, round(float(s["er_max"]) + 0.2, 2)), s["mode"] in ("fade", "bands")),
         f"InpConfirmMode={rep['confirm_mode']}",
-        f"InpMomPeriod={rep['mom_period']}", f"InpMomMinAtr={rep['mom_min_atr']}",
+        rng("InpMomPeriod", rep["mom_period"], 6, max(6, int(s["mom_period"]) - 12),
+            int(s["mom_period"]) + 24, s["mode"] == "momentum"),
+        rng("InpMomMinAtr", rep["mom_min_atr"], 0.5, max(0.5, float(s["mom_min_atr"]) - 1.0),
+            float(s["mom_min_atr"]) + 1.0, s["mode"] == "momentum"),
         f"InpMomConfirm={rep['mom_confirm']}", f"InpDonPeriod={rep['don_period']}",
         f"InpAdxMin={rep['adx_min']}", f"InpExpansionMult={rep['expansion_mult']}",
         f"InpRiskPct={rep['risk_pct']}",

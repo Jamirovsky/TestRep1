@@ -147,7 +147,31 @@ _MODE_METALS[MODE_BANDS] = {
 }
 
 
-def space_for(mode: str, symbol: str, tf_minutes: int | None = None) -> Dict[str, Sequence]:
+# Round 2: "selective".  Round 1 showed that on these symbols the toll, not
+# the signal, decides the outcome: with costs zeroed the round-1 winners sit
+# at 0 to +0.04R, with costs they lose 0.08-0.18R.  The only lever left is to
+# trade LESS and demand bigger moves per trade -- higher entry thresholds,
+# wider stops (friction a smaller share of R) and wider targets.
+_SELECTIVE_OVERRIDES = {
+    "s.sl_atr": [2.0, 3.0, 4.0, 6.0],
+    "s.tp_r": [0.6, 1.0, 1.5, 2.5],
+    "e.max_bars": [120, 240, 480],
+    "e.cooldown_bars": [60, 240],
+    "e.max_trades_per_day": [1, 2, 4],
+}
+_SELECTIVE_MODE = {
+    MODE_MOMENTUM: {"s.er_min": [0.30, 0.45, 0.60], "s.mom_period": [12, 24, 48],
+                    "s.mom_min_atr": [1.5, 2.5, 3.5], "s.mom_confirm": [0, 1]},
+    MODE_BREAKOUT: {"s.er_min": [0.30, 0.45, 0.60], "s.don_period": [24, 48, 96],
+                    "s.adx_min": [20, 30], "s.expansion_mult": [1.15, 1.4]},
+    MODE_FADE: {"s.er_max": [0.30, 0.50, 1.0], "s.band_k": [2.0, 2.5, 3.0, 3.5],
+                "s.rsi_lo": [15, 22, 30], "s.adx_max": [25, 100], "s.confirm_mode": [0, 2, 3]},
+}
+_SELECTIVE_MODE[MODE_BANDS] = {**_SELECTIVE_MODE[MODE_FADE], "s.bb_period": [48, 96, 192]}
+
+
+def space_for(mode: str, symbol: str, tf_minutes: int | None = None,
+              variant: str = "base") -> Dict[str, Sequence]:
     """Full search space for one mode on one symbol.
 
     For the metals, ``tf_minutes`` pins the signal timeframe (the timeframe is
@@ -158,6 +182,14 @@ def space_for(mode: str, symbol: str, tf_minutes: int | None = None) -> Dict[str
         sp.update(_MODE_METALS[mode])
         sp["s.min_sl_bp"] = MIN_SL_BP[symbol.upper()]
         sp["s.tf_minutes"] = [tf_minutes or 15]
+        if variant == "selective":
+            sp.update(_SELECTIVE_OVERRIDES)
+            for k in [k for k in sp if k.startswith("s.") and k not in _SHARED_METALS
+                      and k not in ("s.min_sl_bp", "s.tf_minutes")]:
+                del sp[k]
+            sp.update(_SELECTIVE_MODE[mode])
+            b = MIN_SL_BP[symbol.upper()]
+            sp["s.min_sl_bp"] = [b[1], b[2], b[3], round(b[3] * 1.6)]
         return sp
     sp = dict(_SHARED)
     sp.update(_MODE[mode])

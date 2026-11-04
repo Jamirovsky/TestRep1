@@ -44,6 +44,7 @@ def main() -> int:
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--max-hold", type=float, default=240.0)
     ap.add_argument("--trades-per-year", type=int, default=60)
+    ap.add_argument("--variant", default="base", choices=["base", "selective"])
     ap.add_argument("--out", default="reports/metals_explore.json")
     args = ap.parse_args()
 
@@ -65,7 +66,7 @@ def main() -> int:
                 key = f"M{tf}_{mode}"
                 t0 = time.time()
                 base_s = StrategyParams(mode=mode, tf_minutes=tf)
-                space = spaces.space_for(mode, symbol, tf)
+                space = spaces.space_for(mode, symbol, tf, args.variant)
                 cands = O.parallel_search(fit, space, base_s, base_e, targets, n_iter=args.iters,
                                           seed=hash(key) % 10_000, workers=args.workers)
                 viable = [c for c in cands if np.isfinite(c.score)]

@@ -28,6 +28,23 @@ from scalping import dataset, metrics as M, optimize as O, report as R, spaces
 from scalping.strategy import StrategyParams
 
 
+def cost_curve(prep, s_p, e_p, mults=(0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5)):
+    """Expectancy / PF of fixed parameters as every friction component is scaled."""
+    inst, rows = prep.inst, []
+    for k in mults:
+        e2 = replace(e_p, commission_per_lot_rt=inst.commission_per_lot_rt * k,
+                     slippage_points_entry=inst.slippage_points_entry * k,
+                     slippage_points_stop=inst.slippage_points_stop * k)
+        p2 = bt.Prepared(symbol=prep.symbol, inst=inst, exec_bars=prep.exec_bars,
+                         spread_points=prep.spread_points * k, sig_cache=prep.sig_cache,
+                         dir_cache=prep.dir_cache, cost_scale=prep.cost_scale)
+        m, _, _ = bt.run(p2, s_p, e2)
+        rows.append({"cost_multiple": k, "trades": m.n_trades,
+                     "win_rate": round(m.win_rate, 4), "profit_factor": round(m.profit_factor, 3),
+                     "expectancy_r": round(m.expectancy_r, 4), "t_stat": round(m.t_stat, 2)})
+    return rows
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--symbol", required=True)
@@ -64,6 +81,7 @@ def main() -> int:
     ap.add_argument("--tf", type=int, default=None,
                     help="pin the signal timeframe in minutes (metals spaces); "
                          "chosen beforehand by scripts/explore_metals.py")
+    ap.add_argument("--variant", default="base", choices=["base", "selective"])
     ap.add_argument("--label", default="", help="suffix for report/config filenames")
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
@@ -77,7 +95,7 @@ def main() -> int:
     # a small positive breakeven offset means a partial-then-breakeven exit
     # books as a win rather than a scratch, which is what lifts the win rate
     base_e = bt.exec_config_from(prep.inst, risk_pct=args.risk, be_offset_r=0.10)
-    space = spaces.space_for(mode, symbol, args.tf)
+    space = spaces.space_for(mode, symbol, args.tf, args.variant)
     # The search is held to a higher trade floor than the final target check:
     # a configuration fitted on 150 trades is fitted on noise, whatever its
     # in-sample expectancy looks like.
@@ -113,6 +131,7 @@ def main() -> int:
     # still makes 15 selection decisions on the data.  This fits ONE parameter
     # set on the first window and then leaves it alone for years.
     hold_m, hold_tr = None, pd.DataFrame()
+    hold_values, hold_costs, hold_window, hold_params = None, None, None, None
     if args.holdout_fit_days or args.holdout_start:
         fit_end = (pd.Timestamp(args.holdout_start, tz="UTC") if args.holdout_start else
                    prep.exec_bars.index[0].normalize() + pd.Timedelta(days=args.holdout_fit_days))
@@ -130,6 +149,10 @@ def main() -> int:
                 hold_values = (hr or hv)[0].values
                 s_h, e_h = O.build(hold_values, base_s, base_e)
                 hold_m, hold_tr, _ = bt.run(hold_prep, s_h, e_h)
+                hold_costs = cost_curve(hold_prep, s_h, e_h)
+                hold_window = [str(fit_prep.exec_bars.index[0]), str(fit_end),
+                               str(hold_prep.exec_bars.index[-1])]
+                hold_params = {"strategy": asdict(s_h), "execution": asdict(e_h)}
                 print(f"\nfit-once holdout: fitted on "
                       f"{fit_prep.exec_bars.index[0]:%Y-%m-%d}..{fit_end:%Y-%m-%d}, "
                       f"traded {hold_prep.exec_bars.index[0]:%Y-%m-%d}.."
@@ -182,6 +205,9 @@ def main() -> int:
         "validation": {
             "oos": oos.to_dict(),
             "holdout": hold_m.to_dict() if hold_m is not None else None,
+            "holdout_window": hold_window,
+            "holdout_params": hold_params if hold_m is not None else None,
+            "holdout_cost_curve": hold_costs,
             "full_sample": full_m.to_dict(),
             "walk_forward_efficiency": wf.efficiency,
             "bootstrap_p_value": pval,
@@ -222,6 +248,11 @@ def main() -> int:
         f"- neighbourhood stability: {stab['n']} neighbours, "
         f"median score {stab['median']:.2f}, {stab['frac_positive']*100:.0f}% positive",
         "",
+        *(["## Cost sensitivity (fit-once holdout, parameters frozen)", "",
+            "| cost x | trades | win rate | PF | expectancy R | t |", "|---|---|---|---|---|---|",
+            *[f"| {r['cost_multiple']:.2f} | {r['trades']} | {r['win_rate']*100:.1f}% | "
+              f"{r['profit_factor']:.2f} | {r['expectancy_r']:+.3f} | {r['t_stat']:.2f} |"
+              for r in hold_costs], ""] if hold_costs else []),
         "## Per-fold",
         "",
         "```",
