@@ -15,12 +15,13 @@
 //|  agree with it to within the fill model.
 //|
 //|  Defaults = validated parameters, see docs/RESULTS_METALS.md:
-//|   XPDUSD BANDS on M30, session extended (UTC)
+//|   XPDUSD MOMENTUM on M5, session london (UTC)
 //|   fit 2019-2024, frozen test 2025-01..2026-10 (real OANDA M1):
-//|     170 trades  WR 28.8%  PF 0.27  -0.111R  t=-6.71
+//|     92 trades  WR 48.9%  PF 0.71  -0.075R  t=-1.36
 //|   walk-forward 2021-2026 (17 refits, stitched OOS):
-//|     239 trades  WR 28.9%  PF 0.39  -0.092R  t=-5.13
-//|   NOT statistically significant - see docs/RESULTS_METALS.md
+//|     371 trades  WR 38.8%  PF 0.55  -0.075R  t=-4.41
+//|   LOSES with statistical significance (t < -2) - do not trade these defaults
+//|   see docs/RESULTS_METALS.md
 //|
 //|  Test on "Every tick based on real ticks" with YOUR broker's
 //|  spreads before risking money. In the Strategy Tester set
@@ -28,7 +29,7 @@
 //+------------------------------------------------------------------+
 #property copyright "ScalperXPD"
 #property version   "1.00"
-#property description "Intraday scalper for XPDUSD (signal TF M30)"
+#property description "Intraday scalper for XPDUSD (signal TF M5)"
 
 #include <Trade/Trade.mqh>
 
@@ -42,10 +43,10 @@ enum ENUM_SCALP_MODE
   };
 
 input group           "=== Strategy ==="
-input ENUM_SCALP_MODE InpMode            = MODE_BANDS;
-input ENUM_TIMEFRAMES InpSignalTF        = PERIOD_M30;   // signal timeframe (chosen M1..M30)
-input int             InpSessionStartUTC = 6;         // inclusive, UTC hour
-input int             InpSessionEndUTC   = 20;         // exclusive, UTC hour
+input ENUM_SCALP_MODE InpMode            = MODE_MOMENTUM;
+input ENUM_TIMEFRAMES InpSignalTF        = PERIOD_M5;   // signal timeframe (chosen M1..M30)
+input int             InpSessionStartUTC = 7;         // inclusive, UTC hour
+input int             InpSessionEndUTC   = 12;         // exclusive, UTC hour
 input int             InpGmtOffsetHours  = -99;        // server-UTC offset; -99 = auto (TimeCurrent-TimeGMT)
 
 input group           "=== Regime filters ==="
@@ -54,18 +55,18 @@ input int             InpAtrRankLookback = 288;
 input double          InpAtrRankMin      = 0.1;
 input double          InpAtrRankMax      = 0.99;
 input int             InpErPeriod        = 24;
-input double          InpErMin           = 0.0;        // 0 disables
+input double          InpErMin           = 0.6;        // 0 disables
 input double          InpErMax           = 1.0;        // <1 demands chop (fades)
 
 input group           "=== Entry (fade / bands) ==="
-input int             InpBbPeriod        = 96;       // bands: rolling-mean window
-input double          InpBandK           = 2.5;      // entry at K sigmas from the mean
+input int             InpBbPeriod        = 48;       // bands: rolling-mean window
+input double          InpBandK           = 2.0;      // entry at K sigmas from the mean
 input int             InpRsiPeriod       = 7;
-input double          InpRsiLo           = 22.0;
-input double          InpRsiHi           = 78.0;
+input double          InpRsiLo           = 28.0;
+input double          InpRsiHi           = 72.0;
 input int             InpAdxPeriod       = 14;
-input double          InpAdxMax          = 100.0;      // 100 = off
-input int             InpConfirmMode     = 0;        // 0 none 1 rejection 2 turn 3 strong turn
+input double          InpAdxMax          = 30.0;      // 100 = off
+input int             InpConfirmMode     = 2;        // 0 none 1 rejection 2 turn 3 strong turn
 
 input group           "=== Entry (breakout / momentum / pullback) ==="
 input int             InpDonPeriod       = 24;
@@ -74,9 +75,9 @@ input int             InpEmaSlow         = 48;
 input double          InpAdxMin          = 20.0;
 input double          InpExpansionMult   = 1.15;
 input int             InpAtrAvgPeriod    = 48;
-input int             InpMomPeriod       = 24;
-input double          InpMomMinAtr       = 1.0;
-input bool            InpMomConfirm      = true;
+input int             InpMomPeriod       = 48;
+input double          InpMomMinAtr       = 3.5;
+input bool            InpMomConfirm      = false;
 input int             InpPbSlopePeriod   = 30;
 input double          InpPbRsiLo         = 40.0;
 input double          InpPbRsiHi         = 60.0;
@@ -85,18 +86,18 @@ input int             InpPbLookback      = 6;
 
 input group           "=== Risk and exits ==="
 input double          InpRiskPct         = 0.005;  // fraction of equity per trade
-input double          InpSlAtr           = 6.0;    // stop = InpSlAtr * ATR(signal TF)
-input double          InpMinSlBp         = 560.0;   // stop floor, basis points of price
-input double          InpTpR             = 1.0;    // target = InpTpR * stop
+input double          InpSlAtr           = 3.0;    // stop = InpSlAtr * ATR(signal TF)
+input double          InpMinSlBp         = 350.0;   // stop floor, basis points of price
+input double          InpTpR             = 0.6;    // target = InpTpR * stop
 input double          InpBeTriggerR      = 0.7;    // 0 disables breakeven
 input double          InpBeOffsetR       = 0.1;
 input double          InpPartialR        = 0.0;    // 0 disables partial close
 input double          InpPartialFrac     = 0.5;
-input double          InpTrailStartR     = 1.0;    // 0 disables trailing
+input double          InpTrailStartR     = 0.0;    // 0 disables trailing
 input double          InpTrailDistR      = 1.0;
-input int             InpMaxHoldMinutes  = 240;
-input int             InpCooldownMinutes = 60;
-input int             InpMaxTradesPerDay = 2;
+input int             InpMaxHoldMinutes  = 480;
+input int             InpCooldownMinutes = 240;
+input int             InpMaxTradesPerDay = 1;
 input double          InpDailyLossLimitR = 0.0;    // 0 = off (as in the backtest)
 input int             InpForceExitHour   = 20;     // UTC
 input int             InpForceExitMin    = 45;

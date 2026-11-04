@@ -1,4 +1,24 @@
-# Scalping research framework — XAUUSD & EURUSD
+# Scalping research framework: XAUUSD, EURUSD, and now XAGUSD / XPTUSD / XPDUSD
+
+> **New: minor-metals scalpers.** `mql5/ScalperXAG.mq5`, `ScalperXPT.mq5` and
+> `ScalperXPD.mq5` were built from the XAUUSD scalper below and optimised on
+> **real** OANDA M1 data (2019-01 to 2026-10). The signal timeframe was chosen
+> from M1 to M30 per symbol: **M5 for all three** (M1 is closed by costs; M15/M30 validated worse). Full evidence, and
+> an honest verdict (none of the three has a statistically significant edge at
+> retail costs), are in **[`docs/RESULTS_METALS.md`](docs/RESULTS_METALS.md)**.
+>
+> ```bash
+> python3 scripts/fetch_metals.py      # real M1 bars -> data/raw/<SYM>/
+> python3 scripts/diagnose_tf.py       # friction vs ATR per timeframe
+> python3 scripts/explore_metals.py    # timeframe x family search
+> ```
+>
+> Because `fetch_metals.py` also downloads real XAUUSD, every XAUUSD command
+> below runs on real data once it has been fetched. The synthetic numbers in
+> the rest of this README are kept for reference.
+
+---
+
 
 A backtesting and optimisation system for short-horizon intraday strategies on
 gold and EURUSD, built to answer one question honestly: **is there a scalping

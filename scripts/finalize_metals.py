@@ -58,7 +58,10 @@ def main() -> int:
             f"walk-forward 2021-2026 (17 refits, stitched OOS):",
             f"  {oos['n_trades']} trades  WR {oos['win_rate']*100:.1f}%  PF {oos['profit_factor']:.2f}"
             f"  {oos['expectancy_r']:+.3f}R  t={oos['t_stat']:.2f}",
-            "NOT statistically significant - see docs/RESULTS_METALS.md",
+            ("LOSES with statistical significance (t < -2) - do not trade these defaults"
+             if min(ho["t_stat"], oos["t_stat"]) < -2.0 else
+             "NOT statistically significant - not an established edge"),
+            "see docs/RESULTS_METALS.md",
         ]
         out = {
             "symbol": sym, "mode": mode, "ea": name,

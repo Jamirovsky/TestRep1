@@ -20,7 +20,8 @@
 //|     61 trades  WR 47.5%  PF 1.20  +0.044R  t=0.53
 //|   walk-forward 2021-2026 (17 refits, stitched OOS):
 //|     336 trades  WR 48.5%  PF 0.79  -0.056R  t=-1.73
-//|   NOT statistically significant - see docs/RESULTS_METALS.md
+//|   NOT statistically significant - not an established edge
+//|   see docs/RESULTS_METALS.md
 //|
 //|  Test on "Every tick based on real ticks" with YOUR broker's
 //|  spreads before risking money. In the Strategy Tester set
