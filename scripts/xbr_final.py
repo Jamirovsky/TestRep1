@@ -56,10 +56,12 @@ def main() -> int:
                               "mode": cell["mode"], **t})
     for c in cands:
         f = c["fit"]
-        c["meets_targets_fit"] = bool(f["n_trades"] >= 240 and f["win_rate"] >= TGT["wr"]
+        # 100 trades in the 22-month holdout needs ~55 a year: ask 60/yr x 6 years in the fit
+        c["meets_targets_fit"] = bool(f["n_trades"] >= 360 and f["win_rate"] >= TGT["wr"]
                                       and f["profit_factor"] >= TGT["pf"])
-    cands.sort(key=lambda c: (c["meets_targets_fit"], c["years_positive"], c["worst_year_r"], c["score"]),
-               reverse=True)
+        c["meets_wr_pf_fit"] = bool(f["win_rate"] >= TGT["wr"] and f["profit_factor"] >= TGT["pf"])
+    cands.sort(key=lambda c: (c["meets_targets_fit"], c["meets_wr_pf_fit"], c["years_positive"],
+                              c["worst_year_r"], c["score"]), reverse=True)
     top, seen = [], set(exclude)
     for c in cands:
         fam = c["mode"] + ("_fade" if c["values"].get("s.orb_fade") else "") + f"_M{c['tf']}"
@@ -72,7 +74,11 @@ def main() -> int:
 
     ds = dataset.load(SYM, start="2019-01-02", end="2026-10-31")
     prep = bt.prepare(ds.bars, SYM)
-    fit, hold = prep.slice(None, "2025-01-01"), prep.slice("2025-01-01", None)
+    import os
+    if os.environ.get("XBR_DRY"):            # pipeline test: 'holdout' = 2024 (in-sample), nothing real
+        fit, hold = prep.slice(None, "2025-01-01"), prep.slice("2024-01-01", "2025-01-01")
+    else:
+        fit, hold = prep.slice(None, "2025-01-01"), prep.slice("2025-01-01", None)
     out = {"targets": TGT, "rounds": args, "n_candidates": len(cands), "top": []}
     for i, c in enumerate(top, 1):
         base_s = StrategyParams(mode=c["mode"], tf_minutes=c["tf"])

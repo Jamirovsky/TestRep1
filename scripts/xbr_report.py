@@ -90,6 +90,48 @@ def chart(i, t):
     return path.name
 
 
+WF_RUNS = [("bands", "wf_m30t", "Bands M30 tight — portões WR≥57% PF≥1,02"),
+           ("bands", "wf_m15b", "Bands M15 base — portões WR≥57% PF≥1,02"),
+           ("rsi2", "wf_rsi2", "RSI-2 M30 tight — portões WR≥57% PF≥1,02"),
+           ("bands", "wfr_m30t", "Bands M30 tight — portões WR≥55% PF≥1,0"),
+           ("bands", "wfr_m15b", "Bands M15 base — portões WR≥55% PF≥1,0"),
+           ("rsi2", "wfr_rsi2", "RSI-2 M30 tight — portões WR≥55% PF≥1,0")]
+
+
+def _m(tr):
+    if not len(tr):
+        return None
+    w, l = tr.r[tr.r > 0].sum(), -tr.r[tr.r <= 0].sum()
+    eq = (1 + 0.005 * tr.r).cumprod()
+    dd = float(((eq.cummax() - eq) / eq.cummax()).max() * 100)
+    t = tr.r.mean() / tr.r.std() * len(tr) ** 0.5 if len(tr) > 1 else 0.0
+    return len(tr), (tr.r > 0).mean(), (w / l if l > 0 else float("inf")), dd, t
+
+
+def wf_section() -> str:
+    rows = ["| estratégia | período | trades | WR | PF | DD máx (0,5%/trade) | t | alvos |",
+            "|---|---|---|---|---|---|---|---|"]
+    for mode, label, name in WF_RUNS:
+        f = ROOT / "reports" / f"XBRUSD_{mode}_{label}_oos_trades.csv"
+        if not f.exists():
+            rows.append(f"| {name} | 2021-01 → 2026-10 | 0 — nenhum reajuste passou os portões (EA parado) | | | | | |")
+            continue
+        tr = pd.read_csv(f, parse_dates=["entry_time"]).sort_values("entry_time")
+        for per, sub in (("2021-01 → 2026-10", tr),
+                         ("só 2025-01 → 2026-10", tr[tr.entry_time >= pd.Timestamp("2025-01-01", tz="UTC")])):
+            m = _m(sub)
+            if m is None:
+                rows.append(f"| {name} | {per} | 0 — nenhum reajuste passou os portões (EA parado) | | | | | |")
+                continue
+            n, wr, pf, dd, t = m
+            okk = [n >= 100, wr >= 0.57, pf >= 1.01, dd <= 20]
+            rows.append(f"| {name} | {per} | {n} | {pct(wr)} | {num(pf)} | {num(dd,1)}% | {num(t)} | "
+                        f"{'**todos**' if all(okk) else f'{sum(okk)}/4'} |")
+    return "\n".join(rows) + ("\n\nEm cada janela de 120 dias o otimizador reescolhe os parâmetros com os 2 anos "
+                               "anteriores. Se nenhuma configuração passa os portões, o EA não negoceia nessa "
+                               "janela. O DD está calculado a 0,5% de risco por trade.")
+
+
 def main() -> int:
     top = json.loads((ROOT / "reports" / "xbr_top3.json").read_text())
     rounds = [json.loads(p.read_text()) for p in sorted((ROOT / "reports").glob("xbr_loop_r*.json"))]
@@ -132,6 +174,7 @@ def main() -> int:
               "| PF | " + " | ".join(num(c["pf"]) for c in t["holdout_cost_curve"]) + " |",
               "| WR | " + " | ".join(pct(c["wr"]) for c in t["holdout_cost_curve"]) + " |",
               "", f"![top {i}](../reports/{img})", ""]
+    L += ["## Volta final: walk-forward com reotimização a cada 4 meses", "", "WF_SECTION", ""]
     L += ["## O loop de otimização", "", "LOOP_TABLE", ""]
     L += ["## Como correr no MT5", "",
           "1. Copiar `mql5/ScalperXBR_T1.mq5`, `ScalperXBR_T2.mq5` e `ScalperXBR_T3.mq5` para `MQL5/Experts/` "
@@ -177,10 +220,14 @@ def main() -> int:
                  "r4": "duas fases: entradas com vantagem bruta e depois só saídas; sem portão de DD",
                  "r5": "portões WR ≥ 55%, PF ≥ 1,0, 500 iterações, M15/M30",
                  "r6": "pontuação suave orientada aos alvos + subida coordenada a partir das 3 melhores sementes "
-                       "por célula"}.get(r["round"], json.dumps(g))
+                       "por célula",
+                 "r7": "aprofundamento das famílias que funcionaram (bands, RSI-2, fade) em M10/M15/M20/M30, "
+                       "5 sementes, piso de 60 trades/ano para chegar aos 100 trades no holdout"}.get(
+                     r["round"], json.dumps(g))
         rows.append(f"| {r['round'][1:]} | {proto} | {n_cells} células, {n_viable} com candidatos, "
                     f"{n_meet} candidatos a cumprir os alvos no ajuste |")
     text = text.replace("LOOP_TABLE", "\n".join(rows))
+    text = text.replace("WF_SECTION", wf_section())
     interp = sys.argv[1] if len(sys.argv) > 1 else ""
     text = text.replace("INTERPRETATION", interp)
     (ROOT / "docs" / "RESULTS_XBRUSD.md").write_text(text)

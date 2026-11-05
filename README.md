@@ -1,6 +1,12 @@
 # Scalping research framework: XAUUSD, EURUSD, and now XAGUSD / XPTUSD / XPDUSD
 
-> **New (v2): XAUJPY, 7 US stocks, 5 cash indices.** `mql5/ScalperXAUJPY.mq5`
+> **New (v3): XBRUSD (Brent).** Three new strategy families (ORB/ORB-fade,
+> RSI-2 trend, liquidity sweep) plus the originals, loop-optimised towards
+> WR >= 57%, PF >= 1.01, DD <= 20%, >= 100 trades. Top-3 EAs
+> `mql5/ScalperXBR_T1..T3.mq5`; report (Portuguese, with the honest out-of-sample
+> verdict): **[`docs/RESULTS_XBRUSD.md`](docs/RESULTS_XBRUSD.md)**.
+>
+> **v2: XAUJPY, 7 US stocks, 5 cash indices.** `mql5/ScalperXAUJPY.mq5`
 > (adapted from the XAUUSD scalper), and two multi-symbol EAs,
 > `mql5/ScalperStocks7.mq5` and `mql5/ScalperIndices5.mq5`, loop-optimised on
 > real data. Report (Portuguese): **[`docs/RESULTS_V2.md`](docs/RESULTS_V2.md)**.

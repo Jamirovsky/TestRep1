@@ -262,7 +262,8 @@ def size(space: Dict[str, Sequence]) -> int:
     return n
 
 
-ALL_MODES = [MODE_BREAKOUT, MODE_MOMENTUM, MODE_PULLBACK, MODE_FADE, MODE_BANDS]
+ALL_MODES = [MODE_BREAKOUT, MODE_MOMENTUM, MODE_PULLBACK, MODE_FADE, MODE_BANDS, MODE_ORB, MODE_RSI2,
+             MODE_SWEEP]
 
 
 # ---------------------------------------------------------------------------

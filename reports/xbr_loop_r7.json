@@ -1,0 +1,9159 @@
+{
+ "round": "r7",
+ "fit": [
+  "2019-01-02",
+  "2025-01-01"
+ ],
+ "gates": {
+  "wr": 0.57,
+  "pf": 1.02,
+  "dd": 20.0,
+  "trades_per_year": 60
+ },
+ "cells": [
+  {
+   "variant": "tight",
+   "tf": 15,
+   "mode": "bands",
+   "n_viable": 425,
+   "best_raw_exp": 0.03251168263328818,
+   "top": [
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.6,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 1.0,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 3,
+      "s.bb_period": 96,
+      "s.tf_minutes": 15
+     },
+     "score": -0.04430597849857345,
+     "fit": {
+      "n_trades": 406,
+      "win_rate": 0.5788,
+      "profit_factor": 0.9895,
+      "expectancy_r": -0.0021,
+      "avg_win_r": 0.3412,
+      "avg_loss_r": -0.4739,
+      "payoff": 0.7201,
+      "total_r": -0.8471,
+      "net_profit": -121.437,
+      "return_pct": -1.2144,
+      "max_dd_pct": 5.2405,
+      "max_dd_r": 10.124,
+      "sharpe": -0.1019,
+      "sortino": -0.0685,
+      "cagr_pct": -0.1831,
+      "calmar": -0.0349,
+      "trades_per_day": 0.2417,
+      "avg_bars_held": 130.4852,
+      "max_consec_losses": 5,
+      "t_stat": -0.0885,
+      "cost_share_of_gross": 0.1248,
+      "long_share": 0.4754,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 61,
+       "wr": 0.607,
+       "pf": 1.096,
+       "r": 1.11
+      },
+      {
+       "year": 2020,
+       "n": 55,
+       "wr": 0.618,
+       "pf": 1.143,
+       "r": 1.47
+      },
+      {
+       "year": 2021,
+       "n": 62,
+       "wr": 0.565,
+       "pf": 0.833,
+       "r": -2.28
+      },
+      {
+       "year": 2022,
+       "n": 80,
+       "wr": 0.575,
+       "pf": 1.043,
+       "r": 0.65
+      },
+      {
+       "year": 2023,
+       "n": 71,
+       "wr": 0.606,
+       "pf": 0.871,
+       "r": -2.07
+      },
+      {
+       "year": 2024,
+       "n": 77,
+       "wr": 0.519,
+       "pf": 1.019,
+       "r": 0.28
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -2.28,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 3,
+      "s.bb_period": 96,
+      "s.tf_minutes": 15
+     },
+     "score": -0.0517535988290997,
+     "fit": {
+      "n_trades": 375,
+      "win_rate": 0.576,
+      "profit_factor": 0.9874,
+      "expectancy_r": -0.0025,
+      "avg_win_r": 0.3432,
+      "avg_loss_r": -0.4722,
+      "payoff": 0.7268,
+      "total_r": -0.9456,
+      "net_profit": -118.1585,
+      "return_pct": -1.1816,
+      "max_dd_pct": 4.3819,
+      "max_dd_r": 8.4108,
+      "sharpe": -0.1041,
+      "sortino": -0.0654,
+      "cagr_pct": -0.1781,
+      "calmar": -0.0407,
+      "trades_per_day": 0.2232,
+      "avg_bars_held": 120.1387,
+      "max_consec_losses": 5,
+      "t_stat": -0.104,
+      "cost_share_of_gross": 0.1232,
+      "long_share": 0.4667,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 59,
+       "wr": 0.576,
+       "pf": 0.963,
+       "r": -0.45
+      },
+      {
+       "year": 2020,
+       "n": 54,
+       "wr": 0.63,
+       "pf": 1.25,
+       "r": 2.53
+      },
+      {
+       "year": 2021,
+       "n": 57,
+       "wr": 0.561,
+       "pf": 0.859,
+       "r": -1.69
+      },
+      {
+       "year": 2022,
+       "n": 74,
+       "wr": 0.568,
+       "pf": 1.005,
+       "r": 0.07
+      },
+      {
+       "year": 2023,
+       "n": 63,
+       "wr": 0.587,
+       "pf": 0.874,
+       "r": -1.89
+      },
+      {
+       "year": 2024,
+       "n": 68,
+       "wr": 0.544,
+       "pf": 1.04,
+       "r": 0.49
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -1.89,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 1.0,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 3,
+      "s.bb_period": 96,
+      "s.tf_minutes": 15
+     },
+     "score": 0.025860841195048275,
+     "fit": {
+      "n_trades": 406,
+      "win_rate": 0.5813,
+      "profit_factor": 1.0065,
+      "expectancy_r": 0.0013,
+      "avg_win_r": 0.3447,
+      "avg_loss_r": -0.4754,
+      "payoff": 0.725,
+      "total_r": 0.5257,
+      "net_profit": -89.0467,
+      "return_pct": -0.8905,
+      "max_dd_pct": 4.9466,
+      "max_dd_r": 8.9891,
+      "sharpe": -0.0732,
+      "sortino": -0.0485,
+      "cagr_pct": -0.1341,
+      "calmar": -0.0271,
+      "trades_per_day": 0.2417,
+      "avg_bars_held": 119.5837,
+      "max_consec_losses": 5,
+      "t_stat": 0.0557,
+      "cost_share_of_gross": 0.1218,
+      "long_share": 0.4754,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 61,
+       "wr": 0.607,
+       "pf": 1.11,
+       "r": 1.26
+      },
+      {
+       "year": 2020,
+       "n": 55,
+       "wr": 0.618,
+       "pf": 1.238,
+       "r": 2.44
+      },
+      {
+       "year": 2021,
+       "n": 62,
+       "wr": 0.565,
+       "pf": 0.847,
+       "r": -2.09
+      },
+      {
+       "year": 2022,
+       "n": 80,
+       "wr": 0.588,
+       "pf": 1.036,
+       "r": 0.53
+      },
+      {
+       "year": 2023,
+       "n": 71,
+       "wr": 0.606,
+       "pf": 0.937,
+       "r": -1.02
+      },
+      {
+       "year": 2024,
+       "n": 77,
+       "wr": 0.519,
+       "pf": 0.959,
+       "r": -0.6
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -2.09,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 1.0,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 3,
+      "s.bb_period": 96,
+      "s.tf_minutes": 15
+     },
+     "score": 0.025860841195048275,
+     "fit": {
+      "n_trades": 406,
+      "win_rate": 0.5813,
+      "profit_factor": 1.0065,
+      "expectancy_r": 0.0013,
+      "avg_win_r": 0.3447,
+      "avg_loss_r": -0.4754,
+      "payoff": 0.725,
+      "total_r": 0.5257,
+      "net_profit": -89.0467,
+      "return_pct": -0.8905,
+      "max_dd_pct": 4.9466,
+      "max_dd_r": 8.9891,
+      "sharpe": -0.0732,
+      "sortino": -0.0485,
+      "cagr_pct": -0.1341,
+      "calmar": -0.0271,
+      "trades_per_day": 0.2417,
+      "avg_bars_held": 119.5837,
+      "max_consec_losses": 5,
+      "t_stat": 0.0557,
+      "cost_share_of_gross": 0.1218,
+      "long_share": 0.4754,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 61,
+       "wr": 0.607,
+       "pf": 1.11,
+       "r": 1.26
+      },
+      {
+       "year": 2020,
+       "n": 55,
+       "wr": 0.618,
+       "pf": 1.238,
+       "r": 2.44
+      },
+      {
+       "year": 2021,
+       "n": 62,
+       "wr": 0.565,
+       "pf": 0.847,
+       "r": -2.09
+      },
+      {
+       "year": 2022,
+       "n": 80,
+       "wr": 0.588,
+       "pf": 1.036,
+       "r": 0.53
+      },
+      {
+       "year": 2023,
+       "n": 71,
+       "wr": 0.606,
+       "pf": 0.937,
+       "r": -1.02
+      },
+      {
+       "year": 2024,
+       "n": 77,
+       "wr": 0.519,
+       "pf": 0.959,
+       "r": -0.6
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -2.09,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 15,
+   "mode": "rsi2",
+   "n_viable": 460,
+   "best_raw_exp": -0.02016957819981487,
+   "top": [
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 15
+     },
+     "score": -1.0931005099932967,
+     "fit": {
+      "n_trades": 685,
+      "win_rate": 0.4832,
+      "profit_factor": 0.9059,
+      "expectancy_r": -0.0202,
+      "avg_win_r": 0.4018,
+      "avg_loss_r": -0.4147,
+      "payoff": 0.9688,
+      "total_r": -13.8162,
+      "net_profit": -691.2707,
+      "return_pct": -6.9127,
+      "max_dd_pct": 10.1062,
+      "max_dd_r": 22.0281,
+      "sharpe": -0.462,
+      "sortino": -0.436,
+      "cagr_pct": -1.0687,
+      "calmar": -0.1058,
+      "trades_per_day": 0.4077,
+      "avg_bars_held": 83.3022,
+      "max_consec_losses": 12,
+      "t_stat": -1.031,
+      "cost_share_of_gross": 0.1371,
+      "long_share": 0.562,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 121,
+       "wr": 0.471,
+       "pf": 0.812,
+       "r": -4.62
+      },
+      {
+       "year": 2020,
+       "n": 107,
+       "wr": 0.486,
+       "pf": 1.192,
+       "r": 3.33
+      },
+      {
+       "year": 2021,
+       "n": 107,
+       "wr": 0.477,
+       "pf": 1.12,
+       "r": 2.6
+      },
+      {
+       "year": 2022,
+       "n": 130,
+       "wr": 0.454,
+       "pf": 0.801,
+       "r": -6.6
+      },
+      {
+       "year": 2023,
+       "n": 104,
+       "wr": 0.529,
+       "pf": 0.864,
+       "r": -3.26
+      },
+      {
+       "year": 2024,
+       "n": 116,
+       "wr": 0.491,
+       "pf": 0.799,
+       "r": -5.27
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -6.6,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 15
+     },
+     "score": -1.0931005099932967,
+     "fit": {
+      "n_trades": 685,
+      "win_rate": 0.4832,
+      "profit_factor": 0.9059,
+      "expectancy_r": -0.0202,
+      "avg_win_r": 0.4018,
+      "avg_loss_r": -0.4147,
+      "payoff": 0.9688,
+      "total_r": -13.8162,
+      "net_profit": -691.2707,
+      "return_pct": -6.9127,
+      "max_dd_pct": 10.1062,
+      "max_dd_r": 22.0281,
+      "sharpe": -0.462,
+      "sortino": -0.436,
+      "cagr_pct": -1.0687,
+      "calmar": -0.1058,
+      "trades_per_day": 0.4077,
+      "avg_bars_held": 83.3022,
+      "max_consec_losses": 12,
+      "t_stat": -1.031,
+      "cost_share_of_gross": 0.1371,
+      "long_share": 0.562,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 121,
+       "wr": 0.471,
+       "pf": 0.812,
+       "r": -4.62
+      },
+      {
+       "year": 2020,
+       "n": 107,
+       "wr": 0.486,
+       "pf": 1.192,
+       "r": 3.33
+      },
+      {
+       "year": 2021,
+       "n": 107,
+       "wr": 0.477,
+       "pf": 1.12,
+       "r": 2.6
+      },
+      {
+       "year": 2022,
+       "n": 130,
+       "wr": 0.454,
+       "pf": 0.801,
+       "r": -6.6
+      },
+      {
+       "year": 2023,
+       "n": 104,
+       "wr": 0.529,
+       "pf": 0.864,
+       "r": -3.26
+      },
+      {
+       "year": 2024,
+       "n": 116,
+       "wr": 0.491,
+       "pf": 0.799,
+       "r": -5.27
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -6.6,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 15
+     },
+     "score": -1.0931005099932967,
+     "fit": {
+      "n_trades": 685,
+      "win_rate": 0.4832,
+      "profit_factor": 0.9059,
+      "expectancy_r": -0.0202,
+      "avg_win_r": 0.4018,
+      "avg_loss_r": -0.4147,
+      "payoff": 0.9688,
+      "total_r": -13.8162,
+      "net_profit": -691.2707,
+      "return_pct": -6.9127,
+      "max_dd_pct": 10.1062,
+      "max_dd_r": 22.0281,
+      "sharpe": -0.462,
+      "sortino": -0.436,
+      "cagr_pct": -1.0687,
+      "calmar": -0.1058,
+      "trades_per_day": 0.4077,
+      "avg_bars_held": 83.3022,
+      "max_consec_losses": 12,
+      "t_stat": -1.031,
+      "cost_share_of_gross": 0.1371,
+      "long_share": 0.562,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 121,
+       "wr": 0.471,
+       "pf": 0.812,
+       "r": -4.62
+      },
+      {
+       "year": 2020,
+       "n": 107,
+       "wr": 0.486,
+       "pf": 1.192,
+       "r": 3.33
+      },
+      {
+       "year": 2021,
+       "n": 107,
+       "wr": 0.477,
+       "pf": 1.12,
+       "r": 2.6
+      },
+      {
+       "year": 2022,
+       "n": 130,
+       "wr": 0.454,
+       "pf": 0.801,
+       "r": -6.6
+      },
+      {
+       "year": 2023,
+       "n": 104,
+       "wr": 0.529,
+       "pf": 0.864,
+       "r": -3.26
+      },
+      {
+       "year": 2024,
+       "n": 116,
+       "wr": 0.491,
+       "pf": 0.799,
+       "r": -5.27
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -6.6,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 15
+     },
+     "score": -1.1175950317284922,
+     "fit": {
+      "n_trades": 685,
+      "win_rate": 0.5051,
+      "profit_factor": 0.8925,
+      "expectancy_r": -0.0223,
+      "avg_win_r": 0.367,
+      "avg_loss_r": -0.4197,
+      "payoff": 0.8744,
+      "total_r": -15.2959,
+      "net_profit": -740.6605,
+      "return_pct": -7.4066,
+      "max_dd_pct": 10.7273,
+      "max_dd_r": 23.4691,
+      "sharpe": -0.5053,
+      "sortino": -0.4639,
+      "cagr_pct": -1.1476,
+      "calmar": -0.107,
+      "trades_per_day": 0.4077,
+      "avg_bars_held": 81.1752,
+      "max_consec_losses": 12,
+      "t_stat": -1.1639,
+      "cost_share_of_gross": 0.143,
+      "long_share": 0.562,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 121,
+       "wr": 0.496,
+       "pf": 0.8,
+       "r": -4.8
+      },
+      {
+       "year": 2020,
+       "n": 107,
+       "wr": 0.523,
+       "pf": 1.241,
+       "r": 3.98
+      },
+      {
+       "year": 2021,
+       "n": 107,
+       "wr": 0.495,
+       "pf": 1.126,
+       "r": 2.58
+      },
+      {
+       "year": 2022,
+       "n": 130,
+       "wr": 0.454,
+       "pf": 0.782,
+       "r": -7.25
+      },
+      {
+       "year": 2023,
+       "n": 104,
+       "wr": 0.567,
+       "pf": 0.844,
+       "r": -3.55
+      },
+      {
+       "year": 2024,
+       "n": 116,
+       "wr": 0.509,
+       "pf": 0.752,
+       "r": -6.26
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -7.25,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 15,
+   "mode": "fade",
+   "n_viable": 417,
+   "best_raw_exp": 0.02394945944760925,
+   "top": [
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.6,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 15,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 35,
+      "s.adx_max": 30,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 15
+     },
+     "score": -0.7079138056705749,
+     "fit": {
+      "n_trades": 368,
+      "win_rate": 0.4973,
+      "profit_factor": 0.9189,
+      "expectancy_r": -0.0202,
+      "avg_win_r": 0.4602,
+      "avg_loss_r": -0.4954,
+      "payoff": 0.9289,
+      "total_r": -7.4361,
+      "net_profit": -342.899,
+      "return_pct": -3.429,
+      "max_dd_pct": 8.1036,
+      "max_dd_r": 17.404,
+      "sharpe": -0.2742,
+      "sortino": -0.1918,
+      "cagr_pct": -0.522,
+      "calmar": -0.0644,
+      "trades_per_day": 0.219,
+      "avg_bars_held": 137.0245,
+      "max_consec_losses": 6,
+      "t_stat": -0.6935,
+      "cost_share_of_gross": 0.1186,
+      "long_share": 0.3886,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 40,
+       "wr": 0.5,
+       "pf": 0.75,
+       "r": -3.27
+      },
+      {
+       "year": 2020,
+       "n": 54,
+       "wr": 0.519,
+       "pf": 0.741,
+       "r": -4.22
+      },
+      {
+       "year": 2021,
+       "n": 58,
+       "wr": 0.414,
+       "pf": 0.732,
+       "r": -3.66
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.492,
+       "pf": 0.991,
+       "r": -0.13
+      },
+      {
+       "year": 2023,
+       "n": 72,
+       "wr": 0.556,
+       "pf": 1.27,
+       "r": 3.83
+      },
+      {
+       "year": 2024,
+       "n": 79,
+       "wr": 0.494,
+       "pf": 1.001,
+       "r": 0.01
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -4.22,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.6,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 25,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 35,
+      "s.adx_max": 30,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 15
+     },
+     "score": -0.7079138056705749,
+     "fit": {
+      "n_trades": 368,
+      "win_rate": 0.4973,
+      "profit_factor": 0.9189,
+      "expectancy_r": -0.0202,
+      "avg_win_r": 0.4602,
+      "avg_loss_r": -0.4954,
+      "payoff": 0.9289,
+      "total_r": -7.4361,
+      "net_profit": -342.899,
+      "return_pct": -3.429,
+      "max_dd_pct": 8.1036,
+      "max_dd_r": 17.404,
+      "sharpe": -0.2742,
+      "sortino": -0.1918,
+      "cagr_pct": -0.522,
+      "calmar": -0.0644,
+      "trades_per_day": 0.219,
+      "avg_bars_held": 137.0245,
+      "max_consec_losses": 6,
+      "t_stat": -0.6935,
+      "cost_share_of_gross": 0.1186,
+      "long_share": 0.3886,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 40,
+       "wr": 0.5,
+       "pf": 0.75,
+       "r": -3.27
+      },
+      {
+       "year": 2020,
+       "n": 54,
+       "wr": 0.519,
+       "pf": 0.741,
+       "r": -4.22
+      },
+      {
+       "year": 2021,
+       "n": 58,
+       "wr": 0.414,
+       "pf": 0.732,
+       "r": -3.66
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.492,
+       "pf": 0.991,
+       "r": -0.13
+      },
+      {
+       "year": 2023,
+       "n": 72,
+       "wr": 0.556,
+       "pf": 1.27,
+       "r": 3.83
+      },
+      {
+       "year": 2024,
+       "n": 79,
+       "wr": 0.494,
+       "pf": 1.001,
+       "r": 0.01
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -4.22,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.6,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 35,
+      "s.adx_max": 30,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 15
+     },
+     "score": -0.7079138056705749,
+     "fit": {
+      "n_trades": 368,
+      "win_rate": 0.4973,
+      "profit_factor": 0.9189,
+      "expectancy_r": -0.0202,
+      "avg_win_r": 0.4602,
+      "avg_loss_r": -0.4954,
+      "payoff": 0.9289,
+      "total_r": -7.4361,
+      "net_profit": -342.899,
+      "return_pct": -3.429,
+      "max_dd_pct": 8.1036,
+      "max_dd_r": 17.404,
+      "sharpe": -0.2742,
+      "sortino": -0.1918,
+      "cagr_pct": -0.522,
+      "calmar": -0.0644,
+      "trades_per_day": 0.219,
+      "avg_bars_held": 137.0245,
+      "max_consec_losses": 6,
+      "t_stat": -0.6935,
+      "cost_share_of_gross": 0.1186,
+      "long_share": 0.3886,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 40,
+       "wr": 0.5,
+       "pf": 0.75,
+       "r": -3.27
+      },
+      {
+       "year": 2020,
+       "n": 54,
+       "wr": 0.519,
+       "pf": 0.741,
+       "r": -4.22
+      },
+      {
+       "year": 2021,
+       "n": 58,
+       "wr": 0.414,
+       "pf": 0.732,
+       "r": -3.66
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.492,
+       "pf": 0.991,
+       "r": -0.13
+      },
+      {
+       "year": 2023,
+       "n": 72,
+       "wr": 0.556,
+       "pf": 1.27,
+       "r": 3.83
+      },
+      {
+       "year": 2024,
+       "n": 79,
+       "wr": 0.494,
+       "pf": 1.001,
+       "r": 0.01
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -4.22,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.6,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 35,
+      "s.adx_max": 30,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 15
+     },
+     "score": -0.7147996986216498,
+     "fit": {
+      "n_trades": 368,
+      "win_rate": 0.4973,
+      "profit_factor": 0.9182,
+      "expectancy_r": -0.0204,
+      "avg_win_r": 0.4598,
+      "avg_loss_r": -0.4954,
+      "payoff": 0.9283,
+      "total_r": -7.4931,
+      "net_profit": -341.7559,
+      "return_pct": -3.4176,
+      "max_dd_pct": 8.0874,
+      "max_dd_r": 17.461,
+      "sharpe": -0.2737,
+      "sortino": -0.1916,
+      "cagr_pct": -0.5202,
+      "calmar": -0.0643,
+      "trades_per_day": 0.219,
+      "avg_bars_held": 137.1549,
+      "max_consec_losses": 6,
+      "t_stat": -0.6991,
+      "cost_share_of_gross": 0.1185,
+      "long_share": 0.3886,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 40,
+       "wr": 0.5,
+       "pf": 0.746,
+       "r": -3.32
+      },
+      {
+       "year": 2020,
+       "n": 54,
+       "wr": 0.519,
+       "pf": 0.741,
+       "r": -4.22
+      },
+      {
+       "year": 2021,
+       "n": 58,
+       "wr": 0.414,
+       "pf": 0.732,
+       "r": -3.66
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.492,
+       "pf": 0.991,
+       "r": -0.13
+      },
+      {
+       "year": 2023,
+       "n": 72,
+       "wr": 0.556,
+       "pf": 1.27,
+       "r": 3.83
+      },
+      {
+       "year": 2024,
+       "n": 79,
+       "wr": 0.494,
+       "pf": 1.001,
+       "r": 0.01
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -4.22,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 30,
+   "mode": "bands",
+   "n_viable": 370,
+   "best_raw_exp": 0.02943278415121352,
+   "top": [
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 15,
+      "s.er_max": 1.0,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 30
+     },
+     "score": 0.3082606321636272,
+     "fit": {
+      "n_trades": 411,
+      "win_rate": 0.6545,
+      "profit_factor": 1.0861,
+      "expectancy_r": 0.0152,
+      "avg_win_r": 0.2931,
+      "avg_loss_r": -0.5113,
+      "payoff": 0.5733,
+      "total_r": 6.2494,
+      "net_profit": 338.2054,
+      "return_pct": 3.3821,
+      "max_dd_pct": 3.061,
+      "max_dd_r": 7.6561,
+      "sharpe": 0.3447,
+      "sortino": 0.2123,
+      "cagr_pct": 0.5002,
+      "calmar": 0.1634,
+      "trades_per_day": 0.2446,
+      "avg_bars_held": 91.6934,
+      "max_consec_losses": 6,
+      "t_stat": 0.711,
+      "cost_share_of_gross": 0.1431,
+      "long_share": 0.4988,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 65,
+       "wr": 0.708,
+       "pf": 1.341,
+       "r": 3.49
+      },
+      {
+       "year": 2020,
+       "n": 58,
+       "wr": 0.655,
+       "pf": 1.401,
+       "r": 3.12
+      },
+      {
+       "year": 2021,
+       "n": 63,
+       "wr": 0.651,
+       "pf": 1.196,
+       "r": 1.96
+      },
+      {
+       "year": 2022,
+       "n": 75,
+       "wr": 0.56,
+       "pf": 0.75,
+       "r": -4.25
+      },
+      {
+       "year": 2023,
+       "n": 78,
+       "wr": 0.692,
+       "pf": 1.052,
+       "r": 0.77
+      },
+      {
+       "year": 2024,
+       "n": 72,
+       "wr": 0.667,
+       "pf": 1.091,
+       "r": 1.15
+      }
+     ],
+     "years_positive": 5,
+     "worst_year_r": -4.25,
+     "meets_targets_fit": true
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 25,
+      "s.er_max": 1.0,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 30
+     },
+     "score": 0.3082606321636272,
+     "fit": {
+      "n_trades": 411,
+      "win_rate": 0.6545,
+      "profit_factor": 1.0861,
+      "expectancy_r": 0.0152,
+      "avg_win_r": 0.2931,
+      "avg_loss_r": -0.5113,
+      "payoff": 0.5733,
+      "total_r": 6.2494,
+      "net_profit": 338.2054,
+      "return_pct": 3.3821,
+      "max_dd_pct": 3.061,
+      "max_dd_r": 7.6561,
+      "sharpe": 0.3447,
+      "sortino": 0.2123,
+      "cagr_pct": 0.5002,
+      "calmar": 0.1634,
+      "trades_per_day": 0.2446,
+      "avg_bars_held": 91.6934,
+      "max_consec_losses": 6,
+      "t_stat": 0.711,
+      "cost_share_of_gross": 0.1431,
+      "long_share": 0.4988,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 65,
+       "wr": 0.708,
+       "pf": 1.341,
+       "r": 3.49
+      },
+      {
+       "year": 2020,
+       "n": 58,
+       "wr": 0.655,
+       "pf": 1.401,
+       "r": 3.12
+      },
+      {
+       "year": 2021,
+       "n": 63,
+       "wr": 0.651,
+       "pf": 1.196,
+       "r": 1.96
+      },
+      {
+       "year": 2022,
+       "n": 75,
+       "wr": 0.56,
+       "pf": 0.75,
+       "r": -4.25
+      },
+      {
+       "year": 2023,
+       "n": 78,
+       "wr": 0.692,
+       "pf": 1.052,
+       "r": 0.77
+      },
+      {
+       "year": 2024,
+       "n": 72,
+       "wr": 0.667,
+       "pf": 1.091,
+       "r": 1.15
+      }
+     ],
+     "years_positive": 5,
+     "worst_year_r": -4.25,
+     "meets_targets_fit": true
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.er_max": 1.0,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 30
+     },
+     "score": 0.3082606321636272,
+     "fit": {
+      "n_trades": 411,
+      "win_rate": 0.6545,
+      "profit_factor": 1.0861,
+      "expectancy_r": 0.0152,
+      "avg_win_r": 0.2931,
+      "avg_loss_r": -0.5113,
+      "payoff": 0.5733,
+      "total_r": 6.2494,
+      "net_profit": 338.2054,
+      "return_pct": 3.3821,
+      "max_dd_pct": 3.061,
+      "max_dd_r": 7.6561,
+      "sharpe": 0.3447,
+      "sortino": 0.2123,
+      "cagr_pct": 0.5002,
+      "calmar": 0.1634,
+      "trades_per_day": 0.2446,
+      "avg_bars_held": 91.6934,
+      "max_consec_losses": 6,
+      "t_stat": 0.711,
+      "cost_share_of_gross": 0.1431,
+      "long_share": 0.4988,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 65,
+       "wr": 0.708,
+       "pf": 1.341,
+       "r": 3.49
+      },
+      {
+       "year": 2020,
+       "n": 58,
+       "wr": 0.655,
+       "pf": 1.401,
+       "r": 3.12
+      },
+      {
+       "year": 2021,
+       "n": 63,
+       "wr": 0.651,
+       "pf": 1.196,
+       "r": 1.96
+      },
+      {
+       "year": 2022,
+       "n": 75,
+       "wr": 0.56,
+       "pf": 0.75,
+       "r": -4.25
+      },
+      {
+       "year": 2023,
+       "n": 78,
+       "wr": 0.692,
+       "pf": 1.052,
+       "r": 0.77
+      },
+      {
+       "year": 2024,
+       "n": 72,
+       "wr": 0.667,
+       "pf": 1.091,
+       "r": 1.15
+      }
+     ],
+     "years_positive": 5,
+     "worst_year_r": -4.25,
+     "meets_targets_fit": true
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 1.0,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 30
+     },
+     "score": 0.3082606321636272,
+     "fit": {
+      "n_trades": 411,
+      "win_rate": 0.6545,
+      "profit_factor": 1.0861,
+      "expectancy_r": 0.0152,
+      "avg_win_r": 0.2931,
+      "avg_loss_r": -0.5113,
+      "payoff": 0.5733,
+      "total_r": 6.2494,
+      "net_profit": 338.2054,
+      "return_pct": 3.3821,
+      "max_dd_pct": 3.061,
+      "max_dd_r": 7.6561,
+      "sharpe": 0.3447,
+      "sortino": 0.2123,
+      "cagr_pct": 0.5002,
+      "calmar": 0.1634,
+      "trades_per_day": 0.2446,
+      "avg_bars_held": 91.6934,
+      "max_consec_losses": 6,
+      "t_stat": 0.711,
+      "cost_share_of_gross": 0.1431,
+      "long_share": 0.4988,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 65,
+       "wr": 0.708,
+       "pf": 1.341,
+       "r": 3.49
+      },
+      {
+       "year": 2020,
+       "n": 58,
+       "wr": 0.655,
+       "pf": 1.401,
+       "r": 3.12
+      },
+      {
+       "year": 2021,
+       "n": 63,
+       "wr": 0.651,
+       "pf": 1.196,
+       "r": 1.96
+      },
+      {
+       "year": 2022,
+       "n": 75,
+       "wr": 0.56,
+       "pf": 0.75,
+       "r": -4.25
+      },
+      {
+       "year": 2023,
+       "n": 78,
+       "wr": 0.692,
+       "pf": 1.052,
+       "r": 0.77
+      },
+      {
+       "year": 2024,
+       "n": 72,
+       "wr": 0.667,
+       "pf": 1.091,
+       "r": 1.15
+      }
+     ],
+     "years_positive": 5,
+     "worst_year_r": -4.25,
+     "meets_targets_fit": true
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 30,
+   "mode": "rsi2",
+   "n_viable": 406,
+   "best_raw_exp": 0.028847795329173444,
+   "top": [
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 2.0,
+      "s.tp_r": 0.5,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 100,
+      "s.er_max": 1.0,
+      "s.tf_minutes": 30
+     },
+     "score": -1.4404859017537557,
+     "fit": {
+      "n_trades": 596,
+      "win_rate": 0.6091,
+      "profit_factor": 0.8613,
+      "expectancy_r": -0.0371,
+      "avg_win_r": 0.3778,
+      "avg_loss_r": -0.6835,
+      "payoff": 0.5528,
+      "total_r": -22.0914,
+      "net_profit": -1081.061,
+      "return_pct": -10.8106,
+      "max_dd_pct": 12.4307,
+      "max_dd_r": 27.1207,
+      "sharpe": -0.6593,
+      "sortino": -0.5754,
+      "cagr_pct": -1.7015,
+      "calmar": -0.1369,
+      "trades_per_day": 0.3548,
+      "avg_bars_held": 51.047,
+      "max_consec_losses": 9,
+      "t_stat": -1.5596,
+      "cost_share_of_gross": 0.1767,
+      "long_share": 0.5872,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 99,
+       "wr": 0.596,
+       "pf": 0.76,
+       "r": -6.82
+      },
+      {
+       "year": 2020,
+       "n": 89,
+       "wr": 0.652,
+       "pf": 1.116,
+       "r": 2.39
+      },
+      {
+       "year": 2021,
+       "n": 95,
+       "wr": 0.632,
+       "pf": 1.118,
+       "r": 2.26
+      },
+      {
+       "year": 2022,
+       "n": 104,
+       "wr": 0.654,
+       "pf": 1.162,
+       "r": 3.74
+      },
+      {
+       "year": 2023,
+       "n": 107,
+       "wr": 0.551,
+       "pf": 0.628,
+       "r": -13.45
+      },
+      {
+       "year": 2024,
+       "n": 102,
+       "wr": 0.578,
+       "pf": 0.678,
+       "r": -10.22
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -13.45,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 2.0,
+      "s.tp_r": 0.5,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 100,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 30
+     },
+     "score": -1.435884941518656,
+     "fit": {
+      "n_trades": 591,
+      "win_rate": 0.6091,
+      "profit_factor": 0.8612,
+      "expectancy_r": -0.0371,
+      "avg_win_r": 0.3778,
+      "avg_loss_r": -0.6836,
+      "payoff": 0.5526,
+      "total_r": -21.9208,
+      "net_profit": -1082.9286,
+      "return_pct": -10.8293,
+      "max_dd_pct": 12.8155,
+      "max_dd_r": 27.8116,
+      "sharpe": -0.6616,
+      "sortino": -0.5711,
+      "cagr_pct": -1.7046,
+      "calmar": -0.133,
+      "trades_per_day": 0.3518,
+      "avg_bars_held": 51.0897,
+      "max_consec_losses": 9,
+      "t_stat": -1.553,
+      "cost_share_of_gross": 0.1765,
+      "long_share": 0.5871,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 99,
+       "wr": 0.596,
+       "pf": 0.76,
+       "r": -6.82
+      },
+      {
+       "year": 2020,
+       "n": 88,
+       "wr": 0.659,
+       "pf": 1.163,
+       "r": 3.22
+      },
+      {
+       "year": 2021,
+       "n": 93,
+       "wr": 0.634,
+       "pf": 1.124,
+       "r": 2.31
+      },
+      {
+       "year": 2022,
+       "n": 103,
+       "wr": 0.65,
+       "pf": 1.15,
+       "r": 3.49
+      },
+      {
+       "year": 2023,
+       "n": 106,
+       "wr": 0.547,
+       "pf": 0.616,
+       "r": -13.9
+      },
+      {
+       "year": 2024,
+       "n": 102,
+       "wr": 0.578,
+       "pf": 0.678,
+       "r": -10.22
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -13.9,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 2.0,
+      "s.tp_r": 0.5,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 100,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 30
+     },
+     "score": -1.435884941518656,
+     "fit": {
+      "n_trades": 591,
+      "win_rate": 0.6091,
+      "profit_factor": 0.8612,
+      "expectancy_r": -0.0371,
+      "avg_win_r": 0.3778,
+      "avg_loss_r": -0.6836,
+      "payoff": 0.5526,
+      "total_r": -21.9208,
+      "net_profit": -1082.9286,
+      "return_pct": -10.8293,
+      "max_dd_pct": 12.8155,
+      "max_dd_r": 27.8116,
+      "sharpe": -0.6616,
+      "sortino": -0.5711,
+      "cagr_pct": -1.7046,
+      "calmar": -0.133,
+      "trades_per_day": 0.3518,
+      "avg_bars_held": 51.0897,
+      "max_consec_losses": 9,
+      "t_stat": -1.553,
+      "cost_share_of_gross": 0.1765,
+      "long_share": 0.5871,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 99,
+       "wr": 0.596,
+       "pf": 0.76,
+       "r": -6.82
+      },
+      {
+       "year": 2020,
+       "n": 88,
+       "wr": 0.659,
+       "pf": 1.163,
+       "r": 3.22
+      },
+      {
+       "year": 2021,
+       "n": 93,
+       "wr": 0.634,
+       "pf": 1.124,
+       "r": 2.31
+      },
+      {
+       "year": 2022,
+       "n": 103,
+       "wr": 0.65,
+       "pf": 1.15,
+       "r": 3.49
+      },
+      {
+       "year": 2023,
+       "n": 106,
+       "wr": 0.547,
+       "pf": 0.616,
+       "r": -13.9
+      },
+      {
+       "year": 2024,
+       "n": 102,
+       "wr": 0.578,
+       "pf": 0.678,
+       "r": -10.22
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -13.9,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 2.0,
+      "s.tp_r": 0.5,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 100,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 30
+     },
+     "score": -1.435884941518656,
+     "fit": {
+      "n_trades": 591,
+      "win_rate": 0.6091,
+      "profit_factor": 0.8612,
+      "expectancy_r": -0.0371,
+      "avg_win_r": 0.3778,
+      "avg_loss_r": -0.6836,
+      "payoff": 0.5526,
+      "total_r": -21.9208,
+      "net_profit": -1082.9286,
+      "return_pct": -10.8293,
+      "max_dd_pct": 12.8155,
+      "max_dd_r": 27.8116,
+      "sharpe": -0.6616,
+      "sortino": -0.5711,
+      "cagr_pct": -1.7046,
+      "calmar": -0.133,
+      "trades_per_day": 0.3518,
+      "avg_bars_held": 51.0897,
+      "max_consec_losses": 9,
+      "t_stat": -1.553,
+      "cost_share_of_gross": 0.1765,
+      "long_share": 0.5871,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 99,
+       "wr": 0.596,
+       "pf": 0.76,
+       "r": -6.82
+      },
+      {
+       "year": 2020,
+       "n": 88,
+       "wr": 0.659,
+       "pf": 1.163,
+       "r": 3.22
+      },
+      {
+       "year": 2021,
+       "n": 93,
+       "wr": 0.634,
+       "pf": 1.124,
+       "r": 2.31
+      },
+      {
+       "year": 2022,
+       "n": 103,
+       "wr": 0.65,
+       "pf": 1.15,
+       "r": 3.49
+      },
+      {
+       "year": 2023,
+       "n": 106,
+       "wr": 0.547,
+       "pf": 0.616,
+       "r": -13.9
+      },
+      {
+       "year": 2024,
+       "n": 102,
+       "wr": 0.578,
+       "pf": 0.678,
+       "r": -10.22
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -13.9,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 30,
+   "mode": "fade",
+   "n_viable": 389,
+   "best_raw_exp": 0.05520650233626928,
+   "top": [
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 40,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 30
+     },
+     "score": -0.6772173700687321,
+     "fit": {
+      "n_trades": 453,
+      "win_rate": 0.6247,
+      "profit_factor": 0.8907,
+      "expectancy_r": -0.0223,
+      "avg_win_r": 0.2911,
+      "avg_loss_r": -0.5441,
+      "payoff": 0.535,
+      "total_r": -10.1133,
+      "net_profit": -370.5997,
+      "return_pct": -3.706,
+      "max_dd_pct": 6.4327,
+      "max_dd_r": 15.375,
+      "sharpe": -0.3358,
+      "sortino": -0.2203,
+      "cagr_pct": -0.5649,
+      "calmar": -0.0878,
+      "trades_per_day": 0.2696,
+      "avg_bars_held": 96.0397,
+      "max_consec_losses": 7,
+      "t_stat": -1.0322,
+      "cost_share_of_gross": 0.1388,
+      "long_share": 0.4945,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 78,
+       "wr": 0.603,
+       "pf": 0.819,
+       "r": -3.08
+      },
+      {
+       "year": 2020,
+       "n": 71,
+       "wr": 0.577,
+       "pf": 0.7,
+       "r": -5.04
+      },
+      {
+       "year": 2021,
+       "n": 65,
+       "wr": 0.646,
+       "pf": 1.117,
+       "r": 1.25
+      },
+      {
+       "year": 2022,
+       "n": 77,
+       "wr": 0.558,
+       "pf": 0.713,
+       "r": -5.21
+      },
+      {
+       "year": 2023,
+       "n": 87,
+       "wr": 0.69,
+       "pf": 1.047,
+       "r": 0.79
+      },
+      {
+       "year": 2024,
+       "n": 75,
+       "wr": 0.667,
+       "pf": 1.09,
+       "r": 1.17
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -5.21,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 30
+     },
+     "score": -0.6772173700687321,
+     "fit": {
+      "n_trades": 453,
+      "win_rate": 0.6247,
+      "profit_factor": 0.8907,
+      "expectancy_r": -0.0223,
+      "avg_win_r": 0.2911,
+      "avg_loss_r": -0.5441,
+      "payoff": 0.535,
+      "total_r": -10.1133,
+      "net_profit": -370.5997,
+      "return_pct": -3.706,
+      "max_dd_pct": 6.4327,
+      "max_dd_r": 15.375,
+      "sharpe": -0.3358,
+      "sortino": -0.2203,
+      "cagr_pct": -0.5649,
+      "calmar": -0.0878,
+      "trades_per_day": 0.2696,
+      "avg_bars_held": 96.0397,
+      "max_consec_losses": 7,
+      "t_stat": -1.0322,
+      "cost_share_of_gross": 0.1388,
+      "long_share": 0.4945,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 78,
+       "wr": 0.603,
+       "pf": 0.819,
+       "r": -3.08
+      },
+      {
+       "year": 2020,
+       "n": 71,
+       "wr": 0.577,
+       "pf": 0.7,
+       "r": -5.04
+      },
+      {
+       "year": 2021,
+       "n": 65,
+       "wr": 0.646,
+       "pf": 1.117,
+       "r": 1.25
+      },
+      {
+       "year": 2022,
+       "n": 77,
+       "wr": 0.558,
+       "pf": 0.713,
+       "r": -5.21
+      },
+      {
+       "year": 2023,
+       "n": 87,
+       "wr": 0.69,
+       "pf": 1.047,
+       "r": 0.79
+      },
+      {
+       "year": 2024,
+       "n": 75,
+       "wr": 0.667,
+       "pf": 1.09,
+       "r": 1.17
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -5.21,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 15,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 30
+     },
+     "score": -0.6772173700687321,
+     "fit": {
+      "n_trades": 453,
+      "win_rate": 0.6247,
+      "profit_factor": 0.8907,
+      "expectancy_r": -0.0223,
+      "avg_win_r": 0.2911,
+      "avg_loss_r": -0.5441,
+      "payoff": 0.535,
+      "total_r": -10.1133,
+      "net_profit": -370.5997,
+      "return_pct": -3.706,
+      "max_dd_pct": 6.4327,
+      "max_dd_r": 15.375,
+      "sharpe": -0.3358,
+      "sortino": -0.2203,
+      "cagr_pct": -0.5649,
+      "calmar": -0.0878,
+      "trades_per_day": 0.2696,
+      "avg_bars_held": 96.0397,
+      "max_consec_losses": 7,
+      "t_stat": -1.0322,
+      "cost_share_of_gross": 0.1388,
+      "long_share": 0.4945,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 78,
+       "wr": 0.603,
+       "pf": 0.819,
+       "r": -3.08
+      },
+      {
+       "year": 2020,
+       "n": 71,
+       "wr": 0.577,
+       "pf": 0.7,
+       "r": -5.04
+      },
+      {
+       "year": 2021,
+       "n": 65,
+       "wr": 0.646,
+       "pf": 1.117,
+       "r": 1.25
+      },
+      {
+       "year": 2022,
+       "n": 77,
+       "wr": 0.558,
+       "pf": 0.713,
+       "r": -5.21
+      },
+      {
+       "year": 2023,
+       "n": 87,
+       "wr": 0.69,
+       "pf": 1.047,
+       "r": 0.79
+      },
+      {
+       "year": 2024,
+       "n": 75,
+       "wr": 0.667,
+       "pf": 1.09,
+       "r": 1.17
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -5.21,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 25,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 30
+     },
+     "score": -0.6772173700687321,
+     "fit": {
+      "n_trades": 453,
+      "win_rate": 0.6247,
+      "profit_factor": 0.8907,
+      "expectancy_r": -0.0223,
+      "avg_win_r": 0.2911,
+      "avg_loss_r": -0.5441,
+      "payoff": 0.535,
+      "total_r": -10.1133,
+      "net_profit": -370.5997,
+      "return_pct": -3.706,
+      "max_dd_pct": 6.4327,
+      "max_dd_r": 15.375,
+      "sharpe": -0.3358,
+      "sortino": -0.2203,
+      "cagr_pct": -0.5649,
+      "calmar": -0.0878,
+      "trades_per_day": 0.2696,
+      "avg_bars_held": 96.0397,
+      "max_consec_losses": 7,
+      "t_stat": -1.0322,
+      "cost_share_of_gross": 0.1388,
+      "long_share": 0.4945,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 78,
+       "wr": 0.603,
+       "pf": 0.819,
+       "r": -3.08
+      },
+      {
+       "year": 2020,
+       "n": 71,
+       "wr": 0.577,
+       "pf": 0.7,
+       "r": -5.04
+      },
+      {
+       "year": 2021,
+       "n": 65,
+       "wr": 0.646,
+       "pf": 1.117,
+       "r": 1.25
+      },
+      {
+       "year": 2022,
+       "n": 77,
+       "wr": 0.558,
+       "pf": 0.713,
+       "r": -5.21
+      },
+      {
+       "year": 2023,
+       "n": 87,
+       "wr": 0.69,
+       "pf": 1.047,
+       "r": 0.79
+      },
+      {
+       "year": 2024,
+       "n": 75,
+       "wr": 0.667,
+       "pf": 1.09,
+       "r": 1.17
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -5.21,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 10,
+   "mode": "bands",
+   "n_viable": 470,
+   "best_raw_exp": 0.040491114258055405,
+   "top": [
+    {
+     "values": {
+      "s.session": "london_ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.5,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 1.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 1,
+      "s.bb_period": 20,
+      "s.tf_minutes": 10
+     },
+     "score": -1.249483841822449,
+     "fit": {
+      "n_trades": 361,
+      "win_rate": 0.5623,
+      "profit_factor": 0.8402,
+      "expectancy_r": -0.0367,
+      "avg_win_r": 0.3429,
+      "avg_loss_r": -0.5244,
+      "payoff": 0.6539,
+      "total_r": -13.2417,
+      "net_profit": -648.9471,
+      "return_pct": -6.4895,
+      "max_dd_pct": 8.134,
+      "max_dd_r": 16.3434,
+      "sharpe": -0.5877,
+      "sortino": -0.3878,
+      "cagr_pct": -1.0014,
+      "calmar": -0.1231,
+      "trades_per_day": 0.2149,
+      "avg_bars_held": 67.1801,
+      "max_consec_losses": 6,
+      "t_stat": -1.3915,
+      "cost_share_of_gross": 0.1723,
+      "long_share": 0.4765,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 59,
+       "wr": 0.458,
+       "pf": 0.48,
+       "r": -8.32
+      },
+      {
+       "year": 2020,
+       "n": 57,
+       "wr": 0.614,
+       "pf": 1.009,
+       "r": 0.11
+      },
+      {
+       "year": 2021,
+       "n": 53,
+       "wr": 0.642,
+       "pf": 1.778,
+       "r": 5.2
+      },
+      {
+       "year": 2022,
+       "n": 61,
+       "wr": 0.574,
+       "pf": 1.008,
+       "r": 0.1
+      },
+      {
+       "year": 2023,
+       "n": 67,
+       "wr": 0.597,
+       "pf": 0.751,
+       "r": -4.33
+      },
+      {
+       "year": 2024,
+       "n": 64,
+       "wr": 0.5,
+       "pf": 0.66,
+       "r": -5.99
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -8.32,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.5,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.3,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 40,
+      "s.er_max": 0.3,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 30,
+      "s.confirm_mode": 0,
+      "s.bb_period": 96,
+      "s.tf_minutes": 10
+     },
+     "score": -1.302792524943139,
+     "fit": {
+      "n_trades": 370,
+      "win_rate": 0.5973,
+      "profit_factor": 0.8261,
+      "expectancy_r": -0.0366,
+      "avg_win_r": 0.2911,
+      "avg_loss_r": -0.5226,
+      "payoff": 0.557,
+      "total_r": -13.5393,
+      "net_profit": -606.472,
+      "return_pct": -6.0647,
+      "max_dd_pct": 7.0031,
+      "max_dd_r": 15.628,
+      "sharpe": -0.5712,
+      "sortino": -0.3609,
+      "cagr_pct": -0.9341,
+      "calmar": -0.1334,
+      "trades_per_day": 0.2202,
+      "avg_bars_held": 60.827,
+      "max_consec_losses": 6,
+      "t_stat": -1.4588,
+      "cost_share_of_gross": 0.1646,
+      "long_share": 0.4459,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 58,
+       "wr": 0.552,
+       "pf": 0.681,
+       "r": -4.76
+      },
+      {
+       "year": 2020,
+       "n": 51,
+       "wr": 0.608,
+       "pf": 1.072,
+       "r": 0.65
+      },
+      {
+       "year": 2021,
+       "n": 39,
+       "wr": 0.564,
+       "pf": 0.759,
+       "r": -2.14
+      },
+      {
+       "year": 2022,
+       "n": 56,
+       "wr": 0.679,
+       "pf": 1.238,
+       "r": 2.09
+      },
+      {
+       "year": 2023,
+       "n": 77,
+       "wr": 0.623,
+       "pf": 0.799,
+       "r": -3.01
+      },
+      {
+       "year": 2024,
+       "n": 89,
+       "wr": 0.562,
+       "pf": 0.701,
+       "r": -6.36
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -6.36,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london_ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 1.0,
+      "s.band_k": 1.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 1,
+      "s.bb_period": 48,
+      "s.tf_minutes": 10
+     },
+     "score": -1.3241322696107052,
+     "fit": {
+      "n_trades": 375,
+      "win_rate": 0.5227,
+      "profit_factor": 0.861,
+      "expectancy_r": -0.0348,
+      "avg_win_r": 0.4123,
+      "avg_loss_r": -0.5244,
+      "payoff": 0.7863,
+      "total_r": -13.0449,
+      "net_profit": -657.6516,
+      "return_pct": -6.5765,
+      "max_dd_pct": 8.741,
+      "max_dd_r": 17.2008,
+      "sharpe": -0.5108,
+      "sortino": -0.3864,
+      "cagr_pct": -1.0152,
+      "calmar": -0.1161,
+      "trades_per_day": 0.2232,
+      "avg_bars_held": 75.992,
+      "max_consec_losses": 6,
+      "t_stat": -1.1757,
+      "cost_share_of_gross": 0.1636,
+      "long_share": 0.4667,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 55,
+       "wr": 0.418,
+       "pf": 0.523,
+       "r": -7.5
+      },
+      {
+       "year": 2020,
+       "n": 61,
+       "wr": 0.574,
+       "pf": 1.113,
+       "r": 1.52
+      },
+      {
+       "year": 2021,
+       "n": 54,
+       "wr": 0.537,
+       "pf": 1.052,
+       "r": 0.56
+      },
+      {
+       "year": 2022,
+       "n": 63,
+       "wr": 0.54,
+       "pf": 0.925,
+       "r": -1.1
+      },
+      {
+       "year": 2023,
+       "n": 70,
+       "wr": 0.557,
+       "pf": 0.783,
+       "r": -4.31
+      },
+      {
+       "year": 2024,
+       "n": 72,
+       "wr": 0.5,
+       "pf": 0.886,
+       "r": -2.22
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -7.5,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london_ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 90,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 1.0,
+      "s.band_k": 1.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 1,
+      "s.bb_period": 48,
+      "s.tf_minutes": 10
+     },
+     "score": -1.3241322696107052,
+     "fit": {
+      "n_trades": 375,
+      "win_rate": 0.5227,
+      "profit_factor": 0.861,
+      "expectancy_r": -0.0348,
+      "avg_win_r": 0.4123,
+      "avg_loss_r": -0.5244,
+      "payoff": 0.7863,
+      "total_r": -13.0449,
+      "net_profit": -657.6516,
+      "return_pct": -6.5765,
+      "max_dd_pct": 8.741,
+      "max_dd_r": 17.2008,
+      "sharpe": -0.5108,
+      "sortino": -0.3864,
+      "cagr_pct": -1.0152,
+      "calmar": -0.1161,
+      "trades_per_day": 0.2232,
+      "avg_bars_held": 75.992,
+      "max_consec_losses": 6,
+      "t_stat": -1.1757,
+      "cost_share_of_gross": 0.1636,
+      "long_share": 0.4667,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 55,
+       "wr": 0.418,
+       "pf": 0.523,
+       "r": -7.5
+      },
+      {
+       "year": 2020,
+       "n": 61,
+       "wr": 0.574,
+       "pf": 1.113,
+       "r": 1.52
+      },
+      {
+       "year": 2021,
+       "n": 54,
+       "wr": 0.537,
+       "pf": 1.052,
+       "r": 0.56
+      },
+      {
+       "year": 2022,
+       "n": 63,
+       "wr": 0.54,
+       "pf": 0.925,
+       "r": -1.1
+      },
+      {
+       "year": 2023,
+       "n": 70,
+       "wr": 0.557,
+       "pf": 0.783,
+       "r": -4.31
+      },
+      {
+       "year": 2024,
+       "n": 72,
+       "wr": 0.5,
+       "pf": 0.886,
+       "r": -2.22
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -7.5,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 10,
+   "mode": "rsi2",
+   "n_viable": 474,
+   "best_raw_exp": 0.06123600960400307,
+   "top": [
+    {
+     "values": {
+      "s.session": "extended",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.3,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.25,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 10,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 10
+     },
+     "score": -1.606806747490249,
+     "fit": {
+      "n_trades": 501,
+      "win_rate": 0.6627,
+      "profit_factor": 0.8101,
+      "expectancy_r": -0.0359,
+      "avg_win_r": 0.2312,
+      "avg_loss_r": -0.5606,
+      "payoff": 0.4124,
+      "total_r": -17.9916,
+      "net_profit": -765.8907,
+      "return_pct": -7.6589,
+      "max_dd_pct": 10.0268,
+      "max_dd_r": 22.9362,
+      "sharpe": -0.6646,
+      "sortino": -0.3959,
+      "cagr_pct": -1.1881,
+      "calmar": -0.1185,
+      "trades_per_day": 0.2982,
+      "avg_bars_held": 74.9361,
+      "max_consec_losses": 5,
+      "t_stat": -1.7966,
+      "cost_share_of_gross": 0.1844,
+      "long_share": 0.5629,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 71,
+       "wr": 0.732,
+       "pf": 1.015,
+       "r": 0.18
+      },
+      {
+       "year": 2020,
+       "n": 81,
+       "wr": 0.728,
+       "pf": 1.199,
+       "r": 2.26
+      },
+      {
+       "year": 2021,
+       "n": 75,
+       "wr": 0.627,
+       "pf": 0.825,
+       "r": -2.36
+      },
+      {
+       "year": 2022,
+       "n": 91,
+       "wr": 0.604,
+       "pf": 0.63,
+       "r": -7.79
+      },
+      {
+       "year": 2023,
+       "n": 86,
+       "wr": 0.651,
+       "pf": 0.733,
+       "r": -4.44
+      },
+      {
+       "year": 2024,
+       "n": 97,
+       "wr": 0.649,
+       "pf": 0.715,
+       "r": -5.83
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -7.79,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.3,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 25,
+      "s.r2_period": 3,
+      "s.r2_lo": 10,
+      "s.trend_ema": 100,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 10
+     },
+     "score": -1.5381203841780484,
+     "fit": {
+      "n_trades": 392,
+      "win_rate": 0.699,
+      "profit_factor": 0.8315,
+      "expectancy_r": -0.043,
+      "avg_win_r": 0.3036,
+      "avg_loss_r": -0.848,
+      "payoff": 0.3581,
+      "total_r": -16.8621,
+      "net_profit": -773.4829,
+      "return_pct": -7.7348,
+      "max_dd_pct": 9.1886,
+      "max_dd_r": 19.6187,
+      "sharpe": -0.5845,
+      "sortino": -0.4808,
+      "cagr_pct": -1.2003,
+      "calmar": -0.1306,
+      "trades_per_day": 0.2333,
+      "avg_bars_held": 55.602,
+      "max_consec_losses": 5,
+      "t_stat": -1.5217,
+      "cost_share_of_gross": 0.1764,
+      "long_share": 0.6199,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 66,
+       "wr": 0.667,
+       "pf": 0.753,
+       "r": -4.37
+      },
+      {
+       "year": 2020,
+       "n": 59,
+       "wr": 0.746,
+       "pf": 1.015,
+       "r": 0.2
+      },
+      {
+       "year": 2021,
+       "n": 56,
+       "wr": 0.696,
+       "pf": 0.941,
+       "r": -0.73
+      },
+      {
+       "year": 2022,
+       "n": 71,
+       "wr": 0.718,
+       "pf": 0.929,
+       "r": -1.18
+      },
+      {
+       "year": 2023,
+       "n": 64,
+       "wr": 0.672,
+       "pf": 0.66,
+       "r": -6.82
+      },
+      {
+       "year": 2024,
+       "n": 76,
+       "wr": 0.697,
+       "pf": 0.802,
+       "r": -3.95
+      }
+     ],
+     "years_positive": 1,
+     "worst_year_r": -6.82,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.3,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 15,
+      "s.r2_period": 3,
+      "s.r2_lo": 10,
+      "s.trend_ema": 100,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 10
+     },
+     "score": -1.5381203841780484,
+     "fit": {
+      "n_trades": 392,
+      "win_rate": 0.699,
+      "profit_factor": 0.8315,
+      "expectancy_r": -0.043,
+      "avg_win_r": 0.3036,
+      "avg_loss_r": -0.848,
+      "payoff": 0.3581,
+      "total_r": -16.8621,
+      "net_profit": -773.4829,
+      "return_pct": -7.7348,
+      "max_dd_pct": 9.1886,
+      "max_dd_r": 19.6187,
+      "sharpe": -0.5845,
+      "sortino": -0.4808,
+      "cagr_pct": -1.2003,
+      "calmar": -0.1306,
+      "trades_per_day": 0.2333,
+      "avg_bars_held": 55.602,
+      "max_consec_losses": 5,
+      "t_stat": -1.5217,
+      "cost_share_of_gross": 0.1764,
+      "long_share": 0.6199,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 66,
+       "wr": 0.667,
+       "pf": 0.753,
+       "r": -4.37
+      },
+      {
+       "year": 2020,
+       "n": 59,
+       "wr": 0.746,
+       "pf": 1.015,
+       "r": 0.2
+      },
+      {
+       "year": 2021,
+       "n": 56,
+       "wr": 0.696,
+       "pf": 0.941,
+       "r": -0.73
+      },
+      {
+       "year": 2022,
+       "n": 71,
+       "wr": 0.718,
+       "pf": 0.929,
+       "r": -1.18
+      },
+      {
+       "year": 2023,
+       "n": 64,
+       "wr": 0.672,
+       "pf": 0.66,
+       "r": -6.82
+      },
+      {
+       "year": 2024,
+       "n": 76,
+       "wr": 0.697,
+       "pf": 0.802,
+       "r": -3.95
+      }
+     ],
+     "years_positive": 1,
+     "worst_year_r": -6.82,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.3,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 25,
+      "s.r2_period": 3,
+      "s.r2_lo": 10,
+      "s.trend_ema": 100,
+      "s.er_max": 1.0,
+      "s.tf_minutes": 10
+     },
+     "score": -1.5381203841780484,
+     "fit": {
+      "n_trades": 392,
+      "win_rate": 0.699,
+      "profit_factor": 0.8315,
+      "expectancy_r": -0.043,
+      "avg_win_r": 0.3036,
+      "avg_loss_r": -0.848,
+      "payoff": 0.3581,
+      "total_r": -16.8621,
+      "net_profit": -773.4829,
+      "return_pct": -7.7348,
+      "max_dd_pct": 9.1886,
+      "max_dd_r": 19.6187,
+      "sharpe": -0.5845,
+      "sortino": -0.4808,
+      "cagr_pct": -1.2003,
+      "calmar": -0.1306,
+      "trades_per_day": 0.2333,
+      "avg_bars_held": 55.602,
+      "max_consec_losses": 5,
+      "t_stat": -1.5217,
+      "cost_share_of_gross": 0.1764,
+      "long_share": 0.6199,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 66,
+       "wr": 0.667,
+       "pf": 0.753,
+       "r": -4.37
+      },
+      {
+       "year": 2020,
+       "n": 59,
+       "wr": 0.746,
+       "pf": 1.015,
+       "r": 0.2
+      },
+      {
+       "year": 2021,
+       "n": 56,
+       "wr": 0.696,
+       "pf": 0.941,
+       "r": -0.73
+      },
+      {
+       "year": 2022,
+       "n": 71,
+       "wr": 0.718,
+       "pf": 0.929,
+       "r": -1.18
+      },
+      {
+       "year": 2023,
+       "n": 64,
+       "wr": 0.672,
+       "pf": 0.66,
+       "r": -6.82
+      },
+      {
+       "year": 2024,
+       "n": 76,
+       "wr": 0.697,
+       "pf": 0.802,
+       "r": -3.95
+      }
+     ],
+     "years_positive": 1,
+     "worst_year_r": -6.82,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 10,
+   "mode": "fade",
+   "n_viable": 456,
+   "best_raw_exp": 0.057844895198600414,
+   "top": [
+    {
+     "values": {
+      "s.session": "london_ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.6,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 15,
+      "s.er_max": 0.3,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 30,
+      "s.confirm_mode": 1,
+      "s.tf_minutes": 10
+     },
+     "score": -2.095464947076173,
+     "fit": {
+      "n_trades": 380,
+      "win_rate": 0.5211,
+      "profit_factor": 0.8404,
+      "expectancy_r": -0.0498,
+      "avg_win_r": 0.5032,
+      "avg_loss_r": -0.6513,
+      "payoff": 0.7725,
+      "total_r": -18.9211,
+      "net_profit": -864.6914,
+      "return_pct": -8.6469,
+      "max_dd_pct": 11.847,
+      "max_dd_r": 26.3373,
+      "sharpe": -0.5799,
+      "sortino": -0.4704,
+      "cagr_pct": -1.3474,
+      "calmar": -0.1137,
+      "trades_per_day": 0.2262,
+      "avg_bars_held": 117.7026,
+      "max_consec_losses": 6,
+      "t_stat": -1.4969,
+      "cost_share_of_gross": 0.129,
+      "long_share": 0.4395,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 56,
+       "wr": 0.589,
+       "pf": 1.019,
+       "r": 0.32
+      },
+      {
+       "year": 2020,
+       "n": 47,
+       "wr": 0.638,
+       "pf": 1.355,
+       "r": 4.02
+      },
+      {
+       "year": 2021,
+       "n": 59,
+       "wr": 0.508,
+       "pf": 0.866,
+       "r": -2.42
+      },
+      {
+       "year": 2022,
+       "n": 63,
+       "wr": 0.381,
+       "pf": 0.568,
+       "r": -9.9
+      },
+      {
+       "year": 2023,
+       "n": 77,
+       "wr": 0.545,
+       "pf": 0.77,
+       "r": -5.47
+      },
+      {
+       "year": 2024,
+       "n": 78,
+       "wr": 0.5,
+       "pf": 0.789,
+       "r": -5.47
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -9.9,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.er_max": 0.3,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 10
+     },
+     "score": -2.164248665608024,
+     "fit": {
+      "n_trades": 507,
+      "win_rate": 0.4675,
+      "profit_factor": 0.8781,
+      "expectancy_r": -0.038,
+      "avg_win_r": 0.5853,
+      "avg_loss_r": -0.5851,
+      "payoff": 1.0003,
+      "total_r": -19.2624,
+      "net_profit": -906.2345,
+      "return_pct": -9.0623,
+      "max_dd_pct": 11.3577,
+      "max_dd_r": 24.6963,
+      "sharpe": -0.5201,
+      "sortino": -0.4947,
+      "cagr_pct": -1.4148,
+      "calmar": -0.1246,
+      "trades_per_day": 0.3018,
+      "avg_bars_held": 132.8383,
+      "max_consec_losses": 8,
+      "t_stat": -1.268,
+      "cost_share_of_gross": 0.1123,
+      "long_share": 0.4398,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 80,
+       "wr": 0.438,
+       "pf": 0.868,
+       "r": -3.61
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.439,
+       "pf": 0.706,
+       "r": -6.45
+      },
+      {
+       "year": 2021,
+       "n": 86,
+       "wr": 0.558,
+       "pf": 1.128,
+       "r": 2.99
+      },
+      {
+       "year": 2022,
+       "n": 88,
+       "wr": 0.409,
+       "pf": 0.795,
+       "r": -5.57
+      },
+      {
+       "year": 2023,
+       "n": 95,
+       "wr": 0.495,
+       "pf": 0.893,
+       "r": -3.4
+      },
+      {
+       "year": 2024,
+       "n": 92,
+       "wr": 0.457,
+       "pf": 0.879,
+       "r": -3.21
+      }
+     ],
+     "years_positive": 1,
+     "worst_year_r": -6.45,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 15,
+      "s.er_max": 0.3,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 10
+     },
+     "score": -2.164326333052164,
+     "fit": {
+      "n_trades": 507,
+      "win_rate": 0.4675,
+      "profit_factor": 0.8781,
+      "expectancy_r": -0.038,
+      "avg_win_r": 0.5853,
+      "avg_loss_r": -0.5851,
+      "payoff": 1.0003,
+      "total_r": -19.2629,
+      "net_profit": -906.2941,
+      "return_pct": -9.0629,
+      "max_dd_pct": 11.3583,
+      "max_dd_r": 24.6968,
+      "sharpe": -0.5202,
+      "sortino": -0.4948,
+      "cagr_pct": -1.4149,
+      "calmar": -0.1246,
+      "trades_per_day": 0.3018,
+      "avg_bars_held": 132.8383,
+      "max_consec_losses": 8,
+      "t_stat": -1.2681,
+      "cost_share_of_gross": 0.1124,
+      "long_share": 0.4398,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 80,
+       "wr": 0.438,
+       "pf": 0.868,
+       "r": -3.62
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.439,
+       "pf": 0.706,
+       "r": -6.45
+      },
+      {
+       "year": 2021,
+       "n": 86,
+       "wr": 0.558,
+       "pf": 1.128,
+       "r": 2.99
+      },
+      {
+       "year": 2022,
+       "n": 88,
+       "wr": 0.409,
+       "pf": 0.795,
+       "r": -5.57
+      },
+      {
+       "year": 2023,
+       "n": 95,
+       "wr": 0.495,
+       "pf": 0.893,
+       "r": -3.4
+      },
+      {
+       "year": 2024,
+       "n": 92,
+       "wr": 0.457,
+       "pf": 0.879,
+       "r": -3.21
+      }
+     ],
+     "years_positive": 1,
+     "worst_year_r": -6.45,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 25,
+      "s.er_max": 0.3,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 10
+     },
+     "score": -2.164326333052164,
+     "fit": {
+      "n_trades": 507,
+      "win_rate": 0.4675,
+      "profit_factor": 0.8781,
+      "expectancy_r": -0.038,
+      "avg_win_r": 0.5853,
+      "avg_loss_r": -0.5851,
+      "payoff": 1.0003,
+      "total_r": -19.2629,
+      "net_profit": -906.2941,
+      "return_pct": -9.0629,
+      "max_dd_pct": 11.3583,
+      "max_dd_r": 24.6968,
+      "sharpe": -0.5202,
+      "sortino": -0.4948,
+      "cagr_pct": -1.4149,
+      "calmar": -0.1246,
+      "trades_per_day": 0.3018,
+      "avg_bars_held": 132.8383,
+      "max_consec_losses": 8,
+      "t_stat": -1.2681,
+      "cost_share_of_gross": 0.1124,
+      "long_share": 0.4398,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 80,
+       "wr": 0.438,
+       "pf": 0.868,
+       "r": -3.62
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.439,
+       "pf": 0.706,
+       "r": -6.45
+      },
+      {
+       "year": 2021,
+       "n": 86,
+       "wr": 0.558,
+       "pf": 1.128,
+       "r": 2.99
+      },
+      {
+       "year": 2022,
+       "n": 88,
+       "wr": 0.409,
+       "pf": 0.795,
+       "r": -5.57
+      },
+      {
+       "year": 2023,
+       "n": 95,
+       "wr": 0.495,
+       "pf": 0.893,
+       "r": -3.4
+      },
+      {
+       "year": 2024,
+       "n": 92,
+       "wr": 0.457,
+       "pf": 0.879,
+       "r": -3.21
+      }
+     ],
+     "years_positive": 1,
+     "worst_year_r": -6.45,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 20,
+   "mode": "bands",
+   "n_viable": 391,
+   "best_raw_exp": 0.07166306486376513,
+   "top": [
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.5,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 15,
+      "s.er_max": 1.0,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 35,
+      "s.adx_max": 20,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 20
+     },
+     "score": -0.4855894963725204,
+     "fit": {
+      "n_trades": 438,
+      "win_rate": 0.5137,
+      "profit_factor": 0.9353,
+      "expectancy_r": -0.0146,
+      "avg_win_r": 0.4116,
+      "avg_loss_r": -0.4649,
+      "payoff": 0.8854,
+      "total_r": -6.404,
+      "net_profit": -244.4536,
+      "return_pct": -2.4445,
+      "max_dd_pct": 6.6943,
+      "max_dd_r": 15.3994,
+      "sharpe": -0.1973,
+      "sortino": -0.1397,
+      "cagr_pct": -0.3705,
+      "calmar": -0.0554,
+      "trades_per_day": 0.2607,
+      "avg_bars_held": 131.6324,
+      "max_consec_losses": 9,
+      "t_stat": -0.5925,
+      "cost_share_of_gross": 0.1177,
+      "long_share": 0.3881,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 82,
+       "wr": 0.5,
+       "pf": 0.837,
+       "r": -3.22
+      },
+      {
+       "year": 2020,
+       "n": 60,
+       "wr": 0.5,
+       "pf": 0.763,
+       "r": -3.7
+      },
+      {
+       "year": 2021,
+       "n": 63,
+       "wr": 0.476,
+       "pf": 1.214,
+       "r": 2.13
+      },
+      {
+       "year": 2022,
+       "n": 75,
+       "wr": 0.44,
+       "pf": 0.777,
+       "r": -4.36
+      },
+      {
+       "year": 2023,
+       "n": 80,
+       "wr": 0.562,
+       "pf": 1.008,
+       "r": 0.14
+      },
+      {
+       "year": 2024,
+       "n": 78,
+       "wr": 0.59,
+       "pf": 1.159,
+       "r": 2.61
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -4.36,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.5,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 15,
+      "s.er_max": 0.3,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 35,
+      "s.adx_max": 20,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 20
+     },
+     "score": -0.450967388414501,
+     "fit": {
+      "n_trades": 423,
+      "win_rate": 0.5154,
+      "profit_factor": 0.9377,
+      "expectancy_r": -0.014,
+      "avg_win_r": 0.41,
+      "avg_loss_r": -0.465,
+      "payoff": 0.8818,
+      "total_r": -5.938,
+      "net_profit": -256.2619,
+      "return_pct": -2.5626,
+      "max_dd_pct": 6.1251,
+      "max_dd_r": 13.6724,
+      "sharpe": -0.2102,
+      "sortino": -0.1408,
+      "cagr_pct": -0.3886,
+      "calmar": -0.0635,
+      "trades_per_day": 0.2518,
+      "avg_bars_held": 132.4515,
+      "max_consec_losses": 8,
+      "t_stat": -0.5603,
+      "cost_share_of_gross": 0.1168,
+      "long_share": 0.409,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 79,
+       "wr": 0.494,
+       "pf": 0.833,
+       "r": -3.18
+      },
+      {
+       "year": 2020,
+       "n": 61,
+       "wr": 0.475,
+       "pf": 0.723,
+       "r": -4.44
+      },
+      {
+       "year": 2021,
+       "n": 57,
+       "wr": 0.491,
+       "pf": 1.375,
+       "r": 3.2
+      },
+      {
+       "year": 2022,
+       "n": 74,
+       "wr": 0.459,
+       "pf": 0.836,
+       "r": -3.02
+      },
+      {
+       "year": 2023,
+       "n": 83,
+       "wr": 0.578,
+       "pf": 1.052,
+       "r": 0.94
+      },
+      {
+       "year": 2024,
+       "n": 69,
+       "wr": 0.58,
+       "pf": 1.037,
+       "r": 0.57
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -4.44,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 15,
+      "s.er_max": 0.3,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 35,
+      "s.adx_max": 20,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 20
+     },
+     "score": -0.1391901063957987,
+     "fit": {
+      "n_trades": 407,
+      "win_rate": 0.4816,
+      "profit_factor": 0.9828,
+      "expectancy_r": -0.0042,
+      "avg_win_r": 0.4946,
+      "avg_loss_r": -0.4674,
+      "payoff": 1.0581,
+      "total_r": -1.6916,
+      "net_profit": -103.0102,
+      "return_pct": -1.0301,
+      "max_dd_pct": 5.3912,
+      "max_dd_r": 11.4582,
+      "sharpe": -0.0668,
+      "sortino": -0.0498,
+      "cagr_pct": -0.1552,
+      "calmar": -0.0288,
+      "trades_per_day": 0.2423,
+      "avg_bars_held": 153.7346,
+      "max_consec_losses": 8,
+      "t_stat": -0.144,
+      "cost_share_of_gross": 0.1098,
+      "long_share": 0.4054,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 76,
+       "wr": 0.461,
+       "pf": 0.898,
+       "r": -1.99
+      },
+      {
+       "year": 2020,
+       "n": 57,
+       "wr": 0.491,
+       "pf": 0.791,
+       "r": -3.17
+      },
+      {
+       "year": 2021,
+       "n": 56,
+       "wr": 0.446,
+       "pf": 1.219,
+       "r": 2.22
+      },
+      {
+       "year": 2022,
+       "n": 70,
+       "wr": 0.4,
+       "pf": 0.761,
+       "r": -4.51
+      },
+      {
+       "year": 2023,
+       "n": 81,
+       "wr": 0.543,
+       "pf": 1.278,
+       "r": 4.96
+      },
+      {
+       "year": 2024,
+       "n": 67,
+       "wr": 0.537,
+       "pf": 1.047,
+       "r": 0.81
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -4.51,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.5,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 15,
+      "s.er_max": 1.0,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 35,
+      "s.adx_max": 20,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 20
+     },
+     "score": -0.5566697329728761,
+     "fit": {
+      "n_trades": 461,
+      "win_rate": 0.5098,
+      "profit_factor": 0.9302,
+      "expectancy_r": -0.0158,
+      "avg_win_r": 0.4119,
+      "avg_loss_r": -0.4605,
+      "payoff": 0.8946,
+      "total_r": -7.2626,
+      "net_profit": -293.5187,
+      "return_pct": -2.9352,
+      "max_dd_pct": 7.2675,
+      "max_dd_r": 16.387,
+      "sharpe": -0.2385,
+      "sortino": -0.1707,
+      "cagr_pct": -0.4459,
+      "calmar": -0.0614,
+      "trades_per_day": 0.2744,
+      "avg_bars_held": 132.0738,
+      "max_consec_losses": 9,
+      "t_stat": -0.6578,
+      "cost_share_of_gross": 0.1173,
+      "long_share": 0.397,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 84,
+       "wr": 0.488,
+       "pf": 0.788,
+       "r": -4.46
+      },
+      {
+       "year": 2020,
+       "n": 63,
+       "wr": 0.492,
+       "pf": 0.775,
+       "r": -3.54
+      },
+      {
+       "year": 2021,
+       "n": 65,
+       "wr": 0.477,
+       "pf": 1.247,
+       "r": 2.49
+      },
+      {
+       "year": 2022,
+       "n": 80,
+       "wr": 0.45,
+       "pf": 0.776,
+       "r": -4.72
+      },
+      {
+       "year": 2023,
+       "n": 87,
+       "wr": 0.563,
+       "pf": 1.035,
+       "r": 0.66
+      },
+      {
+       "year": 2024,
+       "n": 82,
+       "wr": 0.573,
+       "pf": 1.134,
+       "r": 2.32
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -4.72,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 20,
+   "mode": "rsi2",
+   "n_viable": 440,
+   "best_raw_exp": -0.005836422247951879,
+   "top": [
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 25,
+      "s.r2_period": 2,
+      "s.r2_lo": 10,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 20
+     },
+     "score": -0.600479075180836,
+     "fit": {
+      "n_trades": 401,
+      "win_rate": 0.6933,
+      "profit_factor": 0.9033,
+      "expectancy_r": -0.022,
+      "avg_win_r": 0.2961,
+      "avg_loss_r": -0.7408,
+      "payoff": 0.3996,
+      "total_r": -8.8156,
+      "net_profit": -386.3773,
+      "return_pct": -3.8638,
+      "max_dd_pct": 7.4467,
+      "max_dd_r": 16.6829,
+      "sharpe": -0.3123,
+      "sortino": -0.2107,
+      "cagr_pct": -0.5893,
+      "calmar": -0.0791,
+      "trades_per_day": 0.2387,
+      "avg_bars_held": 75.3416,
+      "max_consec_losses": 5,
+      "t_stat": -0.8477,
+      "cost_share_of_gross": 0.1429,
+      "long_share": 0.601,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 68,
+       "wr": 0.721,
+       "pf": 1.062,
+       "r": 0.85
+      },
+      {
+       "year": 2020,
+       "n": 64,
+       "wr": 0.734,
+       "pf": 1.014,
+       "r": 0.19
+      },
+      {
+       "year": 2021,
+       "n": 68,
+       "wr": 0.632,
+       "pf": 0.844,
+       "r": -2.29
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.677,
+       "pf": 0.841,
+       "r": -2.43
+      },
+      {
+       "year": 2023,
+       "n": 62,
+       "wr": 0.677,
+       "pf": 0.711,
+       "r": -5.1
+      },
+      {
+       "year": 2024,
+       "n": 74,
+       "wr": 0.716,
+       "pf": 0.998,
+       "r": -0.03
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -5.1,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.3,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 25,
+      "s.r2_period": 2,
+      "s.r2_lo": 10,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 20
+     },
+     "score": -0.600479075180836,
+     "fit": {
+      "n_trades": 401,
+      "win_rate": 0.6933,
+      "profit_factor": 0.9033,
+      "expectancy_r": -0.022,
+      "avg_win_r": 0.2961,
+      "avg_loss_r": -0.7408,
+      "payoff": 0.3996,
+      "total_r": -8.8156,
+      "net_profit": -386.3773,
+      "return_pct": -3.8638,
+      "max_dd_pct": 7.4467,
+      "max_dd_r": 16.6829,
+      "sharpe": -0.3123,
+      "sortino": -0.2107,
+      "cagr_pct": -0.5893,
+      "calmar": -0.0791,
+      "trades_per_day": 0.2387,
+      "avg_bars_held": 75.3416,
+      "max_consec_losses": 5,
+      "t_stat": -0.8477,
+      "cost_share_of_gross": 0.1429,
+      "long_share": 0.601,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 68,
+       "wr": 0.721,
+       "pf": 1.062,
+       "r": 0.85
+      },
+      {
+       "year": 2020,
+       "n": 64,
+       "wr": 0.734,
+       "pf": 1.014,
+       "r": 0.19
+      },
+      {
+       "year": 2021,
+       "n": 68,
+       "wr": 0.632,
+       "pf": 0.844,
+       "r": -2.29
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.677,
+       "pf": 0.841,
+       "r": -2.43
+      },
+      {
+       "year": 2023,
+       "n": 62,
+       "wr": 0.677,
+       "pf": 0.711,
+       "r": -5.1
+      },
+      {
+       "year": 2024,
+       "n": 74,
+       "wr": 0.716,
+       "pf": 0.998,
+       "r": -0.03
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -5.1,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 25,
+      "s.r2_period": 2,
+      "s.r2_lo": 10,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 20
+     },
+     "score": -0.600479075180836,
+     "fit": {
+      "n_trades": 401,
+      "win_rate": 0.6933,
+      "profit_factor": 0.9033,
+      "expectancy_r": -0.022,
+      "avg_win_r": 0.2961,
+      "avg_loss_r": -0.7408,
+      "payoff": 0.3996,
+      "total_r": -8.8156,
+      "net_profit": -386.3773,
+      "return_pct": -3.8638,
+      "max_dd_pct": 7.4467,
+      "max_dd_r": 16.6829,
+      "sharpe": -0.3123,
+      "sortino": -0.2107,
+      "cagr_pct": -0.5893,
+      "calmar": -0.0791,
+      "trades_per_day": 0.2387,
+      "avg_bars_held": 75.3416,
+      "max_consec_losses": 5,
+      "t_stat": -0.8477,
+      "cost_share_of_gross": 0.1429,
+      "long_share": 0.601,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 68,
+       "wr": 0.721,
+       "pf": 1.062,
+       "r": 0.85
+      },
+      {
+       "year": 2020,
+       "n": 64,
+       "wr": 0.734,
+       "pf": 1.014,
+       "r": 0.19
+      },
+      {
+       "year": 2021,
+       "n": 68,
+       "wr": 0.632,
+       "pf": 0.844,
+       "r": -2.29
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.677,
+       "pf": 0.841,
+       "r": -2.43
+      },
+      {
+       "year": 2023,
+       "n": 62,
+       "wr": 0.677,
+       "pf": 0.711,
+       "r": -5.1
+      },
+      {
+       "year": 2024,
+       "n": 74,
+       "wr": 0.716,
+       "pf": 0.998,
+       "r": -0.03
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -5.1,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 25,
+      "s.r2_period": 2,
+      "s.r2_lo": 10,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 20
+     },
+     "score": -0.600479075180836,
+     "fit": {
+      "n_trades": 401,
+      "win_rate": 0.6933,
+      "profit_factor": 0.9033,
+      "expectancy_r": -0.022,
+      "avg_win_r": 0.2961,
+      "avg_loss_r": -0.7408,
+      "payoff": 0.3996,
+      "total_r": -8.8156,
+      "net_profit": -386.3773,
+      "return_pct": -3.8638,
+      "max_dd_pct": 7.4467,
+      "max_dd_r": 16.6829,
+      "sharpe": -0.3123,
+      "sortino": -0.2107,
+      "cagr_pct": -0.5893,
+      "calmar": -0.0791,
+      "trades_per_day": 0.2387,
+      "avg_bars_held": 75.3416,
+      "max_consec_losses": 5,
+      "t_stat": -0.8477,
+      "cost_share_of_gross": 0.1429,
+      "long_share": 0.601,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 68,
+       "wr": 0.721,
+       "pf": 1.062,
+       "r": 0.85
+      },
+      {
+       "year": 2020,
+       "n": 64,
+       "wr": 0.734,
+       "pf": 1.014,
+       "r": 0.19
+      },
+      {
+       "year": 2021,
+       "n": 68,
+       "wr": 0.632,
+       "pf": 0.844,
+       "r": -2.29
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.677,
+       "pf": 0.841,
+       "r": -2.43
+      },
+      {
+       "year": 2023,
+       "n": 62,
+       "wr": 0.677,
+       "pf": 0.711,
+       "r": -5.1
+      },
+      {
+       "year": 2024,
+       "n": 74,
+       "wr": 0.716,
+       "pf": 0.998,
+       "r": -0.03
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -5.1,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "tight",
+   "tf": 20,
+   "mode": "fade",
+   "n_viable": 410,
+   "best_raw_exp": 0.034882986653066196,
+   "top": [
+    {
+     "values": {
+      "s.session": "london_ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.3,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 30,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 20
+     },
+     "score": -0.3847933970708583,
+     "fit": {
+      "n_trades": 369,
+      "win_rate": 0.5718,
+      "profit_factor": 0.9261,
+      "expectancy_r": -0.0158,
+      "avg_win_r": 0.3472,
+      "avg_loss_r": -0.5006,
+      "payoff": 0.6935,
+      "total_r": -5.842,
+      "net_profit": -312.8058,
+      "return_pct": -3.1281,
+      "max_dd_pct": 5.7527,
+      "max_dd_r": 12.0076,
+      "sharpe": -0.286,
+      "sortino": -0.179,
+      "cagr_pct": -0.4756,
+      "calmar": -0.0827,
+      "trades_per_day": 0.2196,
+      "avg_bars_held": 123.4282,
+      "max_consec_losses": 6,
+      "t_stat": -0.6224,
+      "cost_share_of_gross": 0.1376,
+      "long_share": 0.4526,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 45,
+       "wr": 0.444,
+       "pf": 0.523,
+       "r": -6.31
+      },
+      {
+       "year": 2020,
+       "n": 44,
+       "wr": 0.568,
+       "pf": 0.848,
+       "r": -1.36
+      },
+      {
+       "year": 2021,
+       "n": 60,
+       "wr": 0.583,
+       "pf": 1.153,
+       "r": 1.52
+      },
+      {
+       "year": 2022,
+       "n": 66,
+       "wr": 0.606,
+       "pf": 1.025,
+       "r": 0.35
+      },
+      {
+       "year": 2023,
+       "n": 84,
+       "wr": 0.667,
+       "pf": 1.259,
+       "r": 4.02
+      },
+      {
+       "year": 2024,
+       "n": 70,
+       "wr": 0.5,
+       "pf": 0.765,
+       "r": -4.08
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -6.31,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 20
+     },
+     "score": -0.3088351646172455,
+     "fit": {
+      "n_trades": 361,
+      "win_rate": 0.6177,
+      "profit_factor": 0.9307,
+      "expectancy_r": -0.013,
+      "avg_win_r": 0.2834,
+      "avg_loss_r": -0.492,
+      "payoff": 0.576,
+      "total_r": -4.7047,
+      "net_profit": -232.7888,
+      "return_pct": -2.3279,
+      "max_dd_pct": 4.8884,
+      "max_dd_r": 10.479,
+      "sharpe": -0.2413,
+      "sortino": -0.1312,
+      "cagr_pct": -0.3527,
+      "calmar": -0.0721,
+      "trades_per_day": 0.2149,
+      "avg_bars_held": 106.0111,
+      "max_consec_losses": 4,
+      "t_stat": -0.5671,
+      "cost_share_of_gross": 0.1293,
+      "long_share": 0.4488,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 62,
+       "wr": 0.629,
+       "pf": 0.853,
+       "r": -1.84
+      },
+      {
+       "year": 2020,
+       "n": 49,
+       "wr": 0.571,
+       "pf": 0.788,
+       "r": -2.13
+      },
+      {
+       "year": 2021,
+       "n": 49,
+       "wr": 0.633,
+       "pf": 0.857,
+       "r": -1.42
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.631,
+       "pf": 1.177,
+       "r": 1.84
+      },
+      {
+       "year": 2023,
+       "n": 73,
+       "wr": 0.671,
+       "pf": 1.075,
+       "r": 0.92
+      },
+      {
+       "year": 2024,
+       "n": 63,
+       "wr": 0.556,
+       "pf": 0.835,
+       "r": -2.07
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -2.13,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 20
+     },
+     "score": -0.3088351646172455,
+     "fit": {
+      "n_trades": 361,
+      "win_rate": 0.6177,
+      "profit_factor": 0.9307,
+      "expectancy_r": -0.013,
+      "avg_win_r": 0.2834,
+      "avg_loss_r": -0.492,
+      "payoff": 0.576,
+      "total_r": -4.7047,
+      "net_profit": -232.7888,
+      "return_pct": -2.3279,
+      "max_dd_pct": 4.8884,
+      "max_dd_r": 10.479,
+      "sharpe": -0.2413,
+      "sortino": -0.1312,
+      "cagr_pct": -0.3527,
+      "calmar": -0.0721,
+      "trades_per_day": 0.2149,
+      "avg_bars_held": 106.0111,
+      "max_consec_losses": 4,
+      "t_stat": -0.5671,
+      "cost_share_of_gross": 0.1293,
+      "long_share": 0.4488,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 62,
+       "wr": 0.629,
+       "pf": 0.853,
+       "r": -1.84
+      },
+      {
+       "year": 2020,
+       "n": 49,
+       "wr": 0.571,
+       "pf": 0.788,
+       "r": -2.13
+      },
+      {
+       "year": 2021,
+       "n": 49,
+       "wr": 0.633,
+       "pf": 0.857,
+       "r": -1.42
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.631,
+       "pf": 1.177,
+       "r": 1.84
+      },
+      {
+       "year": 2023,
+       "n": 73,
+       "wr": 0.671,
+       "pf": 1.075,
+       "r": 0.92
+      },
+      {
+       "year": 2024,
+       "n": 63,
+       "wr": 0.556,
+       "pf": 0.835,
+       "r": -2.07
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -2.13,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 4.0,
+      "s.tp_r": 0.3,
+      "e.max_bars": 180,
+      "e.be_trigger_r": 0.3,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 20
+     },
+     "score": -0.3088351646172455,
+     "fit": {
+      "n_trades": 361,
+      "win_rate": 0.6177,
+      "profit_factor": 0.9307,
+      "expectancy_r": -0.013,
+      "avg_win_r": 0.2834,
+      "avg_loss_r": -0.492,
+      "payoff": 0.576,
+      "total_r": -4.7047,
+      "net_profit": -232.7888,
+      "return_pct": -2.3279,
+      "max_dd_pct": 4.8884,
+      "max_dd_r": 10.479,
+      "sharpe": -0.2413,
+      "sortino": -0.1312,
+      "cagr_pct": -0.3527,
+      "calmar": -0.0721,
+      "trades_per_day": 0.2149,
+      "avg_bars_held": 106.0111,
+      "max_consec_losses": 4,
+      "t_stat": -0.5671,
+      "cost_share_of_gross": 0.1293,
+      "long_share": 0.4488,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 62,
+       "wr": 0.629,
+       "pf": 0.853,
+       "r": -1.84
+      },
+      {
+       "year": 2020,
+       "n": 49,
+       "wr": 0.571,
+       "pf": 0.788,
+       "r": -2.13
+      },
+      {
+       "year": 2021,
+       "n": 49,
+       "wr": 0.633,
+       "pf": 0.857,
+       "r": -1.42
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.631,
+       "pf": 1.177,
+       "r": 1.84
+      },
+      {
+       "year": 2023,
+       "n": 73,
+       "wr": 0.671,
+       "pf": 1.075,
+       "r": 0.92
+      },
+      {
+       "year": 2024,
+       "n": 63,
+       "wr": 0.556,
+       "pf": 0.835,
+       "r": -2.07
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -2.13,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "bands",
+   "n_viable": 419,
+   "best_raw_exp": 0.081392045112557,
+   "top": [
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 15,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 96,
+      "s.tf_minutes": 15
+     },
+     "score": 0.6805620866652209,
+     "fit": {
+      "n_trades": 447,
+      "win_rate": 0.5884,
+      "profit_factor": 1.118,
+      "expectancy_r": 0.0322,
+      "avg_win_r": 0.5185,
+      "avg_loss_r": -0.6629,
+      "payoff": 0.7821,
+      "total_r": 14.3887,
+      "net_profit": 623.6033,
+      "return_pct": 6.236,
+      "max_dd_pct": 5.5101,
+      "max_dd_r": 11.628,
+      "sharpe": 0.3434,
+      "sortino": 0.3202,
+      "cagr_pct": 0.9115,
+      "calmar": 0.1654,
+      "trades_per_day": 0.2661,
+      "avg_bars_held": 154.5302,
+      "max_consec_losses": 7,
+      "t_stat": 0.8939,
+      "cost_share_of_gross": 0.1282,
+      "long_share": 0.4944,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 68,
+       "wr": 0.618,
+       "pf": 0.987,
+       "r": -0.28
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.606,
+       "pf": 0.814,
+       "r": -3.36
+      },
+      {
+       "year": 2021,
+       "n": 63,
+       "wr": 0.571,
+       "pf": 1.026,
+       "r": 0.44
+      },
+      {
+       "year": 2022,
+       "n": 87,
+       "wr": 0.506,
+       "pf": 1.094,
+       "r": 2.56
+      },
+      {
+       "year": 2023,
+       "n": 81,
+       "wr": 0.58,
+       "pf": 1.185,
+       "r": 3.64
+      },
+      {
+       "year": 2024,
+       "n": 82,
+       "wr": 0.659,
+       "pf": 1.606,
+       "r": 11.37
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -3.36,
+     "meets_targets_fit": true
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 25,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 96,
+      "s.tf_minutes": 15
+     },
+     "score": 0.6805620866652209,
+     "fit": {
+      "n_trades": 447,
+      "win_rate": 0.5884,
+      "profit_factor": 1.118,
+      "expectancy_r": 0.0322,
+      "avg_win_r": 0.5185,
+      "avg_loss_r": -0.6629,
+      "payoff": 0.7821,
+      "total_r": 14.3887,
+      "net_profit": 623.6033,
+      "return_pct": 6.236,
+      "max_dd_pct": 5.5101,
+      "max_dd_r": 11.628,
+      "sharpe": 0.3434,
+      "sortino": 0.3202,
+      "cagr_pct": 0.9115,
+      "calmar": 0.1654,
+      "trades_per_day": 0.2661,
+      "avg_bars_held": 154.5302,
+      "max_consec_losses": 7,
+      "t_stat": 0.8939,
+      "cost_share_of_gross": 0.1282,
+      "long_share": 0.4944,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 68,
+       "wr": 0.618,
+       "pf": 0.987,
+       "r": -0.28
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.606,
+       "pf": 0.814,
+       "r": -3.36
+      },
+      {
+       "year": 2021,
+       "n": 63,
+       "wr": 0.571,
+       "pf": 1.026,
+       "r": 0.44
+      },
+      {
+       "year": 2022,
+       "n": 87,
+       "wr": 0.506,
+       "pf": 1.094,
+       "r": 2.56
+      },
+      {
+       "year": 2023,
+       "n": 81,
+       "wr": 0.58,
+       "pf": 1.185,
+       "r": 3.64
+      },
+      {
+       "year": 2024,
+       "n": 82,
+       "wr": 0.659,
+       "pf": 1.606,
+       "r": 11.37
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -3.36,
+     "meets_targets_fit": true
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 96,
+      "s.tf_minutes": 15
+     },
+     "score": 0.6805620866652209,
+     "fit": {
+      "n_trades": 447,
+      "win_rate": 0.5884,
+      "profit_factor": 1.118,
+      "expectancy_r": 0.0322,
+      "avg_win_r": 0.5185,
+      "avg_loss_r": -0.6629,
+      "payoff": 0.7821,
+      "total_r": 14.3887,
+      "net_profit": 623.6033,
+      "return_pct": 6.236,
+      "max_dd_pct": 5.5101,
+      "max_dd_r": 11.628,
+      "sharpe": 0.3434,
+      "sortino": 0.3202,
+      "cagr_pct": 0.9115,
+      "calmar": 0.1654,
+      "trades_per_day": 0.2661,
+      "avg_bars_held": 154.5302,
+      "max_consec_losses": 7,
+      "t_stat": 0.8939,
+      "cost_share_of_gross": 0.1282,
+      "long_share": 0.4944,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 68,
+       "wr": 0.618,
+       "pf": 0.987,
+       "r": -0.28
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.606,
+       "pf": 0.814,
+       "r": -3.36
+      },
+      {
+       "year": 2021,
+       "n": 63,
+       "wr": 0.571,
+       "pf": 1.026,
+       "r": 0.44
+      },
+      {
+       "year": 2022,
+       "n": 87,
+       "wr": 0.506,
+       "pf": 1.094,
+       "r": 2.56
+      },
+      {
+       "year": 2023,
+       "n": 81,
+       "wr": 0.58,
+       "pf": 1.185,
+       "r": 3.64
+      },
+      {
+       "year": 2024,
+       "n": 82,
+       "wr": 0.659,
+       "pf": 1.606,
+       "r": 11.37
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -3.36,
+     "meets_targets_fit": true
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 96,
+      "s.tf_minutes": 15
+     },
+     "score": 0.6530835672958584,
+     "fit": {
+      "n_trades": 447,
+      "win_rate": 0.5884,
+      "profit_factor": 1.1132,
+      "expectancy_r": 0.0309,
+      "avg_win_r": 0.5161,
+      "avg_loss_r": -0.6627,
+      "payoff": 0.7788,
+      "total_r": 13.8077,
+      "net_profit": 579.7292,
+      "return_pct": 5.7973,
+      "max_dd_pct": 5.7949,
+      "max_dd_r": 12.2517,
+      "sharpe": 0.3216,
+      "sortino": 0.2985,
+      "cagr_pct": 0.8489,
+      "calmar": 0.1465,
+      "trades_per_day": 0.2661,
+      "avg_bars_held": 154.9508,
+      "max_consec_losses": 7,
+      "t_stat": 0.8603,
+      "cost_share_of_gross": 0.1279,
+      "long_share": 0.4944,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 68,
+       "wr": 0.618,
+       "pf": 0.957,
+       "r": -0.9
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.606,
+       "pf": 0.814,
+       "r": -3.36
+      },
+      {
+       "year": 2021,
+       "n": 63,
+       "wr": 0.571,
+       "pf": 1.026,
+       "r": 0.44
+      },
+      {
+       "year": 2022,
+       "n": 87,
+       "wr": 0.506,
+       "pf": 1.094,
+       "r": 2.56
+      },
+      {
+       "year": 2023,
+       "n": 81,
+       "wr": 0.58,
+       "pf": 1.186,
+       "r": 3.65
+      },
+      {
+       "year": 2024,
+       "n": 82,
+       "wr": 0.659,
+       "pf": 1.609,
+       "r": 11.41
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -3.36,
+     "meets_targets_fit": true
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "rsi2",
+   "n_viable": 443,
+   "best_raw_exp": -0.008630515551023756,
+   "top": [
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 15
+     },
+     "score": -0.38477645540860245,
+     "fit": {
+      "n_trades": 670,
+      "win_rate": 0.4776,
+      "profit_factor": 0.9784,
+      "expectancy_r": -0.0086,
+      "avg_win_r": 0.8171,
+      "avg_loss_r": -0.7636,
+      "payoff": 1.0701,
+      "total_r": -5.7824,
+      "net_profit": -431.9977,
+      "return_pct": -4.32,
+      "max_dd_pct": 14.215,
+      "max_dd_r": 31.8814,
+      "sharpe": -0.1368,
+      "sortino": -0.2088,
+      "cagr_pct": -0.6602,
+      "calmar": -0.0464,
+      "trades_per_day": 0.3988,
+      "avg_bars_held": 166.0716,
+      "max_consec_losses": 8,
+      "t_stat": -0.2438,
+      "cost_share_of_gross": 0.0997,
+      "long_share": 0.5567,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 118,
+       "wr": 0.415,
+       "pf": 0.829,
+       "r": -8.28
+      },
+      {
+       "year": 2020,
+       "n": 106,
+       "wr": 0.538,
+       "pf": 1.077,
+       "r": 2.88
+      },
+      {
+       "year": 2021,
+       "n": 106,
+       "wr": 0.519,
+       "pf": 1.372,
+       "r": 12.86
+      },
+      {
+       "year": 2022,
+       "n": 126,
+       "wr": 0.46,
+       "pf": 0.878,
+       "r": -6.77
+      },
+      {
+       "year": 2023,
+       "n": 101,
+       "wr": 0.455,
+       "pf": 0.803,
+       "r": -8.82
+      },
+      {
+       "year": 2024,
+       "n": 113,
+       "wr": 0.487,
+       "pf": 1.051,
+       "r": 2.34
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -8.82,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 15
+     },
+     "score": -0.38477645540860245,
+     "fit": {
+      "n_trades": 670,
+      "win_rate": 0.4776,
+      "profit_factor": 0.9784,
+      "expectancy_r": -0.0086,
+      "avg_win_r": 0.8171,
+      "avg_loss_r": -0.7636,
+      "payoff": 1.0701,
+      "total_r": -5.7824,
+      "net_profit": -431.9977,
+      "return_pct": -4.32,
+      "max_dd_pct": 14.215,
+      "max_dd_r": 31.8814,
+      "sharpe": -0.1368,
+      "sortino": -0.2088,
+      "cagr_pct": -0.6602,
+      "calmar": -0.0464,
+      "trades_per_day": 0.3988,
+      "avg_bars_held": 166.0716,
+      "max_consec_losses": 8,
+      "t_stat": -0.2438,
+      "cost_share_of_gross": 0.0997,
+      "long_share": 0.5567,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 118,
+       "wr": 0.415,
+       "pf": 0.829,
+       "r": -8.28
+      },
+      {
+       "year": 2020,
+       "n": 106,
+       "wr": 0.538,
+       "pf": 1.077,
+       "r": 2.88
+      },
+      {
+       "year": 2021,
+       "n": 106,
+       "wr": 0.519,
+       "pf": 1.372,
+       "r": 12.86
+      },
+      {
+       "year": 2022,
+       "n": 126,
+       "wr": 0.46,
+       "pf": 0.878,
+       "r": -6.77
+      },
+      {
+       "year": 2023,
+       "n": 101,
+       "wr": 0.455,
+       "pf": 0.803,
+       "r": -8.82
+      },
+      {
+       "year": 2024,
+       "n": 113,
+       "wr": 0.487,
+       "pf": 1.051,
+       "r": 2.34
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -8.82,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 1.0,
+      "s.tf_minutes": 15
+     },
+     "score": -0.4041848114486005,
+     "fit": {
+      "n_trades": 671,
+      "win_rate": 0.4769,
+      "profit_factor": 0.9774,
+      "expectancy_r": -0.009,
+      "avg_win_r": 0.8171,
+      "avg_loss_r": -0.7621,
+      "payoff": 1.0721,
+      "total_r": -6.036,
+      "net_profit": -436.1168,
+      "return_pct": -4.3612,
+      "max_dd_pct": 14.2458,
+      "max_dd_r": 31.9562,
+      "sharpe": -0.1383,
+      "sortino": -0.2109,
+      "cagr_pct": -0.6666,
+      "calmar": -0.0468,
+      "trades_per_day": 0.3994,
+      "avg_bars_held": 165.8748,
+      "max_consec_losses": 8,
+      "t_stat": -0.2545,
+      "cost_share_of_gross": 0.0997,
+      "long_share": 0.5574,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 119,
+       "wr": 0.412,
+       "pf": 0.826,
+       "r": -8.46
+      },
+      {
+       "year": 2020,
+       "n": 106,
+       "wr": 0.538,
+       "pf": 1.077,
+       "r": 2.88
+      },
+      {
+       "year": 2021,
+       "n": 106,
+       "wr": 0.519,
+       "pf": 1.372,
+       "r": 12.86
+      },
+      {
+       "year": 2022,
+       "n": 126,
+       "wr": 0.46,
+       "pf": 0.877,
+       "r": -6.85
+      },
+      {
+       "year": 2023,
+       "n": 101,
+       "wr": 0.455,
+       "pf": 0.803,
+       "r": -8.82
+      },
+      {
+       "year": 2024,
+       "n": 113,
+       "wr": 0.487,
+       "pf": 1.051,
+       "r": 2.34
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -8.82,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 15
+     },
+     "score": -0.5456812491446277,
+     "fit": {
+      "n_trades": 675,
+      "win_rate": 0.4756,
+      "profit_factor": 0.9705,
+      "expectancy_r": -0.0118,
+      "avg_win_r": 0.8156,
+      "avg_loss_r": -0.762,
+      "payoff": 1.0703,
+      "total_r": -7.9508,
+      "net_profit": -516.8917,
+      "return_pct": -5.1689,
+      "max_dd_pct": 14.2423,
+      "max_dd_r": 32.078,
+      "sharpe": -0.1689,
+      "sortino": -0.257,
+      "cagr_pct": -0.7929,
+      "calmar": -0.0557,
+      "trades_per_day": 0.4018,
+      "avg_bars_held": 166.1022,
+      "max_consec_losses": 8,
+      "t_stat": -0.3347,
+      "cost_share_of_gross": 0.0998,
+      "long_share": 0.5556,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 120,
+       "wr": 0.408,
+       "pf": 0.802,
+       "r": -9.9
+      },
+      {
+       "year": 2020,
+       "n": 106,
+       "wr": 0.538,
+       "pf": 1.077,
+       "r": 2.88
+      },
+      {
+       "year": 2021,
+       "n": 106,
+       "wr": 0.519,
+       "pf": 1.372,
+       "r": 12.86
+      },
+      {
+       "year": 2022,
+       "n": 126,
+       "wr": 0.46,
+       "pf": 0.874,
+       "r": -6.99
+      },
+      {
+       "year": 2023,
+       "n": 103,
+       "wr": 0.456,
+       "pf": 0.806,
+       "r": -8.8
+      },
+      {
+       "year": 2024,
+       "n": 114,
+       "wr": 0.482,
+       "pf": 1.043,
+       "r": 2.0
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -9.9,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "fade",
+   "n_viable": 404,
+   "best_raw_exp": 0.10481974143370039,
+   "top": [
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 15
+     },
+     "score": 0.09906979524681449,
+     "fit": {
+      "n_trades": 360,
+      "win_rate": 0.4583,
+      "profit_factor": 1.0251,
+      "expectancy_r": 0.0094,
+      "avg_win_r": 0.8414,
+      "avg_loss_r": -0.6945,
+      "payoff": 1.2115,
+      "total_r": 3.3971,
+      "net_profit": 197.1349,
+      "return_pct": 1.9713,
+      "max_dd_pct": 6.7514,
+      "max_dd_r": 15.1367,
+      "sharpe": 0.1112,
+      "sortino": 0.1151,
+      "cagr_pct": 0.2933,
+      "calmar": 0.0434,
+      "trades_per_day": 0.2143,
+      "avg_bars_held": 179.6889,
+      "max_consec_losses": 7,
+      "t_stat": 0.1996,
+      "cost_share_of_gross": 0.1034,
+      "long_share": 0.4833,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 58,
+       "wr": 0.5,
+       "pf": 1.06,
+       "r": 1.21
+      },
+      {
+       "year": 2020,
+       "n": 51,
+       "wr": 0.51,
+       "pf": 1.138,
+       "r": 2.51
+      },
+      {
+       "year": 2021,
+       "n": 51,
+       "wr": 0.49,
+       "pf": 1.078,
+       "r": 1.43
+      },
+      {
+       "year": 2022,
+       "n": 67,
+       "wr": 0.388,
+       "pf": 0.751,
+       "r": -6.8
+      },
+      {
+       "year": 2023,
+       "n": 67,
+       "wr": 0.433,
+       "pf": 1.097,
+       "r": 2.62
+      },
+      {
+       "year": 2024,
+       "n": 66,
+       "wr": 0.455,
+       "pf": 1.101,
+       "r": 2.43
+      }
+     ],
+     "years_positive": 5,
+     "worst_year_r": -6.8,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 15
+     },
+     "score": 0.09906979524681449,
+     "fit": {
+      "n_trades": 360,
+      "win_rate": 0.4583,
+      "profit_factor": 1.0251,
+      "expectancy_r": 0.0094,
+      "avg_win_r": 0.8414,
+      "avg_loss_r": -0.6945,
+      "payoff": 1.2115,
+      "total_r": 3.3971,
+      "net_profit": 197.1349,
+      "return_pct": 1.9713,
+      "max_dd_pct": 6.7514,
+      "max_dd_r": 15.1367,
+      "sharpe": 0.1112,
+      "sortino": 0.1151,
+      "cagr_pct": 0.2933,
+      "calmar": 0.0434,
+      "trades_per_day": 0.2143,
+      "avg_bars_held": 179.6889,
+      "max_consec_losses": 7,
+      "t_stat": 0.1996,
+      "cost_share_of_gross": 0.1034,
+      "long_share": 0.4833,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 58,
+       "wr": 0.5,
+       "pf": 1.06,
+       "r": 1.21
+      },
+      {
+       "year": 2020,
+       "n": 51,
+       "wr": 0.51,
+       "pf": 1.138,
+       "r": 2.51
+      },
+      {
+       "year": 2021,
+       "n": 51,
+       "wr": 0.49,
+       "pf": 1.078,
+       "r": 1.43
+      },
+      {
+       "year": 2022,
+       "n": 67,
+       "wr": 0.388,
+       "pf": 0.751,
+       "r": -6.8
+      },
+      {
+       "year": 2023,
+       "n": 67,
+       "wr": 0.433,
+       "pf": 1.097,
+       "r": 2.62
+      },
+      {
+       "year": 2024,
+       "n": 66,
+       "wr": 0.455,
+       "pf": 1.101,
+       "r": 2.43
+      }
+     ],
+     "years_positive": 5,
+     "worst_year_r": -6.8,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 15,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 15
+     },
+     "score": 0.06279168188674816,
+     "fit": {
+      "n_trades": 360,
+      "win_rate": 0.4556,
+      "profit_factor": 1.016,
+      "expectancy_r": 0.0061,
+      "avg_win_r": 0.8504,
+      "avg_loss_r": -0.7003,
+      "payoff": 1.2143,
+      "total_r": 2.1972,
+      "net_profit": 143.1479,
+      "return_pct": 1.4315,
+      "max_dd_pct": 7.2371,
+      "max_dd_r": 16.3126,
+      "sharpe": 0.0846,
+      "sortino": 0.0883,
+      "cagr_pct": 0.2134,
+      "calmar": 0.0295,
+      "trades_per_day": 0.2143,
+      "avg_bars_held": 178.2472,
+      "max_consec_losses": 7,
+      "t_stat": 0.1282,
+      "cost_share_of_gross": 0.1037,
+      "long_share": 0.4833,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 58,
+       "wr": 0.5,
+       "pf": 1.056,
+       "r": 1.17
+      },
+      {
+       "year": 2020,
+       "n": 51,
+       "wr": 0.51,
+       "pf": 1.138,
+       "r": 2.51
+      },
+      {
+       "year": 2021,
+       "n": 51,
+       "wr": 0.49,
+       "pf": 1.078,
+       "r": 1.44
+      },
+      {
+       "year": 2022,
+       "n": 67,
+       "wr": 0.388,
+       "pf": 0.751,
+       "r": -6.8
+      },
+      {
+       "year": 2023,
+       "n": 67,
+       "wr": 0.433,
+       "pf": 1.097,
+       "r": 2.62
+      },
+      {
+       "year": 2024,
+       "n": 66,
+       "wr": 0.439,
+       "pf": 1.05,
+       "r": 1.25
+      }
+     ],
+     "years_positive": 5,
+     "worst_year_r": -6.8,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 25,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 15
+     },
+     "score": 0.06279168188674816,
+     "fit": {
+      "n_trades": 360,
+      "win_rate": 0.4556,
+      "profit_factor": 1.016,
+      "expectancy_r": 0.0061,
+      "avg_win_r": 0.8504,
+      "avg_loss_r": -0.7003,
+      "payoff": 1.2143,
+      "total_r": 2.1972,
+      "net_profit": 143.1479,
+      "return_pct": 1.4315,
+      "max_dd_pct": 7.2371,
+      "max_dd_r": 16.3126,
+      "sharpe": 0.0846,
+      "sortino": 0.0883,
+      "cagr_pct": 0.2134,
+      "calmar": 0.0295,
+      "trades_per_day": 0.2143,
+      "avg_bars_held": 178.2472,
+      "max_consec_losses": 7,
+      "t_stat": 0.1282,
+      "cost_share_of_gross": 0.1037,
+      "long_share": 0.4833,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 58,
+       "wr": 0.5,
+       "pf": 1.056,
+       "r": 1.17
+      },
+      {
+       "year": 2020,
+       "n": 51,
+       "wr": 0.51,
+       "pf": 1.138,
+       "r": 2.51
+      },
+      {
+       "year": 2021,
+       "n": 51,
+       "wr": 0.49,
+       "pf": 1.078,
+       "r": 1.44
+      },
+      {
+       "year": 2022,
+       "n": 67,
+       "wr": 0.388,
+       "pf": 0.751,
+       "r": -6.8
+      },
+      {
+       "year": 2023,
+       "n": 67,
+       "wr": 0.433,
+       "pf": 1.097,
+       "r": 2.62
+      },
+      {
+       "year": 2024,
+       "n": 66,
+       "wr": 0.439,
+       "pf": 1.05,
+       "r": 1.25
+      }
+     ],
+     "years_positive": 5,
+     "worst_year_r": -6.8,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "bands",
+   "n_viable": 371,
+   "best_raw_exp": 0.060612793778398476,
+   "top": [
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 40,
+      "s.er_max": 0.5,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 35,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 30
+     },
+     "score": 0.06168736234354462,
+     "fit": {
+      "n_trades": 416,
+      "win_rate": 0.5505,
+      "profit_factor": 1.0136,
+      "expectancy_r": 0.0033,
+      "avg_win_r": 0.4436,
+      "avg_loss_r": -0.5359,
+      "payoff": 0.8277,
+      "total_r": 1.3647,
+      "net_profit": 109.0605,
+      "return_pct": 1.0906,
+      "max_dd_pct": 4.8622,
+      "max_dd_r": 10.7705,
+      "sharpe": 0.0834,
+      "sortino": 0.0668,
+      "cagr_pct": 0.1628,
+      "calmar": 0.0335,
+      "trades_per_day": 0.2476,
+      "avg_bars_held": 194.8125,
+      "max_consec_losses": 5,
+      "t_stat": 0.1046,
+      "cost_share_of_gross": 0.1178,
+      "long_share": 0.4663,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 79,
+       "wr": 0.633,
+       "pf": 1.257,
+       "r": 4.72
+      },
+      {
+       "year": 2020,
+       "n": 50,
+       "wr": 0.56,
+       "pf": 1.043,
+       "r": 0.41
+      },
+      {
+       "year": 2021,
+       "n": 60,
+       "wr": 0.517,
+       "pf": 0.794,
+       "r": -3.09
+      },
+      {
+       "year": 2022,
+       "n": 73,
+       "wr": 0.452,
+       "pf": 0.818,
+       "r": -3.74
+      },
+      {
+       "year": 2023,
+       "n": 76,
+       "wr": 0.553,
+       "pf": 1.047,
+       "r": 0.78
+      },
+      {
+       "year": 2024,
+       "n": 78,
+       "wr": 0.577,
+       "pf": 1.112,
+       "r": 2.3
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -3.74,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 40,
+      "s.er_max": 0.5,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 35,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 30
+     },
+     "score": 0.06168736234354462,
+     "fit": {
+      "n_trades": 416,
+      "win_rate": 0.5505,
+      "profit_factor": 1.0136,
+      "expectancy_r": 0.0033,
+      "avg_win_r": 0.4436,
+      "avg_loss_r": -0.5359,
+      "payoff": 0.8277,
+      "total_r": 1.3647,
+      "net_profit": 109.0605,
+      "return_pct": 1.0906,
+      "max_dd_pct": 4.8622,
+      "max_dd_r": 10.7705,
+      "sharpe": 0.0834,
+      "sortino": 0.0668,
+      "cagr_pct": 0.1628,
+      "calmar": 0.0335,
+      "trades_per_day": 0.2476,
+      "avg_bars_held": 194.8125,
+      "max_consec_losses": 5,
+      "t_stat": 0.1046,
+      "cost_share_of_gross": 0.1178,
+      "long_share": 0.4663,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 79,
+       "wr": 0.633,
+       "pf": 1.257,
+       "r": 4.72
+      },
+      {
+       "year": 2020,
+       "n": 50,
+       "wr": 0.56,
+       "pf": 1.043,
+       "r": 0.41
+      },
+      {
+       "year": 2021,
+       "n": 60,
+       "wr": 0.517,
+       "pf": 0.794,
+       "r": -3.09
+      },
+      {
+       "year": 2022,
+       "n": 73,
+       "wr": 0.452,
+       "pf": 0.818,
+       "r": -3.74
+      },
+      {
+       "year": 2023,
+       "n": 76,
+       "wr": 0.553,
+       "pf": 1.047,
+       "r": 0.78
+      },
+      {
+       "year": 2024,
+       "n": 78,
+       "wr": 0.577,
+       "pf": 1.112,
+       "r": 2.3
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -3.74,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 40,
+      "s.er_max": 0.5,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 35,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 30
+     },
+     "score": 0.022971620323973065,
+     "fit": {
+      "n_trades": 416,
+      "win_rate": 0.5505,
+      "profit_factor": 1.0051,
+      "expectancy_r": 0.0012,
+      "avg_win_r": 0.4399,
+      "avg_loss_r": -0.5359,
+      "payoff": 0.8208,
+      "total_r": 0.5145,
+      "net_profit": 56.6944,
+      "return_pct": 0.5669,
+      "max_dd_pct": 5.3682,
+      "max_dd_r": 11.6208,
+      "sharpe": 0.049,
+      "sortino": 0.039,
+      "cagr_pct": 0.0848,
+      "calmar": 0.0158,
+      "trades_per_day": 0.2476,
+      "avg_bars_held": 194.4639,
+      "max_consec_losses": 5,
+      "t_stat": 0.0396,
+      "cost_share_of_gross": 0.1185,
+      "long_share": 0.4663,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 79,
+       "wr": 0.633,
+       "pf": 1.257,
+       "r": 4.72
+      },
+      {
+       "year": 2020,
+       "n": 50,
+       "wr": 0.56,
+       "pf": 1.043,
+       "r": 0.41
+      },
+      {
+       "year": 2021,
+       "n": 60,
+       "wr": 0.517,
+       "pf": 0.777,
+       "r": -3.35
+      },
+      {
+       "year": 2022,
+       "n": 73,
+       "wr": 0.452,
+       "pf": 0.818,
+       "r": -3.74
+      },
+      {
+       "year": 2023,
+       "n": 76,
+       "wr": 0.553,
+       "pf": 1.049,
+       "r": 0.8
+      },
+      {
+       "year": 2024,
+       "n": 78,
+       "wr": 0.577,
+       "pf": 1.082,
+       "r": 1.68
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -3.74,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 40,
+      "s.er_max": 0.5,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 35,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 30
+     },
+     "score": 0.08040705947944894,
+     "fit": {
+      "n_trades": 410,
+      "win_rate": 0.5488,
+      "profit_factor": 1.018,
+      "expectancy_r": 0.0043,
+      "avg_win_r": 0.4471,
+      "avg_loss_r": -0.5342,
+      "payoff": 0.837,
+      "total_r": 1.7791,
+      "net_profit": 103.7911,
+      "return_pct": 1.0379,
+      "max_dd_pct": 4.8996,
+      "max_dd_r": 10.2035,
+      "sharpe": 0.0805,
+      "sortino": 0.0665,
+      "cagr_pct": 0.155,
+      "calmar": 0.0316,
+      "trades_per_day": 0.244,
+      "avg_bars_held": 194.3683,
+      "max_consec_losses": 4,
+      "t_stat": 0.137,
+      "cost_share_of_gross": 0.1182,
+      "long_share": 0.4683,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 78,
+       "wr": 0.628,
+       "pf": 1.249,
+       "r": 4.57
+      },
+      {
+       "year": 2020,
+       "n": 49,
+       "wr": 0.571,
+       "pf": 1.059,
+       "r": 0.55
+      },
+      {
+       "year": 2021,
+       "n": 60,
+       "wr": 0.517,
+       "pf": 0.794,
+       "r": -3.09
+      },
+      {
+       "year": 2022,
+       "n": 71,
+       "wr": 0.451,
+       "pf": 0.807,
+       "r": -3.9
+      },
+      {
+       "year": 2023,
+       "n": 76,
+       "wr": 0.539,
+       "pf": 1.037,
+       "r": 0.6
+      },
+      {
+       "year": 2024,
+       "n": 76,
+       "wr": 0.579,
+       "pf": 1.157,
+       "r": 3.05
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -3.9,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "rsi2",
+   "n_viable": 381,
+   "best_raw_exp": 0.04395653076378886,
+   "top": [
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 2.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.r2_period": 2,
+      "s.r2_lo": 5,
+      "s.trend_ema": 200,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 30
+     },
+     "score": -1.4564282353542655,
+     "fit": {
+      "n_trades": 376,
+      "win_rate": 0.641,
+      "profit_factor": 0.8484,
+      "expectancy_r": -0.0448,
+      "avg_win_r": 0.3908,
+      "avg_loss_r": -0.8223,
+      "payoff": 0.4752,
+      "total_r": -16.8305,
+      "net_profit": -818.8589,
+      "return_pct": -8.1886,
+      "max_dd_pct": 9.2757,
+      "max_dd_r": 19.6568,
+      "sharpe": -0.5931,
+      "sortino": -0.4121,
+      "cagr_pct": -1.2733,
+      "calmar": -0.1373,
+      "trades_per_day": 0.2238,
+      "avg_bars_held": 68.1596,
+      "max_consec_losses": 6,
+      "t_stat": -1.4084,
+      "cost_share_of_gross": 0.1675,
+      "long_share": 0.5904,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 70,
+       "wr": 0.6,
+       "pf": 0.677,
+       "r": -7.73
+      },
+      {
+       "year": 2020,
+       "n": 53,
+       "wr": 0.679,
+       "pf": 1.055,
+       "r": 0.72
+      },
+      {
+       "year": 2021,
+       "n": 46,
+       "wr": 0.761,
+       "pf": 1.757,
+       "r": 6.03
+      },
+      {
+       "year": 2022,
+       "n": 59,
+       "wr": 0.729,
+       "pf": 1.15,
+       "r": 2.21
+      },
+      {
+       "year": 2023,
+       "n": 69,
+       "wr": 0.565,
+       "pf": 0.615,
+       "r": -9.59
+      },
+      {
+       "year": 2024,
+       "n": 79,
+       "wr": 0.582,
+       "pf": 0.679,
+       "r": -8.46
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -9.59,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 2.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.r2_period": 2,
+      "s.r2_lo": 5,
+      "s.trend_ema": 200,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 30
+     },
+     "score": -1.4564282353542655,
+     "fit": {
+      "n_trades": 376,
+      "win_rate": 0.641,
+      "profit_factor": 0.8484,
+      "expectancy_r": -0.0448,
+      "avg_win_r": 0.3908,
+      "avg_loss_r": -0.8223,
+      "payoff": 0.4752,
+      "total_r": -16.8305,
+      "net_profit": -818.8589,
+      "return_pct": -8.1886,
+      "max_dd_pct": 9.2757,
+      "max_dd_r": 19.6568,
+      "sharpe": -0.5931,
+      "sortino": -0.4121,
+      "cagr_pct": -1.2733,
+      "calmar": -0.1373,
+      "trades_per_day": 0.2238,
+      "avg_bars_held": 68.1596,
+      "max_consec_losses": 6,
+      "t_stat": -1.4084,
+      "cost_share_of_gross": 0.1675,
+      "long_share": 0.5904,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 70,
+       "wr": 0.6,
+       "pf": 0.677,
+       "r": -7.73
+      },
+      {
+       "year": 2020,
+       "n": 53,
+       "wr": 0.679,
+       "pf": 1.055,
+       "r": 0.72
+      },
+      {
+       "year": 2021,
+       "n": 46,
+       "wr": 0.761,
+       "pf": 1.757,
+       "r": 6.03
+      },
+      {
+       "year": 2022,
+       "n": 59,
+       "wr": 0.729,
+       "pf": 1.15,
+       "r": 2.21
+      },
+      {
+       "year": 2023,
+       "n": 69,
+       "wr": 0.565,
+       "pf": 0.615,
+       "r": -9.59
+      },
+      {
+       "year": 2024,
+       "n": 79,
+       "wr": 0.582,
+       "pf": 0.679,
+       "r": -8.46
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -9.59,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 2.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.r2_period": 2,
+      "s.r2_lo": 5,
+      "s.trend_ema": 200,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 30
+     },
+     "score": -1.4564282353542655,
+     "fit": {
+      "n_trades": 376,
+      "win_rate": 0.641,
+      "profit_factor": 0.8484,
+      "expectancy_r": -0.0448,
+      "avg_win_r": 0.3908,
+      "avg_loss_r": -0.8223,
+      "payoff": 0.4752,
+      "total_r": -16.8305,
+      "net_profit": -818.8589,
+      "return_pct": -8.1886,
+      "max_dd_pct": 9.2757,
+      "max_dd_r": 19.6568,
+      "sharpe": -0.5931,
+      "sortino": -0.4121,
+      "cagr_pct": -1.2733,
+      "calmar": -0.1373,
+      "trades_per_day": 0.2238,
+      "avg_bars_held": 68.1596,
+      "max_consec_losses": 6,
+      "t_stat": -1.4084,
+      "cost_share_of_gross": 0.1675,
+      "long_share": 0.5904,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 70,
+       "wr": 0.6,
+       "pf": 0.677,
+       "r": -7.73
+      },
+      {
+       "year": 2020,
+       "n": 53,
+       "wr": 0.679,
+       "pf": 1.055,
+       "r": 0.72
+      },
+      {
+       "year": 2021,
+       "n": 46,
+       "wr": 0.761,
+       "pf": 1.757,
+       "r": 6.03
+      },
+      {
+       "year": 2022,
+       "n": 59,
+       "wr": 0.729,
+       "pf": 1.15,
+       "r": 2.21
+      },
+      {
+       "year": 2023,
+       "n": 69,
+       "wr": 0.565,
+       "pf": 0.615,
+       "r": -9.59
+      },
+      {
+       "year": 2024,
+       "n": 79,
+       "wr": 0.582,
+       "pf": 0.679,
+       "r": -8.46
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -9.59,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 2.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.r2_period": 2,
+      "s.r2_lo": 5,
+      "s.trend_ema": 200,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 30
+     },
+     "score": -1.4564282353542655,
+     "fit": {
+      "n_trades": 376,
+      "win_rate": 0.641,
+      "profit_factor": 0.8484,
+      "expectancy_r": -0.0448,
+      "avg_win_r": 0.3908,
+      "avg_loss_r": -0.8223,
+      "payoff": 0.4752,
+      "total_r": -16.8305,
+      "net_profit": -818.8589,
+      "return_pct": -8.1886,
+      "max_dd_pct": 9.2757,
+      "max_dd_r": 19.6568,
+      "sharpe": -0.5931,
+      "sortino": -0.4121,
+      "cagr_pct": -1.2733,
+      "calmar": -0.1373,
+      "trades_per_day": 0.2238,
+      "avg_bars_held": 68.1596,
+      "max_consec_losses": 6,
+      "t_stat": -1.4084,
+      "cost_share_of_gross": 0.1675,
+      "long_share": 0.5904,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 70,
+       "wr": 0.6,
+       "pf": 0.677,
+       "r": -7.73
+      },
+      {
+       "year": 2020,
+       "n": 53,
+       "wr": 0.679,
+       "pf": 1.055,
+       "r": 0.72
+      },
+      {
+       "year": 2021,
+       "n": 46,
+       "wr": 0.761,
+       "pf": 1.757,
+       "r": 6.03
+      },
+      {
+       "year": 2022,
+       "n": 59,
+       "wr": 0.729,
+       "pf": 1.15,
+       "r": 2.21
+      },
+      {
+       "year": 2023,
+       "n": 69,
+       "wr": 0.565,
+       "pf": 0.615,
+       "r": -9.59
+      },
+      {
+       "year": 2024,
+       "n": 79,
+       "wr": 0.582,
+       "pf": 0.679,
+       "r": -8.46
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -9.59,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "fade",
+   "n_viable": 367,
+   "best_raw_exp": 0.03169215559501346,
+   "top": [
+    {
+     "values": {
+      "s.session": "london",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 120,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 15,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 35,
+      "s.adx_max": 30,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 30
+     },
+     "score": -0.4782845775277281,
+     "fit": {
+      "n_trades": 408,
+      "win_rate": 0.5049,
+      "profit_factor": 0.9375,
+      "expectancy_r": -0.0143,
+      "avg_win_r": 0.4257,
+      "avg_loss_r": -0.4631,
+      "payoff": 0.9193,
+      "total_r": -5.8495,
+      "net_profit": -247.9281,
+      "return_pct": -2.4793,
+      "max_dd_pct": 8.4622,
+      "max_dd_r": 18.7256,
+      "sharpe": -0.1693,
+      "sortino": -0.1362,
+      "cagr_pct": -0.3759,
+      "calmar": -0.0444,
+      "trades_per_day": 0.2429,
+      "avg_bars_held": 110.9338,
+      "max_consec_losses": 10,
+      "t_stat": -0.4998,
+      "cost_share_of_gross": 0.1612,
+      "long_share": 0.4461,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 63,
+       "wr": 0.556,
+       "pf": 1.34,
+       "r": 3.96
+      },
+      {
+       "year": 2020,
+       "n": 56,
+       "wr": 0.5,
+       "pf": 0.902,
+       "r": -0.99
+      },
+      {
+       "year": 2021,
+       "n": 65,
+       "wr": 0.4,
+       "pf": 0.565,
+       "r": -7.52
+      },
+      {
+       "year": 2022,
+       "n": 81,
+       "wr": 0.519,
+       "pf": 1.208,
+       "r": 3.96
+      },
+      {
+       "year": 2023,
+       "n": 62,
+       "wr": 0.645,
+       "pf": 1.249,
+       "r": 2.66
+      },
+      {
+       "year": 2024,
+       "n": 81,
+       "wr": 0.432,
+       "pf": 0.68,
+       "r": -7.92
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -7.92,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 15,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 35,
+      "s.adx_max": 30,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 30
+     },
+     "score": -0.17089081915292612,
+     "fit": {
+      "n_trades": 385,
+      "win_rate": 0.5792,
+      "profit_factor": 0.9739,
+      "expectancy_r": -0.0079,
+      "avg_win_r": 0.5108,
+      "avg_loss_r": -0.722,
+      "payoff": 0.7075,
+      "total_r": -3.0507,
+      "net_profit": -183.9629,
+      "return_pct": -1.8396,
+      "max_dd_pct": 8.838,
+      "max_dd_r": 18.2764,
+      "sharpe": -0.0903,
+      "sortino": -0.0882,
+      "cagr_pct": -0.2781,
+      "calmar": -0.0315,
+      "trades_per_day": 0.2292,
+      "avg_bars_held": 184.2831,
+      "max_consec_losses": 7,
+      "t_stat": -0.2022,
+      "cost_share_of_gross": 0.1276,
+      "long_share": 0.4468,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 58,
+       "wr": 0.621,
+       "pf": 1.307,
+       "r": 5.04
+      },
+      {
+       "year": 2020,
+       "n": 54,
+       "wr": 0.685,
+       "pf": 1.396,
+       "r": 3.71
+      },
+      {
+       "year": 2021,
+       "n": 59,
+       "wr": 0.475,
+       "pf": 0.592,
+       "r": -9.45
+      },
+      {
+       "year": 2022,
+       "n": 77,
+       "wr": 0.61,
+       "pf": 1.473,
+       "r": 9.28
+      },
+      {
+       "year": 2023,
+       "n": 60,
+       "wr": 0.6,
+       "pf": 0.85,
+       "r": -2.5
+      },
+      {
+       "year": 2024,
+       "n": 77,
+       "wr": 0.506,
+       "pf": 0.712,
+       "r": -9.13
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -9.45,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 35,
+      "s.adx_max": 30,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 30
+     },
+     "score": -0.17465334865917914,
+     "fit": {
+      "n_trades": 385,
+      "win_rate": 0.5792,
+      "profit_factor": 0.9734,
+      "expectancy_r": -0.0081,
+      "avg_win_r": 0.5105,
+      "avg_loss_r": -0.7219,
+      "payoff": 0.7071,
+      "total_r": -3.1132,
+      "net_profit": -182.6392,
+      "return_pct": -1.8264,
+      "max_dd_pct": 8.8363,
+      "max_dd_r": 18.2764,
+      "sharpe": -0.0896,
+      "sortino": -0.0874,
+      "cagr_pct": -0.2761,
+      "calmar": -0.0312,
+      "trades_per_day": 0.2292,
+      "avg_bars_held": 184.3065,
+      "max_consec_losses": 7,
+      "t_stat": -0.2064,
+      "cost_share_of_gross": 0.1272,
+      "long_share": 0.4468,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 58,
+       "wr": 0.621,
+       "pf": 1.309,
+       "r": 5.06
+      },
+      {
+       "year": 2020,
+       "n": 54,
+       "wr": 0.685,
+       "pf": 1.396,
+       "r": 3.71
+      },
+      {
+       "year": 2021,
+       "n": 59,
+       "wr": 0.475,
+       "pf": 0.592,
+       "r": -9.45
+      },
+      {
+       "year": 2022,
+       "n": 77,
+       "wr": 0.61,
+       "pf": 1.473,
+       "r": 9.28
+      },
+      {
+       "year": 2023,
+       "n": 60,
+       "wr": 0.6,
+       "pf": 0.85,
+       "r": -2.5
+      },
+      {
+       "year": 2024,
+       "n": 77,
+       "wr": 0.506,
+       "pf": 0.71,
+       "r": -9.22
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -9.45,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 15,
+      "s.er_max": 1.0,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 35,
+      "s.adx_max": 30,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 30
+     },
+     "score": -0.0245838697902633,
+     "fit": {
+      "n_trades": 393,
+      "win_rate": 0.5802,
+      "profit_factor": 0.9961,
+      "expectancy_r": -0.0012,
+      "avg_win_r": 0.5205,
+      "avg_loss_r": -0.722,
+      "payoff": 0.7208,
+      "total_r": -0.4704,
+      "net_profit": -58.287,
+      "return_pct": -0.5829,
+      "max_dd_pct": 8.8837,
+      "max_dd_r": 18.5471,
+      "sharpe": -0.019,
+      "sortino": -0.0188,
+      "cagr_pct": -0.0876,
+      "calmar": -0.0099,
+      "trades_per_day": 0.2339,
+      "avg_bars_held": 184.1959,
+      "max_consec_losses": 7,
+      "t_stat": -0.0306,
+      "cost_share_of_gross": 0.1264,
+      "long_share": 0.458,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 59,
+       "wr": 0.627,
+       "pf": 1.313,
+       "r": 5.13
+      },
+      {
+       "year": 2020,
+       "n": 54,
+       "wr": 0.685,
+       "pf": 1.396,
+       "r": 3.71
+      },
+      {
+       "year": 2021,
+       "n": 62,
+       "wr": 0.468,
+       "pf": 0.605,
+       "r": -9.72
+      },
+      {
+       "year": 2022,
+       "n": 78,
+       "wr": 0.615,
+       "pf": 1.497,
+       "r": 9.75
+      },
+      {
+       "year": 2023,
+       "n": 61,
+       "wr": 0.59,
+       "pf": 0.816,
+       "r": -3.21
+      },
+      {
+       "year": 2024,
+       "n": 79,
+       "wr": 0.519,
+       "pf": 0.807,
+       "r": -6.13
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -9.72,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 10,
+   "mode": "bands",
+   "n_viable": 446,
+   "best_raw_exp": 0.11847805277817564,
+   "top": [
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.0,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.3,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 30,
+      "s.confirm_mode": 0,
+      "s.bb_period": 96,
+      "s.tf_minutes": 10
+     },
+     "score": -1.065171349302432,
+     "fit": {
+      "n_trades": 498,
+      "win_rate": 0.5984,
+      "profit_factor": 0.8964,
+      "expectancy_r": -0.0342,
+      "avg_win_r": 0.4944,
+      "avg_loss_r": -0.8217,
+      "payoff": 0.6016,
+      "total_r": -17.0212,
+      "net_profit": -829.2162,
+      "return_pct": -8.2922,
+      "max_dd_pct": 11.7804,
+      "max_dd_r": 24.339,
+      "sharpe": -0.4104,
+      "sortino": -0.4687,
+      "cagr_pct": -1.29,
+      "calmar": -0.1095,
+      "trades_per_day": 0.2964,
+      "avg_bars_held": 112.7008,
+      "max_consec_losses": 8,
+      "t_stat": -1.0072,
+      "cost_share_of_gross": 0.142,
+      "long_share": 0.4418,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 83,
+       "wr": 0.566,
+       "pf": 0.765,
+       "r": -7.11
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.652,
+       "pf": 1.203,
+       "r": 3.39
+      },
+      {
+       "year": 2021,
+       "n": 56,
+       "wr": 0.536,
+       "pf": 0.647,
+       "r": -7.82
+      },
+      {
+       "year": 2022,
+       "n": 75,
+       "wr": 0.667,
+       "pf": 1.144,
+       "r": 3.05
+      },
+      {
+       "year": 2023,
+       "n": 100,
+       "wr": 0.6,
+       "pf": 1.031,
+       "r": 0.95
+      },
+      {
+       "year": 2024,
+       "n": 118,
+       "wr": 0.576,
+       "pf": 0.782,
+       "r": -9.48
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -9.48,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.0,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.3,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 30,
+      "s.confirm_mode": 0,
+      "s.bb_period": 96,
+      "s.tf_minutes": 10
+     },
+     "score": -1.0295402888118128,
+     "fit": {
+      "n_trades": 508,
+      "win_rate": 0.5945,
+      "profit_factor": 0.9,
+      "expectancy_r": -0.0331,
+      "avg_win_r": 0.5012,
+      "avg_loss_r": -0.8164,
+      "payoff": 0.6139,
+      "total_r": -16.8222,
+      "net_profit": -837.4173,
+      "return_pct": -8.3742,
+      "max_dd_pct": 11.6486,
+      "max_dd_r": 23.1188,
+      "sharpe": -0.4042,
+      "sortino": -0.4567,
+      "cagr_pct": -1.3033,
+      "calmar": -0.1119,
+      "trades_per_day": 0.3024,
+      "avg_bars_held": 112.8701,
+      "max_consec_losses": 6,
+      "t_stat": -0.9827,
+      "cost_share_of_gross": 0.1421,
+      "long_share": 0.4469,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 85,
+       "wr": 0.553,
+       "pf": 0.717,
+       "r": -9.15
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.652,
+       "pf": 1.203,
+       "r": 3.39
+      },
+      {
+       "year": 2021,
+       "n": 58,
+       "wr": 0.517,
+       "pf": 0.618,
+       "r": -8.86
+      },
+      {
+       "year": 2022,
+       "n": 77,
+       "wr": 0.675,
+       "pf": 1.195,
+       "r": 4.14
+      },
+      {
+       "year": 2023,
+       "n": 103,
+       "wr": 0.612,
+       "pf": 1.131,
+       "r": 3.99
+      },
+      {
+       "year": 2024,
+       "n": 119,
+       "wr": 0.563,
+       "pf": 0.766,
+       "r": -10.34
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -10.34,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.0,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.3,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 30,
+      "s.confirm_mode": 0,
+      "s.bb_period": 96,
+      "s.tf_minutes": 10
+     },
+     "score": -1.0295402888118128,
+     "fit": {
+      "n_trades": 508,
+      "win_rate": 0.5945,
+      "profit_factor": 0.9,
+      "expectancy_r": -0.0331,
+      "avg_win_r": 0.5012,
+      "avg_loss_r": -0.8164,
+      "payoff": 0.6139,
+      "total_r": -16.8222,
+      "net_profit": -837.4173,
+      "return_pct": -8.3742,
+      "max_dd_pct": 11.6486,
+      "max_dd_r": 23.1188,
+      "sharpe": -0.4042,
+      "sortino": -0.4567,
+      "cagr_pct": -1.3033,
+      "calmar": -0.1119,
+      "trades_per_day": 0.3024,
+      "avg_bars_held": 112.8701,
+      "max_consec_losses": 6,
+      "t_stat": -0.9827,
+      "cost_share_of_gross": 0.1421,
+      "long_share": 0.4469,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 85,
+       "wr": 0.553,
+       "pf": 0.717,
+       "r": -9.15
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.652,
+       "pf": 1.203,
+       "r": 3.39
+      },
+      {
+       "year": 2021,
+       "n": 58,
+       "wr": 0.517,
+       "pf": 0.618,
+       "r": -8.86
+      },
+      {
+       "year": 2022,
+       "n": 77,
+       "wr": 0.675,
+       "pf": 1.195,
+       "r": 4.14
+      },
+      {
+       "year": 2023,
+       "n": 103,
+       "wr": 0.612,
+       "pf": 1.131,
+       "r": 3.99
+      },
+      {
+       "year": 2024,
+       "n": 119,
+       "wr": 0.563,
+       "pf": 0.766,
+       "r": -10.34
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -10.34,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.0,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.3,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 30,
+      "s.confirm_mode": 0,
+      "s.bb_period": 96,
+      "s.tf_minutes": 10
+     },
+     "score": -2.0082281186212105,
+     "fit": {
+      "n_trades": 514,
+      "win_rate": 0.6401,
+      "profit_factor": 0.8343,
+      "expectancy_r": -0.0497,
+      "avg_win_r": 0.3908,
+      "avg_loss_r": -0.8329,
+      "payoff": 0.4691,
+      "total_r": -25.5315,
+      "net_profit": -1184.0047,
+      "return_pct": -11.84,
+      "max_dd_pct": 14.3152,
+      "max_dd_r": 31.1319,
+      "sharpe": -0.6945,
+      "sortino": -0.6422,
+      "cagr_pct": -1.8725,
+      "calmar": -0.1308,
+      "trades_per_day": 0.306,
+      "avg_bars_held": 97.6946,
+      "max_consec_losses": 6,
+      "t_stat": -1.7398,
+      "cost_share_of_gross": 0.1571,
+      "long_share": 0.4475,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 86,
+       "wr": 0.57,
+       "pf": 0.666,
+       "r": -10.65
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.682,
+       "pf": 1.053,
+       "r": 0.85
+      },
+      {
+       "year": 2021,
+       "n": 58,
+       "wr": 0.569,
+       "pf": 0.514,
+       "r": -10.74
+      },
+      {
+       "year": 2022,
+       "n": 77,
+       "wr": 0.727,
+       "pf": 1.147,
+       "r": 2.79
+      },
+      {
+       "year": 2023,
+       "n": 106,
+       "wr": 0.66,
+       "pf": 1.026,
+       "r": 0.72
+      },
+      {
+       "year": 2024,
+       "n": 121,
+       "wr": 0.628,
+       "pf": 0.774,
+       "r": -8.49
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -10.74,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 10,
+   "mode": "rsi2",
+   "n_viable": 448,
+   "best_raw_exp": 0.003949359179032832,
+   "top": [
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.0,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.r2_period": 3,
+      "s.r2_lo": 10,
+      "s.trend_ema": 100,
+      "s.er_max": 1.0,
+      "s.tf_minutes": 10
+     },
+     "score": -1.8508235039003622,
+     "fit": {
+      "n_trades": 390,
+      "win_rate": 0.459,
+      "profit_factor": 0.9058,
+      "expectancy_r": -0.0385,
+      "avg_win_r": 0.8066,
+      "avg_loss_r": -0.7554,
+      "payoff": 1.0677,
+      "total_r": -15.023,
+      "net_profit": -718.344,
+      "return_pct": -7.1834,
+      "max_dd_pct": 11.0217,
+      "max_dd_r": 23.1134,
+      "sharpe": -0.3491,
+      "sortino": -0.3699,
+      "cagr_pct": -1.1119,
+      "calmar": -0.1009,
+      "trades_per_day": 0.2321,
+      "avg_bars_held": 132.7103,
+      "max_consec_losses": 8,
+      "t_stat": -0.8917,
+      "cost_share_of_gross": 0.1114,
+      "long_share": 0.6179,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 66,
+       "wr": 0.409,
+       "pf": 0.75,
+       "r": -7.39
+      },
+      {
+       "year": 2020,
+       "n": 58,
+       "wr": 0.466,
+       "pf": 1.045,
+       "r": 0.98
+      },
+      {
+       "year": 2021,
+       "n": 56,
+       "wr": 0.536,
+       "pf": 1.08,
+       "r": 1.59
+      },
+      {
+       "year": 2022,
+       "n": 71,
+       "wr": 0.465,
+       "pf": 0.911,
+       "r": -2.57
+      },
+      {
+       "year": 2023,
+       "n": 64,
+       "wr": 0.391,
+       "pf": 0.709,
+       "r": -9.0
+      },
+      {
+       "year": 2024,
+       "n": 75,
+       "wr": 0.493,
+       "pf": 1.048,
+       "r": 1.37
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -9.0,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 15,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 10
+     },
+     "score": -1.7249710993401508,
+     "fit": {
+      "n_trades": 638,
+      "win_rate": 0.4812,
+      "profit_factor": 0.9228,
+      "expectancy_r": -0.0344,
+      "avg_win_r": 0.8552,
+      "avg_loss_r": -0.8595,
+      "payoff": 0.9949,
+      "total_r": -21.9675,
+      "net_profit": -1001.303,
+      "return_pct": -10.013,
+      "max_dd_pct": 13.1776,
+      "max_dd_r": 28.9454,
+      "sharpe": -0.3363,
+      "sortino": -0.6022,
+      "cagr_pct": -1.5701,
+      "calmar": -0.1192,
+      "trades_per_day": 0.3798,
+      "avg_bars_held": 157.3589,
+      "max_consec_losses": 11,
+      "t_stat": -0.9018,
+      "cost_share_of_gross": 0.1011,
+      "long_share": 0.5705,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 110,
+       "wr": 0.455,
+       "pf": 0.838,
+       "r": -8.37
+      },
+      {
+       "year": 2020,
+       "n": 98,
+       "wr": 0.48,
+       "pf": 0.872,
+       "r": -5.69
+      },
+      {
+       "year": 2021,
+       "n": 116,
+       "wr": 0.491,
+       "pf": 0.849,
+       "r": -7.66
+      },
+      {
+       "year": 2022,
+       "n": 112,
+       "wr": 0.473,
+       "pf": 1.054,
+       "r": 2.54
+      },
+      {
+       "year": 2023,
+       "n": 110,
+       "wr": 0.527,
+       "pf": 1.144,
+       "r": 6.47
+      },
+      {
+       "year": 2024,
+       "n": 92,
+       "wr": 0.457,
+       "pf": 0.796,
+       "r": -9.26
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -9.26,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 25,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 10
+     },
+     "score": -1.7249710993401508,
+     "fit": {
+      "n_trades": 638,
+      "win_rate": 0.4812,
+      "profit_factor": 0.9228,
+      "expectancy_r": -0.0344,
+      "avg_win_r": 0.8552,
+      "avg_loss_r": -0.8595,
+      "payoff": 0.9949,
+      "total_r": -21.9675,
+      "net_profit": -1001.303,
+      "return_pct": -10.013,
+      "max_dd_pct": 13.1776,
+      "max_dd_r": 28.9454,
+      "sharpe": -0.3363,
+      "sortino": -0.6022,
+      "cagr_pct": -1.5701,
+      "calmar": -0.1192,
+      "trades_per_day": 0.3798,
+      "avg_bars_held": 157.3589,
+      "max_consec_losses": 11,
+      "t_stat": -0.9018,
+      "cost_share_of_gross": 0.1011,
+      "long_share": 0.5705,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 110,
+       "wr": 0.455,
+       "pf": 0.838,
+       "r": -8.37
+      },
+      {
+       "year": 2020,
+       "n": 98,
+       "wr": 0.48,
+       "pf": 0.872,
+       "r": -5.69
+      },
+      {
+       "year": 2021,
+       "n": 116,
+       "wr": 0.491,
+       "pf": 0.849,
+       "r": -7.66
+      },
+      {
+       "year": 2022,
+       "n": 112,
+       "wr": 0.473,
+       "pf": 1.054,
+       "r": 2.54
+      },
+      {
+       "year": 2023,
+       "n": 110,
+       "wr": 0.527,
+       "pf": 1.144,
+       "r": 6.47
+      },
+      {
+       "year": 2024,
+       "n": 92,
+       "wr": 0.457,
+       "pf": 0.796,
+       "r": -9.26
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -9.26,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 40,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 50,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 10
+     },
+     "score": -1.726570366146825,
+     "fit": {
+      "n_trades": 638,
+      "win_rate": 0.4812,
+      "profit_factor": 0.9227,
+      "expectancy_r": -0.0345,
+      "avg_win_r": 0.855,
+      "avg_loss_r": -0.8594,
+      "payoff": 0.9949,
+      "total_r": -21.9834,
+      "net_profit": -1011.5125,
+      "return_pct": -10.1151,
+      "max_dd_pct": 13.2784,
+      "max_dd_r": 28.9636,
+      "sharpe": -0.3402,
+      "sortino": -0.6088,
+      "cagr_pct": -1.5869,
+      "calmar": -0.1195,
+      "trades_per_day": 0.3798,
+      "avg_bars_held": 157.8166,
+      "max_consec_losses": 11,
+      "t_stat": -0.9025,
+      "cost_share_of_gross": 0.1006,
+      "long_share": 0.5705,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 110,
+       "wr": 0.455,
+       "pf": 0.837,
+       "r": -8.39
+      },
+      {
+       "year": 2020,
+       "n": 98,
+       "wr": 0.48,
+       "pf": 0.872,
+       "r": -5.69
+      },
+      {
+       "year": 2021,
+       "n": 116,
+       "wr": 0.491,
+       "pf": 0.849,
+       "r": -7.65
+      },
+      {
+       "year": 2022,
+       "n": 112,
+       "wr": 0.473,
+       "pf": 1.054,
+       "r": 2.54
+      },
+      {
+       "year": 2023,
+       "n": 110,
+       "wr": 0.527,
+       "pf": 1.144,
+       "r": 6.47
+      },
+      {
+       "year": 2024,
+       "n": 92,
+       "wr": 0.457,
+       "pf": 0.796,
+       "r": -9.26
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -9.26,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 10,
+   "mode": "fade",
+   "n_viable": 413,
+   "best_raw_exp": 0.05944206201635276,
+   "top": [
+    {
+     "values": {
+      "s.session": "extended",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.8,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 10
+     },
+     "score": -0.46823079351778873,
+     "fit": {
+      "n_trades": 440,
+      "win_rate": 0.5295,
+      "profit_factor": 0.9571,
+      "expectancy_r": -0.0162,
+      "avg_win_r": 0.684,
+      "avg_loss_r": -0.8045,
+      "payoff": 0.8503,
+      "total_r": -7.1437,
+      "net_profit": -356.3733,
+      "return_pct": -3.5637,
+      "max_dd_pct": 10.7794,
+      "max_dd_r": 23.1387,
+      "sharpe": -0.164,
+      "sortino": -0.1682,
+      "cagr_pct": -0.5428,
+      "calmar": -0.0504,
+      "trades_per_day": 0.2619,
+      "avg_bars_held": 126.1682,
+      "max_consec_losses": 8,
+      "t_stat": -0.4256,
+      "cost_share_of_gross": 0.1263,
+      "long_share": 0.4227,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 44,
+       "wr": 0.545,
+       "pf": 1.062,
+       "r": 0.98
+      },
+      {
+       "year": 2020,
+       "n": 66,
+       "wr": 0.545,
+       "pf": 1.007,
+       "r": 0.18
+      },
+      {
+       "year": 2021,
+       "n": 58,
+       "wr": 0.569,
+       "pf": 1.269,
+       "r": 5.29
+      },
+      {
+       "year": 2022,
+       "n": 78,
+       "wr": 0.526,
+       "pf": 0.934,
+       "r": -1.99
+      },
+      {
+       "year": 2023,
+       "n": 91,
+       "wr": 0.451,
+       "pf": 0.674,
+       "r": -13.3
+      },
+      {
+       "year": 2024,
+       "n": 103,
+       "wr": 0.563,
+       "pf": 1.047,
+       "r": 1.69
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -13.3,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london_ny",
+      "s.sl_atr": 1.5,
+      "s.tp_r": 0.8,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 10
+     },
+     "score": -0.6605783981006643,
+     "fit": {
+      "n_trades": 392,
+      "win_rate": 0.5434,
+      "profit_factor": 0.9425,
+      "expectancy_r": -0.0248,
+      "avg_win_r": 0.7481,
+      "avg_loss_r": -0.9444,
+      "payoff": 0.7921,
+      "total_r": -9.7146,
+      "net_profit": -497.7487,
+      "return_pct": -4.9775,
+      "max_dd_pct": 11.2651,
+      "max_dd_r": 23.5135,
+      "sharpe": -0.2254,
+      "sortino": -0.2367,
+      "cagr_pct": -0.7629,
+      "calmar": -0.0677,
+      "trades_per_day": 0.2333,
+      "avg_bars_held": 100.9209,
+      "max_consec_losses": 6,
+      "t_stat": -0.5609,
+      "cost_share_of_gross": 0.1337,
+      "long_share": 0.4107,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 37,
+       "wr": 0.595,
+       "pf": 1.04,
+       "r": 0.62
+      },
+      {
+       "year": 2020,
+       "n": 52,
+       "wr": 0.558,
+       "pf": 0.89,
+       "r": -2.54
+      },
+      {
+       "year": 2021,
+       "n": 56,
+       "wr": 0.536,
+       "pf": 1.11,
+       "r": 2.38
+      },
+      {
+       "year": 2022,
+       "n": 72,
+       "wr": 0.597,
+       "pf": 1.126,
+       "r": 3.66
+      },
+      {
+       "year": 2023,
+       "n": 87,
+       "wr": 0.437,
+       "pf": 0.624,
+       "r": -17.4
+      },
+      {
+       "year": 2024,
+       "n": 88,
+       "wr": 0.58,
+       "pf": 1.107,
+       "r": 3.55
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -17.4,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london_ny",
+      "s.sl_atr": 1.5,
+      "s.tp_r": 0.8,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 10
+     },
+     "score": -0.5798288045509802,
+     "fit": {
+      "n_trades": 382,
+      "win_rate": 0.5445,
+      "profit_factor": 0.9476,
+      "expectancy_r": -0.0225,
+      "avg_win_r": 0.7468,
+      "avg_loss_r": -0.9421,
+      "payoff": 0.7927,
+      "total_r": -8.5893,
+      "net_profit": -452.332,
+      "return_pct": -4.5233,
+      "max_dd_pct": 11.421,
+      "max_dd_r": 23.8633,
+      "sharpe": -0.2074,
+      "sortino": -0.2362,
+      "cagr_pct": -0.6919,
+      "calmar": -0.0606,
+      "trades_per_day": 0.2274,
+      "avg_bars_held": 101.466,
+      "max_consec_losses": 6,
+      "t_stat": -0.503,
+      "cost_share_of_gross": 0.1336,
+      "long_share": 0.4162,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 37,
+       "wr": 0.595,
+       "pf": 1.04,
+       "r": 0.62
+      },
+      {
+       "year": 2020,
+       "n": 52,
+       "wr": 0.558,
+       "pf": 0.89,
+       "r": -2.54
+      },
+      {
+       "year": 2021,
+       "n": 53,
+       "wr": 0.547,
+       "pf": 1.185,
+       "r": 3.63
+      },
+      {
+       "year": 2022,
+       "n": 70,
+       "wr": 0.6,
+       "pf": 1.139,
+       "r": 3.89
+      },
+      {
+       "year": 2023,
+       "n": 82,
+       "wr": 0.427,
+       "pf": 0.599,
+       "r": -17.74
+      },
+      {
+       "year": 2024,
+       "n": 88,
+       "wr": 0.58,
+       "pf": 1.107,
+       "r": 3.55
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -17.74,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london_ny",
+      "s.sl_atr": 1.5,
+      "s.tp_r": 0.8,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 3,
+      "s.tf_minutes": 10
+     },
+     "score": -0.5798288045509802,
+     "fit": {
+      "n_trades": 382,
+      "win_rate": 0.5445,
+      "profit_factor": 0.9476,
+      "expectancy_r": -0.0225,
+      "avg_win_r": 0.7468,
+      "avg_loss_r": -0.9421,
+      "payoff": 0.7927,
+      "total_r": -8.5893,
+      "net_profit": -452.332,
+      "return_pct": -4.5233,
+      "max_dd_pct": 11.421,
+      "max_dd_r": 23.8633,
+      "sharpe": -0.2074,
+      "sortino": -0.2362,
+      "cagr_pct": -0.6919,
+      "calmar": -0.0606,
+      "trades_per_day": 0.2274,
+      "avg_bars_held": 101.466,
+      "max_consec_losses": 6,
+      "t_stat": -0.503,
+      "cost_share_of_gross": 0.1336,
+      "long_share": 0.4162,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 37,
+       "wr": 0.595,
+       "pf": 1.04,
+       "r": 0.62
+      },
+      {
+       "year": 2020,
+       "n": 52,
+       "wr": 0.558,
+       "pf": 0.89,
+       "r": -2.54
+      },
+      {
+       "year": 2021,
+       "n": 53,
+       "wr": 0.547,
+       "pf": 1.185,
+       "r": 3.63
+      },
+      {
+       "year": 2022,
+       "n": 70,
+       "wr": 0.6,
+       "pf": 1.139,
+       "r": 3.89
+      },
+      {
+       "year": 2023,
+       "n": 82,
+       "wr": 0.427,
+       "pf": 0.599,
+       "r": -17.74
+      },
+      {
+       "year": 2024,
+       "n": 88,
+       "wr": 0.58,
+       "pf": 1.107,
+       "r": 3.55
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -17.74,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 20,
+   "mode": "bands",
+   "n_viable": 398,
+   "best_raw_exp": 0.08909386628569017,
+   "top": [
+    {
+     "values": {
+      "s.session": "london",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.3,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 35,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 20
+     },
+     "score": -0.2131793660016112,
+     "fit": {
+      "n_trades": 1016,
+      "win_rate": 0.4852,
+      "profit_factor": 0.9895,
+      "expectancy_r": -0.0042,
+      "avg_win_r": 0.8137,
+      "avg_loss_r": -0.7752,
+      "payoff": 1.0497,
+      "total_r": -4.2609,
+      "net_profit": -352.4847,
+      "return_pct": -3.5248,
+      "max_dd_pct": 9.2331,
+      "max_dd_r": 18.6521,
+      "sharpe": -0.078,
+      "sortino": -0.119,
+      "cagr_pct": -0.5368,
+      "calmar": -0.0581,
+      "trades_per_day": 0.6048,
+      "avg_bars_held": 190.0374,
+      "max_consec_losses": 8,
+      "t_stat": -0.1456,
+      "cost_share_of_gross": 0.1083,
+      "long_share": 0.4833,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 169,
+       "wr": 0.473,
+       "pf": 0.836,
+       "r": -12.56
+      },
+      {
+       "year": 2020,
+       "n": 153,
+       "wr": 0.523,
+       "pf": 1.078,
+       "r": 4.11
+      },
+      {
+       "year": 2021,
+       "n": 162,
+       "wr": 0.481,
+       "pf": 1.111,
+       "r": 6.62
+      },
+      {
+       "year": 2022,
+       "n": 166,
+       "wr": 0.476,
+       "pf": 1.052,
+       "r": 3.51
+      },
+      {
+       "year": 2023,
+       "n": 175,
+       "wr": 0.509,
+       "pf": 1.071,
+       "r": 4.77
+      },
+      {
+       "year": 2024,
+       "n": 191,
+       "wr": 0.455,
+       "pf": 0.87,
+       "r": -10.71
+      }
+     ],
+     "years_positive": 4,
+     "worst_year_r": -12.56,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.3,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 20
+     },
+     "score": 0.07666771797001483,
+     "fit": {
+      "n_trades": 501,
+      "win_rate": 0.489,
+      "profit_factor": 1.013,
+      "expectancy_r": 0.0051,
+      "avg_win_r": 0.81,
+      "avg_loss_r": -0.7652,
+      "payoff": 1.0584,
+      "total_r": 2.5382,
+      "net_profit": 114.4047,
+      "return_pct": 1.144,
+      "max_dd_pct": 8.1108,
+      "max_dd_r": 17.634,
+      "sharpe": 0.065,
+      "sortino": 0.0792,
+      "cagr_pct": 0.1708,
+      "calmar": 0.0211,
+      "trades_per_day": 0.2982,
+      "avg_bars_held": 188.7864,
+      "max_consec_losses": 7,
+      "t_stat": 0.1242,
+      "cost_share_of_gross": 0.1057,
+      "long_share": 0.509,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 71,
+       "wr": 0.535,
+       "pf": 1.1,
+       "r": 3.01
+      },
+      {
+       "year": 2020,
+       "n": 75,
+       "wr": 0.56,
+       "pf": 1.219,
+       "r": 4.81
+      },
+      {
+       "year": 2021,
+       "n": 84,
+       "wr": 0.5,
+       "pf": 1.294,
+       "r": 7.78
+      },
+      {
+       "year": 2022,
+       "n": 82,
+       "wr": 0.451,
+       "pf": 0.948,
+       "r": -1.81
+      },
+      {
+       "year": 2023,
+       "n": 86,
+       "wr": 0.43,
+       "pf": 0.727,
+       "r": -10.87
+      },
+      {
+       "year": 2024,
+       "n": 103,
+       "wr": 0.476,
+       "pf": 0.991,
+       "r": -0.38
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -10.87,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.3,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 20
+     },
+     "score": 0.11765019052363034,
+     "fit": {
+      "n_trades": 736,
+      "win_rate": 0.4851,
+      "profit_factor": 1.0169,
+      "expectancy_r": 0.0066,
+      "avg_win_r": 0.8167,
+      "avg_loss_r": -0.7566,
+      "payoff": 1.0795,
+      "total_r": 4.8344,
+      "net_profit": 169.1542,
+      "return_pct": 1.6915,
+      "max_dd_pct": 10.2862,
+      "max_dd_r": 20.2464,
+      "sharpe": 0.0785,
+      "sortino": 0.1091,
+      "cagr_pct": 0.2519,
+      "calmar": 0.0245,
+      "trades_per_day": 0.4381,
+      "avg_bars_held": 190.0421,
+      "max_consec_losses": 7,
+      "t_stat": 0.1947,
+      "cost_share_of_gross": 0.1104,
+      "long_share": 0.4878,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 117,
+       "wr": 0.462,
+       "pf": 0.791,
+       "r": -11.57
+      },
+      {
+       "year": 2020,
+       "n": 109,
+       "wr": 0.514,
+       "pf": 1.012,
+       "r": 0.46
+      },
+      {
+       "year": 2021,
+       "n": 118,
+       "wr": 0.517,
+       "pf": 1.466,
+       "r": 16.67
+      },
+      {
+       "year": 2022,
+       "n": 120,
+       "wr": 0.458,
+       "pf": 0.923,
+       "r": -3.8
+      },
+      {
+       "year": 2023,
+       "n": 125,
+       "wr": 0.488,
+       "pf": 1.091,
+       "r": 4.37
+      },
+      {
+       "year": 2024,
+       "n": 147,
+       "wr": 0.476,
+       "pf": 0.978,
+       "r": -1.3
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -11.57,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "london",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 40,
+      "s.er_max": 0.3,
+      "s.band_k": 1.5,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 2,
+      "s.bb_period": 48,
+      "s.tf_minutes": 20
+     },
+     "score": -0.007046213223560872,
+     "fit": {
+      "n_trades": 742,
+      "win_rate": 0.4784,
+      "profit_factor": 0.9996,
+      "expectancy_r": -0.0002,
+      "avg_win_r": 0.8448,
+      "avg_loss_r": -0.7752,
+      "payoff": 1.0897,
+      "total_r": -0.1185,
+      "net_profit": -48.7737,
+      "return_pct": -0.4877,
+      "max_dd_pct": 9.393,
+      "max_dd_r": 18.8715,
+      "sharpe": 0.0069,
+      "sortino": 0.0101,
+      "cagr_pct": -0.0733,
+      "calmar": -0.0078,
+      "trades_per_day": 0.4417,
+      "avg_bars_held": 185.0957,
+      "max_consec_losses": 8,
+      "t_stat": -0.0047,
+      "cost_share_of_gross": 0.1135,
+      "long_share": 0.4865,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 120,
+       "wr": 0.45,
+       "pf": 0.785,
+       "r": -12.84
+      },
+      {
+       "year": 2020,
+       "n": 110,
+       "wr": 0.518,
+       "pf": 1.002,
+       "r": 0.1
+      },
+      {
+       "year": 2021,
+       "n": 118,
+       "wr": 0.517,
+       "pf": 1.473,
+       "r": 16.96
+      },
+      {
+       "year": 2022,
+       "n": 120,
+       "wr": 0.458,
+       "pf": 0.923,
+       "r": -3.8
+      },
+      {
+       "year": 2023,
+       "n": 125,
+       "wr": 0.48,
+       "pf": 1.054,
+       "r": 2.66
+      },
+      {
+       "year": 2024,
+       "n": 149,
+       "wr": 0.456,
+       "pf": 0.951,
+       "r": -3.2
+      }
+     ],
+     "years_positive": 3,
+     "worst_year_r": -12.84,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 20,
+   "mode": "rsi2",
+   "n_viable": 413,
+   "best_raw_exp": -0.01623340327458312,
+   "top": [
+    {
+     "values": {
+      "s.session": "overlap",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 120,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 60,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 15,
+      "s.r2_period": 3,
+      "s.r2_lo": 20,
+      "s.trend_ema": 200,
+      "s.er_max": 0.5,
+      "s.tf_minutes": 20
+     },
+     "score": -2.143457771928568,
+     "fit": {
+      "n_trades": 735,
+      "win_rate": 0.581,
+      "profit_factor": 0.8313,
+      "expectancy_r": -0.0437,
+      "avg_win_r": 0.3709,
+      "avg_loss_r": -0.6186,
+      "payoff": 0.5996,
+      "total_r": -32.1456,
+      "net_profit": -1364.8104,
+      "return_pct": -13.6481,
+      "max_dd_pct": 15.784,
+      "max_dd_r": 37.6093,
+      "sharpe": -0.7772,
+      "sortino": -0.7553,
+      "cagr_pct": -2.177,
+      "calmar": -0.1379,
+      "trades_per_day": 0.4375,
+      "avg_bars_held": 91.6327,
+      "max_consec_losses": 6,
+      "t_stat": -2.0501,
+      "cost_share_of_gross": 0.1449,
+      "long_share": 0.5782,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 118,
+       "wr": 0.551,
+       "pf": 0.748,
+       "r": -8.26
+      },
+      {
+       "year": 2020,
+       "n": 122,
+       "wr": 0.607,
+       "pf": 1.018,
+       "r": 0.5
+      },
+      {
+       "year": 2021,
+       "n": 123,
+       "wr": 0.602,
+       "pf": 1.009,
+       "r": 0.25
+      },
+      {
+       "year": 2022,
+       "n": 104,
+       "wr": 0.548,
+       "pf": 0.654,
+       "r": -10.95
+      },
+      {
+       "year": 2023,
+       "n": 142,
+       "wr": 0.592,
+       "pf": 0.726,
+       "r": -10.35
+      },
+      {
+       "year": 2024,
+       "n": 126,
+       "wr": 0.579,
+       "pf": 0.899,
+       "r": -3.34
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -10.95,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.r2_period": 2,
+      "s.r2_lo": 5,
+      "s.trend_ema": 100,
+      "s.er_max": 1.0,
+      "s.tf_minutes": 20
+     },
+     "score": -2.1738551690869983,
+     "fit": {
+      "n_trades": 413,
+      "win_rate": 0.6199,
+      "profit_factor": 0.8112,
+      "expectancy_r": -0.0538,
+      "avg_win_r": 0.373,
+      "avg_loss_r": -0.7497,
+      "payoff": 0.4975,
+      "total_r": -22.2213,
+      "net_profit": -977.8034,
+      "return_pct": -9.778,
+      "max_dd_pct": 10.4823,
+      "max_dd_r": 23.519,
+      "sharpe": -0.7246,
+      "sortino": -0.5814,
+      "cagr_pct": -1.5316,
+      "calmar": -0.1461,
+      "trades_per_day": 0.2458,
+      "avg_bars_held": 104.7651,
+      "max_consec_losses": 6,
+      "t_stat": -1.8545,
+      "cost_share_of_gross": 0.1317,
+      "long_share": 0.5617,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 69,
+       "wr": 0.609,
+       "pf": 0.762,
+       "r": -4.79
+      },
+      {
+       "year": 2020,
+       "n": 67,
+       "wr": 0.537,
+       "pf": 0.541,
+       "r": -11.2
+      },
+      {
+       "year": 2021,
+       "n": 62,
+       "wr": 0.661,
+       "pf": 1.078,
+       "r": 1.07
+      },
+      {
+       "year": 2022,
+       "n": 72,
+       "wr": 0.667,
+       "pf": 1.154,
+       "r": 2.43
+      },
+      {
+       "year": 2023,
+       "n": 68,
+       "wr": 0.618,
+       "pf": 0.759,
+       "r": -5.05
+      },
+      {
+       "year": 2024,
+       "n": 75,
+       "wr": 0.627,
+       "pf": 0.795,
+       "r": -4.68
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -11.2,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 120,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.r2_period": 2,
+      "s.r2_lo": 5,
+      "s.trend_ema": 100,
+      "s.er_max": 1.0,
+      "s.tf_minutes": 20
+     },
+     "score": -1.9146807636894763,
+     "fit": {
+      "n_trades": 417,
+      "win_rate": 0.5588,
+      "profit_factor": 0.8149,
+      "expectancy_r": -0.0459,
+      "avg_win_r": 0.3614,
+      "avg_loss_r": -0.5615,
+      "payoff": 0.6435,
+      "total_r": -19.1262,
+      "net_profit": -871.4178,
+      "return_pct": -8.7142,
+      "max_dd_pct": 9.7277,
+      "max_dd_r": 21.3771,
+      "sharpe": -0.718,
+      "sortino": -0.4939,
+      "cagr_pct": -1.3583,
+      "calmar": -0.1396,
+      "trades_per_day": 0.2482,
+      "avg_bars_held": 76.554,
+      "max_consec_losses": 6,
+      "t_stat": -1.7845,
+      "cost_share_of_gross": 0.1475,
+      "long_share": 0.5588,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 71,
+       "wr": 0.521,
+       "pf": 0.757,
+       "r": -4.44
+      },
+      {
+       "year": 2020,
+       "n": 67,
+       "wr": 0.507,
+       "pf": 0.577,
+       "r": -8.39
+      },
+      {
+       "year": 2021,
+       "n": 62,
+       "wr": 0.581,
+       "pf": 0.833,
+       "r": -2.45
+      },
+      {
+       "year": 2022,
+       "n": 74,
+       "wr": 0.595,
+       "pf": 1.16,
+       "r": 2.24
+      },
+      {
+       "year": 2023,
+       "n": 68,
+       "wr": 0.574,
+       "pf": 0.795,
+       "r": -3.71
+      },
+      {
+       "year": 2024,
+       "n": 75,
+       "wr": 0.573,
+       "pf": 0.87,
+       "r": -2.38
+      }
+     ],
+     "years_positive": 1,
+     "worst_year_r": -8.39,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 120,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 40,
+      "s.r2_period": 2,
+      "s.r2_lo": 5,
+      "s.trend_ema": 100,
+      "s.er_max": 1.0,
+      "s.tf_minutes": 20
+     },
+     "score": -1.9146807636894763,
+     "fit": {
+      "n_trades": 417,
+      "win_rate": 0.5588,
+      "profit_factor": 0.8149,
+      "expectancy_r": -0.0459,
+      "avg_win_r": 0.3614,
+      "avg_loss_r": -0.5615,
+      "payoff": 0.6435,
+      "total_r": -19.1262,
+      "net_profit": -871.4178,
+      "return_pct": -8.7142,
+      "max_dd_pct": 9.7277,
+      "max_dd_r": 21.3771,
+      "sharpe": -0.718,
+      "sortino": -0.4939,
+      "cagr_pct": -1.3583,
+      "calmar": -0.1396,
+      "trades_per_day": 0.2482,
+      "avg_bars_held": 76.554,
+      "max_consec_losses": 6,
+      "t_stat": -1.7845,
+      "cost_share_of_gross": 0.1475,
+      "long_share": 0.5588,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 71,
+       "wr": 0.521,
+       "pf": 0.757,
+       "r": -4.44
+      },
+      {
+       "year": 2020,
+       "n": 67,
+       "wr": 0.507,
+       "pf": 0.577,
+       "r": -8.39
+      },
+      {
+       "year": 2021,
+       "n": 62,
+       "wr": 0.581,
+       "pf": 0.833,
+       "r": -2.45
+      },
+      {
+       "year": 2022,
+       "n": 74,
+       "wr": 0.595,
+       "pf": 1.16,
+       "r": 2.24
+      },
+      {
+       "year": 2023,
+       "n": 68,
+       "wr": 0.574,
+       "pf": 0.795,
+       "r": -3.71
+      },
+      {
+       "year": 2024,
+       "n": 75,
+       "wr": 0.573,
+       "pf": 0.87,
+       "r": -2.38
+      }
+     ],
+     "years_positive": 1,
+     "worst_year_r": -8.39,
+     "meets_targets_fit": false
+    }
+   ]
+  },
+  {
+   "variant": "base",
+   "tf": 20,
+   "mode": "fade",
+   "n_viable": 381,
+   "best_raw_exp": 0.06265964449334901,
+   "top": [
+    {
+     "values": {
+      "s.session": "london_ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 20,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 28,
+      "s.adx_max": 100,
+      "s.confirm_mode": 1,
+      "s.tf_minutes": 20
+     },
+     "score": 0.08081224445982471,
+     "fit": {
+      "n_trades": 429,
+      "win_rate": 0.4779,
+      "profit_factor": 1.0179,
+      "expectancy_r": 0.0062,
+      "avg_win_r": 0.737,
+      "avg_loss_r": -0.6626,
+      "payoff": 1.1122,
+      "total_r": 2.6509,
+      "net_profit": 59.6564,
+      "return_pct": 0.5966,
+      "max_dd_pct": 8.5772,
+      "max_dd_r": 17.995,
+      "sharpe": 0.0444,
+      "sortino": 0.0515,
+      "cagr_pct": 0.0893,
+      "calmar": 0.0104,
+      "trades_per_day": 0.2554,
+      "avg_bars_held": 195.4802,
+      "max_consec_losses": 12,
+      "t_stat": 0.1532,
+      "cost_share_of_gross": 0.0989,
+      "long_share": 0.3753,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 61,
+       "wr": 0.525,
+       "pf": 0.992,
+       "r": -0.16
+      },
+      {
+       "year": 2020,
+       "n": 51,
+       "wr": 0.451,
+       "pf": 0.857,
+       "r": -2.76
+      },
+      {
+       "year": 2021,
+       "n": 63,
+       "wr": 0.381,
+       "pf": 0.824,
+       "r": -3.93
+      },
+      {
+       "year": 2022,
+       "n": 89,
+       "wr": 0.517,
+       "pf": 1.25,
+       "r": 7.08
+      },
+      {
+       "year": 2023,
+       "n": 88,
+       "wr": 0.477,
+       "pf": 0.862,
+       "r": -4.56
+      },
+      {
+       "year": 2024,
+       "n": 77,
+       "wr": 0.494,
+       "pf": 1.28,
+       "r": 6.98
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -4.56,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 20
+     },
+     "score": -0.7986595729264327,
+     "fit": {
+      "n_trades": 365,
+      "win_rate": 0.6027,
+      "profit_factor": 0.8876,
+      "expectancy_r": -0.029,
+      "avg_win_r": 0.3799,
+      "avg_loss_r": -0.6495,
+      "payoff": 0.585,
+      "total_r": -10.5882,
+      "net_profit": -468.3127,
+      "return_pct": -4.6831,
+      "max_dd_pct": 7.0144,
+      "max_dd_r": 15.4461,
+      "sharpe": -0.3703,
+      "sortino": -0.2374,
+      "cagr_pct": -0.7169,
+      "calmar": -0.1022,
+      "trades_per_day": 0.2173,
+      "avg_bars_held": 111.589,
+      "max_consec_losses": 6,
+      "t_stat": -0.991,
+      "cost_share_of_gross": 0.1286,
+      "long_share": 0.4466,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 62,
+       "wr": 0.581,
+       "pf": 0.738,
+       "r": -4.89
+      },
+      {
+       "year": 2020,
+       "n": 49,
+       "wr": 0.612,
+       "pf": 0.904,
+       "r": -1.2
+      },
+      {
+       "year": 2021,
+       "n": 49,
+       "wr": 0.571,
+       "pf": 0.752,
+       "r": -3.58
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.646,
+       "pf": 1.178,
+       "r": 2.43
+      },
+      {
+       "year": 2023,
+       "n": 75,
+       "wr": 0.627,
+       "pf": 1.014,
+       "r": 0.24
+      },
+      {
+       "year": 2024,
+       "n": 65,
+       "wr": 0.569,
+       "pf": 0.798,
+       "r": -3.59
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -4.89,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.0,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 20
+     },
+     "score": -0.7986595729264327,
+     "fit": {
+      "n_trades": 365,
+      "win_rate": 0.6027,
+      "profit_factor": 0.8876,
+      "expectancy_r": -0.029,
+      "avg_win_r": 0.3799,
+      "avg_loss_r": -0.6495,
+      "payoff": 0.585,
+      "total_r": -10.5882,
+      "net_profit": -468.3127,
+      "return_pct": -4.6831,
+      "max_dd_pct": 7.0144,
+      "max_dd_r": 15.4461,
+      "sharpe": -0.3703,
+      "sortino": -0.2374,
+      "cagr_pct": -0.7169,
+      "calmar": -0.1022,
+      "trades_per_day": 0.2173,
+      "avg_bars_held": 111.589,
+      "max_consec_losses": 6,
+      "t_stat": -0.991,
+      "cost_share_of_gross": 0.1286,
+      "long_share": 0.4466,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 62,
+       "wr": 0.581,
+       "pf": 0.738,
+       "r": -4.89
+      },
+      {
+       "year": 2020,
+       "n": 49,
+       "wr": 0.612,
+       "pf": 0.904,
+       "r": -1.2
+      },
+      {
+       "year": 2021,
+       "n": 49,
+       "wr": 0.571,
+       "pf": 0.752,
+       "r": -3.58
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.646,
+       "pf": 1.178,
+       "r": 2.43
+      },
+      {
+       "year": 2023,
+       "n": 75,
+       "wr": 0.627,
+       "pf": 1.014,
+       "r": 0.24
+      },
+      {
+       "year": 2024,
+       "n": 65,
+       "wr": 0.569,
+       "pf": 0.798,
+       "r": -3.59
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -4.89,
+     "meets_targets_fit": false
+    },
+    {
+     "values": {
+      "s.session": "ny",
+      "s.sl_atr": 3.0,
+      "s.tp_r": 0.4,
+      "e.max_bars": 240,
+      "e.be_trigger_r": 0.0,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.4,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 4,
+      "s.min_sl_bp": 60,
+      "s.er_max": 0.5,
+      "s.band_k": 2.0,
+      "s.rsi_lo": 20,
+      "s.adx_max": 30,
+      "s.confirm_mode": 2,
+      "s.tf_minutes": 20
+     },
+     "score": -0.7986595729264327,
+     "fit": {
+      "n_trades": 365,
+      "win_rate": 0.6027,
+      "profit_factor": 0.8876,
+      "expectancy_r": -0.029,
+      "avg_win_r": 0.3799,
+      "avg_loss_r": -0.6495,
+      "payoff": 0.585,
+      "total_r": -10.5882,
+      "net_profit": -468.3127,
+      "return_pct": -4.6831,
+      "max_dd_pct": 7.0144,
+      "max_dd_r": 15.4461,
+      "sharpe": -0.3703,
+      "sortino": -0.2374,
+      "cagr_pct": -0.7169,
+      "calmar": -0.1022,
+      "trades_per_day": 0.2173,
+      "avg_bars_held": 111.589,
+      "max_consec_losses": 6,
+      "t_stat": -0.991,
+      "cost_share_of_gross": 0.1286,
+      "long_share": 0.4466,
+      "days": 1680
+     },
+     "years": [
+      {
+       "year": 2019,
+       "n": 62,
+       "wr": 0.581,
+       "pf": 0.738,
+       "r": -4.89
+      },
+      {
+       "year": 2020,
+       "n": 49,
+       "wr": 0.612,
+       "pf": 0.904,
+       "r": -1.2
+      },
+      {
+       "year": 2021,
+       "n": 49,
+       "wr": 0.571,
+       "pf": 0.752,
+       "r": -3.58
+      },
+      {
+       "year": 2022,
+       "n": 65,
+       "wr": 0.646,
+       "pf": 1.178,
+       "r": 2.43
+      },
+      {
+       "year": 2023,
+       "n": 75,
+       "wr": 0.627,
+       "pf": 1.014,
+       "r": 0.24
+      },
+      {
+       "year": 2024,
+       "n": 65,
+       "wr": 0.569,
+       "pf": 0.798,
+       "r": -3.59
+      }
+     ],
+     "years_positive": 2,
+     "worst_year_r": -4.89,
+     "meets_targets_fit": false
+    }
+   ]
+  }
+ ]
+}

@@ -81,7 +81,7 @@ def main() -> int:
     ap.add_argument("--tf", type=int, default=None,
                     help="pin the signal timeframe in minutes (metals spaces); "
                          "chosen beforehand by scripts/explore_metals.py")
-    ap.add_argument("--variant", default="base", choices=["base", "selective"])
+    ap.add_argument("--variant", default="base", choices=["base", "selective", "tight"])
     ap.add_argument("--label", default="", help="suffix for report/config filenames")
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
