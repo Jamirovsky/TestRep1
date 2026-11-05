@@ -328,7 +328,9 @@ def build_signals(p):
     tf = p['tf']
     df = tf_frame(tf)
     fn = FAMILIES[p['family']][0]
-    lg, sh = fn(df, tf, p)
+    out = fn(df, tf, p)
+    lg, sh = out[0], out[1]
+    extra = out[2] if len(out) > 2 else {}
     lg = np.asarray(lg, bool).copy()
     sh = np.asarray(sh, bool).copy()
     tl, ts_ = trend_filter(df, tf, p)
@@ -364,7 +366,21 @@ def build_signals(p):
     pos = np.nonzero(sig)[0]
     idx = df['entry_idx'].values[pos].astype(np.int64)
     d = np.where(lg[pos], 1, -1).astype(np.int64)
-    if p['sl_mode'] == 'usd':
+    if p['sl_mode'] == 'struct':
+        # stop estrutural (ex.: extremo do varrimento) + folga em ATR; TP = rr x risco ou alvo
+        cl = df['close'].values[pos]
+        stop = np.where(d == 1, extra['stop_l'][pos], extra['stop_s'][pos])
+        sl = np.abs(cl - stop) + p.get('sl_buf_atr', 0.0) * a[pos]
+        sl = np.where(np.isfinite(sl), sl, a[pos] * 2.0)
+        sl = np.maximum(sl, np.maximum(0.25 * a[pos], 0.0005 * cl))
+        if p.get('tp_mode', 'rr') == 'target' and 'tgt_l' in extra:
+            tgt = np.where(d == 1, extra['tgt_l'][pos], extra['tgt_s'][pos])
+            tp = (tgt - cl) * d
+            keep = np.isfinite(tp) & (tp > 0.0002 * cl)
+            idx, d, sl, tp, pos = idx[keep], d[keep], sl[keep], tp[keep], pos[keep]
+        else:
+            tp = sl * p.get('rr', 1.0)
+    elif p['sl_mode'] == 'usd':
         sl = np.full(len(pos), float(p['sl_usd']))
         tp = np.full(len(pos), float(p['tp_usd']))
     else:
