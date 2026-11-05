@@ -1,6 +1,11 @@
 # Scalping research framework: XAUUSD, EURUSD, and now XAGUSD / XPTUSD / XPDUSD
 
-> **New (v3): XBRUSD (Brent).** Three new strategy families (ORB/ORB-fade,
+> **New (v4): researched oil strategies.** EIA-report trades, intraday momentum,
+> Larry Williams breakout and Brent-WTI spread arbitrage measured on real data;
+> only the spread survives costs -> pairs EA `mql5/ScalperXBR_Spread.mq5`.
+> Report (Portuguese, with sources): **[`docs/RESULTS_XBRUSD_V2.md`](docs/RESULTS_XBRUSD_V2.md)**.
+>
+> **v3: XBRUSD (Brent).** Three new strategy families (ORB/ORB-fade,
 > RSI-2 trend, liquidity sweep) plus the originals, loop-optimised towards
 > WR >= 57%, PF >= 1.01, DD <= 20%, >= 100 trades. Top-3 EAs
 > `mql5/ScalperXBR_T1..T3.mq5`; report (Portuguese, with the honest out-of-sample

@@ -1,0 +1,282 @@
+{
+ "selected": {
+  "tf": 30,
+  "lookback_days": 15,
+  "k": 2.75,
+  "z_exit": 1.0,
+  "z_stop": 99.0,
+  "max_hold_h": 72
+ },
+ "leverage_per_leg": 1.5,
+ "n_combos": 576,
+ "n_pass_fit_filter": 4,
+ "neighbour_pf_median": 1.251,
+ "neighbour_pf_min": 0.69,
+ "fit_2019_2024": {
+  "n": 83,
+  "wr": 0.6145,
+  "pf": 1.495,
+  "net_bp": 15.24,
+  "t": 1.16,
+  "dd_pct": 8.97,
+  "ret_pct": 19.34,
+  "avg_hours": 83.7
+ },
+ "holdout_2025_2026": {
+  "n": 28,
+  "wr": 0.5,
+  "pf": 1.761,
+  "net_bp": 22.17,
+  "t": 0.84,
+  "dd_pct": 4.48,
+  "ret_pct": 9.11,
+  "avg_hours": 92.3
+ },
+ "all_2019_2026": {
+  "n": 111,
+  "wr": 0.5856,
+  "pf": 1.56,
+  "net_bp": 16.99,
+  "t": 1.44,
+  "dd_pct": 8.97,
+  "ret_pct": 30.2,
+  "avg_hours": 85.9
+ },
+ "by_year": [
+  {
+   "year": 2019,
+   "n": 13,
+   "wr": 0.5385,
+   "pf": 0.751,
+   "net_bp": -15.81,
+   "t": -0.42,
+   "dd_pct": 8.53,
+   "ret_pct": -3.29,
+   "avg_hours": 94.9
+  },
+  {
+   "year": 2020,
+   "n": 18,
+   "wr": 0.8333,
+   "pf": 6.901,
+   "net_bp": 97.77,
+   "t": 2.26,
+   "dd_pct": 3.11,
+   "ret_pct": 29.17,
+   "avg_hours": 61.2
+  },
+  {
+   "year": 2021,
+   "n": 12,
+   "wr": 0.5,
+   "pf": 0.528,
+   "net_bp": -16.61,
+   "t": -0.96,
+   "dd_pct": 3.53,
+   "ret_pct": -2.99,
+   "avg_hours": 97.6
+  },
+  {
+   "year": 2022,
+   "n": 15,
+   "wr": 0.6,
+   "pf": 0.874,
+   "net_bp": -4.43,
+   "t": -0.21,
+   "dd_pct": 5.97,
+   "ret_pct": -1.09,
+   "avg_hours": 91.7
+  },
+  {
+   "year": 2023,
+   "n": 13,
+   "wr": 0.5385,
+   "pf": 0.704,
+   "net_bp": -7.81,
+   "t": -0.39,
+   "dd_pct": 4.72,
+   "ret_pct": -1.58,
+   "avg_hours": 91.7
+  },
+  {
+   "year": 2024,
+   "n": 12,
+   "wr": 0.5833,
+   "pf": 1.571,
+   "net_bp": 6.51,
+   "t": 0.61,
+   "dd_pct": 1.35,
+   "ret_pct": 1.16,
+   "avg_hours": 72.9
+  },
+  {
+   "year": 2025,
+   "n": 17,
+   "wr": 0.4118,
+   "pf": 0.509,
+   "net_bp": -9.67,
+   "t": -0.99,
+   "dd_pct": 3.46,
+   "ret_pct": -2.47,
+   "avg_hours": 89.7
+  },
+  {
+   "year": 2026,
+   "n": 11,
+   "wr": 0.6364,
+   "pf": 2.635,
+   "net_bp": 71.38,
+   "t": 1.11,
+   "dd_pct": 4.48,
+   "ret_pct": 11.86,
+   "avg_hours": 96.3
+  }
+ ],
+ "exit_reasons": {
+  "target": 70,
+  "time": 41
+ },
+ "cost_curve_all": [
+  {
+   "cost_multiple": 0.0,
+   "n": 111,
+   "wr": 0.6667,
+   "pf": 2.228,
+   "net_bp": 30.99,
+   "t": 2.63,
+   "dd_pct": 7.74,
+   "ret_pct": 64.26,
+   "avg_hours": 85.9
+  },
+  {
+   "cost_multiple": 0.5,
+   "n": 111,
+   "wr": 0.6306,
+   "pf": 1.868,
+   "net_bp": 23.99,
+   "t": 2.03,
+   "dd_pct": 8.14,
+   "ret_pct": 46.25,
+   "avg_hours": 85.9
+  },
+  {
+   "cost_multiple": 1.0,
+   "n": 111,
+   "wr": 0.5856,
+   "pf": 1.56,
+   "net_bp": 16.99,
+   "t": 1.44,
+   "dd_pct": 8.97,
+   "ret_pct": 30.2,
+   "avg_hours": 85.9
+  },
+  {
+   "cost_multiple": 1.5,
+   "n": 111,
+   "wr": 0.5315,
+   "pf": 1.3,
+   "net_bp": 9.99,
+   "t": 0.85,
+   "dd_pct": 14.33,
+   "ret_pct": 15.9,
+   "avg_hours": 85.9
+  },
+  {
+   "cost_multiple": 2.0,
+   "n": 111,
+   "wr": 0.5135,
+   "pf": 1.081,
+   "net_bp": 2.99,
+   "t": 0.25,
+   "dd_pct": 20.5,
+   "ret_pct": 3.16,
+   "avg_hours": 85.9
+  }
+ ],
+ "top_fit": [
+  {
+   "params": {
+    "tf": 30,
+    "lookback_days": 15,
+    "k": 2.75,
+    "z_exit": 1.0,
+    "z_stop": 99.0,
+    "max_hold_h": 72
+   },
+   "fit": {
+    "n": 83,
+    "wr": 0.6145,
+    "pf": 1.495,
+    "net_bp": 15.24,
+    "t": 1.16,
+    "dd_pct": 6.06,
+    "ret_pct": 12.83,
+    "avg_hours": 83.7
+   },
+   "years_pos": 2
+  },
+  {
+   "params": {
+    "tf": 30,
+    "lookback_days": 15,
+    "k": 2.75,
+    "z_exit": 1.0,
+    "z_stop": 5.0,
+    "max_hold_h": 72
+   },
+   "fit": {
+    "n": 85,
+    "wr": 0.6,
+    "pf": 1.447,
+    "net_bp": 14.18,
+    "t": 1.08,
+    "dd_pct": 6.28,
+    "ret_pct": 12.12,
+    "avg_hours": 81.9
+   },
+   "years_pos": 2
+  },
+  {
+   "params": {
+    "tf": 30,
+    "lookback_days": 10,
+    "k": 3.0,
+    "z_exit": 0.5,
+    "z_stop": 99.0,
+    "max_hold_h": 72
+   },
+   "fit": {
+    "n": 80,
+    "wr": 0.5875,
+    "pf": 1.352,
+    "net_bp": 13.09,
+    "t": 0.76,
+    "dd_pct": 6.77,
+    "ret_pct": 10.03,
+    "avg_hours": 92.5
+   },
+   "years_pos": 1
+  },
+  {
+   "params": {
+    "tf": 30,
+    "lookback_days": 10,
+    "k": 3.0,
+    "z_exit": 0.5,
+    "z_stop": 5.0,
+    "max_hold_h": 72
+   },
+   "fit": {
+    "n": 81,
+    "wr": 0.5802,
+    "pf": 1.341,
+    "net_bp": 12.62,
+    "t": 0.75,
+    "dd_pct": 7.01,
+    "ret_pct": 9.75,
+    "avg_hours": 91.5
+   },
+   "years_pos": 1
+  }
+ ]
+}
