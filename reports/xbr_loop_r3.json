@@ -1,0 +1,183 @@
+{
+ "round": "r3",
+ "fit": [
+  "2019-01-02",
+  "2025-01-01"
+ ],
+ "gates": {
+  "wr": 0.57,
+  "pf": 1.02,
+  "dd": 20.0,
+  "trades_per_year": 40
+ },
+ "cells": [
+  {
+   "variant": "base",
+   "tf": 5,
+   "mode": "orb",
+   "n_viable": 0,
+   "best_raw_exp": -0.04674015774125748,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 5,
+   "mode": "rsi2",
+   "n_viable": 0,
+   "best_raw_exp": 0.013780371332839308,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 5,
+   "mode": "sweep",
+   "n_viable": 0,
+   "best_raw_exp": -0.09874920150033817,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 5,
+   "mode": "momentum",
+   "n_viable": 0,
+   "best_raw_exp": -0.08998410360291495,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 5,
+   "mode": "breakout",
+   "n_viable": 0,
+   "best_raw_exp": -0.07071130272201424,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 5,
+   "mode": "fade",
+   "n_viable": 0,
+   "best_raw_exp": 0.007118616878936177,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 5,
+   "mode": "bands",
+   "n_viable": 0,
+   "best_raw_exp": -0.03810709453329623,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "orb",
+   "n_viable": 0,
+   "best_raw_exp": 0.04199983566015905,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "rsi2",
+   "n_viable": 0,
+   "best_raw_exp": -0.037359251627098876,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "sweep",
+   "n_viable": 0,
+   "best_raw_exp": -0.07860075556847773,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "momentum",
+   "n_viable": 0,
+   "best_raw_exp": -0.043769879259271886,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "breakout",
+   "n_viable": 0,
+   "best_raw_exp": -0.015527928511161124,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "fade",
+   "n_viable": 0,
+   "best_raw_exp": 0.008988061308713444,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "bands",
+   "n_viable": 0,
+   "best_raw_exp": 0.026775972759333595,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "orb",
+   "n_viable": 0,
+   "best_raw_exp": -0.01863635069232809,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "rsi2",
+   "n_viable": 0,
+   "best_raw_exp": -0.005274815018098903,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "sweep",
+   "n_viable": 0,
+   "best_raw_exp": -0.04006517217740067,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "momentum",
+   "n_viable": 0,
+   "best_raw_exp": 0.03282260732806719,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "breakout",
+   "n_viable": 0,
+   "best_raw_exp": 0.06319637232163583,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "fade",
+   "n_viable": 0,
+   "best_raw_exp": 0.03469953045449627,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "bands",
+   "n_viable": 0,
+   "best_raw_exp": 0.027542147579045696,
+   "top": []
+  }
+ ]
+}

@@ -44,6 +44,14 @@ MODE_MOMENTUM = "momentum"
 # reverse, and a rolling anchor does not suffer the VWAP's thin-sample problem
 # right after the daily anchor.
 MODE_BANDS = "bands"
+# Added for XBRUSD (Brent), all aimed at a high strike rate:
+#  * ORB    - break of the opening range of a session (London 07:00 / NY 13:00 UTC);
+#  * RSI2   - very short RSI extreme, traded WITH a slow-EMA trend (buy the dip);
+#  * SWEEP  - liquidity sweep: price pokes beyond the N-bar extreme and closes
+#             back inside it -> fade the false break.
+MODE_ORB = "orb"
+MODE_RSI2 = "rsi2"
+MODE_SWEEP = "sweep"
 
 # UTC hour windows, end-exclusive.  Rollover (21:00) is excluded everywhere.
 SESSION_PRESETS: Dict[str, Tuple[int, int]] = {
@@ -157,6 +165,21 @@ class StrategyParams:
     mom_period: int = 24
     mom_min_atr: float = 1.0          # net move must be at least this many ATR
     mom_confirm: int = 1              # 1 = require close beyond prior bar extreme
+
+    # --- orb (opening-range breakout) -------------------------------------
+    orb_hour: int = 7                 # UTC hour the opening range starts
+    orb_bars: int = 4                 # range length in signal-TF bars
+    orb_buffer_atr: float = 0.0       # break must clear the range by this many ATR
+    orb_fade: int = 0                 # 1 = FADE the first break (false-break play)
+
+    # --- rsi2 (short RSI extreme with the trend) ----------------------------
+    r2_period: int = 2
+    r2_lo: float = 10.0               # long below this, short above 100 - this
+    trend_ema: int = 100              # trend filter: close vs EMA(trend_ema)
+
+    # --- sweep (false-break fade) -------------------------------------------
+    sweep_lookback: int = 24
+    sweep_wick_atr: float = 0.3       # rejection wick beyond the level, in ATR
 
     def to_dict(self) -> Dict:
         return asdict(self)
@@ -295,6 +318,51 @@ def compute_signals(sig_bars: pd.DataFrame, p: StrategyParams, inst: Instrument)
 
         long_sig = valid & big & (net > 0) & cont_up
         short_sig = valid & big & (net < 0) & cont_dn
+
+    elif p.mode == MODE_ORB:
+        tf_s = int(p.tf_minutes) * 60
+        ep = epoch_seconds(sig_bars.index)
+        day = ep // 86_400
+        k = (ep - day * 86_400 - p.orb_hour * 3600) // tf_s
+        in_rng = (k >= 0) & (k < p.orb_bars)
+        df = pd.DataFrame({"day": day, "h": np.where(in_rng, h, np.nan),
+                           "l": np.where(in_rng, l, np.nan), "n": in_rng.astype(int)})
+        g = df.groupby("day")
+        rhi = g["h"].transform("max").to_numpy()
+        rlo = g["l"].transform("min").to_numpy()
+        full = g["n"].transform("sum").to_numpy() >= p.orb_bars   # range not truncated by a gap
+        after = (k >= p.orb_bars) & full & np.isfinite(rhi) & np.isfinite(rlo)
+        buf = p.orb_buffer_atr * a
+        up = after & (c > rhi + buf)
+        dn = after & (c < rlo - buf)
+        # first break per day only
+        first_up = up & (pd.Series(up.astype(int)).groupby(day).cumsum().to_numpy() == 1)
+        first_dn = dn & (pd.Series(dn.astype(int)).groupby(day).cumsum().to_numpy() == 1)
+        if p.orb_fade:
+            long_sig = valid & first_dn & ~first_up
+            short_sig = valid & first_up
+        else:
+            long_sig = valid & first_up
+            short_sig = valid & first_dn & ~first_up
+
+    elif p.mode == MODE_RSI2:
+        r2 = ind.rsi(c, p.r2_period)
+        tr = ind.ema(c, p.trend_ema)
+        ok = np.isfinite(r2) & np.isfinite(tr)
+        long_sig = valid & ok & (r2 <= p.r2_lo) & (c > tr)
+        short_sig = valid & ok & (r2 >= 100.0 - p.r2_lo) & (c < tr)
+
+    elif p.mode == MODE_SWEEP:
+        prior_hi = np.roll(ind.highest(h, p.sweep_lookback), 1)
+        prior_lo = np.roll(ind.lowest(l, p.sweep_lookback), 1)
+        prior_hi[0] = np.nan
+        prior_lo[0] = np.nan
+        wick = p.sweep_wick_atr * a
+        short_sig = valid & np.isfinite(prior_hi) & (h > prior_hi) & (c < prior_hi) & ((h - c) >= wick)
+        long_sig = valid & np.isfinite(prior_lo) & (l < prior_lo) & (c > prior_lo) & ((c - l) >= wick)
+        both = long_sig & short_sig
+        long_sig &= ~both
+        short_sig &= ~both
 
     else:
         raise ValueError(f"unknown mode {p.mode!r}")

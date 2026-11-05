@@ -44,7 +44,12 @@ def main() -> int:
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--max-hold", type=float, default=240.0)
     ap.add_argument("--trades-per-year", type=int, default=60)
-    ap.add_argument("--variant", default="base", choices=["base", "selective"])
+    ap.add_argument("--variant", default="base", choices=["base", "selective", "tight"])
+    ap.add_argument("--min-wr", type=float, default=0.50)
+    ap.add_argument("--min-pf", type=float, default=1.2)
+    ap.add_argument("--hard-wr", type=float, default=0.0)
+    ap.add_argument("--hard-pf", type=float, default=0.0)
+    ap.add_argument("--hard-dd", type=float, default=0.0)
     ap.add_argument("--out", default="reports/metals_explore.json")
     args = ap.parse_args()
 
@@ -59,7 +64,9 @@ def main() -> int:
         base_e = bt.exec_config_from(prep_all.inst, risk_pct=0.005, be_offset_r=0.10)
         years = (pd.Timestamp(args.fit_end) - pd.Timestamp(args.fit_start)).days / 365.0
         targets = O.Targets(min_trades=args.trades_per_year, max_avg_hold_bars=args.max_hold,
-                            trade_scale=years)
+                            trade_scale=years, min_wr=args.min_wr, min_pf=args.min_pf,
+                            hard_min_wr=args.hard_wr, hard_min_pf=args.hard_pf,
+                            hard_max_dd=args.hard_dd)
         results.setdefault(symbol, {})
         for tf in args.tfs:
             for mode in args.modes:

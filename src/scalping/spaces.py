@@ -22,7 +22,8 @@ from __future__ import annotations
 
 from typing import Dict, List, Sequence
 
-from .strategy import MODE_BANDS, MODE_BREAKOUT, MODE_FADE, MODE_MOMENTUM, MODE_PULLBACK
+from .strategy import (MODE_BANDS, MODE_BREAKOUT, MODE_FADE, MODE_MOMENTUM, MODE_ORB,
+                       MODE_PULLBACK, MODE_RSI2, MODE_SWEEP)
 
 # Minimum stop distance in points, per symbol.  The single most important
 # parameter in the system: round-trip friction is ~15.5 points on EURUSD and
@@ -171,6 +172,44 @@ _SELECTIVE_MODE = {
 _SELECTIVE_MODE[MODE_BANDS] = {**_SELECTIVE_MODE[MODE_FADE], "s.bb_period": [48, 96, 192]}
 
 
+# ---------------------------------------------------------------------------
+# XBRUSD (Brent).  The brief asks for a HIGH STRIKE RATE (WR >= 57%) with only
+# a positive profit factor, so the exits lean towards small targets, partial
+# profit and breakeven; three new families (orb / rsi2 / sweep) join the four
+# inherited from the XAUUSD scalper.
+# ---------------------------------------------------------------------------
+_SHARED_OIL = {
+    "s.session": ["london", "ny", "london_ny", "overlap", "extended"],
+    "s.sl_atr": [1.0, 1.5, 2.0, 3.0],
+    "s.tp_r": [0.4, 0.6, 0.8, 1.0, 1.5],
+    "e.max_bars": [30, 60, 120, 240],
+    "e.be_trigger_r": [0.0, 0.5],
+    "e.trail_start_r": [0.0, 0.8],
+    "e.partial_r": [0.0, 0.4],
+    "e.cooldown_bars": [5, 20, 60],
+    "e.max_trades_per_day": [2, 4],
+    "s.min_sl_bp": [15, 25, 40, 60],
+}
+_MODE_OIL = {
+    **_MODE_METALS,
+    MODE_ORB: {"s.orb_hour": [7, 8, 13, 14], "s.orb_bars": [2, 4, 6],
+               "s.orb_buffer_atr": [0.0, 0.2, 0.5], "s.er_min": [0.0, 0.3], "s.orb_fade": [0, 1]},
+    MODE_RSI2: {"s.r2_period": [2, 3], "s.r2_lo": [5, 10, 20], "s.trend_ema": [50, 100, 200],
+                "s.er_max": [0.5, 1.0]},
+    MODE_SWEEP: {"s.sweep_lookback": [12, 24, 48, 96], "s.sweep_wick_atr": [0.2, 0.5, 1.0],
+                 "s.er_max": [0.3, 0.5, 1.0]},
+}
+# round-2 "tight" variant: even smaller targets, more management -> strike rate
+_TIGHT_OIL = {
+    "s.sl_atr": [1.5, 2.0, 3.0, 4.0],
+    "s.tp_r": [0.3, 0.4, 0.5, 0.6, 0.8],
+    "e.be_trigger_r": [0.0, 0.3, 0.5],
+    "e.partial_r": [0.0, 0.25, 0.4],
+    "e.max_bars": [20, 45, 90, 180],
+}
+OIL_MODES = ["orb", "rsi2", "sweep", "momentum", "breakout", "fade", "bands"]
+
+
 def space_for(mode: str, symbol: str, tf_minutes: int | None = None,
               variant: str = "base") -> Dict[str, Sequence]:
     """Full search space for one mode on one symbol.
@@ -178,6 +217,13 @@ def space_for(mode: str, symbol: str, tf_minutes: int | None = None,
     For the metals, ``tf_minutes`` pins the signal timeframe (the timeframe is
     chosen by a separate exploration, not inside the walk-forward).
     """
+    if symbol.upper() == "XBRUSD":
+        sp = dict(_SHARED_OIL)
+        sp.update(_MODE_OIL[mode])
+        if variant in ("tight", "selective"):
+            sp.update(_TIGHT_OIL)
+        sp["s.tf_minutes"] = [tf_minutes or 15]
+        return sp
     if symbol.upper() in METALS and (symbol.upper() != "XAUUSD" or tf_minutes is not None):
         sp = dict(_SHARED_METALS)
         sp.update(_MODE_METALS[mode])

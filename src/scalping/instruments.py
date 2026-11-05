@@ -321,13 +321,31 @@ def _stock(symbol):
     )
 
 
+# ---------------------------------------------------------------------------
+# XBRUSD -- Brent crude CFD.  Quoted to 0.001 USD/bbl; contract 1,000 bbl is
+# common but varies by broker (R-based results do not depend on it).  Typical
+# retail spread USD 0.03-0.05 at USD 80 (~5 bp), no commission.
+# ---------------------------------------------------------------------------
+XBRUSD = Instrument(
+    symbol="XBRUSD", point=0.001, pip=0.01, contract_size=1000.0,
+    min_lot=0.01, lot_step=0.01, max_lot=50.0, quote_ccy="USD", digits=3,
+    spread_base_points=40.0,          # USD 0.040 at USD 80 (5 bp)
+    spread_asia_mult=2.0, spread_rollover_mult=5.0, spread_vol_coeff=0.6,
+    spread_max_points=200.0,
+    commission_per_lot_rt=0.0,
+    slippage_points_entry=5.0,        # 0.6 bp
+    slippage_points_stop=12.0,        # 1.5 bp
+    swap_long_points=0.0, swap_short_points=0.0, display_unit="usd",
+    ref_price=80.0,
+)
+
 STOCKS7 = ["AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA"]
 INDICES5 = ["US500", "US100", "US30", "GER40", "UK100"]
 
 REGISTRY: Dict[str, Instrument] = {
     "EURUSD": EURUSD, "XAUUSD": XAUUSD,
     "XAGUSD": XAGUSD, "XPTUSD": XPTUSD, "XPDUSD": XPDUSD,
-    "XAUJPY": XAUJPY,
+    "XAUJPY": XAUJPY, "XBRUSD": XBRUSD,
     "US500": US500, "US100": US100, "US30": US30, "GER40": GER40, "UK100": UK100,
     **{s: _stock(s) for s in STOCKS7},
 }

@@ -78,6 +78,7 @@ class Targets:
     # the in-sample bar must be higher than the one you actually need.
     hard_min_pf: float = 0.0           # 0 = disabled
     hard_min_wr: float = 0.0           # 0 = disabled
+    hard_max_dd: float = 0.0           # max drawdown %, 0 = disabled
     # the targets are stated for the whole backtest; when scoring a shorter
     # window we pro-rate the trade count by its share of the full span
     trade_scale: float = 1.0
@@ -93,6 +94,8 @@ def score(m: Metrics, t: Targets) -> float:
     if t.hard_min_pf > 0.0 and m.profit_factor < t.hard_min_pf:
         return -np.inf
     if t.hard_min_wr > 0.0 and m.win_rate < t.hard_min_wr:
+        return -np.inf
+    if t.hard_max_dd > 0.0 and m.max_dd_pct > t.hard_max_dd:
         return -np.inf
 
     # core: t-stat of mean R (edge scaled by sample size)

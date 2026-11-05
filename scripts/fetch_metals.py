@@ -30,6 +30,8 @@ REPOS = {
     "XPDUSD": "OANDA_XPDUSD_Palladium",
     "XAUUSD": "OANDA_XAUUSD_Gold",
     "XAUJPY": "OANDA_XAUJPY_GoldJPY",
+    "XBRUSD": "OANDA_BCOUSD_Brent-Crude-Oil",
+    "XTIUSD": "OANDA_WTICOUSD_West-Texas-Oil",
     # cash indices (OANDA CFD names -> the usual MT5 names)
     "US100": "OANDA_NAS100USD_US-Nas-100",
     "US500": "OANDA_SPX500USD_US-SPX-500",

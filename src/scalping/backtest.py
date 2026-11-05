@@ -28,6 +28,8 @@ DIRECTION_FIELDS = (
     "atr_avg_period",
     "pb_slope_period", "pb_rsi_lo", "pb_rsi_hi", "pb_depth_atr", "pb_lookback",
     "mom_period", "mom_min_atr", "mom_confirm", "bb_period",
+    "orb_hour", "orb_bars", "orb_buffer_atr", "orb_fade", "r2_period", "r2_lo", "trend_ema",
+    "sweep_lookback", "sweep_wick_atr",
 )
 
 

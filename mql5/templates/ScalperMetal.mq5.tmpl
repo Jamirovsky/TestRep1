@@ -33,7 +33,10 @@ enum ENUM_SCALP_MODE
    MODE_MOMENTUM = 1,   // net move over N bars, ER-gated
    MODE_PULLBACK = 2,   // trend continuation after a retracement
    MODE_FADE     = 3,   // mean reversion to session VWAP
-   MODE_BANDS    = 4    // mean reversion to a rolling mean (Bollinger z)
+   MODE_BANDS    = 4,   // mean reversion to a rolling mean (Bollinger z)
+   MODE_ORB      = 5,   // opening-range breakout (first break of the day)
+   MODE_RSI2     = 6,   // short-RSI extreme traded with the EMA trend
+   MODE_SWEEP    = 7    // liquidity sweep: false break of the N-bar extreme
   };
 
 input group           "=== Strategy ==="
@@ -78,6 +81,17 @@ input double          InpPbRsiHi         = {{pb_rsi_hi}};
 input double          InpPbDepthAtr      = {{pb_depth_atr}};
 input int             InpPbLookback      = {{pb_lookback}};
 
+input group           "=== Entry (orb / rsi2 / sweep) ==="
+input int             InpOrbHourUTC      = {{orb_hour}};        // opening range starts at this UTC hour
+input int             InpOrbBars         = {{orb_bars}};        // range length in signal-TF bars
+input double          InpOrbBufferAtr    = {{orb_buffer_atr}};
+input bool            InpOrbFade         = {{orb_fade}};       // true = fade the first break
+input int             InpR2Period        = {{r2_period}};
+input double          InpR2Lo            = {{r2_lo}};       // long below, short above 100-x
+input int             InpTrendEma        = {{trend_ema}};
+input int             InpSweepLookback   = {{sweep_lookback}};
+input double          InpSweepWickAtr    = {{sweep_wick_atr}};
+
 input group           "=== Risk and exits ==="
 input double          InpRiskPct         = {{risk_pct}};  // fraction of equity per trade
 input double          InpSlAtr           = {{sl_atr}};    // stop = InpSlAtr * ATR(signal TF)
@@ -107,6 +121,7 @@ input string          InpComment         = "{{EA_NAME}}";
 CTrade   g_trade;
 int      h_rsi = INVALID_HANDLE, h_adx = INVALID_HANDLE;
 int      h_ema_f = INVALID_HANDLE, h_ema_s = INVALID_HANDLE;
+int      h_r2 = INVALID_HANDLE, h_trend = INVALID_HANDLE;
 datetime g_last_bar_time = 0;
 datetime g_cooldown_until = 0;
 int      g_trades_today = 0;
@@ -133,8 +148,11 @@ int OnInit()
    h_adx   = iADXWilder(_Symbol, InpSignalTF, InpAdxPeriod);             // Wilder ADX, as in Python
    h_ema_f = iMA(_Symbol, InpSignalTF, InpEmaFast, 0, MODE_EMA, PRICE_CLOSE);
    h_ema_s = iMA(_Symbol, InpSignalTF, InpEmaSlow, 0, MODE_EMA, PRICE_CLOSE);
+   h_r2    = iRSI(_Symbol, InpSignalTF, InpR2Period, PRICE_CLOSE);
+   h_trend = iMA(_Symbol, InpSignalTF, InpTrendEma, 0, MODE_EMA, PRICE_CLOSE);
    if(h_rsi == INVALID_HANDLE || h_adx == INVALID_HANDLE
-      || h_ema_f == INVALID_HANDLE || h_ema_s == INVALID_HANDLE)
+      || h_ema_f == INVALID_HANDLE || h_ema_s == INVALID_HANDLE
+      || h_r2 == INVALID_HANDLE || h_trend == INVALID_HANDLE)
      {
       Print("indicator handle creation failed: ", GetLastError());
       return(INIT_FAILED);
@@ -148,6 +166,7 @@ void OnDeinit(const int reason)
   {
    IndicatorRelease(h_rsi);   IndicatorRelease(h_adx);
    IndicatorRelease(h_ema_f); IndicatorRelease(h_ema_s);
+   IndicatorRelease(h_r2);    IndicatorRelease(h_trend);
   }
 
 //+------------------------------------------------------------------+
@@ -330,6 +349,8 @@ int Signal(double &atr_out, double &close_out)
    int need = InpAtrRankLookback + InpAtrPeriod + 200;
    need = (int)MathMax(need, InpEmaSlow * 4 + 50);
    need = (int)MathMax(need, InpBbPeriod + InpErPeriod + InpMomPeriod + InpDonPeriod + 50);
+   need = (int)MathMax(need, InpSweepLookback + 50);
+   need = (int)MathMax(need, (int)(86400 / PeriodSeconds(InpSignalTF)) + 50);   // ORB: a full day
 
    MqlRates r[];
    ArraySetAsSeries(r, true);
@@ -369,6 +390,81 @@ int Signal(double &atr_out, double &close_out)
       double er = EfficiencyRatio(close, 0, InpErPeriod);
       if(er < InpErMin || er > InpErMax)
          return(0);
+     }
+
+   // --- opening-range breakout ---------------------------------------
+   if(InpMode == MODE_ORB)
+     {
+      int tfs = PeriodSeconds(InpSignalTF);
+      long day0 = (long)ServerToUtc(r[0].time) / 86400;
+      long k0 = ((long)ServerToUtc(r[0].time) - day0 * 86400 - InpOrbHourUTC * 3600) / tfs;
+      if(k0 < InpOrbBars)
+         return(0);
+      double rhi = -DBL_MAX, rlo = DBL_MAX;
+      int nrng = 0;
+      for(int i = 0; i < need; i++)
+        {
+         long t = (long)ServerToUtc(r[i].time);
+         if(t / 86400 != day0)
+            break;
+         long k = (t - day0 * 86400 - InpOrbHourUTC * 3600) / tfs;
+         if(t - day0 * 86400 - InpOrbHourUTC * 3600 >= 0 && k < InpOrbBars)
+           {
+            rhi = MathMax(rhi, high[i]);
+            rlo = MathMin(rlo, low[i]);
+            nrng++;
+           }
+        }
+      if(nrng < InpOrbBars)
+         return(0);                // range truncated by a gap: no trade, as in Python
+      bool up0 = close[0] > rhi + InpOrbBufferAtr * atr[0];
+      bool dn0 = close[0] < rlo - InpOrbBufferAtr * atr[0];
+      if(!up0 && !dn0)
+         return(0);
+      // first break of the day only: no earlier post-range bar may have broken
+      for(int i = 1; i < need; i++)
+        {
+         long t = (long)ServerToUtc(r[i].time);
+         if(t / 86400 != day0)
+            break;
+         if(t - day0 * 86400 - InpOrbHourUTC * 3600 < (long)InpOrbBars * tfs)
+            continue;
+         if(up0 && close[i] > rhi + InpOrbBufferAtr * atr[i]) up0 = false;
+         if(dn0 && close[i] < rlo - InpOrbBufferAtr * atr[i]) dn0 = false;
+        }
+      if(up0) return(InpOrbFade ? -1 : +1);
+      if(dn0) return(InpOrbFade ? +1 : -1);
+      return(0);
+     }
+
+   // --- RSI(2) extreme with the trend -------------------------------
+   if(InpMode == MODE_RSI2)
+     {
+      double r2[], tr[];
+      ArraySetAsSeries(r2, true); ArraySetAsSeries(tr, true);
+      if(CopyBuffer(h_r2, 0, 1, 2, r2) < 2 || CopyBuffer(h_trend, 0, 1, 2, tr) < 2)
+         return(0);
+      if(r2[0] <= InpR2Lo && close[0] > tr[0]) return(+1);
+      if(r2[0] >= 100.0 - InpR2Lo && close[0] < tr[0]) return(-1);
+      return(0);
+     }
+
+   // --- liquidity sweep (false break) --------------------------------
+   if(InpMode == MODE_SWEEP)
+     {
+      double phi = high[1], plo = low[1];
+      for(int i = 1; i <= InpSweepLookback; i++)
+        {
+         if(high[i] > phi) phi = high[i];
+         if(low[i]  < plo) plo = low[i];
+        }
+      double wick = InpSweepWickAtr * atr[0];
+      bool sh = (high[0] > phi && close[0] < phi && high[0] - close[0] >= wick);
+      bool lg = (low[0]  < plo && close[0] > plo && close[0] - low[0] >= wick);
+      if(sh && lg) return(0);
+      if(lg) return(+1);
+      if(sh) return(-1);
+      return(0);
      }
 
    // --- mean reversion: session VWAP (FADE) or rolling mean (BANDS) --

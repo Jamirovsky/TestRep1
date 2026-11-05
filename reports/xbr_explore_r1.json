@@ -1,0 +1,215 @@
+{
+ "XBRUSD": {
+  "M1_orb": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M1_rsi2": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M1_sweep": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M1_momentum": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M1_breakout": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M1_fade": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M1_bands": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M5_orb": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M5_rsi2": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M5_sweep": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M5_momentum": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M5_breakout": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M5_fade": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M5_bands": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M15_orb": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M15_rsi2": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M15_sweep": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M15_momentum": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M15_breakout": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M15_fade": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M15_bands": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M30_orb": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M30_rsi2": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M30_sweep": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M30_momentum": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M30_breakout": {
+   "n_viable": 1,
+   "best_fit_score": 0.4490706995903583,
+   "rows": [
+    {
+     "values": {
+      "s.session": "london_ny",
+      "s.sl_atr": 2.0,
+      "s.tp_r": 1.5,
+      "e.max_bars": 120,
+      "e.be_trigger_r": 0.5,
+      "e.trail_start_r": 0.8,
+      "e.partial_r": 0.0,
+      "e.cooldown_bars": 5,
+      "e.max_trades_per_day": 2,
+      "s.min_sl_bp": 40,
+      "s.er_min": 0.45,
+      "s.don_period": 24,
+      "s.adx_min": 12,
+      "s.expansion_mult": 1.0,
+      "s.tf_minutes": 30
+     },
+     "robust_worst": -1e+18,
+     "fit": {
+      "n_trades": 245,
+      "win_rate": 0.6204081632653061,
+      "profit_factor": 1.1156466209005358,
+      "expectancy_r": 0.0286900745996408,
+      "avg_win_r": 0.44611608339306513,
+      "avg_loss_r": -0.6535545849336979,
+      "payoff": 0.682599577261512,
+      "total_r": 7.029068276911996,
+      "net_profit": 331.0179675310348,
+      "return_pct": 3.3101796753103483,
+      "max_dd_pct": 4.790186318917614,
+      "max_dd_r": 8.947086725286445,
+      "sharpe": 0.3233978510917562,
+      "sortino": 0.30804897992370295,
+      "cagr_pct": 0.7757395253890076,
+      "calmar": 0.16194349733859473,
+      "trades_per_day": 0.23069679849340866,
+      "avg_bars_held": 84.95510204081633,
+      "max_consec_losses": 5,
+      "t_stat": 0.6273994766847953,
+      "cost_share_of_gross": 0.15690521066946783,
+      "long_share": 0.45714285714285713,
+      "days": 1062
+     },
+     "val": {
+      "n_trades": 140,
+      "win_rate": 0.4928571428571429,
+      "profit_factor": 0.6393975211233346,
+      "expectancy_r": -0.12913935735468368,
+      "avg_win_r": 0.4646006426340802,
+      "avg_loss_r": -0.706154286921229,
+      "payoff": 0.6579307826051704,
+      "total_r": -18.079510029655715,
+      "net_profit": -826.0809770849494,
+      "return_pct": -8.260809770849495,
+      "max_dd_pct": 10.278577730659428,
+      "max_dd_r": 21.938524895018517,
+      "sharpe": -1.26253848548668,
+      "sortino": -1.1473776948274905,
+      "cagr_pct": -3.4547024807488946,
+      "calmar": -0.3361070540376461,
+      "trades_per_day": 0.22653721682847897,
+      "avg_bars_held": 83.75714285714285,
+      "max_consec_losses": 9,
+      "t_stat": -2.0677448108189913,
+      "cost_share_of_gross": 0.16056313557988544,
+      "long_share": 0.45,
+      "days": 618
+     }
+    }
+   ]
+  },
+  "M30_fade": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  },
+  "M30_bands": {
+   "n_viable": 0,
+   "best_fit_score": null,
+   "rows": []
+  }
+ }
+}

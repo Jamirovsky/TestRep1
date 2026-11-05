@@ -18,14 +18,16 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from scalping.instruments import get_instrument
-from scalping.strategy import SESSION_PRESETS
+from scalping.strategy import SESSION_PRESETS, StrategyParams
 
 MODES = {"breakout": "MODE_BREAKOUT", "momentum": "MODE_MOMENTUM", "pullback": "MODE_PULLBACK",
-         "fade": "MODE_FADE", "bands": "MODE_BANDS"}
-MODE_IDX = {"breakout": 0, "momentum": 1, "pullback": 2, "fade": 3, "bands": 4}
+         "fade": "MODE_FADE", "bands": "MODE_BANDS", "orb": "MODE_ORB", "rsi2": "MODE_RSI2",
+         "sweep": "MODE_SWEEP"}
+MODE_IDX = {"breakout": 0, "momentum": 1, "pullback": 2, "fade": 3, "bands": 4, "orb": 5, "rsi2": 6,
+            "sweep": 7}
 TFS = {1: "PERIOD_M1", 2: "PERIOD_M2", 3: "PERIOD_M3", 5: "PERIOD_M5", 10: "PERIOD_M10",
        15: "PERIOD_M15", 20: "PERIOD_M20", 30: "PERIOD_M30"}
-MAGIC = {"XAGUSD": 20261103, "XPTUSD": 20261104, "XPDUSD": 20261105, "XAUUSD": 20261106,
+MAGIC = {"XBRUSD": 20261120, "XAGUSD": 20261103, "XPTUSD": 20261104, "XPDUSD": 20261105, "XAUUSD": 20261106,
          "XAUJPY": 20261107}
 
 
@@ -70,13 +72,16 @@ def main() -> int:
               "adx_period", "adx_max", "confirm_mode", "don_period", "ema_fast", "ema_slow",
               "adx_min", "expansion_mult", "atr_avg_period", "mom_period", "mom_min_atr",
               "mom_confirm", "pb_slope_period", "pb_rsi_lo", "pb_rsi_hi", "pb_depth_atr",
-              "pb_lookback", "sl_atr", "min_sl_bp", "tp_r"):
-        val = s[k]
-        if k == "mom_confirm":
+              "pb_lookback", "sl_atr", "min_sl_bp", "tp_r", "orb_hour", "orb_bars",
+              "orb_buffer_atr", "r2_period", "r2_lo", "trend_ema", "sweep_lookback",
+              "sweep_wick_atr", "orb_fade"):
+        val = s.get(k, getattr(StrategyParams(), k))
+        if k in ("mom_confirm", "orb_fade"):
             val = bool(val)
         elif k in ("atr_period", "atr_rank_lookback", "er_period", "bb_period", "rsi_period",
                    "adx_period", "confirm_mode", "don_period", "ema_fast", "ema_slow",
-                   "atr_avg_period", "mom_period", "pb_slope_period", "pb_lookback"):
+                   "atr_avg_period", "mom_period", "pb_slope_period", "pb_lookback",
+                   "orb_hour", "orb_bars", "r2_period", "trend_ema", "sweep_lookback"):
             val = int(val)
         else:
             val = float(val)
@@ -121,6 +126,20 @@ def main() -> int:
         rng("InpErMax", rep["er_max"], 0.1, max(0.2, round(float(s["er_max"]) - 0.3, 2)),
             min(1.0, round(float(s["er_max"]) + 0.2, 2)), s["mode"] in ("fade", "bands")),
         f"InpConfirmMode={rep['confirm_mode']}",
+        rng("InpOrbBars", rep["orb_bars"], 1, max(1, int(s.get("orb_bars", 4)) - 2),
+            int(s.get("orb_bars", 4)) + 3, s["mode"] == "orb"),
+        rng("InpOrbBufferAtr", rep["orb_buffer_atr"], 0.1, 0.0,
+            float(s.get("orb_buffer_atr", 0)) + 0.4, s["mode"] == "orb"),
+        f"InpOrbHourUTC={rep['orb_hour']}",
+        rng("InpR2Lo", rep["r2_lo"], 2.5, max(2.5, float(s.get("r2_lo", 10)) - 5),
+            float(s.get("r2_lo", 10)) + 7.5, s["mode"] == "rsi2"),
+        f"InpR2Period={rep['r2_period']}",
+        rng("InpTrendEma", rep["trend_ema"], 25, max(25, int(s.get("trend_ema", 100)) - 50),
+            int(s.get("trend_ema", 100)) + 100, s["mode"] == "rsi2"),
+        rng("InpSweepLookback", rep["sweep_lookback"], 12, max(6, int(s.get("sweep_lookback", 24)) - 12),
+            int(s.get("sweep_lookback", 24)) + 36, s["mode"] == "sweep"),
+        rng("InpSweepWickAtr", rep["sweep_wick_atr"], 0.1, max(0.1, float(s.get("sweep_wick_atr", 0.3)) - 0.2),
+            float(s.get("sweep_wick_atr", 0.3)) + 0.4, s["mode"] == "sweep"),
         rng("InpMomPeriod", rep["mom_period"], 6, max(6, int(s["mom_period"]) - 12),
             int(s["mom_period"]) + 24, s["mode"] == "momentum"),
         rng("InpMomMinAtr", rep["mom_min_atr"], 0.5, max(0.5, float(s["mom_min_atr"]) - 1.0),
