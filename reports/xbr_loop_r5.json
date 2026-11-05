@@ -1,0 +1,239 @@
+{
+ "round": "r5",
+ "fit": [
+  "2019-01-02",
+  "2025-01-01"
+ ],
+ "gates": {
+  "wr": 0.55,
+  "pf": 1.0,
+  "dd": 0.0,
+  "trades_per_year": 40
+ },
+ "cells": [
+  {
+   "variant": "tight",
+   "tf": 15,
+   "mode": "orb",
+   "n_viable": 0,
+   "best_raw_exp": -0.01924337041166547,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 15,
+   "mode": "rsi2",
+   "n_viable": 0,
+   "best_raw_exp": -0.021339579498342517,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 15,
+   "mode": "sweep",
+   "n_viable": 0,
+   "best_raw_exp": -0.0528461782322554,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 15,
+   "mode": "momentum",
+   "n_viable": 0,
+   "best_raw_exp": 0.0012625911725350535,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 15,
+   "mode": "breakout",
+   "n_viable": 0,
+   "best_raw_exp": 0.003360925561167405,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 15,
+   "mode": "fade",
+   "n_viable": 0,
+   "best_raw_exp": 0.04830590531905734,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 15,
+   "mode": "bands",
+   "n_viable": 0,
+   "best_raw_exp": 0.005559424964040381,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 30,
+   "mode": "orb",
+   "n_viable": 0,
+   "best_raw_exp": 0.005863521690675863,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 30,
+   "mode": "rsi2",
+   "n_viable": 0,
+   "best_raw_exp": 0.021533383606702355,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 30,
+   "mode": "sweep",
+   "n_viable": 0,
+   "best_raw_exp": -0.029720338040169984,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 30,
+   "mode": "momentum",
+   "n_viable": 0,
+   "best_raw_exp": 0.02230853536617318,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 30,
+   "mode": "breakout",
+   "n_viable": 0,
+   "best_raw_exp": 0.04258901451174854,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 30,
+   "mode": "fade",
+   "n_viable": 0,
+   "best_raw_exp": 0.017574206035818697,
+   "top": []
+  },
+  {
+   "variant": "tight",
+   "tf": 30,
+   "mode": "bands",
+   "n_viable": 0,
+   "best_raw_exp": 0.049298496044163094,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "orb",
+   "n_viable": 0,
+   "best_raw_exp": 0.0757287567216345,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "rsi2",
+   "n_viable": 0,
+   "best_raw_exp": -0.03525137764954271,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "sweep",
+   "n_viable": 0,
+   "best_raw_exp": -0.059534201152905045,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "momentum",
+   "n_viable": 0,
+   "best_raw_exp": -0.042731690174721386,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "breakout",
+   "n_viable": 0,
+   "best_raw_exp": -0.027939732755213383,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "fade",
+   "n_viable": 0,
+   "best_raw_exp": 0.00807125539929091,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "bands",
+   "n_viable": 0,
+   "best_raw_exp": -0.01419976523797158,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "orb",
+   "n_viable": 0,
+   "best_raw_exp": 0.03144721900519765,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "rsi2",
+   "n_viable": 0,
+   "best_raw_exp": 0.016535403631003566,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "sweep",
+   "n_viable": 0,
+   "best_raw_exp": -0.03664086266923334,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "momentum",
+   "n_viable": 0,
+   "best_raw_exp": 0.028106225603770997,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "breakout",
+   "n_viable": 0,
+   "best_raw_exp": 0.04040578831493689,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "fade",
+   "n_viable": 0,
+   "best_raw_exp": 0.011945686040483253,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 30,
+   "mode": "bands",
+   "n_viable": 0,
+   "best_raw_exp": 0.06134328795351824,
+   "top": []
+  }
+ ]
+}

@@ -54,10 +54,15 @@ def main() -> int:
             for t in cell["top"]:
                 cands.append({"round": d["round"], "variant": cell["variant"], "tf": cell["tf"],
                               "mode": cell["mode"], **t})
-    cands.sort(key=lambda c: (c["years_positive"], c["worst_year_r"], c["score"]), reverse=True)
+    for c in cands:
+        f = c["fit"]
+        c["meets_targets_fit"] = bool(f["n_trades"] >= 240 and f["win_rate"] >= TGT["wr"]
+                                      and f["profit_factor"] >= TGT["pf"])
+    cands.sort(key=lambda c: (c["meets_targets_fit"], c["years_positive"], c["worst_year_r"], c["score"]),
+               reverse=True)
     top, seen = [], set(exclude)
     for c in cands:
-        fam = c["mode"] + ("_fade" if c["values"].get("s.orb_fade") else "")
+        fam = c["mode"] + ("_fade" if c["values"].get("s.orb_fade") else "") + f"_M{c['tf']}"
         if fam in seen:
             continue
         seen.add(fam)
@@ -73,6 +78,15 @@ def main() -> int:
         base_s = StrategyParams(mode=c["mode"], tf_minutes=c["tf"])
         base_e = bt.exec_config_from(prep.inst, risk_pct=0.005, be_offset_r=0.10)
         s_p, e_p = O.build(c["values"], base_s, base_e)
+        # Drawdown scales with the risk per trade; win rate and PF do not.  The
+        # risk is therefore chosen on 2019-2024 alone: the largest step whose
+        # fit-window drawdown stays under 12% (headroom below the 20% target).
+        for risk in (0.01, 0.0075, 0.005, 0.0035, 0.0025, 0.0015, 0.001):
+            e_try = replace(e_p, risk_pct=risk)
+            m_try, _, _ = bt.run(fit, s_p, e_try)
+            if m_try.max_dd_pct <= 12.0:
+                break
+        e_p = e_try
         m_fit, _, _ = bt.run(fit, s_p, e_p)
         m_h, tr_h, _ = bt.run(hold, s_p, e_p)
         _, tr_all, _ = bt.run(prep, s_p, e_p)
@@ -98,7 +112,7 @@ def main() -> int:
         mf, mh = mdict(m_fit), mdict(m_h)
         name = f"ScalperXBR_T{i}"
         tr_all.to_csv(ROOT / "reports" / f"xbr_top{i}_trades.csv", index=False)
-        rec = {"rank": i, "ea": name, "round": c["round"], "variant": c["variant"], "mode": c["mode"],
+        rec = {"rank": i, "ea": name, "risk_pct": e_p.risk_pct, "round": c["round"], "variant": c["variant"], "mode": c["mode"],
                "tf": c["tf"], "fit_2019_2024": mf, "years_positive": c["years_positive"],
                "holdout_2025_2026": mh, "holdout_meets_targets": ok(mh), "fit_meets_targets": ok(mf),
                "holdout_cost_curve": curve, "by_year": by_year,

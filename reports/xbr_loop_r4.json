@@ -1,0 +1,71 @@
+{
+ "round": "r4",
+ "fit": [
+  "2019-01-02",
+  "2025-01-01"
+ ],
+ "gates": {
+  "wr": 0.56,
+  "pf": 1.01,
+  "dd": 0.0,
+  "trades_per_year": 40
+ },
+ "cells": [
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "orb",
+   "n_viable": 0,
+   "best_raw_exp": null,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "rsi2",
+   "n_viable": 0,
+   "best_raw_exp": null,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "sweep",
+   "n_viable": 0,
+   "best_raw_exp": null,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "momentum",
+   "n_viable": 0,
+   "best_raw_exp": null,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "breakout",
+   "n_viable": 0,
+   "best_raw_exp": null,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "fade",
+   "n_viable": 0,
+   "best_raw_exp": null,
+   "top": []
+  },
+  {
+   "variant": "base",
+   "tf": 15,
+   "mode": "bands",
+   "n_viable": 0,
+   "best_raw_exp": null,
+   "top": []
+  }
+ ]
+}

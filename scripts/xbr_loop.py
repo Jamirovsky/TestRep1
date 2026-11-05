@@ -19,6 +19,7 @@ import argparse
 import json
 import sys
 import time
+from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
@@ -76,6 +77,9 @@ def main() -> int:
     ap.add_argument("--two-stage", action="store_true",
                     help="stage A: best raw-edge entries (no gates); stage B: exits searched under the gates")
     ap.add_argument("--entries", type=int, default=8)
+    ap.add_argument("--soft", action="store_true",
+                    help="no hard gates: target-penalised score + hill-climbing from the best seeds")
+    ap.add_argument("--seeds", type=int, default=3)
     ap.add_argument("--exit-iters", type=int, default=200)
     args = ap.parse_args()
 
@@ -106,7 +110,7 @@ def main() -> int:
                                            workers=args.workers)
                     entries, sigs = [], set()
                     for c in ca:
-                        if not np.isfinite(c.score) or c.metrics.expectancy_r <= 0:
+                        if not np.isfinite(c.score) or c.metrics.expectancy_r < -0.03:
                             continue
                         sig = bt.direction_key(O.build(c.values, base_s, base_e)[0])
                         if sig in sigs:
@@ -131,8 +135,26 @@ def main() -> int:
                     cands = O.parallel_search(prep, space, base_s, base_e, tg, n_iter=args.iters,
                                               seed=hash((args.round, variant, tf, mode)) % 10_000,
                                               workers=args.workers)
+                if args.soft:
+                    tg = replace(tg, hard_min_wr=0.0, hard_min_pf=0.0, hard_max_dd=0.0)
+                    cands = O.parallel_search(prep, space, base_s, base_e, tg, n_iter=args.iters,
+                                              seed=hash((args.round, variant, tf, mode)) % 10_000,
+                                              workers=args.workers)
+                    seeds, sigs = [], set()
+                    for c in cands:
+                        if not np.isfinite(c.score):
+                            continue
+                        sig = bt.direction_key(O.build(c.values, base_s, base_e)[0])
+                        if sig not in sigs:
+                            sigs.add(sig)
+                            seeds.append(c.values)
+                        if len(seeds) >= args.seeds:
+                            break
+                    for sv in seeds:
+                        cands += O.refine(prep, sv, space, base_s, base_e, tg, rounds=2)
+                    cands.sort(key=lambda c: c.score if np.isfinite(c.score) else -1e18, reverse=True)
                 viable = [c for c in cands if np.isfinite(c.score)]
-                if viable:
+                if viable and not args.soft:
                     hist = O.refine(prep, viable[0].values, space, base_s, base_e, tg, rounds=1)
                     viable = sorted([c for c in hist + viable if np.isfinite(c.score)],
                                     key=lambda c: c.score, reverse=True)
@@ -147,9 +169,14 @@ def main() -> int:
                     yr = yearly(tr)
                     n_pos = sum(1 for y in yr if y["r"] > 0)
                     worst = min((y["r"] for y in yr), default=-99.0)
+                    fm = c.metrics
+                    meets = bool(fm.n_trades >= 6 * args.trades_per_year and fm.win_rate >= 0.57
+                                 and fm.profit_factor >= 1.01)
                     ranked.append({"values": c.values, "score": c.score, "fit": mdict(c.metrics),
-                                   "years": yr, "years_positive": n_pos, "worst_year_r": worst})
-                ranked.sort(key=lambda r: (r["years_positive"], r["worst_year_r"], r["score"]), reverse=True)
+                                   "years": yr, "years_positive": n_pos, "worst_year_r": worst,
+                                   "meets_targets_fit": meets})
+                ranked.sort(key=lambda r: (r["meets_targets_fit"], r["years_positive"], r["worst_year_r"],
+                                           r["score"]), reverse=True)
                 cell = {"variant": variant, "tf": tf, "mode": mode, "n_viable": len(viable),
                         "best_raw_exp": max((c.metrics.expectancy_r for c in cands
                                              if c.metrics.n_trades > 50), default=None),
