@@ -28,7 +28,8 @@ enum ENUM_SETUP
    SETUP_KELTNER_REV,       // Reentrada no canal de Keltner
    SETUP_ORB_SESSION,       // Opening Range Breakout
    SETUP_PINBAR_BB,         // Pin bar fora das Bandas de Bollinger
-   SETUP_INSIDE_BO          // Inside bar breakout
+   SETUP_INSIDE_BO,         // Inside bar breakout
+   SETUP_UNGER_PDBO         // Andrea Unger: rompimento máx/mín do dia anterior + ADX
   };
 
 enum ENUM_SLTP_MODE { SLTP_USD = 0,   // Distância fixa em USD
@@ -73,6 +74,7 @@ input double          InpKCK          = 2.0;          // Keltner: múltiplo ATR
 input int             InpORBHourUTC   = 13;           // ORB: hora de abertura (UTC)
 input int             InpORBMinutes   = 30;           // ORB: duração do range (min)
 input double          InpWick         = 0.6;          // Pinbar: sombra mínima (fração da vela)
+input double          InpADXMin       = 30;           // Unger PDBO: ADX(14) mínimo
 
 input group "=== Filtros ==="
 input ENUM_TREND      InpTrend        = TREND_WITH;    // Filtro de tendência
@@ -199,6 +201,28 @@ void RSIArr(const double &c[], int n, int len, double &out[])
       if(i == 1) { up = u; dn = w; }
       else { up = a * u + (1 - a) * up; dn = a * w + (1 - a) * dn; }
       out[i] = (dn == 0) ? 50 : 100 - 100 / (1 + up / dn);
+     }
+  }
+
+long UtcDay(datetime server_t) { return (long)ToUTC(server_t) / 86400; }
+
+// ADX de Wilder (mesma formulação do backtest em Python)
+void ADXArr(const MqlRates &r[], int n, int len, double &out[])
+  {
+   ArrayResize(out, n);
+   double a = 1.0 / len, atr = r[0].high - r[0].low, pdm = 0, ndm = 0, adx = 0;
+   out[0] = 0;
+   for(int i = 1; i < n; i++)
+     {
+      double up = r[i].high - r[i - 1].high, dn = r[i - 1].low - r[i].low;
+      double p = (up > dn && up > 0) ? up : 0, m = (dn > up && dn > 0) ? dn : 0;
+      double pc = r[i - 1].close;
+      double tr = MathMax(r[i].high - r[i].low, MathMax(MathAbs(r[i].high - pc), MathAbs(r[i].low - pc)));
+      atr = a * tr + (1 - a) * atr; pdm = a * p + (1 - a) * pdm; ndm = a * m + (1 - a) * ndm;
+      double pdi = atr > 0 ? 100 * pdm / atr : 0, ndi = atr > 0 ? 100 * ndm / atr : 0;
+      double dx = (pdi + ndi) > 0 ? 100 * MathAbs(pdi - ndi) / (pdi + ndi) : 0;
+      adx = a * dx + (1 - a) * adx;
+      out[i] = adx;
      }
   }
 
@@ -378,6 +402,30 @@ int ComputeSignal(double &atr_now)
         {
          bool inside = h[t - 1] <= h[t - 2] && l[t - 1] >= l[t - 2];
          lg = inside && c[t] > h[t - 1]; sh = inside && c[t] < l[t - 1];
+         break;
+        }
+      case SETUP_UNGER_PDBO:
+        {
+         // máxima/mínima do dia UTC anterior; só o PRIMEIRO cruzamento de cada dia conta
+         long dT = UtcDay(r[t].time);
+         int i0 = t;
+         while(i0 > 0 && UtcDay(r[i0 - 1].time) == dT) i0--;
+         int j = i0 - 1;
+         if(j < 1) break;
+         long dP = UtcDay(r[j].time);
+         double pdh = -1, pdl = 1e18;
+         while(j >= 0 && UtcDay(r[j].time) == dP) { pdh = MathMax(pdh, h[j]); pdl = MathMin(pdl, l[j]); j--; }
+         if(j < 0) break;
+         int firstUp = -1, firstDn = -1;
+         for(int k = i0; k <= t; k++)
+           {
+            if(firstUp < 0 && c[k] > pdh && c[k - 1] <= pdh) firstUp = k;
+            if(firstDn < 0 && c[k] < pdl && c[k - 1] >= pdl) firstDn = k;
+           }
+         double ad[]; ADXArr(r, n, 14, ad);
+         bool adxOk = ad[t] >= InpADXMin;
+         lg = firstUp == t && adxOk;
+         sh = firstDn == t && adxOk;
          break;
         }
      }

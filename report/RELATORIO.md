@@ -1,8 +1,76 @@
 # Relatório final: estratégias de scalping BTCUSD (conta de 100 €, ICTrading)
 
-> Secção 00 = ronda 4 (validação 2018–21). Secção 0 = ronda 3 (A2). Secções 1–7 = relatório original de 02/11/2026.
+> Secção 000 = ronda 5 (Chart Fanatics / World Cup). Secção 00 = ronda 4 (validação 2018–21). Secção 0 = ronda 3 (A2). Secções 1–7 = relatório original de 02/11/2026.
 
 **Data:** 2 de novembro de 2026 · **Período analisado:** 07/01/2025 a 01/11/2026 (velas de 1 minuto)
+
+## 000. Atualização: ronda 5 (05/11/2026), ideias do Chart Fanatics e do World Cup Trading Championship
+
+**Fontes e limites**
+* O YouTube e os sites do Chart Fanatics estão bloqueados na rede deste ambiente. As regras vêm de pesquisa web: páginas de estratégia do Chart Fanatics indexadas, resumos da Tradezella/TradingView e artigos da Unger Academy e da EBC sobre Larry Williams.
+* Não há dados de order flow nem de footprint, por isso essas partes foram aproximadas com velas OHLC de 1 minuto.
+
+**8 estratégias adaptadas** (`scalping/strategies_yt.py`)
+
+| Fonte | Estratégia | Adaptação a BTCUSD |
+|---|---|---|
+| Chart Fanatics: Kyle Ng (Jadecap) | Liquidity raid | Varrimento da máx/mín do dia anterior e das sessões asiática e de Londres, seguido de mudança de estrutura; stop no varrimento |
+| Chart Fanatics: Josh | IFVG | Varrimento de mínimos/máximos recentes seguido de fecho através de um fair value gap contrário |
+| Chart Fanatics: Fabio Valentini | Auction market | Reversão: sai das bandas σ do VWAP e volta para dentro, alvo no VWAP. Tendência: pullback ao VWAP |
+| Chart Fanatics: Okala | 80/20 | Rejeição de níveis "redondos" (grelha 1-2-5 com ~0,1–1% do preço) |
+| WCTC: Larry Williams (1987) | Volatility breakout | Abertura do dia UTC ± k × amplitude do dia anterior |
+| WCTC: Larry Williams | "Oops!" | Fura a mín/máx do dia anterior e volta para dentro |
+| WCTC: Andrea Unger (4× campeão) | Rompimento do dia anterior | Primeiro rompimento do dia, com filtro ADX |
+| WCTC: Andrea Unger | "Compressed candle" | Rompimento depois de um dia de amplitude < comp × média de 10 dias |
+
+**1) Parâmetros tal como publicados, sem otimização** (2018–2026, 100 €, 0,01 lote, spread 0,025%):
+
+| Estratégia | Trades | WR | PF | Lucro | Perdas seguidas |
+|---|---|---|---|---|---|
+| Liquidity raid | 8.117 | 35% | 0,84 | −1.553 € | 19 |
+| IFVG | 9.004 | 37% | 0,87 | −1.440 € | 17 |
+| Fabio (reversão ao VWAP) | 7.249 | 39% | 0,79 | −1.001 € | 14 |
+| 80/20 níveis redondos | 115.803 | 32% | 0,70 | −11.369 € | 43 |
+| Williams volatility breakout | 2.329 | 50% | 1,07 | +321 € | 11 |
+| Williams "Oops!" | 2.463 | 43% | 0,99 | −40 € | 14 |
+| Unger rompimento | 1.068 | 42% | 1,03 | +59 € | 9 |
+| Unger "compressed" | 671 | 43% | 1,19 | +129 € | 10 |
+
+Nesta versão, os modelos Chart Fanatics perdem dinheiro em BTC CFD. Dependem de leitura discricionária de order flow e de stops muito apertados, e o spread come o edge. Os modelos dos campeões ficam à volta de zero ou ligeiramente positivos, mas com perfil de tendência (WR ~45% e até 14 perdas seguidas). **Nenhum cumpre os pressupostos tal como publicado.**
+
+**2) Loop de adaptação:** 125 mil variantes, das 12:29 às 15:30 UTC, otimizadas só com 2022–26 e com as mesmas exigências de robustez da ronda 4. A regra pré-declarada está em `results/REGRA_RONDA5.md`.
+
+**3) Juiz pré-declarado 2018–2021** (para estas estratégias, nunca usado em nenhuma escolha):
+
+| Desafiante (melhor robusto 2022–26) | PF 2022–26 | Trades 18–21 | WR 18–21 | PF 18–21 | Lucro 18–21 | DD 18–21 | Perdas seguidas | Passa? |
+|---|---|---|---|---|---|---|---|---|
+| Liquidity raid | 2,01 | 67 | 73% | 1,46 | +12,2 € | 10,5% | 2 | ✘ (< 100 trades) |
+| IFVG | 1,47 | 71 | 82% | 2,21 | +20,7 € | 6,9% | 3 | ✘ |
+| Fabio | 1,74 | 142 | 58% | 0,80 | −11,9 € | 25,4% | 4 | ✘ |
+| 80/20 | nenhum setup cumpre os pressupostos em 2022–26 | | | | | | | ✘ |
+| Williams VB | 1,59 | 158 | 71% | 1,22 | +28,3 € | 28,1% | 3 | ✘ |
+| Williams "Oops!" | 1,87 | 126 | 56% | 0,55 | −42,5 € | 50,1% | 5 | ✘ |
+| **Unger rompimento** | **1,73** | **105** | **86%** | **2,07** | **+35,5 €** | **11,4%** | **2** | **✔** |
+| **Unger "compressed"** | 1,09 | 105 | 87% | 3,38 | +27,2 € | 3,4% | 2 | **✔** |
+
+**Decisão da regra:**
+* **A A2 continua a ser a estratégia principal.** Nenhuma estratégia nova bate a A2 nos dois períodos. A "Unger rompimento" bate em 2018–21 (2,07 contra 1,96) mas não em 2022–26 (1,73 contra 1,83).
+* **A "Unger rompimento" (U) é a segunda estratégia validada.** Cumpre todos os pressupostos em ambos os períodos. Regras:
+  * M10, primeiro fecho do dia acima da máxima (abaixo da mínima) do dia UTC anterior.
+  * ADX(14) ≥ 30, a favor da EMA(200), só na sessão europeia (07–13 UTC).
+  * SL 5×ATR, TP 1×ATR, breakeven a 80% do TP, fecho ao fim de 480 min, pausa de 4 h após 2 perdas.
+
+**4) Diversificação: A2 + U em paralelo** (correlação mensal 0,13; quase nunca estão abertas ao mesmo tempo):
+
+| 2018–2026 | Trades | WR | PF | Lucro | DD máx | Perdas seguidas |
+|---|---|---|---|---|---|---|
+| A2 | 1.025 | 87,4% | 1,87 | +225 € | 12,3% | 2 |
+| U | 237 | 86,1% | 1,86 | +84 € | 11,4% | 2 |
+| **A2 + U** | 1.262 | 87,2% | 1,87 | **+309 €** | **9,5%** | **3** ✘ |
+
+Em conjunto há mais lucro e menos DD, mas a sequência combinada chega a **3 perdas seguidas**, o que quebra o teu critério. Se o limite das 2 perdas seguidas for absoluto, usa só a A2. Se aceitares 3 perdas seguidas em troca de mais lucro e menor DD, corre A2 + U.
+
+**EA:** novo setup `SETUP_UNGER_PDBO` e ficheiro `mt5/sets/U_UNGER_PDBO_M10.set`, com magic number diferente para poder correr ao lado da A2.
 
 ## 00. Atualização: ronda 4 (03/11/2026), tentativa de melhorar a A2 e validação independente
 

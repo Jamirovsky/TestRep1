@@ -77,6 +77,37 @@ footer{font-size:12.5px;color:var(--muted)}
 </header>
 
 <section>
+  <span class="eyebrow">Atualização · ronda 5 · 05/11/2026</span>
+  <h2>Ideias do Chart Fanatics e do World Cup Trading Championship</h2>
+  <p class="muted">Adaptei 8 estratégias a BTCUSD em velas OHLC; o order flow e o footprint foram aproximados. As regras vêm de pesquisa web, porque o YouTube e os sites estão bloqueados neste ambiente. Testei-as primeiro tal como publicadas, depois otimizei-as com 2022–26 (125 mil variantes) e julguei-as em 2018–21, um período que estas estratégias nunca viram.</p>
+  <div class="panel scroll"><table>
+    <tr><th>Estratégia</th><th>Fonte</th><th class="n">PF publicada<br>2018–26</th><th class="n">PF otimizada<br>2022–26</th><th class="n">PF juiz<br>2018–21</th><th class="n">Perdas seg.<br>juiz</th><th>Juiz</th></tr>
+<tr><td>Liquidity raid</td><td class="muted">Chart Fanatics · Kyle Ng</td><td class="n neg">0,84</td><td class="n">2,01</td><td class="n">1,46</td><td class="n">2</td><td><span class="pill neg">falha</span></td></tr>
+<tr><td>IFVG</td><td class="muted">Chart Fanatics · Josh</td><td class="n neg">0,87</td><td class="n">1,47</td><td class="n">2,21</td><td class="n">3</td><td><span class="pill neg">falha</span></td></tr>
+<tr><td>Auction market (VWAP)</td><td class="muted">Chart Fanatics · Fabio Valentini</td><td class="n neg">0,79</td><td class="n">1,74</td><td class="n">0,80</td><td class="n">4</td><td><span class="pill neg">falha</span></td></tr>
+<tr><td>80/20 níveis redondos</td><td class="muted">Chart Fanatics · Okala</td><td class="n neg">0,70</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td><span class="pill neg">falha</span></td></tr>
+<tr><td>Volatility breakout</td><td class="muted">WCTC · Larry Williams</td><td class="n pos">1,07</td><td class="n">1,59</td><td class="n">1,22</td><td class="n">3</td><td><span class="pill neg">falha</span></td></tr>
+<tr><td>Oops!</td><td class="muted">WCTC · Larry Williams</td><td class="n neg">0,99</td><td class="n">1,87</td><td class="n">0,55</td><td class="n">5</td><td><span class="pill neg">falha</span></td></tr>
+<tr class="hl"><td>Rompimento dia anterior + ADX</td><td class="muted">WCTC · Andrea Unger</td><td class="n pos">1,03</td><td class="n">1,73</td><td class="n">2,07</td><td class="n">2</td><td><span class="pill pos">passa</span></td></tr>
+<tr class="hl"><td>Compressed candle</td><td class="muted">WCTC · Andrea Unger</td><td class="n pos">1,19</td><td class="n">1,09</td><td class="n">3,38</td><td class="n">2</td><td><span class="pill pos">passa</span></td></tr>
+  </table></div>
+  <div class="two">
+    <div class="panel"><h3>O que se aprendeu</h3><ul class="steps">
+      <li>Os modelos Chart Fanatics perdem dinheiro tal como publicados (PF 0,70–0,87). Precisam de order flow e de stops apertados que o spread do BTC CFD não permite.</li>
+      <li>Os modelos dos campeões do mundo ficam à volta de zero ou ligeiramente positivos, com perfil de tendência: WR ~45% e até 14 perdas seguidas.</li>
+      <li>Depois de adaptada, a <b>Unger rompimento (U)</b> cumpre todos os pressupostos em 2018–21 e em 2022–26. É a segunda estratégia validada.</li>
+      <li>Nenhuma substitui a A2: a U bate-a em 2018–21, mas não em 2022–26.</li>
+    </ul></div>
+    <div class="panel scroll"><h3>Carteira A2 + U, 2018–2026</h3><table>
+      <tr><th></th><th class="n">Trades</th><th class="n">PF</th><th class="n">Lucro</th><th class="n">DD</th><th class="n">Perdas seg.</th></tr>
+      <tr><td>A2</td><td class="n">1025</td><td class="n">1,87</td><td class="n pos">+225 €</td><td class="n">12,3%</td><td class="n">2</td></tr>
+      <tr><td>U</td><td class="n">237</td><td class="n">1,86</td><td class="n pos">+84 €</td><td class="n">11,4%</td><td class="n">2</td></tr>
+      <tr class="hl"><td>A2 + U</td><td class="n">1262</td><td class="n">1,87</td><td class="n pos">+309 €</td><td class="n">9,5%</td><td class="n neg">3</td></tr>
+    </table><p class="muted" style="font-size:12.5px;margin-top:8px">Juntas dão mais lucro e menos DD, mas 3 perdas seguidas. Se o limite de 2 for absoluto, fica só a A2.</p></div>
+  </div>
+</section>
+
+<section>
   <span class="eyebrow">Atualização · ronda 4 · 03/11/2026</span>
   <h2>A2 confirmada em 4 anos nunca vistos (2018–2021)</h2>
   <p class="muted">O loop testou mais 1,67 milhões de variantes da A2, exigindo robustez a 1 minuto de atraso e a spread de 0,035%. O desafiante escolhido só com 2022–26 falhou no juiz pré-declarado, 2018–2021: PF 0,99 e 4 perdas seguidas. A A2 mantém-se e passou em todos os pressupostos num período que nunca foi usado em nenhuma ronda.</p>

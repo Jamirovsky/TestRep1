@@ -1,0 +1,23 @@
+; BTCUSD_Scalper_Lab - U_UNGER_PDBO_M10 (Andrea Unger: rompimento do dia anterior + ADX)
+; Carregar em: EA -> Inputs -> Load. Magic diferente da A2 para correr em paralelo.
+InpSetup=14
+InpTF=10
+InpADXMin=30
+InpTrend=1
+InpTrendLen=200
+InpSession=2
+InpTradeWeekend=true
+InpATRMin=0.0
+InpSLTPMode=1
+InpSL_ATR=5.0
+InpTP_ATR=1.0
+InpMaxHoldMin=480
+InpBEFrac=0.8
+InpGuard=1
+InpGuardPauseH=4
+InpGuardLosses=2
+InpMaxSpreadUSD=60
+InpGMTOffset=-99
+InpLots=0.01
+InpMaxDDPct=20
+InpMagic=26110214
