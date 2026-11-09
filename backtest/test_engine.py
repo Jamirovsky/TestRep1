@@ -113,6 +113,25 @@ def test_aggressive_reversion():
     assert abs(t.r - 20.0 / 5.0) < 1e-9, t
 
 
+def test_reversion_fires_with_skip_flag_when_no_position_trade():
+    # regression: reaching +2 ATR always passes the +1 ATR confirmation; with position
+    # trades off, the default skip flag must not block the reversion
+    bars = [(101, 101, 101, 101), (101, 101, 101, 101), (101, 101, 101, 101),
+            (101, 122, 101, 122), (122, 122, 100, 100)]
+    prm = base_params(enable_position=False, rev_mode="aggressive", rev_ext=2)
+    tr = Sim(make_P(bars), [(0, 100.0, 102.0, "BS")], prm, FREE).run()
+    assert len(tr) == 1 and tr[0].tag == "R", tr
+
+
+def test_reversion_skipped_after_position_trade_on_that_side():
+    # long position trade taken (and stopped), then the +2 ATR fade must be skipped
+    bars = [(101, 101, 101, 101), (101, 114, 101, 114), (114, 114, 88, 88),
+            (88, 125, 88, 125), (125, 125, 100, 100)]
+    prm = base_params(rev_mode="aggressive", rev_ext=2, allow_both=False)
+    tr = Sim(make_P(bars), [(0, 100.0, 102.0, "BS")], prm, FREE).run()
+    assert [t.tag for t in tr] == ["P"], tr
+
+
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for f in fns:

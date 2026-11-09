@@ -286,6 +286,8 @@ class _Zone:
     short_done: bool = False
     rev_up: bool = False
     rev_dn: bool = False
+    long_traded: bool = False     # a position trade was actually placed on this side
+    short_traded: bool = False
 
 
 class Sim:
@@ -371,6 +373,12 @@ class Sim:
         elif abs(p - entry) <= prm.max_chase_atr * a:
             self._open(d, p, sl, tp, "P", z, "taker")
             self.pos["planned"] = entry
+        else:
+            return
+        if d > 0:
+            z.long_traded = True
+        else:
+            z.short_traded = True
 
     def target(self, d, entry, risk):
         prm = self.prm
@@ -444,13 +452,13 @@ class Sim:
 
     def check_rev(self, z: _Zone, p: float):
         prm = self.prm
-        if not z.rev_up and p > z.hi and not (prm.rev_skip_if_confirmed and z.long_conf):
+        if not z.rev_up and p > z.hi and not (prm.rev_skip_if_confirmed and z.long_traded):
             s = self.rev_setup(z, +1)
             if s and s[0] <= p <= s[2]:
                 z.rev_up = True
                 if self.allow_rev(-1) and self.can_open():
                     self.place_rev(z, -1, p, s[1])
-        if not z.rev_dn and p < z.lo and not (prm.rev_skip_if_confirmed and z.short_conf):
+        if not z.rev_dn and p < z.lo and not (prm.rev_skip_if_confirmed and z.short_traded):
             s = self.rev_setup(z, -1)
             if s and s[2] <= p <= s[0]:
                 z.rev_dn = True

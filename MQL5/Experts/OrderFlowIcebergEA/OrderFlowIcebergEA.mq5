@@ -136,7 +136,7 @@ input ENUM_REV_MODE  InpReversionMode        = REV_NONE; // Reversion entry meth
 input int            InpRevExtension         = 2;       // ATR extension to fade (1, 2 or 3)
 input double         InpRevStopATR           = 0.50;    // Stop beyond the extension (x ATR) [not in source]
 input ENUM_REV_TARGET InpRevTarget           = REVT_NEAR_EDGE; // Reversion target inside the zone
-input bool           InpRevSkipIfConfirmed   = true;    // Do not fade a side that confirmed a position trade
+input bool           InpRevSkipIfConfirmed   = true;    // Do not fade a side where a position trade was taken
 input bool           InpBiBUseBollinger      = true;    // Back in Black: Bollinger bands count as levels
 input int            InpBBPeriod             = 20;      // Bollinger period (on ATR timeframe)
 input double         InpBBDeviation          = 2.0;     // Bollinger deviation
@@ -195,6 +195,8 @@ struct EventZone
    bool     shortDone;
    bool     revUpDone;
    bool     revDnDone;
+   bool     longTraded;   // a position trade was actually placed on this side
+   bool     shortTraded;
    ulong    longTicket;
    ulong    shortTicket;
    datetime longPlaced;
@@ -675,6 +677,8 @@ int AddZone(double lo, double hi, const int kind, const datetime t, const string
    g_zones[n].shortDone   = false;
    g_zones[n].revUpDone   = false;
    g_zones[n].revDnDone   = false;
+   g_zones[n].longTraded  = false;
+   g_zones[n].shortTraded = false;
    g_zones[n].longTicket  = 0;
    g_zones[n].shortTicket = 0;
    g_zones[n].longPlaced  = 0;
@@ -1226,6 +1230,10 @@ void TryPositionTrade(const int i, const int dir)
          g_zones[i].shortPlaced = TimeCurrent();
         }
      }
+   if(dir > 0)
+      g_zones[i].longTraded = true;
+   else
+      g_zones[i].shortTraded = true;
    Log(StringFormat("Position trade %s zone #%d: %s entry %.5f SL %.5f TP %.5f lots %.2f",
                     dir > 0 ? "LONG" : "SHORT", g_zones[i].id, pending ? "stop order" : "market",
                     entry, sl, tp, lots));
@@ -1402,7 +1410,7 @@ void CheckReversion(const int i, const double px)
   {
    double trig = 0.0, sl = 0.0, chase = 0.0;
    // extended above -> short
-   if(!g_zones[i].revUpDone && px > g_zones[i].hi && !(InpRevSkipIfConfirmed && g_zones[i].longConf))
+   if(!g_zones[i].revUpDone && px > g_zones[i].hi && !(InpRevSkipIfConfirmed && g_zones[i].longTraded))
      {
       if(ReversionSetup(i, +1, trig, sl, chase) && px >= trig && px <= chase)
         {
@@ -1414,7 +1422,7 @@ void CheckReversion(const int i, const double px)
         }
      }
    // extended below -> long
-   if(!g_zones[i].revDnDone && px < g_zones[i].lo && !(InpRevSkipIfConfirmed && g_zones[i].shortConf))
+   if(!g_zones[i].revDnDone && px < g_zones[i].lo && !(InpRevSkipIfConfirmed && g_zones[i].shortTraded))
      {
       if(ReversionSetup(i, -1, trig, sl, chase) && px <= trig && px >= chase)
         {
