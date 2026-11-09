@@ -115,7 +115,17 @@ Other key inputs:
   - the result with the best 5% of trades removed.
 - The EA was written in a Linux environment with **no MetaEditor available**, so it has **not been compiled**. If MetaEditor reports an error, paste it back and it will be fixed.
 
-## 7. Files
+## 7. Backtest results
+
+Full report: [`backtest/RESULTS.md`](../../../backtest/RESULTS.md).
+
+- **Data tested:** CME futures (NQ, ES, GC, CL) with bar-proxy events over 21 one-minute sessions and 50 five-minute sessions, plus the real tick order-flow detector on 30.9M aggressor-flagged BTC perpetual trades.
+- **Result:** no robust edge over the same rules fired on random events. The 144-setting optimisation did not beat a random best-of-grid.
+- **Change made:** the default `InpProxyVolMult` is now 4.0, the only change that helped in every slice, and only weakly. Everything else stays at the published rules. Reversions stay off by default.
+- **Still untested:** the strategy's real signal needs CME Market-By-Order data. See "What would settle it" in the report.
+
+## 8. Files
 
 - `OrderFlowIcebergEA.mq5`: the Expert Advisor.
 - `README.md`: this document, covering the rules, the mapping and usage.
+- `../../../backtest/`: Python port of the EA logic, data fetchers, tests and the backtest report.

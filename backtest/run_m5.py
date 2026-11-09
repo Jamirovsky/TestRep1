@@ -35,13 +35,14 @@ def _null(args):
     return float(sum(t.r for t in tr))
 
 
-def evaluate(label, prm, pool, n_null=200):
+def evaluate(label, prm, n_null=200):
     rows = []
     pooled = []
     for sym in FUTURES:
         P = prepare(load(sym), prm, bar_seconds=300)
         ev = proxy_events(P, prm)
         PREP[sym] = (P, ev)
+    pool = get_context("fork").Pool(4)   # fork after PREP is filled so workers see it
     for sym in FUTURES:
         P, ev = PREP[sym]
         sim = Sim(P, ev, prm, INSTRUMENTS[sym])
@@ -53,6 +54,7 @@ def evaluate(label, prm, pool, n_null=200):
         s["null_total_r_mean"] = float(null.mean())
         s["pct_vs_null"] = float((null < s["total_r"]).mean())
         rows.append(s)
+    pool.close()
     s = summarise(pooled, 0, "POOLED")
     rows.append(s)
     df = pd.DataFrame(rows)
@@ -63,13 +65,11 @@ def evaluate(label, prm, pool, n_null=200):
 
 
 if __name__ == "__main__":
-    pool = get_context("fork").Pool(4)
     out = []
     base = Params()
-    out.append(evaluate("EA defaults (M5 proxy)", base, pool).assign(config="defaults"))
+    out.append(evaluate("EA defaults (M5 proxy)", base).assign(config="defaults"))
     for arg in sys.argv[1:]:
         kw = json.loads(arg)
         prm = replace(base, **kw)
-        out.append(evaluate(f"config {kw}", prm, pool).assign(config=json.dumps(kw)))
-    pool.close()
+        out.append(evaluate(f"config {kw}", prm).assign(config=json.dumps(kw)))
     pd.concat(out).to_csv("out/m5_robustness.csv", index=False)

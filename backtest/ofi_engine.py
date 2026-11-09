@@ -58,7 +58,7 @@ INSTRUMENTS = {
 @dataclass
 class Params:
     # --- event detection: bar proxy (EA: ProcessProxyBar)
-    proxy_vol_mult: float = 3.0
+    proxy_vol_mult: float = 3.0         # the EA's original default (now ships 4.0, see RESULTS.md)
     proxy_avg_bars: int = 30
     swing_bars: int = 20
     absorb_max_range_atr: float = 0.35

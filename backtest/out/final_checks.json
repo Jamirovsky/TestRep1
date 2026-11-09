@@ -1,0 +1,74 @@
+[
+  {
+    "check": "M5 holdout (unseen sessions)",
+    "config": "EA defaults",
+    "sessions": 29,
+    "n": 53,
+    "mean_r": -0.052177307069760835,
+    "total_r": -2.765397274697324,
+    "sqn": -0.39650247112185405,
+    "mean_ex_top5": -0.21021191992921062,
+    "per_instrument": "{\"NQ\": 1.08, \"ES\": -1.23, \"GC\": 0.2, \"CL\": -2.81}",
+    "null_mean": -1.5277328879026562,
+    "pct_vs_null": 0.435
+  },
+  {
+    "check": "M5 holdout (unseen sessions)",
+    "config": "vol_mult=4",
+    "sessions": 29,
+    "n": 37,
+    "mean_r": 0.06556472214700312,
+    "total_r": 2.4258947194391154,
+    "sqn": 0.371183695556224,
+    "mean_ex_top5": -0.10743495835868495,
+    "per_instrument": "{\"NQ\": 1.26, \"ES\": -2.22, \"GC\": 1.97, \"CL\": 1.42}",
+    "null_mean": 0.49438453483559885,
+    "pct_vs_null": 0.645
+  },
+  {
+    "check": "M5 holdout (unseen sessions)",
+    "config": "vol_mult=4 + trail",
+    "sessions": 29,
+    "n": 36,
+    "mean_r": 0.005216481749186688,
+    "total_r": 0.18779334297072076,
+    "sqn": 0.03486115026788556,
+    "mean_ex_top5": -0.11246758170826265,
+    "per_instrument": "{\"NQ\": -0.98, \"ES\": -2.22, \"GC\": 1.97, \"CL\": 1.42}",
+    "null_mean": 0.6087576507460045,
+    "pct_vs_null": 0.455
+  },
+  {
+    "check": "M1 out-of-sample",
+    "config": "EA defaults",
+    "n": 32,
+    "mean_r": 0.20343663104612186,
+    "total_r": 6.5099721934759,
+    "sqn": 0.5599389379429996,
+    "mean_ex_top5": -0.20599828215889435,
+    "null_mean": -0.002669571806676103,
+    "pct_vs_null": 0.89
+  },
+  {
+    "check": "M1 out-of-sample",
+    "config": "vol_mult=4",
+    "n": 27,
+    "mean_r": 0.27315518275371714,
+    "total_r": 7.375189934350362,
+    "sqn": 0.6414029301587042,
+    "mean_ex_top5": -0.08966600345177016,
+    "null_mean": 0.5197269560948987,
+    "pct_vs_null": 0.93
+  },
+  {
+    "check": "M1 out-of-sample",
+    "config": "vol_mult=4 + trail",
+    "n": 26,
+    "mean_r": 0.834935069461084,
+    "total_r": 21.708311805988185,
+    "sqn": 1.167314269296909,
+    "mean_ex_top5": 0.27091560476964804,
+    "null_mean": -1.5732492128129656,
+    "pct_vs_null": 1.0
+  }
+]

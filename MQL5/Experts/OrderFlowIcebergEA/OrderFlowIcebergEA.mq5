@@ -93,7 +93,7 @@ input int            InpStopRunWindowSec     = 3;       // Stop run: burst windo
 input int            InpSwingBars            = 20;      // Stop run / sweep: swing lookback (bars)
 input int            InpZonePadTicks         = 2;       // Ticks added around a single-price event
 input ENUM_TIMEFRAMES InpProxyTF             = PERIOD_M1; // Bar proxy: timeframe
-input double         InpProxyVolMult         = 3.0;     // Bar proxy: volume >= mult x average
+input double         InpProxyVolMult         = 4.0;     // Bar proxy: volume >= mult x average (backtest: 4 > 3)
 input int            InpProxyAvgBars         = 30;      // Bar proxy: average volume lookback
 input double         InpProxyAbsorbMaxRangeATR = 0.35;  // Bar proxy: absorption bar max range (x ATR)
 input int            InpZoneLifetimeMin      = 240;     // Event zone lifetime (minutes)
