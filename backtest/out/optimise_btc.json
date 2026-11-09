@@ -1,0 +1,27 @@
+{
+  "asset": "btc",
+  "n_configs": 144,
+  "best": {
+    "config": "events=(50, 100) key_level=False target=r3.0 stop_atr=0.75 rev=bib",
+    "is_sqn": -0.23175371144280701,
+    "is_n": 60,
+    "is_total_r": -2.474715981856319,
+    "oos_sqn": -0.12821892036012486,
+    "oos_n": 39,
+    "oos_total_r": -1.2035817479583302,
+    "per_instrument": "{\"BTC\": [60, -2.4747159818563156, 39, -1.2035817479583302]}"
+  },
+  "best_is_sqn_pct_vs_maxstat_null": 0.45,
+  "maxstat_null_p50": -0.1314418653898241,
+  "maxstat_null_p95": 0.48626579761152355,
+  "default": {
+    "config": "events=(100, 200) key_level=True target=next_level stop_atr=1.15 rev=none",
+    "is_sqn": -Infinity,
+    "is_n": 19,
+    "is_total_r": -15.096683570498156,
+    "oos_sqn": -Infinity,
+    "oos_n": 11,
+    "oos_total_r": -2.779408314299285,
+    "per_instrument": "{\"BTC\": [19, -15.096683570498156, 11, -2.779408314299285]}"
+  }
+}
