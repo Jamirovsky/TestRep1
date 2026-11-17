@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "skillselion": {
+      "type": "http",
+      "url": "https://mcp.skillselion.com/mcp"
+    }
+  }
+}
