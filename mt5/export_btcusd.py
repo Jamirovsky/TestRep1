@@ -11,7 +11,7 @@ Unlimited (otherwise MT5 only returns the most recent bars), and open a BTCUSD M
 chart once so the terminal downloads the history.
 
 Outputs (copy them into the repo's data/ folder):
-    data/mt5_btcusd_m1.csv       time (UTC epoch s), open, high, low, close (BID), tick_volume, spread (points), real_volume
+    data/mt5_btcusd_m1.csv.gz    time (UTC epoch s), open, high, low, close (BID), tick_volume, spread (points), real_volume
     data/mt5_symbol_spec.json    raw symbol spec + a derived cost profile used by the backtester
 """
 from __future__ import annotations
@@ -96,7 +96,7 @@ def main():
     df = fetch_m1(a.symbol, start + timedelta(seconds=off), end + timedelta(seconds=off))
     df["time"] = df["time"].astype("int64") - off            # -> UTC
     os.makedirs(DATA, exist_ok=True)
-    out_csv = os.path.join(DATA, "mt5_btcusd_m1.csv")
+    out_csv = os.path.join(DATA, "mt5_btcusd_m1.csv.gz")   # gzip keeps it small enough to push
     df[["time", "open", "high", "low", "close", "tick_volume", "spread", "real_volume"]].to_csv(out_csv, index=False)
     print("wrote", out_csv, len(df), "bars",
           pd.to_datetime(df.time.iloc[0], unit="s"), "->", pd.to_datetime(df.time.iloc[-1], unit="s"))

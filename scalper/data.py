@@ -38,7 +38,8 @@ def load_1m(refresh: bool = False, source: str | None = None) -> pd.DataFrame:
             df.to_parquet(path)
         return pd.read_parquet(path)
     if source == "mt5":
-        return load_mt5_csv(os.path.join(ROOT, "data", "mt5_btcusd_m1.csv"))
+        p = os.path.join(ROOT, "data", "mt5_btcusd_m1.csv.gz")
+        return load_mt5_csv(p if os.path.exists(p) else p[:-3])
     if os.path.exists(CACHE) and not refresh:
         return pd.read_parquet(CACHE)
     files = sorted(glob.glob(os.path.join(RAW, "BTCUSDT-1m-*.zip")))

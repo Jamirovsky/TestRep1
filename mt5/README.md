@@ -22,12 +22,21 @@ Two files:
 2. Compare with the Python results in `results/REPORT.md`. Small differences are expected, because the broker feed and spread differ from the research data.
 3. Then run it on a **demo** account for at least 4–6 weeks before going live.
 
+## Shortcut: one command does export + both tester runs
+
+```bash
+pip install MetaTrader5 pandas
+python mt5/run_all.py
+```
+
+It exports the data, asks you to close MT5, runs the Strategy Tester for 2025-01-01 → today and 2026-08-01 → today, copies the reports to `results/mt5/` and prints the key numbers.
+
 ## 3. Re-run the research on the broker's own data (recommended)
 
 ```bash
 pip install MetaTrader5 pandas numpy numba optuna pyarrow
 python mt5/export_btcusd.py --symbol BTCUSD --start 2024-11-01
-# -> data/mt5_btcusd_m1.csv + data/mt5_symbol_spec.json  (spread, lot size, leverage, swap)
+# -> data/mt5_btcusd_m1.csv.gz + data/mt5_symbol_spec.json  (spread, lot size, leverage, swap)
 set AMS_DATA=mt5                      # PowerShell: $env:AMS_DATA="mt5"
 python -m scalper.optimize_full --version v7 --trials 600
 python -m scalper.holdout
