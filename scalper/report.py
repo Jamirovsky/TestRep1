@@ -28,7 +28,7 @@ def main():
     fig, ax = plt.subplots(figsize=(10, 4.2), dpi=130)
     ax.plot(days, eur, color="#2563eb", lw=1.6)
     ax.axvspan(pd.Timestamp(split, tz="UTC"), days[-1], color="#f59e0b", alpha=0.12)
-    ax.text(pd.Timestamp(split, tz="UTC"), eur.max(), "  holdout\n  (never optimised on)", va="top",
+    ax.text(pd.Timestamp(split, tz="UTC"), eur.min(), "  holdout\n  (never optimised on)", va="bottom",
             fontsize=9, color="#92400e")
     ax.axhline(150, color="#9ca3af", lw=0.8, ls="--")
     ax.set_ylabel("Account equity (EUR)")

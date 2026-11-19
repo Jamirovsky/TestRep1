@@ -12,9 +12,9 @@ Two files:
 1. In MT5 (logged in to `CapitalPointTrading-MT5-…`): **File → Open Data Folder** → `MQL5\Experts\`.
 2. Copy `AMS_BTCUSD.mq5` there, open it in **MetaEditor** (F4) and press **Compile** (F7).
    It was written without access to MetaEditor, so if the compiler reports anything, send me the message.
-3. **Use a hedging account.** The two sleeves hold separate positions. On a netting account the EA still runs, but only one sleeve can hold a position at a time.
+3. The final strategy uses one sleeve (A). Sleeve B is off by default because 150 € is too small to split. If you enable B, use a **hedging** account.
 4. Open a BTCUSD chart (any timeframe) and drag the EA onto it. Enable **Algo Trading**.
-5. On start-up the **Experts** tab shows the rebuilt memory, for example `B memory cell 3 (long, mom up): ewR=0.214 n=17`.
+5. On start-up the **Experts** tab shows the rebuilt memory, for example `A memory cell 3 (long, mom up): ewR=0.374 n=110`.
 
 ## 2. Test it before trading real money
 
@@ -54,4 +54,4 @@ cell = direction (long/short) × 7-day momentum state (up/down)
 memR = 0.9 · memR + 0.1 · R
 ```
 
-Sleeve B only trades a cell after 5 shadow results, and only while that cell's `memR > 0`. The memory is written to `MQL5\Files\AMS_BTCUSD_<sleeve>.mem` (CSV, readable in Excel) on every update and rebuilt from history on restart, so it survives restarts.
+Once a cell has 5 shadow results, it is vetoed while its `memR < -0.3` (R units), and re-enabled automatically when its shadow trades recover. The memory is written to `MQL5\Files\AMS_BTCUSD_<sleeve>.mem` (CSV, readable in Excel) on every update and rebuilt from history on restart, so it survives restarts.

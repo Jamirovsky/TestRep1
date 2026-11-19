@@ -33,23 +33,23 @@ input double InpModelSpreadUSD = 0.0;    // spread for memory replay (0 = curren
 input int    InpMemoryDays     = 60;     // days of M1 history replayed to rebuild memory
 input bool   InpVerbose        = true;
 
-input group "Sleeve A (plateau, no memory gate)"
+input group "Sleeve A (final strategy)"
 input bool   A_Enabled  = true;
-input double A_Weight   = 0.5;           // share of account equity
-input int    A_ImpN     = 4;             // impulse length (M15 bars)
-input double A_ImpThr   = 2.0;           // impulse threshold (z, ATR*sqrt(n) units)
-input double A_SLk      = 3.5;           // stop  = SLk x ATR(14, M15)
-input double A_TPk      = 6.5;           // target = TPk x ATR
-input int    A_MaxHold  = 28;            // max holding time in M15 bars
-input bool   A_MemGate  = false;         // gate trades with memory
-input int    A_MemWarm  = 0;
-input double A_MemThr   = -1e9;
-input bool   A_MemByMom = false;         // memory cells also keyed by 7-day momentum state
+input double A_Weight   = 1.0;           // share of account equity
+input int    A_ImpN     = 1;             // impulse length (M15 bars)
+input double A_ImpThr   = 2.7;           // impulse threshold (z, ATR*sqrt(n) units)
+input double A_SLk      = 2.0;           // stop  = SLk x ATR(14, M15)
+input double A_TPk      = 7.5;           // target = TPk x ATR
+input int    A_MaxHold  = 12;            // max holding time in M15 bars (3h)
+input bool   A_MemGate  = true;          // gate trades with memory (veto)
+input int    A_MemWarm  = 5;             // shadow results before the veto can act
+input double A_MemThr   = -0.3;          // block a cell while its EW expectancy < -0.3R
+input bool   A_MemByMom = true;          // memory cells keyed by direction x 7-day momentum state
 input long   A_Magic    = 26111901;
 
-input group "Sleeve B (memory gated)"
-input bool   B_Enabled  = true;
-input double B_Weight   = 0.5;
+input group "Sleeve B (optional second sleeve - off by default; 150 EUR is too small for two)"
+input bool   B_Enabled  = false;
+input double B_Weight   = 0.0;
 input int    B_ImpN     = 3;
 input double B_ImpThr   = 2.2;
 input double B_SLk      = 2.5;
@@ -64,7 +64,7 @@ input long   B_Magic    = 26111902;
 input group "Common signal settings"
 input int    InpAtrN       = 14;
 input int    InpMomDays    = 7;          // momentum lookback (days) for the trend filter
-input bool   InpTrendFilter = true;
+input bool   InpTrendFilter = false;      // hard 7-day trend filter (off in the final strategy)
 input double InpMemAlpha   = 0.10;       // EW memory learning rate
 
 //--- constants
