@@ -1,0 +1,18 @@
+{
+  "name": "AMS-BTC  (Adaptive Memory Scalper, BTC/USD, Capital.com)",
+  "instrument": {"broker": "Capital.com", "epic": "BTCUSD", "account_currency": "EUR", "start_equity_eur": 150},
+  "sleeves": [
+    {
+      "id": "A_plateau",
+      "comment": "Impulse continuation on 15m bars, only in the direction of the 7-day momentum (market memory). Chosen by plateau-robust optimisation.",
+      "weight": 0.5,
+      "params": {"tf": 15, "atr_n": 14, "imp_n": 4, "imp_thr": 2.0, "don_n": 48, "z_n": 20, "z_in": 2.0, "er_n": 20, "er_thr": 0.35, "htf_n": 96, "vol_n": 288, "fam_mask": 1, "bucket": 0, "mom_n": 672, "trend_filter": 1, "sl_k": 3.5, "tp_k": 6.5, "max_hold": 28, "be_trig": 0.0, "trail_k": 0.0, "risk": 0.02, "mem_alpha": 0.1, "mem_thr": -1000000000.0, "mem_warm": 0, "mem_k": 0.0, "min_stop_spread": 2.0, "dd_cut": 1.0}
+    },
+    {
+      "id": "B_memory",
+      "comment": "Same signal family; trades are additionally gated by a learned memory: EW mean R of shadow trades per (direction x 7-day momentum state). A cell is traded only after 5 shadow results and while its EW expectancy > 0.",
+      "weight": 0.5,
+      "params": {"tf": 15, "atr_n": 14, "imp_n": 3, "imp_thr": 2.2, "don_n": 48, "z_n": 20, "z_in": 2.0, "er_n": 20, "er_thr": 0.35, "htf_n": 96, "vol_n": 288, "fam_mask": 1, "bucket": 3, "mom_n": 672, "trend_filter": 1, "sl_k": 2.5, "tp_k": 5.0, "max_hold": 48, "be_trig": 0.0, "trail_k": 0.0, "risk": 0.02, "mem_alpha": 0.1, "mem_thr": 0.0, "mem_warm": 5, "mem_k": 0.0, "min_stop_spread": 2.0, "dd_cut": 1.0}
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+data/raw/
+data/parts/
+data/*.parquet
+data/mt5_btcusd_m1.csv
+results/*.npy
